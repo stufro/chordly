@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root "chord_sheets#show"
+  root "chord_sheets#new"
   resources :chord_sheets, only: %i[new create show]
 end

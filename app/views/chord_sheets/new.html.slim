@@ -1,0 +1,16 @@
+h1.title.is-1 New Chord Sheet
+
+= form_with model: @chord_sheet do |f|
+  .field
+    = f.label :name, class: "label"
+    .control
+      = f.text_field :name
+
+  .field
+    = f.label :content, class: "label"
+    .control
+      = f.text_area :content
+
+  .field 
+    .control 
+      = f.submit class: "button is-link"
