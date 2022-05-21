@@ -30,7 +30,11 @@ group :development, :test do
 end
 
 group :development do
+  gem "brakeman"
+  gem "bundler-audit"
   gem "rack-mini-profiler"
+  gem "rails_best_practices"
   gem "rubocop-rails", require: false
+  gem "slim_lint"
   gem "web-console"
 end
