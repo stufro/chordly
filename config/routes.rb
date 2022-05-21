@@ -6,5 +6,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "chord_sheets#new"
-  resources :chord_sheets, only: %i[new create show]
+  resources :chord_sheets, only: %i[new create show] do
+    put :transpose
+  end
 end

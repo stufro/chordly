@@ -18,6 +18,11 @@ class ChordSheetsController < ApplicationController
     @chord_sheet = ChordSheet.find(params[:id])
   end
 
+  def transpose
+    @chord_sheet = ChordSheet.find(params[:chord_sheet_id])
+    @chord_sheet.transpose(params[:direction])
+  end
+
   private
 
   def chord_sheet_params
