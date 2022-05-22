@@ -11,10 +11,14 @@ class ChordSheetModeller
   private
 
   def model_line(line)
+    { type: line_type(line), content: sanitise(line) }
+  end
+
+  def line_type(line)
     line.split.each {|token| Music::Chord.new(token) }
-    { type: :chords, content: sanitise(line) }
+    :chords
   rescue StandardError
-    { type: :lyrics, content: sanitise(line) }
+    :lyrics
   end
 
   def sanitise(line)
