@@ -1,2 +1,3 @@
 class ChordSheet < ApplicationRecord
+  
 end

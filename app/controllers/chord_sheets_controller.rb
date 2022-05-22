@@ -6,6 +6,7 @@ class ChordSheetsController < ApplicationController
   end
 
   def create
+    debugger
     @chord_sheet = ChordSheet.new(chord_sheet_params)
     if @chord_sheet.save
       redirect_to @chord_sheet
@@ -26,6 +27,8 @@ class ChordSheetsController < ApplicationController
   private
 
   def chord_sheet_params
-    params.require(:chord_sheet).permit(:name, :content)
+    permitted = params.require(:chord_sheet).permit(:name, :content).tap do |p|
+      p[:content] = ChordSheetModeller.new(p[:content]).build
+    end
   end
 end

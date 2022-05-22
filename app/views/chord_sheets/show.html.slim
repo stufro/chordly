@@ -5,5 +5,5 @@ h2.title.is-3 = @chord_sheet.name
 = button_to "Transpose Up", chord_sheet_transpose_path(@chord_sheet, direction: "up"), class: "button is-info", method: :put
 = button_to "Transpose Down", chord_sheet_transpose_path(@chord_sheet, direction: "down"), class: "button is-info", method: :put
 
-pre = simple_format @chord_sheet.content
+pre = @chord_sheet.content
 
