@@ -6,7 +6,6 @@ class ChordSheetsController < ApplicationController
   end
 
   def create
-    debugger
     @chord_sheet = ChordSheet.new(chord_sheet_params)
     if @chord_sheet.save
       redirect_to @chord_sheet
