@@ -1,13 +1,17 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 describe ChordSheet do
   describe "#transpose" do
-    subject { described_class.new(content: original_content) }
+    subject(:chord_sheet) { described_class.new(content: original_content) }
 
-    let(:original_content) {[
-      { "type" => "lyrics", "content" => "Some song lyrics" },
-      { "type" => "chords", "content" => original_chords }
-    ]}
+    let(:original_content) do
+      [
+        { "type" => "lyrics", "content" => "Some song lyrics" },
+        { "type" => "chords", "content" => original_chords }
+      ]
+    end
     let(:original_chords) { "F Bb Dm" }
     let(:direction) { "up" }
 
@@ -15,8 +19,8 @@ describe ChordSheet do
       let(:expected_chords) { "G♭5 C♭5 E♭m5" }
 
       it "increases all the chords by a semitone" do
-        subject.transpose(:up)
-        expect(subject.content[1].content).to eq(expected_chords)
+        chord_sheet.transpose(:up)
+        expect(chord_sheet.content[1].content).to eq(expected_chords)
       end
     end
 
@@ -24,8 +28,8 @@ describe ChordSheet do
       let(:expected_chords) { "E5 A5 C#m5" }
 
       it "decreases all the chords by a semitone" do
-        subject.transpose(:down)
-        expect(subject.content[1].content).to eq(expected_chords)
+        chord_sheet.transpose(:down)
+        expect(chord_sheet.content[1].content).to eq(expected_chords)
       end
     end
 
@@ -34,9 +38,9 @@ describe ChordSheet do
       let(:expected_chords) { " G♭5  C♭5   E♭m5" }
 
       it "maintains the whitespace" do
-        subject.transpose(:up)
-        expect(subject.content[1].content).to eq(expected_chords)
+        chord_sheet.transpose(:up)
+        expect(chord_sheet.content[1].content).to eq(expected_chords)
       end
-    end 
+    end
   end
 end

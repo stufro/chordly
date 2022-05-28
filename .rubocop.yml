@@ -1,7 +1,14 @@
-require: rubocop-rails
+require: 
+  - rubocop-rails
+  - rubocop-rspec
 
 AllCops:
   NewCops: enable
+  Exclude:
+    - spec/spec_helper.rb
+    - spec/rails_helper.rb
+    - db/*
+    - bin/*
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes

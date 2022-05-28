@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChordSheetModeller
   def initialize(content)
     @content = content
@@ -5,7 +7,7 @@ class ChordSheetModeller
 
   def parse
     content_lines = reject_empty(@content.lines)
-    content_lines.map {|line| model_line(line) }
+    content_lines.map { |line| model_line(line) }
   end
 
   private
@@ -15,7 +17,7 @@ class ChordSheetModeller
   end
 
   def line_type(line)
-    line.split.each {|token| Music::Chord.new(token) }
+    line.split.each { |token| Music::Chord.new(token) }
     :chords
   rescue StandardError
     :lyrics
@@ -26,6 +28,6 @@ class ChordSheetModeller
   end
 
   def reject_empty(lines)
-    lines.reject {|line| line.match? /^\s+$/ }
+    lines.grep_v(/^\s+$/)
   end
 end

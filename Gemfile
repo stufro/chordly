@@ -37,6 +37,7 @@ group :development do
   gem "rack-mini-profiler"
   gem "rails_best_practices"
   gem "rubocop-rails", require: false
+  gem "rubocop-rspec", require: false
   gem "slim_lint"
   gem "web-console"
 end
