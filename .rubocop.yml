@@ -9,6 +9,7 @@ AllCops:
     - spec/rails_helper.rb
     - db/*
     - bin/*
+    - lib/tasks/*
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes

@@ -6,10 +6,12 @@
 require_relative "config/application"
 require "rubocop/rake_task"
 require "bundler/audit/task"
+require "slim_lint/rake_task"
 
 Bundler::Audit::Task.new
 RuboCop::RakeTask.new
+SlimLint::RakeTask.new
 
-task default: %i[bundler:audit rubocop spec]
+task default: %i[bundler:audit rubocop slim_lint spec brakeman:run]
 
 Rails.application.load_tasks
