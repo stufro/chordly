@@ -29,7 +29,7 @@ class ChordSheetsController < ApplicationController
 
   def chord_sheet_params
     permitted = params.require(:chord_sheet).permit(:name, :content).tap do |p|
-      p[:content] = ChordSheetModeller.new(p[:content]).build
+      p[:content] = ChordSheetModeller.new(p[:content]).parse
     end
   end
 end

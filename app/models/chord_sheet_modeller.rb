@@ -3,7 +3,7 @@ class ChordSheetModeller
     @content = content
   end
 
-  def build
+  def parse
     content_lines = reject_empty(@content.lines)
     content_lines.map {|line| model_line(line) }
   end
