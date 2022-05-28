@@ -16,7 +16,7 @@ describe ChordSheet do
 
       it "increases all the chords by a semitone" do
         subject.transpose(:up)
-        expect(subject.content[1]["content"]).to eq(expected_chords)
+        expect(subject.content[1].content).to eq(expected_chords)
       end
     end
 
@@ -25,7 +25,7 @@ describe ChordSheet do
 
       it "decreases all the chords by a semitone" do
         subject.transpose(:down)
-        expect(subject.content[1]["content"]).to eq(expected_chords)
+        expect(subject.content[1].content).to eq(expected_chords)
       end
     end
 
@@ -35,7 +35,7 @@ describe ChordSheet do
 
       it "maintains the whitespace" do
         subject.transpose(:up)
-        expect(subject.content[1]["content"]).to eq(expected_chords)
+        expect(subject.content[1].content).to eq(expected_chords)
       end
     end 
   end
