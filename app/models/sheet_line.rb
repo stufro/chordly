@@ -7,11 +7,10 @@ class SheetLine
   end
 
   def transpose(direction)
-    content.split.uniq.each do |chord|
+    @content = content.split.uniq.each do |chord|
       new_chord = transpose_chord(chord, direction)
       content.gsub!(chord, new_chord)
     end
-    content
   end
 
   def chords?

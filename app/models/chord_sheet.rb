@@ -4,7 +4,7 @@ class ChordSheet < ApplicationRecord
       line = SheetLine.new(line_hash)
       next(line) unless line.chords?
 
-      {"content" => line.transpose(direction), "type" => "chords"}
+      line.transpose(direction)
     end
   end
 end
