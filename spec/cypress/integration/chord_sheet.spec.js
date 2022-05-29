@@ -6,6 +6,10 @@
 // https://on.cypress.io/writing-first-test
 
 describe('Chord sheets', function() {
+  afterEach(() => {
+    cy.app('clean')
+  })
+
   it('saves a new chord sheet', function() {
     cy.visit("/")
     cy.get("#chord_sheet_name").type("My amazing song")
