@@ -25,7 +25,8 @@ describe('Chord sheets', () => {
     cy.get('#create-btn').click()
 
     cy.contains("My amazing song")
-    cy.contains("G   Am    D\nMy great lyrics")
+    cy.contains("G   Am    D")
+    cy.contains("My great lyrics")
   })
 
   it('transposes all the chords up', () => {
