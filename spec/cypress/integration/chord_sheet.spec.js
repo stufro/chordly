@@ -21,6 +21,10 @@ describe('Chord sheets', function() {
   })
 
   it('transposes all the chords up', function() {
+    // cy.appFactories([
+    //   ["create", "chord_sheet", {name: "My amazing song", content_string: "G   Am    D\nMy great lyrics"} ]
+    // ])
+
     cy.visit("/")
     cy.get("#chord_sheet_name").type("My amazing song")
     cy.get("#chord_sheet_content").type("G   Am    D\nMy great lyrics")
