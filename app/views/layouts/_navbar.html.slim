@@ -1,0 +1,32 @@
+nav.navbar aria-label=("main navigation") role="navigation" 
+  .navbar-brand
+    a.navbar-item href=root_path
+      b Chordly
+    a.navbar-burger aria-expanded="false" aria-label="menu" data-target="navbar-main" role="button" 
+      span aria-hidden="true" 
+      span aria-hidden="true" 
+      span aria-hidden="true" 
+  #navbar-main.navbar-menu
+    .navbar-start
+      a.navbar-item
+        | My Chord Sheets
+      .navbar-item.has-dropdown.is-hoverable
+        a.navbar-link
+          | More
+        .navbar-dropdown
+          a.navbar-item
+            | About
+          a.navbar-item
+            | Jobs
+          a.navbar-item
+            | Contact
+          hr.navbar-divider/
+          a.navbar-item
+            | Report an issue
+    .navbar-end
+      .navbar-item
+        .buttons
+          a.button.is-primary
+            strong Sign up
+          a.button.is-light
+            | Log in
