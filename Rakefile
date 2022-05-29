@@ -12,6 +12,6 @@ Bundler::Audit::Task.new
 RuboCop::RakeTask.new
 SlimLint::RakeTask.new
 
-task default: %i[bundler:audit rails_best_practices rubocop slim_lint spec brakeman:run]
+task default: %i[bundler:audit rails_best_practices rubocop slim_lint spec cypress:run brakeman:run]
 
 Rails.application.load_tasks

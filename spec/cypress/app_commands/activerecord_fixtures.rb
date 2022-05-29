@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 # you can delete this file if you don't use Rails Test Fixtures
 
-fixtures_dir = command_options.try(:[], 'fixtures_dir')
-fixture_files = command_options.try(:[], 'fixtures')
+fixtures_dir = command_options.try(:[], "fixtures_dir")
+fixture_files = command_options.try(:[], "fixtures")
 
 if defined?(ActiveRecord)
   require "active_record/fixtures"
@@ -15,8 +17,8 @@ if defined?(ActiveRecord)
   "Fixtures Done" # this gets returned
 else # this else part can be removed
   logger.error "Looks like activerecord_fixtures has to be modified to suite your need"
-  Post.create(title: 'MyCypressFixtures')
-  Post.create(title: 'MyCypressFixtures2')
-  Post.create(title: 'MyRailsFixtures')
-  Post.create(title: 'MyRailsFixtures2')
+  Post.create(title: "MyCypressFixtures")
+  Post.create(title: "MyCypressFixtures2")
+  Post.create(title: "MyRailsFixtures")
+  Post.create(title: "MyRailsFixtures2")
 end

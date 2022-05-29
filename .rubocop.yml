@@ -10,6 +10,7 @@ AllCops:
     - db/*
     - bin/*
     - lib/tasks/*
+    - spec/cypress/app_commands/log_fail.rb
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
