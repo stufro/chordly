@@ -1,9 +1,9 @@
 // @charset "utf-8";
 
 // Import a Google Font
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
 
-// Update Bulma's global variables
+// Update Bulma"s global variables
 $purple: #80475E;
 $blue: #4B88A2;
 $cyan: #90DDF0;
@@ -24,11 +24,12 @@ $success: $green;
 $warning: $yellow;
 $danger: $red;
 
-// Update some of Bulma's component variables
+// Update some of Bulma"s component variables
 // $body-background-color: $beige-lighter;
 // $control-border-width: 2px;
 // $input-border-color: transparent;
 // $input-shadow: none;
+$link: $primary;
 
-@import 'bulma/bulma';
-@import 'chord_sheets'
+@import "bulma/bulma";
+@import "chord_sheets"
