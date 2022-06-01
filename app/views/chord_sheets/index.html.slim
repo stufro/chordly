@@ -1,0 +1,12 @@
+.level.mb-6
+  h1.title.is-1.mb-0 My Chord Sheets
+  = link_to "Create New", new_chord_sheet_path, class: "button is-primary"
+
+- @chord_sheets.each_slice(3) do |slice|
+  .columns
+    - slice.each do |chord_sheet|
+      .column.is-one-third
+        a href=chord_sheet_path(chord_sheet)
+          .card
+            .card-content
+              p.title.is-4 = chord_sheet.name

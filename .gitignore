@@ -35,3 +35,4 @@
 
 /node_modules
 /spec/cypress/videos
+/spec/cypress/screenshots

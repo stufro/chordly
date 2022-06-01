@@ -5,3 +5,11 @@ export function visitChordSheet() {
     cy.visit(`/chord_sheets/${records[0].id}`)
   })
 }
+
+export function createChordSheet() {
+  cy.appFactories([
+    ["create", "chord_sheet"]
+  ]).then((records) => {
+    return records[0]
+  })
+}

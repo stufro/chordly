@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class ChordSheetsController < ApplicationController
+  def index
+    @chord_sheets = ChordSheet.all
+  end
+
   def new
     @chord_sheet = ChordSheet.new
   end
