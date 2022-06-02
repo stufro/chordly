@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SheetLine
-  NOTE_REGEX = /[A-Ga-g][#b♭]*/
+  include MusicUtils
   attr_accessor :type, :content
 
   def initialize(line_hash)
@@ -24,18 +24,12 @@ class SheetLine
   private
 
   def transpose_chord(chord, direction)
+    # TODO: , make extract_note throw exception if no note is found
     old_note = extract_note(chord)
-    new_note = Music::Note.new(old_note, 5)
-                          .send(method_for(direction))
+    new_note = Music::Note.new(old_note, 5).send(method_for(direction))
     new_note = [new_note.letter, new_note.accidental].join
 
     chord.gsub(old_note, new_note)
-  end
-
-  def extract_note(potential_chord)
-    note = potential_chord.scan(NOTE_REGEX)
-
-    note.empty? ? potential_chord : note.first
   end
 
   def method_for(direction)

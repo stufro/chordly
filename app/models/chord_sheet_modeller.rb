@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ChordSheetModeller
-  ASSUMED_OCTAVE = 5
+  include MusicUtils
 
   def initialize(content)
     @content = content
@@ -19,16 +19,10 @@ class ChordSheetModeller
   end
 
   def line_type(line)
-    line.split.each { |token| Music::Note.new(extract_note(token), ASSUMED_OCTAVE) }
+    line.split.each { |token| extract_note!(token) }
     :chords
   rescue ArgumentError
     :lyrics
-  end
-
-  def extract_note(potential_chord)
-    note = potential_chord.scan(/^[A-Ga-g][#b♭]*/)
-
-    note.empty? ? potential_chord : note.first
   end
 
   def sanitise(line)
