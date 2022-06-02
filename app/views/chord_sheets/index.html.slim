@@ -1,6 +1,10 @@
-.level.mb-6
+.level.is-mobile.mb-6
   h1.title.is-1.mb-0 My Chord Sheets
-  = link_to "Create New", new_chord_sheet_path, class: "button is-primary"
+  = link_to new_chord_sheet_path, class: "button is-primary" do 
+    span.icon-text
+      span.icon 
+        i.fas.fa-plus
+      span Create New
 
 - @chord_sheets.each_slice(3) do |slice|
   .columns
@@ -14,4 +18,7 @@
                   i.fas.fa-music.fa-3x
                 div
                   p.title.is-4 = chord_sheet.name
-                  p = chord_sheet.updated_at
+                  .level.is-justify-content-center
+                    span.icon
+                      i.far.fa-clock
+                    span = format_datetime(chord_sheet.updated_at)
