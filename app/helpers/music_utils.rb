@@ -3,8 +3,9 @@
 module MusicUtils
   ASSUMED_OCTAVE = 5
   ACCIDENTALS = "(#|##|b|bb|♭|♭♭)?"
-  CHORD_TYPES = "(maj|5|maj7|7|min|m|min7|m7|sus4|sus2)?"
-  NOTE_REGEX = /^([A-Ga-g]#{ACCIDENTALS})#{CHORD_TYPES}$/
+  CHORD_TYPES = "(maj|min|m|sus|dim|aug)?"
+  CHORD_EXTENSIONS = "(2|4|5|7)?"
+  NOTE_REGEX = /^([A-Ga-g]#{ACCIDENTALS})#{CHORD_TYPES}#{CHORD_EXTENSIONS}$/
 
   def extract_note(potential_chord)
     no_note_proc = -> { potential_chord }

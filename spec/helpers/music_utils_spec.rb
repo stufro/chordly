@@ -18,7 +18,7 @@ describe MusicUtils do
 
     context "with some different chord types" do
       it "returns the root note" do
-        %w[Bbmaj Bb5 Bb7 Bbm7 Bbmin7 Bbmin Bbsus4 Bbsus2].each do |chord|
+        %w[Bbmaj Bb5 Bb7 Bbm5 Bbm7 Bbmin7 Bbmin Bbsus4 Bbsus2].each do |chord|
           expect(extract_note(chord)).to eq "Bb"
         end
       end
