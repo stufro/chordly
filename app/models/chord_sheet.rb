@@ -8,5 +8,6 @@ class ChordSheet < ApplicationRecord
 
       line.transpose(direction)
     end
+    self
   end
 end
