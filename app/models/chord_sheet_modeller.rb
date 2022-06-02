@@ -26,7 +26,7 @@ class ChordSheetModeller
   end
 
   def extract_note(potential_chord)
-    note = potential_chord.scan(/[ABCDEFG][#b♭]*/)
+    note = potential_chord.scan(/^[A-Ga-g][#b♭]*/)
 
     note.empty? ? potential_chord : note.first
   end

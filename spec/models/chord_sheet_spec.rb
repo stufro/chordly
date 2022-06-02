@@ -42,5 +42,15 @@ describe ChordSheet do
         expect(chord_sheet.content[1].content).to eq(expected_chords)
       end
     end
+
+    context "when the chords are lower case" do
+      let(:original_chords) { " f  bb   dm" }
+      let(:expected_chords) { " F#  B   D#m" }
+
+      it "maintains the whitespace" do
+        chord_sheet.transpose(:up)
+        expect(chord_sheet.content[1].content).to eq(expected_chords)
+      end
+    end
   end
 end
