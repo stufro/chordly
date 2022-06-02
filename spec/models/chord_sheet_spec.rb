@@ -16,7 +16,7 @@ describe ChordSheet do
     let(:direction) { "up" }
 
     context "when the given direction is up" do
-      let(:expected_chords) { "G♭5 C♭5 E♭m5" }
+      let(:expected_chords) { "F# B D#m" }
 
       it "increases all the chords by a semitone" do
         chord_sheet.transpose(:up)
@@ -25,7 +25,7 @@ describe ChordSheet do
     end
 
     context "when the given direction is down" do
-      let(:expected_chords) { "E5 A5 C#m5" }
+      let(:expected_chords) { "E A C#m" }
 
       it "decreases all the chords by a semitone" do
         chord_sheet.transpose(:down)
@@ -35,7 +35,7 @@ describe ChordSheet do
 
     context "when there is whitespace between chords" do
       let(:original_chords) { " F  Bb   Dm" }
-      let(:expected_chords) { " G♭5  C♭5   E♭m5" }
+      let(:expected_chords) { " F#  B   D#m" }
 
       it "maintains the whitespace" do
         chord_sheet.transpose(:up)

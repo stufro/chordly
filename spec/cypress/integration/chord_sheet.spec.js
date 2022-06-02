@@ -21,14 +21,14 @@ describe("Chord sheets", () => {
     helper.visitChordSheet()
 
     cy.get("#transpose-up").click()
-    cy.contains("A♭5   B♭m5    E♭5")
+    cy.contains("G#   A#m    D#")
   })
 
   it("transposes all the chords down", () => {
     helper.visitChordSheet();
 
     cy.get("#transpose-down").click()
-    cy.contains("F#5   G#m5    C#5")
+    cy.contains("F#   G#m    C#")
   })
 
   it("shows all chord sheets on 'My Chord Sheets' page", () => {
