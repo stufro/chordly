@@ -63,5 +63,15 @@ describe SheetLine do
         expect(sheet_line.content).to eq(expected_chords)
       end
     end
+
+    context "when there is an invalid chord in the line" do
+      let(:original_chords) { " F   Bb   H" }
+      let(:expected_chords) { " F#   B   H" }
+
+      it "ignores the invalid chord" do
+        sheet_line.transpose(:up)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
   end
 end
