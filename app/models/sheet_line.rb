@@ -24,7 +24,7 @@ class SheetLine
   private
 
   def transpose_chord(chord, direction)
-    # TODO: , make extract_note throw exception if no note is found
+    # TODO: show error to user if chord fails to transpose
     old_note = extract_note!(chord)
     new_note = Music::Note.new(old_note, 5).send(method_for(direction))
     new_note = [new_note.letter, new_note.accidental].join

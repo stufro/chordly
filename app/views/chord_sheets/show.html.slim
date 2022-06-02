@@ -1,12 +1,27 @@
 h1.title.is-1 = @chord_sheet.name
 
-= button_to "Transpose Up",
-  chord_sheet_transpose_path(@chord_sheet, direction: "up"),
-  class: "button is-primary", id: "transpose-up", method: :put
+.card.mb-3
+  .card-content
+    .level.is-mobile
+      .level-left
+        .level-item 
+          span Transpose: 
+        .level-item
+          = button_to chord_sheet_transpose_path(@chord_sheet, direction: "up"),
+            class: "button is-rounded is-primary", id: "transpose-up", method: :put do 
+            span.icon
+              i.fas.fa-arrow-circle-up
 
-= button_to "Transpose Down",
-  chord_sheet_transpose_path(@chord_sheet, direction: "down"),
-  class: "button is-primary", id: "transpose-down", method: :put
+        .level-item
+          = button_to chord_sheet_transpose_path(@chord_sheet, direction: "down"),
+            class: "button is-rounded is-primary", id: "transpose-down", method: :put
+            span.icon
+              i.fas.fa-arrow-circle-down
+      .level-right 
+        = button_to "#", class: "button is-rounded is-info"
+          span.icon 
+            i.fas.fa-edit
+
 
 pre
   - @chord_sheet.content.each do |line|
