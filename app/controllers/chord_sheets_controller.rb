@@ -2,7 +2,7 @@
 
 class ChordSheetsController < ApplicationController
   def index
-    @chord_sheets = ChordSheet.all
+    @chord_sheets = ChordSheet.order(updated_at: :desc)
   end
 
   def new
