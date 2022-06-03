@@ -31,9 +31,9 @@ class ChordSheetsController < ApplicationController
   def update
     @chord_sheet = ChordSheet.find(params[:id])
     if @chord_sheet.update(chord_sheet_params)
-      render json: {message: "Chord sheet updated"}, status: 200
+      flash.now[:notice] = "Chord sheet updated"
     else
-      render json: {message: "Chord sheet failed to update"}, status: 500
+      flash.now[:alert] = "Chord sheet failed to update"
     end
   end
 

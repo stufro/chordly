@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { patch } from '@rails/request.js'
 
 export default class extends Controller {
   static values = { field: String, url: String }
@@ -12,12 +13,9 @@ export default class extends Controller {
     let formData = new FormData()
     formData.append(`chord_sheet[${this.fieldValue}]`, this.element.textContent);
 
-    fetch(this.urlValue, {
+    patch(this.urlValue, {
       body: formData,
-      method: 'PATCH',
-      headers: {
-        "X-CSRF-Token": document.querySelector("[name='csrf-token']").content,
-      },
+      responseKind: "turbo-stream"
     })
-  }
+   }
 }

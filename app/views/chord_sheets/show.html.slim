@@ -1,32 +1,34 @@
 span.icon-text.is-align-items-center
-  h1.title.is-1#show-page-title data-controller="editable" data-editable-field-value="name" data-editable-url-value=chord_sheet_path(@chord_sheet)
+  h1.title.is-1#show-page-title[data-controller="editable"
+                                data-editable-field-value="name"
+                                data-editable-url-value=chord_sheet_path(@chord_sheet)]
     = @chord_sheet.name
   span.icon.is-medium.mb-5.ml-4#edit-icon
     i.far.fa-edit.fa-2x
-  
 
 .card.mb-3
   .card-content
     .level.is-mobile
       .level-left
-        .level-item 
-          span Transpose: 
+        .level-item
+          span Transpose:
         .level-item
           = button_to chord_sheet_transpose_path(@chord_sheet, direction: "up"),
-            class: "button is-rounded is-primary", id: "transpose-up", method: :put do 
+            class: "button is-rounded is-primary",
+            id: "transpose-up", method: :put do
             span.icon
               i.fas.fa-arrow-circle-up
 
         .level-item
           = button_to chord_sheet_transpose_path(@chord_sheet, direction: "down"),
-            class: "button is-rounded is-primary", id: "transpose-down", method: :put
+            class: "button is-rounded is-primary",
+            id: "transpose-down", method: :put
             span.icon
               i.fas.fa-arrow-circle-down
-      .level-right 
+      .level-right
         = button_to "#", class: "button is-rounded is-info"
-          span.icon 
+          span.icon
             i.fas.fa-edit
-
 
 pre#chord-sheet-content
   - @chord_sheet.content.each do |line|

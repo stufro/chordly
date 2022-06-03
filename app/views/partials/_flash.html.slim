@@ -1,0 +1,7 @@
+#flash-message
+  - if flash[:notice]
+    .notification.is-success
+      = flash[:notice]
+  - if flash[:alert]
+    .notification.is-danger
+      = flash[:alert]
