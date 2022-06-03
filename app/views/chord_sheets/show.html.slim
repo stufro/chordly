@@ -1,5 +1,6 @@
 span.icon-text.is-align-items-center
-  h1.title.is-1#show-page-title contenteditable="true" = @chord_sheet.name
+  h1.title.is-1#show-page-title data-controller="editable" data-editable-field-value="name" data-editable-url-value=chord_sheet_path(@chord_sheet)
+    = @chord_sheet.name
   span.icon.is-medium.mb-5.ml-4#edit-icon
     i.far.fa-edit.fa-2x
   

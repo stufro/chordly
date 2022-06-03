@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   root "chord_sheets#index"
-  resources :chord_sheets, only: %i[index new create show] do
+  resources :chord_sheets, only: %i[index new create show update] do
     put :transpose
   end
 end
