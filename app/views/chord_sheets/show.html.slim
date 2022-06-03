@@ -1,4 +1,8 @@
-h1.title.is-1 = @chord_sheet.name
+span.icon-text.is-align-items-center
+  h1.title.is-1#show-page-title contenteditable="true" = @chord_sheet.name
+  span.icon.is-medium.mb-5.ml-4#edit-icon
+    i.far.fa-edit.fa-2x
+  
 
 .card.mb-3
   .card-content
@@ -23,7 +27,7 @@ h1.title.is-1 = @chord_sheet.name
             i.fas.fa-edit
 
 
-pre
+pre#chord-sheet-content
   - @chord_sheet.content.each do |line|
     span class=(line["type"] == "chords" ? "chord-line" : "lyric-line")
       = line["content"]

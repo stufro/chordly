@@ -42,4 +42,13 @@ describe("Chord sheets", () => {
     cy.contains("Wonderwall")
     cy.contains("Want you back")
   })
+
+  it("allows the title of a chord sheet to be edited", () => {
+    helper.visitChordSheet();
+
+    cy.get("#show-page-title").clear().type("A new chordsheet title")
+    cy.get("#chord-sheet-content").click()
+    cy.reload()
+    cy.contains("A new chordsheet title")
+  })
 })

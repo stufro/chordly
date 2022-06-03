@@ -5,3 +5,12 @@
 .card-link:hover {
   background-color: $white-ter;
 }
+
+#show-page-title:hover + #edit-icon {
+  opacity: 1;
+}
+
+#edit-icon {
+  opacity: 0;
+  transition: opacity .5s;
+}
