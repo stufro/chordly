@@ -1,11 +1,10 @@
-#flash-message
-  - if flash[:notice]
-    .box.is-align-content-center.has-background-success
-      .icon.has-text-light
-        i.fas.fa-check-circle
-      = flash[:notice]
+#flash-message-container
+  #flash-message.box.is-align-content-center.has-background-success data-controller="flash" data-flash-persist-value="false"
+    .icon.has-text-light
+      i.fas.fa-check-circle
+    = flash[:notice]
   - if flash[:error]
-    .box.is-align-content-center.has-background-danger.has-text-light
+    #flash-message.box.is-align-content-center.has-background-danger.has-text-light data-controller="flash" data-flash-persist-value="true"
       .icon
         i.fas.fa-exclamation-circle
       = flash[:error]

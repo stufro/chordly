@@ -20,13 +20,33 @@
   right: -10%;
   opacity: 0;
   z-index: 999;
-  animation: scroll-appear 1s forwards;
-
 }
 
-@keyframes scroll-appear {
-  100% { 
+#flash-message.has-background-success {
+  animation: scroll-in-out 4s forwards;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes scroll-in-out {
+  20% { 
     right: 0;
     opacity: 1;
+  }
+
+  80% { 
+    right: 0;
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes scroll-disappear {
+  100% { 
   }
 }
