@@ -6,3 +6,5 @@ import { application } from "./application"
 
 import EditableController from "./editable_controller"
 application.register("editable", EditableController)
+import FlashController from "./flash_controller"
+application.register("flash", FlashController)

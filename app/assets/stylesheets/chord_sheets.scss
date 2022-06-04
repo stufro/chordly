@@ -18,15 +18,24 @@
 #flash-message {
   position: fixed;
   right: -10%;
-  opacity: 1;
+  opacity: 0;
   z-index: 999;
 }
 
 #flash-message.has-background-success {
-  animation: scroll-in-out 4s forwards;
+  animation: scroll-in-out 3s forwards;
 
   &:hover {
     animation-play-state: paused;
+    opacity: 1 !important;
+  }
+}
+
+#flash-message.has-background-danger {
+  animation: scroll-in 1s forwards;
+  
+  &:hover {
+    opacity: 1 !important;
   }
 }
 
@@ -43,5 +52,12 @@
 
   100% {
     opacity: 0;
+  }
+}
+
+@keyframes scroll-in {
+  100% {
+    opacity: 0.8;
+    right: 10%;
   }
 }

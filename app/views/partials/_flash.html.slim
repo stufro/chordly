@@ -1,10 +1,14 @@
 #flash-message-container
-  #flash-message.box.is-align-content-center.has-background-success data-controller="flash" data-flash-persist-value="false"
-    .icon.has-text-light
-      i.fas.fa-check-circle
-    = flash[:notice]
-  - if flash[:error]
-    #flash-message.box.is-align-content-center.has-background-danger.has-text-light data-controller="flash" data-flash-persist-value="true"
+  - if flash[:notice]
+    #flash-message.box.has-background-success data-controller="flash"
+      .icon.has-text-light
+        i.fas.fa-check-circle
+      = flash[:notice]
+      button.delete.ml-1.mt-1 data-flash-target="closeButton"
+
+  - if flash[:alert]
+    #flash-message.box.has-background-danger.has-text-light data-controller="flash"
       .icon
         i.fas.fa-exclamation-circle
-      = flash[:error]
+      = flash[:alert]
+      button.delete.ml-1.mt-1 data-flash-target="closeButton"
