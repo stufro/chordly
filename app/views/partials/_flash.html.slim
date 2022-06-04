@@ -1,7 +1,11 @@
 #flash-message
   - if flash[:notice]
-    .notification.is-success
+    .box.is-align-content-center.has-background-success
+      .icon.has-text-light
+        i.fas.fa-check-circle
       = flash[:notice]
-  - if flash[:alert]
-    .notification.is-danger
-      = flash[:alert]
+  - if flash[:error]
+    .box.is-align-content-center.has-background-danger.has-text-light
+      .icon
+        i.fas.fa-exclamation-circle
+      = flash[:error]
