@@ -16,9 +16,9 @@
 }
 
 #flash-message {
-  position: absolute;
+  position: fixed;
   right: -10%;
-  opacity: 0;
+  opacity: 1;
   z-index: 999;
 }
 
@@ -32,21 +32,16 @@
 
 @keyframes scroll-in-out {
   20% { 
-    right: 0;
-    opacity: 1;
+    right: 10%;
+    opacity: 0.8;
   }
 
   80% { 
-    right: 0;
-    opacity: 1;
+    right: 10%;
+    opacity: 0.8;
   }
 
   100% {
     opacity: 0;
-  }
-}
-
-@keyframes scroll-disappear {
-  100% { 
   }
 }
