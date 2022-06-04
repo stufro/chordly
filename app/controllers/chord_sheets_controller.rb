@@ -31,9 +31,9 @@ class ChordSheetsController < ApplicationController
   def update
     @chord_sheet = ChordSheet.find(params[:id])
     if @chord_sheet.update(chord_sheet_params)
-      flash.now[:notice] = "Chord sheet updated"
+      flash.now[:notice] = "Saved changes"
     else
-      flash.now[:alert] = "Chord sheet failed to update"
+      flash.now[:alert] = "Failed to update chord sheet"
     end
   end
 

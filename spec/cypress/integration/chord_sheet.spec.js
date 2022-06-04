@@ -48,7 +48,7 @@ describe("Chord sheets", () => {
 
     cy.get("#show-page-title").clear().type("A new chordsheet title")
     cy.get("#chord-sheet-content").click()
-    cy.contains("Chord sheet updated")
+    cy.contains("Saved changes")
     cy.reload()
     cy.contains("A new chordsheet title")
   })

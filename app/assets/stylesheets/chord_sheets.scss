@@ -18,14 +18,15 @@
 #flash-message {
   position: absolute;
   right: -10%;
-  opacity: 0.8;
+  opacity: 0;
+  z-index: 999;
   animation: scroll-appear 1s forwards;
 
-  &:hover {
-    opacity: 1;
-  }
 }
 
 @keyframes scroll-appear {
-  100% { right: 0; }
+  100% { 
+    right: 0;
+    opacity: 1;
+  }
 }
