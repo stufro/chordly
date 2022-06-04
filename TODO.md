@@ -3,3 +3,6 @@
 - [ ] Only submit form if value changed
 - [ ] Style contenteditable boxes
 - [ ] Prefer sharps/flats option
+- [ ] Handle chords with inversions
+- [ ] Copy & paste content
+- [ ] Make new form same font as show

@@ -11,11 +11,23 @@ export default class extends Controller {
 
   save() {
     let formData = new FormData()
-    formData.append(`chord_sheet[${this.fieldValue}]`, this.element.textContent);
+    formData.append(`chord_sheet[${this.fieldValue}]`, this.buildValue());
 
     patch(this.urlValue, {
       body: formData,
       responseKind: "turbo-stream"
     })
+   }
+
+   buildValue() {
+    if(this.fieldValue == "content") {
+      let lines = Array.from(this.element.querySelectorAll("span"))
+      let transformedLines = lines.map(line => {
+        return `${line.textContent}\r`
+      })
+      return transformedLines.join("")
+    } else {
+      return this.element.textContent
+    }
    }
 }

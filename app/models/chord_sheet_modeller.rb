@@ -26,7 +26,7 @@ class ChordSheetModeller
   end
 
   def sanitise(line)
-    line.gsub("\n", "")
+    line.gsub(/[\n\r]/, "")
   end
 
   def reject_empty(lines)
