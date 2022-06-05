@@ -6,6 +6,10 @@
   background-color: $white-ter;
 }
 
+#chord_sheet_content {
+  font-family: monospace;
+}
+
 #show-page-title:hover + #edit-icon {
   opacity: 1;
 }

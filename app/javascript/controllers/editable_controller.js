@@ -7,19 +7,24 @@ export default class extends Controller {
   connect() {
     this.element.setAttribute("contenteditable", "true")
     this.element.addEventListener("blur", () => { this.save() })
+    this.originalValue = this.element.textContent
   }
 
   save() {
+    if(this.element.textContent === this.originalValue) return 
+
     let formData = new FormData()
     formData.append(`chord_sheet[${this.fieldValue}]`, this.buildValue());
 
     patch(this.urlValue, {
       body: formData,
       responseKind: "turbo-stream"
+    }).then(() => {
+      this.originalValue = this.element.textContent
     })
    }
 
-   buildValue() {
+  buildValue() {
     if(this.fieldValue == "content") {
       let lines = Array.from(this.element.querySelectorAll("span"))
       let transformedLines = lines.map(line => {
@@ -29,5 +34,5 @@ export default class extends Controller {
     } else {
       return this.element.textContent
     }
-   }
+  }
 }
