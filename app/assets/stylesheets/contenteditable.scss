@@ -1,0 +1,29 @@
+#show-page-title:hover + #title-edit-icon {
+  opacity: 1;
+}
+
+#title-edit-icon {
+  opacity: 0.3;
+  transition: opacity .5s;
+}
+
+#content-edit-icon {
+  opacity: 0.3;
+  position: absolute;
+  right: 10px;
+}
+
+[contenteditable="true"]:focus {
+  border: none;
+  outline: none;
+  background-color: $white-bis;
+
+  +#title-edit-icon {
+    opacity: 1;
+  }
+}
+
+// [contenteditable="true"]:hover::before,
+// [contenteditable="true"]:focus::before{
+// content:"Edit Me!";
+// }
