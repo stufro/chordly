@@ -1,8 +1,12 @@
+## v0.1.0
 - [x] Style/animate flash message entry
-- [ ] Auto close flash message
+- [x] Auto close flash message
 - [ ] Only submit form if value changed
 - [ ] Style contenteditable boxes
-- [ ] Prefer sharps/flats option
+- [ ] Fix bug caused by gsub during transposing
 - [ ] Handle chords with inversions
-- [ ] Copy & paste content
 - [ ] Make new form same font as show
+- [ ] Copy & paste content
+
+## v0.2.0
+- [ ] Prefer sharps/flats option

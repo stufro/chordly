@@ -43,13 +43,19 @@ describe("Chord sheets", () => {
     cy.contains("Want you back")
   })
 
-  it("allows the title of a chord sheet to be edited", () => {
+  it("allows the chord sheet to be edited inline", () => {
     helper.visitChordSheet();
 
     cy.get("#show-page-title").clear().type("A new chordsheet title")
-    cy.get("#chord-sheet-content").click()
+    cy.get("#navbar-main").click()
     cy.contains("Changes saved")
+
+    cy.get("#chord-sheet-content").type("\rA new line of lyrics")
+    cy.get("#navbar-main").click()
+    cy.contains("Changes saved")
+
     cy.reload()
     cy.contains("A new chordsheet title")
+    cy.contains("A new line of lyrics")
   })
 })
