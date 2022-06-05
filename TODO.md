@@ -7,6 +7,7 @@
 - [ ] Handle chords with inversions
 - [x] Make new form same font as show
 - [ ] Copy & paste content
+- [ ] Filter chord sheets
 
 ## v0.2.0
 - [ ] Prefer sharps/flats option
