@@ -3,7 +3,7 @@ span.icon-text.is-align-items-center
                                 data-editable-field-value="name"
                                 data-editable-url-value=chord_sheet_path(@chord_sheet)]
     = @chord_sheet.name
-  span.icon.is-medium.mb-5.ml-4#title-edit-icon
+  span.icon.is-medium.mb-5.ml-3.edit-icon
     i.far.fa-edit.fa-2x
 
 .card.mb-3
@@ -33,8 +33,8 @@ span.icon-text.is-align-items-center
 pre#chord-sheet-content[data-controller="editable"
                                 data-editable-field-value="content"
                                 data-editable-url-value=chord_sheet_path(@chord_sheet)]
-  span.icon#content-edit-icon
-    i.far.fa-edit
+  span.icon.is-medium.edit-icon#content-edit-icon
+    i.far.fa-edit.fa-2x
 
   - @chord_sheet.content.each do |line|
     span class=(line["type"] == "chords" ? "chord-line" : "lyric-line")
