@@ -10,12 +10,12 @@ class SheetLine
   end
 
   def transpose(direction)
-    chords = content.split.uniq.sort.reverse
-
-    chords.each do |chord|
-      new_chord = transpose_chord(chord, direction)
-      chord, new_chord = adjust_chord_whitespace(chord, new_chord)
-      @content = content.gsub(chord, new_chord)
+    chords = content.scan(/([A-Ga-g][#b♭]?)#{CHORD_TYPES}#{CHORD_EXTENSIONS}/).uniq.sort.reverse
+    chords.each do |chord_parts|
+      old_chord = chord_parts.join
+      new_chord = transpose_chord(chord_parts, direction)
+      old_chord, new_chord = adjust_chord_whitespace(old_chord, new_chord)
+      @content = content.gsub(old_chord, new_chord)
     end
     self
   end
@@ -26,15 +26,14 @@ class SheetLine
 
   private
 
-  def transpose_chord(chord, direction)
+  def transpose_chord(chord_parts, direction)
     # TODO: show error to user if chord fails to transpose
-    old_note = extract_note!(chord)
+    old_note = chord_parts.first
     new_note = Music::Note.new(old_note, 5).send(method_for(direction))
     new_note = [new_note.letter, new_note.accidental].join
-
-    chord.gsub(old_note, new_note)
+    ([new_note] + chord_parts[1..-1]).join
   rescue ArgumentError
-    chord
+    chord_parts.join
   end
 
   def method_for(direction)
