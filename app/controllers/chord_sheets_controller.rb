@@ -25,7 +25,6 @@ class ChordSheetsController < ApplicationController
   def transpose
     @chord_sheet = ChordSheet.find(params[:chord_sheet_id])
     @chord_sheet.transpose(params[:direction]).save
-    redirect_to @chord_sheet
   end
 
   def update

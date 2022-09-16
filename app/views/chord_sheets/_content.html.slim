@@ -1,0 +1,11 @@
+div id=dom_id(chord_sheet)
+  pre#chord-sheet-content[data-controller="editable"
+                                  data-editable-field-value="content"
+                                  data-editable-url-value=chord_sheet_path(chord_sheet)]
+    span.icon.is-medium.edit-icon#content-edit-icon
+      i.far.fa-edit.fa-2x
+
+    - chord_sheet.content.each do |line|
+      span class=(line["type"] == "chords" ? "chord-line" : "lyric-line")
+        = line["content"]
+      br
