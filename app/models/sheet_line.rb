@@ -10,8 +10,13 @@ class SheetLine
   end
 
   def transpose(direction)
-    content.split.uniq.each do |chord|
+    chords = content.split.uniq.sort
+    chords = chords.sort.reverse
+
+    chords.each do |chord|
       new_chord = transpose_chord(chord, direction)
+      chord = /#{chord} ?/ if new_chord.match?(/[#b♭]/) && !chord.match?(/[#b♭]/)
+      new_chord = "#{new_chord} " if !new_chord.match?(/[#b♭]/) && chord.match?(/[#b♭]/)
       @content = content.gsub(chord, new_chord)
     end
     self

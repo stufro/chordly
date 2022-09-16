@@ -11,3 +11,4 @@
 
 ## v0.2.0
 - [ ] Prefer sharps/flats option
+- [ ] Maybe give option to maintain spacing or shift chords when adding sharps
