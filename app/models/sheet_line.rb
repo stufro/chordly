@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class SheetLine
   include MusicUtils
   attr_accessor :type, :content
@@ -10,12 +8,19 @@ class SheetLine
   end
 
   def transpose(direction)
-    chords = content.scan(/([A-Ga-g][#b♭]?)#{CHORD_TYPES}#{CHORD_EXTENSIONS}/).uniq.sort.reverse
+    chords = content.scan(/([A-Ga-g][#b♭]?)#{CHORD_TYPES}#{CHORD_EXTENSIONS}/)
+    scan_start = 0
     chords.each do |chord_parts|
       old_chord = chord_parts.join
       new_chord = transpose_chord(chord_parts, direction)
+
+      start_index = content[scan_start..-1].index(old_chord) + scan_start
+      end_index = start_index + old_chord.length
+
+      end_index += 1 if has_accidental?(new_chord) && !has_accidental?(old_chord)
       old_chord, new_chord = adjust_chord_whitespace(old_chord, new_chord)
-      @content = content.gsub(old_chord, new_chord)
+      @content[start_index...end_index] = new_chord
+      scan_start = end_index + 1
     end
     self
   end
