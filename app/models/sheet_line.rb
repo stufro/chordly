@@ -47,8 +47,8 @@ class SheetLine
   end
 
   def adjust_chord_whitespace(chord, new_chord)
-    chord = /#{chord} ?/ if new_chord.match?(/[#b♭]/) && !chord.match?(/[#b♭]/)
-    new_chord = "#{new_chord} " if !new_chord.match?(/[#b♭]/) && chord.match?(/[#b♭]/)
+    chord = /#{chord} ?/ if has_accidental?(new_chord) && !has_accidental?(chord)
+    new_chord = "#{new_chord} " if !has_accidental?(new_chord) && has_accidental?(chord)
 
     [chord, new_chord]
   end
