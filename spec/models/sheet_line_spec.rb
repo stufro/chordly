@@ -95,7 +95,7 @@ describe SheetLine do
 
     context "when there are chord inversions" do
       let(:original_chords) { " G#/D# Am    A#sus  G#" }
-      let(:expected_chords) { " G/D   G#m   Asus   G" }
+      let(:expected_chords) { " G/D   G#m   Asus   G " }
 
       it "transposes the chord and the bass note" do
         sheet_line.transpose(:down)

@@ -8,7 +8,7 @@ class SheetLine
   end
 
   def transpose(direction)
-    chords = content.scan(/([A-Ga-g][#b♭]?)#{CHORD_TYPES}#{CHORD_EXTENSIONS}/)
+    chords = content.scan(/([A-Ga-g][#b♭]?)#{CHORD_TYPES}#{CHORD_EXTENSIONS}#{BASS_NOTE}/)
     scan_start = 0
     chords.each do |chord_parts|
       old_chord = chord_parts.join
@@ -17,8 +17,10 @@ class SheetLine
       start_index = content[scan_start..-1].index(old_chord) + scan_start
       end_index = start_index + old_chord.length
 
-      end_index += 1 if has_accidental?(new_chord) && !has_accidental?(old_chord)
-      old_chord, new_chord = adjust_chord_whitespace(old_chord, new_chord)
+      char_diff = old_chord.length - new_chord.length
+
+      end_index += char_diff.abs if char_diff.negative?
+      new_chord = adjust_chord_whitespace(old_chord, new_chord)
       @content[start_index...end_index] = new_chord
       scan_start = end_index + 1
     end
@@ -33,10 +35,18 @@ class SheetLine
 
   def transpose_chord(chord_parts, direction)
     # TODO: show error to user if chord fails to transpose
+    chord_parts = chord_parts.dup
     old_note = chord_parts.first
+    old_bass_note = chord_parts[3][1..-1] if chord_parts[3] # remove / char
     new_note = Music::Note.new(old_note, 5).send(method_for(direction))
     new_note = [new_note.letter, new_note.accidental].join
-    ([new_note] + chord_parts[1..-1]).join
+    new_bass_note = Music::Note.new(old_bass_note, 5).send(method_for(direction)) if old_bass_note.present?
+    new_bass_note = [new_bass_note.letter, new_bass_note.accidental].join if old_bass_note.present?
+
+    chord_parts[3] = nil # clear bass note before appending all parts to new note
+    new_chord = [new_note] + chord_parts[1..-1]
+    new_chord += ["/", new_bass_note] if old_bass_note.present? # add on bass note with / char
+    new_chord.join
   rescue ArgumentError
     chord_parts.join
   end
@@ -51,9 +61,10 @@ class SheetLine
   end
 
   def adjust_chord_whitespace(chord, new_chord)
-    chord = /#{chord} ?/ if has_accidental?(new_chord) && !has_accidental?(chord)
-    new_chord = "#{new_chord} " if !has_accidental?(new_chord) && has_accidental?(chord)
+    char_diff = chord.length - new_chord.length
+    spaces = " " * char_diff.abs
 
-    [chord, new_chord]
+    new_chord = "#{new_chord}#{spaces}" if char_diff.positive?
+    new_chord
   end
 end
