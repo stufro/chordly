@@ -37,6 +37,7 @@ end
 group :development do
   gem "brakeman"
   gem "bundler-audit"
+  gem "foreman"
   gem "rack-mini-profiler"
   gem "rails_best_practices"
   gem "rubocop-rails", require: false
