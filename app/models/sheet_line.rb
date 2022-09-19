@@ -11,14 +11,14 @@ class SheetLine
     chords = content.scan(NOTE_REGEX)
     scan_start = 0
     chords.each do |chord_parts|
-      old_chord = chord_parts.join
-      new_chord = transpose_chord(chord_parts, direction)
+      old_chord = Chord.new(chord_parts)
+      new_chord = transpose_chord(old_chord, direction)
 
-      start_index = content[scan_start..-1].index(old_chord) + scan_start
+      start_index = content[scan_start..-1].index(old_chord.to_s) + scan_start
       end_index = start_index + old_chord.length
 
-      new_chord, end_index = adjust_chord_whitespace(old_chord, new_chord, end_index)
-      @content[start_index...end_index] = new_chord
+      new_chord_str, end_index = adjust_chord_whitespace(old_chord, new_chord, end_index)
+      @content[start_index...end_index] = new_chord_str
       scan_start = end_index + 1
     end
     self
@@ -30,19 +30,18 @@ class SheetLine
 
   private
 
-  def transpose_chord(chord_parts, direction)
+  def transpose_chord(chord, direction)
     # TODO: show error to user if chord fails to transpose
-    old_note = chord_parts.first
-    old_bass_note = chord_parts[3][1..-1] if chord_parts[3] # remove / char
-    new_note = transpose_note(old_note, direction)
-    new_bass_note = transpose_note(old_bass_note, direction) if old_bass_note.present?
+    old_note = chord.note
+    old_bass_note = chord.bass_note[1..-1] if chord.bass_note # remove / char
 
-    chord_parts[3] = nil # clear bass note before appending all parts to new note
-    new_chord = [new_note] + chord_parts[1..-1]
-    new_chord += ["/", new_bass_note] if old_bass_note.present? # add on bass note with / char
-    new_chord.join
+    new_chord = chord.dup
+    new_chord.note = transpose_note(old_note, direction)
+    new_chord.bass_note = "/#{transpose_note(old_bass_note, direction)}" if old_bass_note.present?
+
+    new_chord
   rescue ArgumentError
-    chord_parts.join
+    chord
   end
 
   def transpose_note(note, direction)
@@ -64,7 +63,7 @@ class SheetLine
     spaces = " " * char_diff.abs
 
     end_index += char_diff.abs if char_diff.negative?
-    new_chord = "#{new_chord}#{spaces}" if char_diff.positive?
-    [new_chord, end_index]
+    new_chord = "#{new_chord.to_s}#{spaces}" if char_diff.positive?
+    [new_chord.to_s, end_index]
   end
 end
