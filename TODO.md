@@ -4,10 +4,16 @@
 - [x] Only submit form if value changed
 - [x] Style contenteditable boxes
 - [x] Fix bug caused by gsub during transposing
-- [ ] Handle chords with inversions
+- [x] Handle chords with inversions
 - [x] Make new form same font as show
 - [ ] Copy & paste content
 - [ ] Filter chord sheets
+- [ ] Export chord sheet to PDF
+- [ ] Login auth / sign up
+- [ ] Home splash page
+  - [ ] Quickly transpose text
+  - [ ] Option to save to library
+- [ ] About page
 
 ## v0.2.0
 - [ ] Prefer sharps/flats option
