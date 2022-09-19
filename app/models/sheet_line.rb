@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class SheetLine
   include MusicUtils
   attr_accessor :type, :content
@@ -9,16 +7,22 @@ class SheetLine
     @content = line_hash["content"]
   end
 
+  # rubocop:disable Metrics/MethodLength
   def transpose(direction)
-    chords = content.split.uniq.sort.reverse
+    chords = content.scan(NOTE_REGEX)
+    scan_start = 0
+    chords.each do |chord_parts|
+      old_chord = Chord.new(chord_parts)
+      new_chord = old_chord.transpose(direction)
 
-    chords.each do |chord|
-      new_chord = transpose_chord(chord, direction)
-      chord, new_chord = adjust_chord_whitespace(chord, new_chord)
-      @content = content.gsub(chord, new_chord)
+      chord_start_index, chord_end_index = calculate_range_to_replace(scan_start, old_chord, new_chord)
+      new_chord_str = adjust_chord_whitespace(old_chord, new_chord)
+      @content[chord_start_index...chord_end_index] = new_chord_str
+      scan_start = chord_end_index + 1
     end
     self
   end
+  # rubocop:enable Metrics/MethodLength
 
   def chords?
     type == "chords"
@@ -26,30 +30,32 @@ class SheetLine
 
   private
 
-  def transpose_chord(chord, direction)
-    # TODO: show error to user if chord fails to transpose
-    old_note = extract_note!(chord)
-    new_note = Music::Note.new(old_note, 5).send(method_for(direction))
-    new_note = [new_note.letter, new_note.accidental].join
-
-    chord.gsub(old_note, new_note)
-  rescue ArgumentError
-    chord
+  def calculate_range_to_replace(scan_start, old_chord, new_chord)
+    chord_start_index = @content[scan_start..].index(old_chord.to_s) + scan_start
+    chord_end_index = adjust_end_for_whitespace(chord_start_index, old_chord, new_chord)
+    [chord_start_index, chord_end_index]
   end
 
-  def method_for(direction)
-    case direction.to_sym
-    when :up
-      :succ
-    when :down
-      :prev
-    end
+  def adjust_end_for_whitespace(start_index, old_chord, new_chord)
+    char_diff = old_chord.length - new_chord.length
+    chord_end_index = start_index + old_chord.length
+    chord_end_index += char_diff.abs if new_chord_longer_than_old?(char_diff)
+    chord_end_index
   end
 
-  def adjust_chord_whitespace(chord, new_chord)
-    chord = /#{chord} ?/ if has_accidental?(new_chord) && !has_accidental?(chord)
-    new_chord = "#{new_chord} " if !has_accidental?(new_chord) && has_accidental?(chord)
+  def adjust_chord_whitespace(old_chord, new_chord)
+    char_diff = old_chord.length - new_chord.length
+    spaces = " " * char_diff.abs
 
-    [chord, new_chord]
+    new_chord = "#{new_chord}#{spaces}" if old_chord_longer_than_new?(char_diff)
+    new_chord.to_s
+  end
+
+  def new_chord_longer_than_old?(char_diff)
+    char_diff.negative?
+  end
+
+  def old_chord_longer_than_new?(char_diff)
+    char_diff.positive?
   end
 end

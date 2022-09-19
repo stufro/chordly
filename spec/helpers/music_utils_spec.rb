@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require "rails_helper"
 
 describe MusicUtils do
@@ -21,6 +19,12 @@ describe MusicUtils do
         %w[Bbmaj Bb5 Bb7 Bbm5 Bbm7 Bbmin7 Bbmin Bbsus4 Bbsus2].each do |chord|
           expect(extract_note(chord)).to eq "Bb"
         end
+      end
+    end
+
+    context "with an inversion" do
+      it "returns the root note" do
+        expect(extract_note("G#/D#")).to eq "G#"
       end
     end
   end

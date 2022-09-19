@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 if defined?(DatabaseCleaner)
   # cleaning the database using database_cleaner
   DatabaseCleaner.strategy = :truncation

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ChordSheet < ApplicationRecord
   def transpose(direction)
     content.map! do |line_hash|

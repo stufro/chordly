@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 # This file is called when a cypress spec fails and allows for extra logging to be captured
 filename = command_options.fetch("runnable_full_title", "no title").gsub(/[^[:print:]]/, "")

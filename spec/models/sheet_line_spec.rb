@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require "rails_helper"
 
 describe SheetLine do
@@ -36,19 +34,10 @@ describe SheetLine do
     end
 
     context "when the given direction is down" do
-      let(:expected_chords) { "E  A  C#m" }
-
-      it "decreases all the chords by a semitone" do
-        sheet_line.transpose(:down)
-        expect(sheet_line.content).to eq(expected_chords)
-      end
-    end
-
-    context "when" do
       let(:original_chords) { "G  Am  D" }
       let(:expected_chords) { "F# G#m C#" }
 
-      it "foo" do
+      it "decreases all the chords by a semitone" do
         sheet_line.transpose(:down)
         expect(sheet_line.content).to eq(expected_chords)
       end
@@ -90,6 +79,26 @@ describe SheetLine do
 
       it "transposes correctly" do
         sheet_line.transpose(:up)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
+
+    context "when there are chord inversions transposing up" do
+      let(:original_chords) { " G/D   G#m   Asus   G" }
+      let(:expected_chords) { " G#/D# Am    A#sus  G#" }
+
+      it "transposes the chord and the bass note and maintains the whitespace" do
+        sheet_line.transpose(:up)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
+
+    context "when there are chord inversions transposing down" do
+      let(:original_chords) { " G#/D# Am    A#sus  G#" }
+      let(:expected_chords) { " G/D   G#m   Asus   G " }
+
+      it "transposes the chord and the bass note and maintains the whitespace" do
+        sheet_line.transpose(:down)
         expect(sheet_line.content).to eq(expected_chords)
       end
     end
