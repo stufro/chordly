@@ -83,21 +83,21 @@ describe SheetLine do
       end
     end
 
-    context "when there are chord inversions" do
+    context "when there are chord inversions transposing up" do
       let(:original_chords) { " G/D   G#m   Asus   G" }
       let(:expected_chords) { " G#/D# Am    A#sus  G#" }
 
-      it "transposes the chord and the bass note" do
+      it "transposes the chord and the bass note and maintains the whitespace" do
         sheet_line.transpose(:up)
         expect(sheet_line.content).to eq(expected_chords)
       end
     end
 
-    context "when there are chord inversions" do
+    context "when there are chord inversions transposing down" do
       let(:original_chords) { " G#/D# Am    A#sus  G#" }
       let(:expected_chords) { " G/D   G#m   Asus   G " }
 
-      it "transposes the chord and the bass note" do
+      it "transposes the chord and the bass note and maintains the whitespace" do
         sheet_line.transpose(:down)
         expect(sheet_line.content).to eq(expected_chords)
       end

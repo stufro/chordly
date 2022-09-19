@@ -18,7 +18,7 @@ class Chord
     to_s.length
   end
 
-  def tranpose(direction)
+  def transpose(direction)
     new_chord = dup
     new_chord.note = transpose_note(@note, direction)
     new_chord.bass_note = transpose_note(@bass_note, direction) if @bass_note

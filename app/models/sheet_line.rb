@@ -12,7 +12,7 @@ class SheetLine
     scan_start = 0
     chords.each do |chord_parts|
       old_chord = Chord.new(chord_parts)
-      new_chord = old_chord.tranpose(direction)
+      new_chord = old_chord.transpose(direction)
 
       chord_start_index = content[scan_start..-1].index(old_chord.to_s) + scan_start
       chord_end_index = adjust_end_for_whitespace(chord_start_index, old_chord, new_chord)
