@@ -1,6 +1,8 @@
 class Chord
   attr_accessor :note, :type, :extension, :bass_note
 
+  delegate :length, to: :to_s
+
   def initialize(chord_parts)
     @note = chord_parts[0]
     @type = chord_parts[1]
@@ -12,10 +14,6 @@ class Chord
     chord = [@note, @type, @extension].join
     chord += "/#{@bass_note}" if @bass_note
     chord
-  end
-
-  def length
-    to_s.length
   end
 
   def transpose(direction)

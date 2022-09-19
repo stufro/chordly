@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require "rails_helper"
 
 describe MusicUtils do
@@ -26,7 +24,7 @@ describe MusicUtils do
 
     context "with an inversion" do
       it "returns the root note" do
-          expect(extract_note("G#/D#")).to eq "G#"
+        expect(extract_note("G#/D#")).to eq "G#"
       end
     end
   end

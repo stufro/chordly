@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CreateChordSheets < ActiveRecord::Migration[7.0]
   def change
     create_table :chord_sheets do |t|

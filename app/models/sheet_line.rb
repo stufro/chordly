@@ -7,6 +7,7 @@ class SheetLine
     @content = line_hash["content"]
   end
 
+  # rubocop:disable Metrics/MethodLength
   def transpose(direction)
     chords = content.scan(NOTE_REGEX)
     scan_start = 0
@@ -14,21 +15,26 @@ class SheetLine
       old_chord = Chord.new(chord_parts)
       new_chord = old_chord.transpose(direction)
 
-      chord_start_index = content[scan_start..-1].index(old_chord.to_s) + scan_start
-      chord_end_index = adjust_end_for_whitespace(chord_start_index, old_chord, new_chord)
-
+      chord_start_index, chord_end_index = calculate_range_to_replace(scan_start, old_chord, new_chord)
       new_chord_str = adjust_chord_whitespace(old_chord, new_chord)
       @content[chord_start_index...chord_end_index] = new_chord_str
       scan_start = chord_end_index + 1
     end
     self
   end
+  # rubocop:enable Metrics/MethodLength
 
   def chords?
     type == "chords"
   end
 
   private
+
+  def calculate_range_to_replace(scan_start, old_chord, new_chord)
+    chord_start_index = @content[scan_start..].index(old_chord.to_s) + scan_start
+    chord_end_index = adjust_end_for_whitespace(chord_start_index, old_chord, new_chord)
+    [chord_start_index, chord_end_index]
+  end
 
   def adjust_end_for_whitespace(start_index, old_chord, new_chord)
     char_diff = old_chord.length - new_chord.length
@@ -41,7 +47,7 @@ class SheetLine
     char_diff = old_chord.length - new_chord.length
     spaces = " " * char_diff.abs
 
-    new_chord = "#{new_chord.to_s}#{spaces}" if old_chord_longer_than_new?(char_diff)
+    new_chord = "#{new_chord}#{spaces}" if old_chord_longer_than_new?(char_diff)
     new_chord.to_s
   end
 
