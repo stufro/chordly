@@ -1,30 +1,29 @@
-nav.navbar aria-label="main navigation" role="navigation"
-  .navbar-brand
-    a.navbar-item href=root_path
-      b Chordly
-    a.navbar-burger[aria-expanded="false" aria-label="menu"
-                    data-target="navbar-main" role="button"]
-      span aria-hidden="true"
-      span aria-hidden="true"
-      span aria-hidden="true"
-  #navbar-main.navbar-menu
-    .navbar-start
-      = link_to "My Chord Sheets", chord_sheets_path, class: "navbar-item"
-      .navbar-item.has-dropdown.is-hoverable
-        a.navbar-link
-          | More
-        .navbar-dropdown
-          a.navbar-item
-            | About
-          hr.navbar-divider/
-          a.navbar-item
-            | Report an issue
-    .navbar-end
-      .navbar-item
-        .buttons
-          a.button.is-primary
-            strong Sign up
-          a.button.is-light
-            | Log in
-
-hr.mt-1.mb-0
+nav.navbar.is-primary aria-label="main navigation" role="navigation"
+  .container
+    .navbar-brand
+      a.navbar-item href=root_path
+        b Chordly
+      a.navbar-burger[aria-expanded="false" aria-label="menu"
+                      data-target="navbar-main" role="button"]
+        span aria-hidden="true"
+        span aria-hidden="true"
+        span aria-hidden="true"
+    #navbar-main.navbar-menu
+      .navbar-start
+        = link_to "My Chord Sheets", chord_sheets_path, class: "navbar-item"
+        .navbar-item.has-dropdown.is-hoverable
+          a.navbar-link
+            | More
+          .navbar-dropdown
+            a.navbar-item
+              | About
+            hr.navbar-divider/
+            a.navbar-item
+              | Report an issue
+      .navbar-end
+        .navbar-item
+          .buttons
+            a.button.is-light
+              strong Sign up
+            a.button.is-primary
+              | Log in
