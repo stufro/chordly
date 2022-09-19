@@ -5,7 +5,7 @@ module MusicUtils
   ACCIDENTALS = "(?:#|b|♭)?"
   CHORD_TYPES = "(maj|min|m|sus|dim|aug)?"
   CHORD_EXTENSIONS = "(2|4|5|7)?"
-  BASS_NOTE = "(\/[A-Ga-g]#{ACCIDENTALS})?"
+  BASS_NOTE = "(?:\/([A-Ga-g]#{ACCIDENTALS}))?"
   NOTE_REGEX = /([A-Ga-g]#{ACCIDENTALS})#{CHORD_TYPES}#{CHORD_EXTENSIONS}#{BASS_NOTE}/
 
   def extract_note(potential_chord)

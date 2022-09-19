@@ -9,10 +9,36 @@ class Chord
   end
 
   def to_s
-    [@note, @type, @extension, bass_note].join
+    chord = [@note, @type, @extension].join
+    chord += "/#{@bass_note}" if @bass_note
+    chord
   end
 
   def length
     to_s.length
+  end
+
+  def tranpose(direction)
+    new_chord = dup
+    new_chord.note = transpose_note(@note, direction)
+    new_chord.bass_note = transpose_note(@bass_note, direction) if @bass_note
+
+    new_chord
+  end
+
+  private
+
+  def transpose_note(note, direction)
+    new_note = Music::Note.new(note, 5).send(method_for(direction))
+    [new_note.letter, new_note.accidental].join
+  end
+
+  def method_for(direction)
+    case direction.to_sym
+    when :up
+      :succ
+    when :down
+      :prev
+    end
   end
 end
