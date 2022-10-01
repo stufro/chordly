@@ -58,4 +58,16 @@ describe("Chord sheets", () => {
     cy.contains("A new chordsheet title")
     cy.contains("A new line of lyrics")
   })
+
+  it("allows the user to copy the chord sheet to clipboard", () => {
+    helper.visitChordSheet();
+
+    cy.get("#copy-to-clipboard").click().then(() => {
+      cy.window().then((win) => {
+        win.navigator.clipboard.readText().then((text) => {
+        expect(text).to.eq('your copied text');
+        });
+      });
+    })
+  })
 })
