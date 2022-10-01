@@ -14,6 +14,7 @@
   - [ ] Quickly transpose text
   - [ ] Option to save to library
 - [ ] About page
+- [ ] Bug: allow whitespace lines
 
 ## v0.2.0
 - [ ] Prefer sharps/flats option
