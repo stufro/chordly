@@ -7,32 +7,21 @@ export default class extends Controller {
   connect() {
     this.element.setAttribute("contenteditable", "true")
     this.element.addEventListener("blur", () => { this.save() })
-    this.originalValue = this.element.textContent
+    this.originalValue = this.element.innerText
   }
 
   save() {
-    if(this.element.textContent === this.originalValue) return 
+    if(this.element.innerText === this.originalValue) return 
 
+    console.log(this.element.innerText)
     let formData = new FormData()
-    formData.append(`chord_sheet[${this.fieldValue}]`, this.buildValue());
+    formData.append(`chord_sheet[${this.fieldValue}]`, this.element.innerText);
 
     patch(this.urlValue, {
       body: formData,
       responseKind: "turbo-stream"
     }).then(() => {
-      this.originalValue = this.element.textContent
+      this.originalValue = this.element.innerText
     })
    }
-
-  buildValue() {
-    if(this.fieldValue == "content") {
-      let lines = Array.from(this.element.querySelectorAll("span"))
-      let transformedLines = lines.map(line => {
-        return `${line.textContent}\r`
-      })
-      return transformedLines.join("")
-    } else {
-      return this.element.textContent
-    }
-  }
 }

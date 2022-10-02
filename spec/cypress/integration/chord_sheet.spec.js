@@ -39,7 +39,7 @@ describe("Creating/editing a chord sheet", () => {
     cy.get("#copy-to-clipboard").click().then(() => {
       cy.window().then((win) => {
         win.navigator.clipboard.readText().then((text) => {
-        expect(text).to.eq("G   Am    D\nMy great lyrics\n");
+        expect(text).to.eq("G   Am    D\nMy great lyrics");
         });
       });
     })

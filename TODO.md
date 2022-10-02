@@ -9,16 +9,18 @@
 - [x] Copy & paste content
 - [x] Bug: ensure there is always at least one space in between chords when transposing
 - [x] Filter chord sheets
+- [x] Bug: allow whitespace lines
 - [ ] Export chord sheet to PDF
 - [ ] Login auth / sign up
 - [ ] Home splash page
   - [ ] Quickly transpose text
   - [ ] Option to save to library
 - [ ] About page
-- [ ] Bug: allow whitespace lines
 - [ ] Accessibility report
 - [ ] Chord diagrams at top of sheet
 - [ ] Sort by time or title
 
 ## v0.2.0
 - [ ] Prefer sharps/flats option
+- [ ] SEO
+- [ ] Timestamps in local user time (https://github.com/basecamp/local_time)

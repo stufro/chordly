@@ -6,14 +6,13 @@ class ChordSheetModeller
   end
 
   def parse
-    content_lines = reject_empty(@content.lines)
-    content_lines.map { |line| model_line(line) }
+    @content.lines.map { |line| model_line(line) }
   end
 
   private
 
   def model_line(line)
-    { type: line_type(line), content: sanitise(line) }
+    { type: line_type(line), content: line }
   end
 
   def line_type(line)
@@ -21,13 +20,5 @@ class ChordSheetModeller
     :chords
   rescue ArgumentError
     :lyrics
-  end
-
-  def sanitise(line)
-    line.gsub(/[\n\r]/, "")
-  end
-
-  def reject_empty(lines)
-    lines.grep_v(/^\s+$/)
   end
 end
