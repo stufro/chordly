@@ -13,7 +13,7 @@ html
     = render "layouts/navbar"
     = render("partials/flash")
 
-    div class="#{yield(:container_class).presence || "container mt-6"}"
+    div class="#{yield(:container_class).presence || "container mt-6 px-2"}"
       = yield
 
     footer.footer.pb-6.mt-6.has-background-white

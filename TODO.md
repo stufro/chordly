@@ -8,7 +8,7 @@
 - [x] Make new form same font as show
 - [x] Copy & paste content
 - [x] Bug: ensure there is always at least one space in between chords when transposing
-- [ ] Filter chord sheets
+- [x] Filter chord sheets
 - [ ] Export chord sheet to PDF
 - [ ] Login auth / sign up
 - [ ] Home splash page
@@ -18,6 +18,7 @@
 - [ ] Bug: allow whitespace lines
 - [ ] Accessibility report
 - [ ] Chord diagrams at top of sheet
+- [ ] Sort by time or title
 
 ## v0.2.0
 - [ ] Prefer sharps/flats option
