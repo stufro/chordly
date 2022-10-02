@@ -10,10 +10,10 @@ div[data-controller="clipboard"
     data-clipboard-success-content="<span class='icon'><i class='fas fa-check'></i></span>"]
   .card.mb-3
     .card-content
-      .level.is-mobile
+      .level.is-mobile.is-flex-wrap-wrap
         .level-left
           .level-item
-            span Transpose:
+            span.has-text-primary Transpose:
           .level-item
             = button_to chord_sheet_transpose_path(@chord_sheet, direction: "up"),
               class: "button is-rounded is-primary",
@@ -27,10 +27,15 @@ div[data-controller="clipboard"
               id: "transpose-down", method: :put
               span.icon
                 i.fas.fa-arrow-circle-down
+
         .level-right
-          = button_to "#", class: "button is-rounded is-info", id: "copy-to-clipboard",
+          = button_to "#", class: "button is-rounded is-info mr-2", id: "copy-to-clipboard",
             "data-clipboard-target" => "button", "data-action" => "clipboard#copy"
             span.icon
               i.fas.fa-copy
+          = link_to chord_sheet_path(@chord_sheet, format: :pdf),
+            class: "button is-rounded is-info", id: "export"
+            span.icon
+              i.fas.fa-download
 
   = render("content", chord_sheet: @chord_sheet)

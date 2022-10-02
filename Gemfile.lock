@@ -77,6 +77,9 @@ GEM
       thor (~> 1.0)
     code_analyzer (0.5.5)
       sexp_processor
+    combine_pdf (1.0.22)
+      matrix
+      ruby-rc4 (>= 0.1.5)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     cssbundling-rails (1.1.1)
@@ -105,6 +108,9 @@ GEM
     foreman (0.87.2)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    grover (1.1.2)
+      combine_pdf (~> 1.0)
+      nokogiri (~> 1.0)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -125,6 +131,7 @@ GEM
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
+    matrix (0.4.2)
     method_source (1.0.0)
     mini_magick (4.11.0)
     mini_mime (1.1.2)
@@ -239,6 +246,7 @@ GEM
     rubocop-rspec (2.13.1)
       rubocop (~> 1.33)
     ruby-progressbar (1.11.0)
+    ruby-rc4 (0.1.5)
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     sexp_processor (4.16.1)
@@ -293,6 +301,7 @@ DEPENDENCIES
   debug
   factory_bot_rails
   foreman
+  grover
   image_processing (~> 1.2)
   jbuilder
   jsbundling-rails

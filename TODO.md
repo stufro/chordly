@@ -10,7 +10,7 @@
 - [x] Bug: ensure there is always at least one space in between chords when transposing
 - [x] Filter chord sheets
 - [x] Bug: allow whitespace lines
-- [ ] Export chord sheet to PDF
+- [x] Export chord sheet to PDF
 - [ ] Login auth / sign up
 - [ ] Home splash page
   - [ ] Quickly transpose text
