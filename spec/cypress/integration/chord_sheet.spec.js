@@ -1,12 +1,12 @@
 import * as helper from "../support/helpers"
 
-describe("Chord sheets", () => {
+describe("Creating/editing a chord sheet", () => {
   afterEach(() => {
     cy.app("clean")
   })
 
   it("saves a new chord sheet", () => {
-    cy.visit("/")
+    cy.visit("/chord_sheets")
     cy.contains("Create New").click()
     cy.get("#chord_sheet_name").type("My amazing song")
     cy.get("#chord_sheet_content").type("G   Am    D\nMy great lyrics")
@@ -15,32 +15,6 @@ describe("Chord sheets", () => {
     cy.contains("My amazing song")
     cy.contains("G   Am    D")
     cy.contains("My great lyrics")
-  })
-
-  it("transposes all the chords up", () => {
-    helper.visitChordSheet()
-
-    cy.get("#transpose-up").click()
-    cy.contains("G#  A#m   D#")
-  })
-
-  it("transposes all the chords down", () => {
-    helper.visitChordSheet();
-
-    cy.get("#transpose-down").click()
-    cy.contains("F#  G#m   C#")
-  })
-
-  it("shows all chord sheets on 'My Chord Sheets' page", () => {
-    cy.appFactories([
-      ["create", "chord_sheet", { name: "Wonderwall" }],
-      ["create", "chord_sheet", { name: "Want you back" }]
-    ])
-
-    cy.visit("/")
-    cy.contains("My Chord Sheets").click()
-    cy.contains("Wonderwall")
-    cy.contains("Want you back")
   })
 
   it("allows the chord sheet to be edited inline", () => {
@@ -65,9 +39,47 @@ describe("Chord sheets", () => {
     cy.get("#copy-to-clipboard").click().then(() => {
       cy.window().then((win) => {
         win.navigator.clipboard.readText().then((text) => {
-        expect(text).to.eq('your copied text');
+        expect(text).to.eq("G   Am    D\nMy great lyrics\n");
         });
       });
     })
+  })
+})
+
+describe("Transposing a chord sheet", () => {
+  afterEach(() => {
+    cy.app("clean")
+  })
+
+  it("transposes all the chords up", () => {
+    helper.visitChordSheet()
+
+    cy.get("#transpose-up").click()
+    cy.contains("G#  A#m   D#")
+  })
+
+  it("transposes all the chords down", () => {
+    helper.visitChordSheet();
+
+    cy.get("#transpose-down").click()
+    cy.contains("F#  G#m   C#")
+  })
+})
+
+describe("Chord sheets page", () => {
+  afterEach(() => {
+    cy.app("clean")
+  })
+
+  it("shows all chord sheets on 'My Chord Sheets' page", () => {
+    cy.appFactories([
+      ["create", "chord_sheet", { name: "Wonderwall" }],
+      ["create", "chord_sheet", { name: "Want you back" }]
+    ])
+
+    cy.visit("/")
+    cy.contains("My Chord Sheets").click()
+    cy.contains("Wonderwall")
+    cy.contains("Want you back")
   })
 })

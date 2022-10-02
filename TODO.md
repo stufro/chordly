@@ -6,7 +6,7 @@
 - [x] Fix bug caused by gsub during transposing
 - [x] Handle chords with inversions
 - [x] Make new form same font as show
-- [ ] Copy & paste content
+- [x] Copy & paste content
 - [ ] Filter chord sheets
 - [ ] Export chord sheet to PDF
 - [ ] Login auth / sign up
@@ -15,6 +15,7 @@
   - [ ] Option to save to library
 - [ ] About page
 - [ ] Bug: allow whitespace lines
+- [ ] Bug: ensure there is always at least one space in between chords when transposing
 
 ## v0.2.0
 - [ ] Prefer sharps/flats option

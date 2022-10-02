@@ -13,18 +13,18 @@ html
     = render "layouts/navbar"
     = render("partials/flash")
 
-    div class="#{yield(:container_class).presence || 'container mt-6'}"
+    div class="#{yield(:container_class).presence || "container mt-6"}"
       = yield
 
     footer.footer.pb-6.mt-6.has-background-white
       .has-text-centered
         p
           strong Chordly
-          |  by 
+          |  by&nbsp;
           a href="https://github.com/stufro" target="_blank"
             span.icon.is-small.has-text-primary
               i.fas.fa-arrow-up-right-from-square
-            span  Stuart Frost
-          | . The source code is licensed 
+            span Stuart Frost
+          | . The source code is licensed&nbsp;
           a href="http://opensource.org/licenses/mit-license.php" MIT
-          | . 
+          | .

@@ -6,28 +6,31 @@ span.icon-text.is-align-items-center
   span.icon.is-medium.mb-5.ml-3.edit-icon
     i.far.fa-edit.fa-2x
 
-.card.mb-3
-  .card-content
-    .level.is-mobile
-      .level-left
-        .level-item
-          span Transpose:
-        .level-item
-          = button_to chord_sheet_transpose_path(@chord_sheet, direction: "up"),
-            class: "button is-rounded is-primary",
-            id: "transpose-up", method: :put do
-            span.icon
-              i.fas.fa-arrow-circle-up
+div[data-controller="clipboard"
+    data-clipboard-success-content="<span class='icon'><i class='fas fa-check'></i></span>"]
+  .card.mb-3
+    .card-content
+      .level.is-mobile
+        .level-left
+          .level-item
+            span Transpose:
+          .level-item
+            = button_to chord_sheet_transpose_path(@chord_sheet, direction: "up"),
+              class: "button is-rounded is-primary",
+              id: "transpose-up", method: :put do
+              span.icon
+                i.fas.fa-arrow-circle-up
 
-        .level-item
-          = button_to chord_sheet_transpose_path(@chord_sheet, direction: "down"),
-            class: "button is-rounded is-primary",
-            id: "transpose-down", method: :put
+          .level-item
+            = button_to chord_sheet_transpose_path(@chord_sheet, direction: "down"),
+              class: "button is-rounded is-primary",
+              id: "transpose-down", method: :put
+              span.icon
+                i.fas.fa-arrow-circle-down
+        .level-right
+          = button_to "#", class: "button is-rounded is-info", id: "copy-to-clipboard",
+            "data-clipboard-target" => "button", "data-action" => "clipboard#copy"
             span.icon
-              i.fas.fa-arrow-circle-down
-      .level-right
-        = button_to "#", class: "button is-rounded is-info", id: "copy-to-clipboard"
-          span.icon
-            i.fas.fa-copy
+              i.fas.fa-copy
 
-= render("content", chord_sheet: @chord_sheet)
+  = render("content", chord_sheet: @chord_sheet)
