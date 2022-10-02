@@ -17,10 +17,13 @@
   - [ ] Option to save to library
 - [ ] About page
 - [ ] Accessibility report
-- [ ] Chord diagrams at top of sheet
 - [ ] Sort by time or title
+- [ ] Pagination
+- [ ] Authorization
 
 ## v0.2.0
-- [ ] Prefer sharps/flats option
 - [ ] SEO
 - [ ] Timestamps in local user time (https://github.com/basecamp/local_time)
+- [ ] Admin page
+- [ ] Chord diagrams at top of sheet
+- [ ] Prefer sharps/flats option
