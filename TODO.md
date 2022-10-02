@@ -7,6 +7,7 @@
 - [x] Handle chords with inversions
 - [x] Make new form same font as show
 - [x] Copy & paste content
+- [x] Bug: ensure there is always at least one space in between chords when transposing
 - [ ] Filter chord sheets
 - [ ] Export chord sheet to PDF
 - [ ] Login auth / sign up
@@ -15,7 +16,8 @@
   - [ ] Option to save to library
 - [ ] About page
 - [ ] Bug: allow whitespace lines
-- [x] Bug: ensure there is always at least one space in between chords when transposing
+- [ ] Accessibility report
+- [ ] Chord diagrams at top of sheet
 
 ## v0.2.0
 - [ ] Prefer sharps/flats option

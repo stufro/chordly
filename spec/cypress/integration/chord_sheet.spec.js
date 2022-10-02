@@ -65,21 +65,3 @@ describe("Transposing a chord sheet", () => {
     cy.contains("F#  G#m   C#")
   })
 })
-
-describe("Chord sheets page", () => {
-  afterEach(() => {
-    cy.app("clean")
-  })
-
-  it("shows all chord sheets on 'My Chord Sheets' page", () => {
-    cy.appFactories([
-      ["create", "chord_sheet", { name: "Wonderwall" }],
-      ["create", "chord_sheet", { name: "Want you back" }]
-    ])
-
-    cy.visit("/")
-    cy.contains("My Chord Sheets").click()
-    cy.contains("Wonderwall")
-    cy.contains("Want you back")
-  })
-})
