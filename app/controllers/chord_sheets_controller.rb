@@ -18,6 +18,14 @@ class ChordSheetsController < ApplicationController
 
   def show
     @chord_sheet = ChordSheet.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        html = render_to_string(layout: "application")
+        send_data Grover.new(html).to_pdf, filename: "#{@chord_sheet.name}.pdf", type: "application/pdf"
+      end
+    end
   end
 
   def transpose

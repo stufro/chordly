@@ -8,6 +8,7 @@
     "@rails/request.js": "^0.0.6",
     "bulma": "^0.9.4",
     "esbuild": "^0.14.39",
+    "puppeteer": "^18.0.5",
     "sass": "^1.52.1",
     "stimulus-clipboard": "^3.2.0"
   },

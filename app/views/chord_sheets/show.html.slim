@@ -28,9 +28,13 @@ div[data-controller="clipboard"
               span.icon
                 i.fas.fa-arrow-circle-down
         .level-right
-          = button_to "#", class: "button is-rounded is-info", id: "copy-to-clipboard",
+          = button_to "#", class: "button is-rounded is-info mr-2", id: "copy-to-clipboard",
             "data-clipboard-target" => "button", "data-action" => "clipboard#copy"
             span.icon
               i.fas.fa-copy
+          = link_to chord_sheet_path(@chord_sheet, format: :pdf), class: "button is-rounded is-info",
+              id: "export"
+            span.icon
+              i.fas.fa-download
 
   = render("content", chord_sheet: @chord_sheet)
