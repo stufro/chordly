@@ -102,5 +102,15 @@ describe SheetLine do
         expect(sheet_line.content).to eq(expected_chords)
       end
     end
+
+    context "when there is not enough whitespace to available to substitute the chord into" do
+      let(:original_chords) { " G/D G#m   Asus G " }
+      let(:expected_chords) { " G#/D# Am    A#sus G#" }
+
+      it "doesn't adjust the whitespace" do
+        sheet_line.transpose(:up)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
   end
 end

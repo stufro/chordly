@@ -15,8 +15,7 @@
   - [ ] Option to save to library
 - [ ] About page
 - [ ] Bug: allow whitespace lines
-- [ ] Bug: ensure there is always at least one space in between chords when transposing
+- [x] Bug: ensure there is always at least one space in between chords when transposing
 
 ## v0.2.0
 - [ ] Prefer sharps/flats option
-- [ ] Maybe give option to maintain spacing or shift chords when adding sharps

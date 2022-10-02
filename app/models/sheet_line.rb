@@ -39,8 +39,17 @@ class SheetLine
   def adjust_end_for_whitespace(start_index, old_chord, new_chord)
     char_diff = old_chord.length - new_chord.length
     chord_end_index = start_index + old_chord.length
-    chord_end_index += char_diff.abs if new_chord_longer_than_old?(char_diff)
-    chord_end_index
+
+    if new_chord_longer_than_old?(char_diff) && sufficient_whitespace?(char_diff, chord_end_index)
+      chord_end_index + char_diff.abs
+    else
+      chord_end_index
+    end
+  end
+
+  def sufficient_whitespace?(char_diff, chord_end_index)
+    new_chord_end_index = chord_end_index + char_diff.abs
+    @content[chord_end_index..new_chord_end_index].match?(/^\s+$/)
   end
 
   def adjust_chord_whitespace(old_chord, new_chord)
