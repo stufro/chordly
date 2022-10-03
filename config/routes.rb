@@ -16,4 +16,10 @@ Rails.application.routes.draw do
   end
 
   resource :home, only: %i[index]
+
+  if Rails.env.development?
+    namespace :dev do
+      post "/change_user", to: "change_user#index"
+    end
+  end
 end

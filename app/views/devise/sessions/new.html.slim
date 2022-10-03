@@ -1,18 +1,31 @@
-h2 Log in
+.card
+  .card-content
+    h1.title.is-1 Log in
 
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-  br
-  = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-  br
-  = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .field
+        = f.label :email, class: "label"
+        .control.has-icons-left
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: "input"
+          span.icon.is-small.is-left
+            i.fas.fa-envelope
+
+      .field
+        = f.label :password, class: "label"
+        .control.has-icons-left
+          = f.password_field :password, autocomplete: "current-password", class: "input"
+          span.icon.is-small.is-left
+            i.fas.fa-key
+
+      - if devise_mapping.rememberable?
+        .field
+          .control
+          = f.check_box :remember_me, class: "checkbox mr-2"
+          = f.label :remember_me, class: "checkbox"
+
+      .actions.is-flex.is-justify-content-center
+        = f.submit "Log in", class: "button is-primary is-medium", style: "width: 100%"
+
+  .card-footer.is-justify-content-center.pb-3
+    .is-flex.is-align-items-center.is-flex-direction-column.mt-3
+      = render "devise/shared/links"

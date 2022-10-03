@@ -23,7 +23,7 @@ ProtectMassAssignmentCheck: { }
 RemoveEmptyHelpersCheck: { }
 #RemoveTabCheck: { }
 RemoveTrailingWhitespaceCheck: { }
-RemoveUnusedMethodsInControllersCheck: { except_methods: [] }
+RemoveUnusedMethodsInControllersCheck: { except_methods: ["ApplicationController#after_sign_in_path_for"] }
 RemoveUnusedMethodsInHelpersCheck: { except_methods: ["MusicUtils#extract_note", "MusicUtils#extract_note!"] }
 RemoveUnusedMethodsInModelsCheck: { except_methods: [] }
 ReplaceComplexCreationWithFactoryMethodCheck: { attribute_assignment_count: 2 }

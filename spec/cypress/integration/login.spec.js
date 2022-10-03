@@ -5,7 +5,7 @@ describe("Signing up for chordly", () => {
     cy.app("clean")
   })
 
-  it("creates the new user and allows them to login", () => {
+  it("creates the new user logs them in", () => {
     cy.visit("/")
     cy.get("#sign-up-form-link").click()
     cy.get("#user_email").type("a@a.com")

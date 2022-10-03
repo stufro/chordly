@@ -30,16 +30,20 @@ nav.navbar.is-primary aria-label="main navigation" role="navigation"
               | Report an issue
       .navbar-end
         - if user_signed_in?
-          = button_to destroy_user_session_path, class: "navbar-item", method: :delete do
-            span.icon-text.is-flex-wrap-nowrap
-              span.icon
-                i.fas.fa-sign-out-alt
-              span Logout
-        
+          .navbar-item
+            .buttons
+              = button_to destroy_user_session_path, class: "button is-primary", method: :delete do
+                span.icon-text.is-flex-wrap-nowrap
+                  span.icon
+                    i.fas.fa-sign-out-alt
+                  span Logout
+
         - else
           .navbar-item
             .buttons
-              a.button.is-light
+              = link_to new_registration_path(resource_name), class: "button is-light" do
                 strong Sign up
-              a.button.is-primary
-                | Log in
+              = link_to "Log in", new_session_path(resource_name), class: "button is-primary"
+
+        - if Rails.env.development?
+          = render "layouts/development_menu"

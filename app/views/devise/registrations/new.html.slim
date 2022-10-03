@@ -1,21 +1,39 @@
-h2 Sign up
+.card
+  .card-content
+    h1.title.is-1 Sign up
 
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-  = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      em
-        | (
-        = @minimum_password_length
-        |  characters minimum)
-  = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-  = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up", id: "complete-sign-up", data: { turbo: false }
-= render "devise/shared/links"
+    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = render "devise/shared/error_messages", resource: resource
+      .field
+        = f.label :email, class: "label"
+        .control.has-icons-left
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: "input"
+          span.icon.is-small.is-left
+            i.fas.fa-envelope
+
+      .field
+        = f.label :password, class: "has-text-weight-semibold"
+        - if @minimum_password_length
+          em
+            | (
+            = @minimum_password_length
+            |  characters minimum)
+        .control.has-icons-left
+          = f.password_field :password, autocomplete: "new-password", class: "input"
+          span.icon.is-small.is-left
+            i.fas.fa-key
+
+      .field
+        = f.label :password_confirmation, "Confirm password", class: "label"
+        .control.has-icons-left
+          = f.password_field :password_confirmation, autocomplete: "new-password", class: "input"
+          span.icon.is-small.is-left
+            i.fas.fa-key
+
+      .actions.is-flex.is-justify-content-center
+        = f.submit "Sign up", class: "button is-primary is-medium", id: "complete-sign-up",
+            data: { turbo: false }, style: "width: 100%"
+
+  .card-footer.is-justify-content-center.py-3
+    .is-flex.is-align-items-center.is-flex-direction-column.mt-3
+    = render "devise/shared/links"

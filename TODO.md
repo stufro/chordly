@@ -20,6 +20,7 @@
 - [ ] Sort by time or title
 - [ ] Pagination
 - [ ] Authorization
+- [ ] Chord sheets belong to users
 
 ## v0.2.0
 - [ ] SEO
