@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users
-  root "home#index"
+
+  devise_scope :user do
+    authenticated :user do
+      root "home#index", as: :authenticated_root
+
+    end
+
+    unauthenticated do
+      root "devise/sessions#new", as: :unauthenticated_root
+    end
+  end
 
   resources :chord_sheets, only: %i[index new create show update] do
     put :transpose
