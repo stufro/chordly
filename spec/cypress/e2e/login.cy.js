@@ -42,9 +42,7 @@ describe("Logging in with existing account", () => {
 
 describe("Logging out", () => {
   beforeEach(() => {
-    cy.appFactories([
-      ["create", "user", { email: "a@a.com", password: "123456789" } ]
-    ])
+    cy.login()
   })
 
   afterEach(() => {
@@ -53,9 +51,6 @@ describe("Logging out", () => {
 
   it("logs the user out", () => {
     cy.visit("/")
-    cy.get("#user_email").type("a@a.com")
-    cy.get("#user_password").type("123456789")
-    cy.get("#login-button").click()
     cy.contains("Logout").click()
 
     cy.contains("Log in")
