@@ -302,10 +302,15 @@ GEM
     stimulus-rails (1.1.0)
       railties (>= 6.0.0)
     strscan (3.0.4)
+    sync (0.5.0)
     temple (0.8.2)
+    term-ansicolor (1.7.1)
+      tins (~> 1.0)
     thor (1.2.1)
     tilt (2.0.11)
     timeout (0.3.0)
+    tins (1.31.1)
+      sync
     turbo-rails (1.1.1)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
@@ -361,6 +366,7 @@ DEPENDENCIES
   solargraph
   sprockets-rails
   stimulus-rails
+  term-ansicolor
   turbo-rails
   tzinfo-data
   web-console

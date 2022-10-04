@@ -19,7 +19,3 @@ Style/Documentation:
   Enabled: false
 Style/FrozenStringLiteralComment:
   Enabled: false
-
-Layout/LineLength:
-  Exclude:
-    - app/views/devise/shared/_links.html.slim
