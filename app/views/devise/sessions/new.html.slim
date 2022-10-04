@@ -24,7 +24,8 @@
           = f.label :remember_me, class: "checkbox"
 
       .actions.is-flex.is-justify-content-center
-        = f.submit "Log in", class: "button is-primary is-medium", style: "width: 100%"
+        = f.submit "Log in", class: "button is-primary is-medium", style: "width: 100%",
+          data: { turbo: false }, id: "login-button"
 
   .card-footer.is-justify-content-center.pb-3
     .is-flex.is-align-items-center.is-flex-direction-column.mt-3
