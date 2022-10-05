@@ -1,4 +1,6 @@
 class ChordSheetsController < ApplicationController
+  before_action :authorize_user, only: %i[show transpose update]
+
   def index
     @chord_sheets = ChordSheet.for_user(current_user).order(build_order_query)
   end
@@ -20,8 +22,6 @@ class ChordSheetsController < ApplicationController
   end
 
   def show
-    @chord_sheet = ChordSheet.find(params[:id])
-
     respond_to do |format|
       format.html
       format.pdf do
@@ -32,12 +32,10 @@ class ChordSheetsController < ApplicationController
   end
 
   def transpose
-    @chord_sheet = ChordSheet.find(params[:chord_sheet_id])
     @chord_sheet.transpose(params[:direction]).save
   end
 
   def update
-    @chord_sheet = ChordSheet.find(params[:id])
     if @chord_sheet.update(chord_sheet_params)
       flash.now[:notice] = "Changes saved"
     else
@@ -58,5 +56,10 @@ class ChordSheetsController < ApplicationController
     return { created_at: :desc } unless params[:order]
 
     { name: params[:order] }
+  end
+
+  def authorize_user
+    @chord_sheet = ChordSheet.find(params[:id])
+    authorize(@chord_sheet)
   end
 end

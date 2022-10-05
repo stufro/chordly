@@ -131,4 +131,15 @@ describe("Chord sheets page", () => {
     cy.visit("/chord_sheets")
     cy.contains("Another users sheet").should("not.exist")
   })
+
+  it("won't let you directly visit another users chord sheet", () => {
+    cy.appFactories([["create", "user", { email: "other@user.com" }]]).then((users) => {
+      cy.appFactories([["create", "chord_sheet", { name: "Another users sheet", user_id: users[0].id }]]).then((chordSheets) => {
+        cy.visit(`/chord_sheets/${chordSheets[0].id}`)
+
+        cy.contains("Another users sheet").should("not.exist")
+        cy.contains("You are not authorized to view this Chord Sheet")
+      })
+    })
+  })
 })

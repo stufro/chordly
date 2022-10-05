@@ -14,7 +14,7 @@
 - [x] Login auth / sign up
 - [x] Sort by time or title
 - [x] Chord sheets belong to users
-- [ ] Authorization
+- [x] Authorization
 - [ ] Home splash page
   - [ ] Quickly transpose text
   - [ ] Option to save to library

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :chord_sheets, only: %i[index new create show update] do
-    put :transpose
+    put :transpose, on: :member
   end
 
   resource :home, only: %i[index]

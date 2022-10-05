@@ -15,14 +15,14 @@ div[data-controller="clipboard"
           .level-item
             span.has-text-primary Transpose:
           .level-item
-            = button_to chord_sheet_transpose_path(@chord_sheet, direction: "up"),
+            = button_to transpose_chord_sheet_path(@chord_sheet, direction: "up"),
               class: "button is-rounded is-primary",
               id: "transpose-up", method: :put do
               span.icon
                 i.fas.fa-arrow-circle-up
 
           .level-item
-            = button_to chord_sheet_transpose_path(@chord_sheet, direction: "down"),
+            = button_to transpose_chord_sheet_path(@chord_sheet, direction: "down"),
               class: "button is-rounded is-primary",
               id: "transpose-down", method: :put
               span.icon
