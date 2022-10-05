@@ -1,0 +1,32 @@
+.mb-6 data-controller="search"
+  .is-flex.is-justify-content-space-between.is-align-items-center
+    .is-flex-grow-1
+      input[class="input mb-0 has-text-centered" id="search-box" type="text"
+            placeholder="Search for a chord sheet" data-search-target="input"
+            data-action="search#search"]
+
+    - if params[:order].present?
+      = link_to chord_sheets_path, class: "icon is-large sort-by-icon" do
+        i.fas.fa-2x.fa-close
+    - new_order = params[:order] == "asc" ? :desc : :asc
+    - icon_class = params[:order] == "desc" ? "fa-arrow-down-a-z" : "fa-arrow-up-a-z"
+    = link_to chord_sheets_path(order: new_order),
+      class: "icon is-large sort-by-icon #{'is-active' if params[:order].present?}",
+      id: "sort-chord-sheets" do
+      i.fas.fa-2x class="#{icon_class}"
+
+  .is-flex.is-flex-wrap-wrap.is-justify-content-center#chord-sheets-container
+    - chord_sheets.each do |chord_sheet|
+      .m-3 style="min-width: 30%" data-search-target="searchable"
+        a href=chord_sheet_path(chord_sheet)
+          .card.card-link
+            .card-content
+              .level.is-mobile.has-text-centered.is-justify-content-space-around
+                span.icon.has-text-primary.is-large.mr-2
+                  i.fas.fa-music.fa-3x
+                div
+                  p.title.is-4 = chord_sheet.name
+                  .level.is-justify-content-center
+                    span.icon
+                      i.far.fa-clock
+                    span = format_datetime(chord_sheet.updated_at)

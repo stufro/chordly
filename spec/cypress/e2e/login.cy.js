@@ -73,7 +73,7 @@ describe("Resetting a forgotten password", () => {
     cy.visit("/users/sign_in")
     cy.contains("Forgot your password?").click()
     cy.get("#user_email").type("a@a.com")
-    cy.contains("Send me reset password instructions").click()
+    cy.contains("Send reset instructions").click()
 
     cy.contains("Log in")
     cy.contains("You will receive an email with instructions on how to reset your password in a few minutes.")

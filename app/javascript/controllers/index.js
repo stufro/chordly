@@ -15,3 +15,6 @@ application.register("flash", FlashController)
 
 import SearchController from "./search_controller"
 application.register("search", SearchController)
+
+import NavbarController from "./navbar_controller"
+application.register("navbar", NavbarController)

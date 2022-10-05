@@ -23,10 +23,12 @@
 - [ ] Accessibility report
 - [ ] Pagination
 - [x] Rake task to call foreman run with another procfile which runs Rails server with cypress_server.pid file, js and css and then call yarn cy:run
-- [ ] Add boiler plate & teasers for set lists
+- [x] Add boiler plate & teasers for set lists
 - [x] Add tooltips to buttons
 - [ ] Auto generate icon for songs
 - [ ] Destroy chord sheet (soft delete?)
+- [ ] Privacy statement
+- [ ] Cookies permissions
 
 ## v0.2.0
 - [ ] SEO

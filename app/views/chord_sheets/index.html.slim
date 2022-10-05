@@ -1,40 +1,24 @@
 .level.mb-4
-  h1.title.is-1.mb-0 My Chord Sheets
-  = link_to new_chord_sheet_path, class: "button is-primary" do
-    span.icon-text.is-flex-wrap-nowrap
-      span.icon
-        i.fas.fa-plus
-      span Create New
+  h1.title.is-1.mb-0.has-text-centered My Chord Sheets
+  .is-flex.is-justify-content-center
+    = link_to new_chord_sheet_path, class: "button is-primary" do
+      span.icon-text.is-flex-wrap-nowrap
+        span.icon
+          i.fas.fa-plus
+        span Create New
 
-div data-controller="search"
-  .is-flex.is-justify-content-space-between.is-align-items-center
-    .is-flex-grow-1
-      input[class="input mb-0 has-text-centered" id="search-box" type="text"
-            placeholder="Search for a chord sheet" data-search-target="input"
-            data-action="search#search"]
+= render("chord_sheet_list", chord_sheets: @chord_sheets)
 
-    - if params[:order].present?
-      = link_to chord_sheets_path, class: "icon is-large sort-by-icon" do
-        i.fas.fa-2x.fa-close
-    - new_order = params[:order] == "asc" ? :desc : :asc
-    - icon_class = params[:order] == "desc" ? "fa-arrow-down-a-z" : "fa-arrow-up-a-z"
-    = link_to chord_sheets_path(order: new_order),
-      class: "icon is-large sort-by-icon #{'is-active' if params[:order].present?}",
-      id: "sort-chord-sheets" do
-      i.fas.fa-2x class="#{icon_class}"
+hr
 
-  .is-flex.is-flex-wrap-wrap.is-justify-content-center#chord-sheets-container
-    - @chord_sheets.each do |chord_sheet|
-      .m-3 style="min-width: 30%" data-search-target="searchable"
-        a href=chord_sheet_path(chord_sheet)
-          .card.card-link
-            .card-content
-              .level.is-mobile.has-text-centered.is-justify-content-space-around
-                span.icon.has-text-primary.is-large.mr-2
-                  i.fas.fa-music.fa-3x
-                div
-                  p.title.is-4 = chord_sheet.name
-                  .level.is-justify-content-center
-                    span.icon
-                      i.far.fa-clock
-                    span = format_datetime(chord_sheet.updated_at)
+.level.mb-4
+  h1.title.is-1.mb-0 My Set Lists
+  .is-flex.is-justify-content-center
+    = button_to "#", class: "button is-primary", disabled: true do
+      span.icon-text.is-flex-wrap-nowrap
+        span.icon
+          i.fas.fa-plus
+        span Create New
+
+.notification.is-primary.is-light
+  h2.title.is-4 Coming soon in v0.2.0
