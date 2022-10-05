@@ -1,10 +1,10 @@
 User.destroy_all
 ChordSheet.destroy_all
 
-FactoryBot.create :user
-FactoryBot.create :user, email: "beta@chordly.co.uk", password: "123456789"
+user1 = FactoryBot.create :user
+user2 = FactoryBot.create :user, email: "beta@chordly.co.uk", password: "123456789"
 
-FactoryBot.create :chord_sheet, name: "Yellow - Coldplay", content_string: "[Intro]
+FactoryBot.create :chord_sheet, name: "Yellow - Coldplay", user: user1, content_string: "[Intro]
 G D C G
 
 [Verse 1]
@@ -78,7 +78,7 @@ For you I bleed myself dry
  
 For you I bleed myself dry"
 
-FactoryBot.create :chord_sheet, name: "Hotel California", content_string: "Capo 2
+FactoryBot.create :chord_sheet, name: "Hotel California", user: user1, content_string: "Capo 2
  
 [Intro]
 Am   E7   G   D   F   C   Dm   E7   
@@ -179,7 +179,7 @@ Am   E7   G   D   F   C   Dm   E7
 Am   E7   G   D   F   C   Dm   E7   
 (fade out)"
 
-FactoryBot.create :chord_sheet, name: "Perfect - Ed Sheeran", content_string: "[Intro]
+FactoryBot.create :chord_sheet, name: "Perfect - Ed Sheeran", user: user1, content_string: "[Intro]
 G
  
 [Verse 1]
@@ -263,3 +263,116 @@ In person, and she looks perfect
 I don't deserve this, you look perfect tonight
  
 | G D/F# Em D | C  D  | G"
+
+FactoryBot.create :chord_sheet, name: "Talking to the moon", user: user2, content_string: "[Verse 1]
+ 
+C
+  I know you're somewhere out there
+E7
+Somewhere far away
+  Am           G
+I want you back
+  F
+I want you back
+ 
+C
+  My neighbors think I'm crazy
+    E7
+But they don't understand
+       Am        G
+You're all I had
+       F
+You're all I had
+ 
+ 
+[Pre-Chorus]
+ 
+Dm                      G
+   At night when the stars
+               Dm
+light up my room
+            G
+I sit by myself
+ 
+ 
+[Chorus]
+ 
+               F G Am
+Talking to the moon
+              F G Am
+Tryna get to you
+   F                    G         C       G/B   Am
+In hopes you're on the other side talking to me too
+   G      F              G
+Or am I a fool who sits alone
+                Am  G
+Talking to the moon
+     D
+Ohhhhhhhhhhhhhhhhhhhhhh
+ 
+ 
+[Verse 2]
+ 
+C
+  I'm feelin' like I'm famous
+    E7
+The talk of the town
+         Am           G
+They say I've gone mad
+      F
+Yeah, I've gone mad
+ 
+C
+  But they don't know what I know
+      E7
+Cause when the sun goes down
+          Am           G
+Someone's talkin' back
+              F
+Yeah, they're talkin' back, ohhh
+ 
+ 
+[Pre-Chorus]
+ 
+Dm                      G
+   At night when the stars
+               Dm
+light up my room
+            G
+I sit by myself
+ 
+ 
+[Chorus]
+ 
+               F G Am
+Talking to the moon
+              F G Am
+Tryna get to you
+   F                    G         C       G/B   Am
+In hopes you're on the other side talking to me too
+   G      F              G
+Or am I a fool who sits alone
+ 
+Talking to the moon
+ 
+ 
+[Interlude]
+ 
+Dm      C      Dm
+  Ahh... ahh... ahh...
+G
+Do you ever hear me calling?
+Dm      C      Dm
+  (Ahh... ahh... ahh...)
+ 
+ 
+[Chorus]
+ 
+      G                              F G Am
+Cause every night I'm talking to the moon
+                       F G Am
+Still tryna to get to you
+   F                    G         C       G/B   Am
+In hopes you're on the other side talking to me too
+   G      F              G                     Am   G    D
+Or am I a fool who sits alone talking to the moon?     Ohoooo..."

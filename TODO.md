@@ -18,10 +18,12 @@
 - [ ] Home splash page
   - [ ] Quickly transpose text
   - [ ] Option to save to library
+  - [ ] 
 - [ ] About page
 - [ ] Accessibility report
 - [ ] Pagination
 - [x] Rake task to call foreman run with another procfile which runs Rails server with cypress_server.pid file, js and css and then call yarn cy:run
+- [ ] Add boiler plate & teasers for set lists
 
 ## v0.2.0
 - [ ] SEO
@@ -29,4 +31,7 @@
 - [ ] Admin page
 - [ ] Chord diagrams at top of sheet
 - [ ] Prefer sharps/flats option
-- [ ] Undo changes
+- [ ] Undo changes for chord sheets
+- [ ] Set lists
+- [ ] Styling chord sheets
+- [ ] Alert when there is a chord sheet with same name
