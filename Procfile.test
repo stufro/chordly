@@ -1,0 +1,4 @@
+web: RAILS_ENV=test bin/rails server -p 5017 -P tmp/pids/test_server.pid
+js: yarn build --watch
+css: yarn build:css --watch
+cypress: yarn cy:open
