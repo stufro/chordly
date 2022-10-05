@@ -33,6 +33,8 @@ nav.navbar.is-primary aria-label="main navigation" role="navigation" data-contro
       .navbar-end
         - if user_signed_in?
           .navbar-item
+            span = current_user.email
+          .navbar-item
             .buttons
               = button_to destroy_user_session_path, class: "button is-primary", method: :delete do
                 span.icon-text.is-flex-wrap-nowrap

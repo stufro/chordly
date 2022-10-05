@@ -25,7 +25,6 @@
 - [x] Rake task to call foreman run with another procfile which runs Rails server with cypress_server.pid file, js and css and then call yarn cy:run
 - [x] Add boiler plate & teasers for set lists
 - [x] Add tooltips to buttons
-- [ ] Auto generate icon for songs
 - [ ] Destroy chord sheet (soft delete?)
 - [ ] Privacy statement
 - [ ] Cookies permissions
@@ -34,9 +33,12 @@
 - [ ] SEO
 - [ ] Timestamps in local user time (https://github.com/basecamp/local_time)
 - [ ] Admin page
+- [ ] Set lists
+- [ ] Alert when there is a chord sheet with same name
+
+## v0.3.0
+- [ ] Undo changes for chord sheets
+- [ ] Styling chord sheets
 - [ ] Chord diagrams at top of sheet
 - [ ] Prefer sharps/flats option
-- [ ] Undo changes for chord sheets
-- [ ] Set lists
-- [ ] Styling chord sheets
-- [ ] Alert when there is a chord sheet with same name
+- [ ] Auto generate icon for songs
