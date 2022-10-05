@@ -17,13 +17,14 @@
 - [x] Authorization
 - [x] Home splash page
   - [x] Quickly transpose text
-  - [ ] Option to save to library
+  - [x] Option to save to library
+  - [ ] Add gifs / screenshots of features
 - [ ] About page
 - [ ] Accessibility report
 - [ ] Pagination
 - [x] Rake task to call foreman run with another procfile which runs Rails server with cypress_server.pid file, js and css and then call yarn cy:run
 - [ ] Add boiler plate & teasers for set lists
-- [ ] Add tooltips to buttons
+- [x] Add tooltips to buttons
 - [ ] Auto generate icon for songs
 - [ ] Destroy chord sheet (soft delete?)
 

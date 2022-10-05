@@ -1,20 +1,22 @@
 - content_for(:container_class, "full-width")
 
+- get_started_path = user_signed_in? ? new_chord_sheet_path : new_trial_path
+
 .hero.is-primary.is-medium
   .hero-body
     .container.has-text-centered
       h1.title Chordly
       h2.subtitle A free, open-source, online chord sheet creator
 
-      button.button Get Started
+      = link_to "Get Started", get_started_path, class: "button is-light"
 
 .hero.is-medium
   .hero-body
     .container.has-text-centered
-      h1.title Transpose Songs
-      h2.subtitle And organise chord sheets into collections
+      h1.title Transpose Chords
+      h2.subtitle And edit chord sheets in line
 
-      = link_to "Transpose Song Now", new_trial_path, class: "button is-primary"
+      = link_to "Transpose Song Now", get_started_path, class: "button is-primary"
       h3.subtitle.is-6.mt-1.has-text-primary.has-text-weight-bold No account required
 
 .hero.is-primary.is-medium
@@ -23,4 +25,4 @@
       h1.title Export to PDF
       h2.subtitle Download chord sheets or entire set lists in one click
 
-      button.button Create Chord Sheet
+      = link_to "Create Chord Sheet", get_started_path, class: "button is-light"
