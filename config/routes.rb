@@ -7,13 +7,15 @@ Rails.application.routes.draw do
     end
 
     unauthenticated do
-      root "devise/sessions#new", as: :unauthenticated_root
+      root "home#index", as: :unauthenticated_root
     end
   end
 
   resources :chord_sheets, only: %i[index new create show update] do
     put :transpose, on: :member
   end
+
+  resource :trial, only: %i[new]
 
   resource :home, only: %i[index]
 

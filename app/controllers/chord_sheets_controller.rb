@@ -1,4 +1,5 @@
 class ChordSheetsController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[transpose update]
   before_action :authorize_user, only: %i[show transpose update]
 
   def index

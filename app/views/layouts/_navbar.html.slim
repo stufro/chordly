@@ -41,9 +41,9 @@ nav.navbar.is-primary aria-label="main navigation" role="navigation"
         - else
           .navbar-item
             .buttons
-              = link_to new_registration_path(resource_name), class: "button is-light" do
+              = link_to new_registration_path(:user), class: "button is-light" do
                 strong Sign up
-              = link_to "Log in", new_session_path(resource_name), class: "button is-primary"
+              = link_to "Log in", new_session_path(:user), class: "button is-primary"
 
         - if Rails.env.development?
           = render "layouts/development_menu"

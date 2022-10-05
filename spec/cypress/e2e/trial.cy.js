@@ -9,6 +9,7 @@ describe("Trialing chordly without an account", () => {
     cy.get("#chord-sheet-content").type("\r   G    Em     Am\rA new line of lyrics")
 
     cy.get("#transpose-down").click()
-    cy.contains("F#  G#m   C#")
+    cy.contains("F#   D#m    G#m")
+    cy.contains("A new line of lyrics")
   })
 })

@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize(resource)
-    return if resource.user_id == current_user.id
+    return if (current_user.nil? && resource.trial?) || resource.user_id == current_user.id
 
-    redirect_to "/", alert: "You are not authorized to view this #{resource.class.name.underscore.titleize}"
+    redirect_to "/", alert: "You are not authorized to view this #{resource.class.name.underscore.titleize}", code: 401
   end
 end

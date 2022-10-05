@@ -4,7 +4,7 @@ describe("Signing up for chordly", () => {
   })
 
   it("creates the new user logs them in", () => {
-    cy.visit("/")
+    cy.visit("/users/sign_in")
     cy.get("#sign-up-form-link").click()
     cy.get("#user_email").type("a@a.com")
     cy.get("#user_password").type("123456789")
@@ -29,7 +29,7 @@ describe("Logging in with existing account", () => {
   })
 
   it("logs the user in", () => {
-    cy.visit("/")
+    cy.visit("/users/sign_in")
     cy.get("#user_email").type("a@a.com")
     cy.get("#user_password").type("123456789")
     cy.get("#login-button").click()
@@ -54,7 +54,7 @@ describe("Logging out", () => {
     cy.contains("Logout").click()
 
     cy.contains("Log in")
-    cy.contains("Forgot your password?")
+    cy.contains("A free, open-source, online chord sheet creator")
   })
 })
 
@@ -70,7 +70,7 @@ describe("Resetting a forgotten password", () => {
   })
 
   it("sends the password reset instructions", () => {
-    cy.visit("/")
+    cy.visit("/users/sign_in")
     cy.contains("Forgot your password?").click()
     cy.get("#user_email").type("a@a.com")
     cy.contains("Send me reset password instructions").click()

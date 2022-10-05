@@ -29,7 +29,7 @@ Cypress.Commands.add('login', () => {
     ["create", "user", {email: "a@a.com", password: "123456789"} ]
   ]).then((records) => {
     cy.session([records[0].email, "123456789"], () => {
-      cy.visit(`/`)
+      cy.visit("users/sign_in")
       cy.get("#user_email").type(records[0].email)
       cy.get("#user_password").type("123456789")
       cy.get("#login-button").click()
