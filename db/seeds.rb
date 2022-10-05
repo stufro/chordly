@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+env_seed = File.expand_path("#{Rails.env}_seed.rb", __dir__)
+load env_seed if File.exist?(env_seed)

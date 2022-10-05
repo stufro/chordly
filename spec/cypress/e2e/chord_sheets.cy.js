@@ -79,8 +79,9 @@ describe("Chord sheets page", () => {
     cy.login()
 
     cy.appFactories([
+      ["create", "chord_sheet", { name: "ABC" }],
       ["create", "chord_sheet", { name: "Wonderwall" }],
-      ["create", "chord_sheet", { name: "Want you back" }]
+      ["create", "chord_sheet", { name: "Hotel California" }],
     ])
   })
 
@@ -92,13 +93,33 @@ describe("Chord sheets page", () => {
     cy.visit("/")
     cy.contains("My Library").click()
     cy.contains("Wonderwall")
-    cy.contains("Want you back")
+    cy.contains("ABC")
+    cy.contains("Hotel California")
   })
 
   it("allows you to search for a chord sheet", () => {
     cy.visit("/chord_sheets")
     cy.get("#search-box").type("Want y")
-    cy.contains("Want you back")
     cy.contains("Wonderwall").not()
+    cy.contains("Hotel California")
+    cy.contains("ABC").not()
+  })
+
+  it("allows you to sort the chord sheets by name", () => {
+    cy.visit("/chord_sheets")
+    cy.get("#sort-chord-sheets").click()
+    
+    cy.get("#chord-sheets-container").within(() => {
+      cy.get("p.title")
+        .then(($elems) => { return Cypress._.map($elems, "innerText") })
+        .should("deep.equal", ["ABC", "Hotel California", "Wonderwall"])
+    })
+
+    cy.get("#sort-chord-sheets").click()
+    cy.get("#chord-sheets-container").within(() => {
+      cy.get("p.title")
+        .then(($elems) => { return Cypress._.map($elems, "innerText") })
+        .should("deep.equal", ["Wonderwall", "Hotel California", "ABC"])
+    })
   })
 })

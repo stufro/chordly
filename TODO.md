@@ -12,7 +12,7 @@
 - [x] Bug: allow whitespace lines
 - [x] Export chord sheet to PDF
 - [x] Login auth / sign up
-- [ ] Sort by time or title
+- [x] Sort by time or title
 - [ ] Chord sheets belong to users
 - [ ] Authorization
 - [ ] Home splash page

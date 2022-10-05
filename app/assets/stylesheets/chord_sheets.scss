@@ -10,3 +10,18 @@
   font-family: monospace;
 }
 
+.sort-by-icon {
+  color: $grey-light;
+}
+
+.is-active {
+  color: $primary;
+}
+
+a.sort-by-icon:hover {
+  color: $grey;
+}
+
+a.sort-by-icon.is-active:hover {
+  color: darken($primary, 10%);
+}

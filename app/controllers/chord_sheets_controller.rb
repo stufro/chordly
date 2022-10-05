@@ -1,6 +1,6 @@
 class ChordSheetsController < ApplicationController
   def index
-    @chord_sheets = ChordSheet.order(updated_at: :desc)
+    @chord_sheets = ChordSheet.order(build_order_query)
   end
 
   def new
@@ -49,5 +49,11 @@ class ChordSheetsController < ApplicationController
     params.require(:chord_sheet).permit(:name, :content).tap do |p|
       p[:content] = ChordSheetModeller.new(p[:content]).parse if p[:content]
     end
+  end
+
+  def build_order_query
+    return { created_at: :desc } unless params[:order]
+
+    { name: params[:order] }
   end
 end
