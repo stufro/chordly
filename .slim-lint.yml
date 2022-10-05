@@ -1,3 +1,5 @@
 linters:
   LineLength:
     max: 100
+    exclude:
+      - app/views/devise/shared/_links.html.slim

@@ -1,5 +1,6 @@
 {
-  "name": "app",
+  "name": "chordly",
+  "license": "MIT",
   "private": "true",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.1.1",
@@ -16,10 +17,9 @@
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
     "build:css": "sass ./app/assets/stylesheets/application.bulma.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules",
     "cy:open": "cypress open --project ./spec",
-    "cy:run": "cypress run --project ./spec",
-    "cy:server": "CYPRESS=1 ./bin/dev"
+    "cy:run": "cypress run --project ./spec"
   },
   "devDependencies": {
-    "cypress": "^9.7.0"
+    "cypress": "^10.9.0"
   }
 }

@@ -5,6 +5,7 @@ ruby "3.1.2"
 
 gem "bootsnap", require: false
 gem "cssbundling-rails"
+gem "devise"
 gem "grover"
 gem "image_processing", "~> 1.2"
 gem "jbuilder"
@@ -31,6 +32,7 @@ group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]
   gem "factory_bot_rails"
   gem "rspec-rails"
+  gem "term-ansicolor"
 end
 
 group :development do
@@ -42,5 +44,6 @@ group :development do
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
   gem "slim_lint"
+  gem "solargraph"
   gem "web-console"
 end

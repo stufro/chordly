@@ -20,6 +20,8 @@
 - [ ] Sort by time or title
 - [ ] Pagination
 - [ ] Authorization
+- [ ] Chord sheets belong to users
+- [ ] Rake task to call foreman run with another procfile which runs Rails server with cypress_server.pid file, js and css and then call yarn cy:run
 
 ## v0.2.0
 - [ ] SEO

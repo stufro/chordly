@@ -7,10 +7,11 @@ AllCops:
   Exclude:
     - spec/spec_helper.rb
     - spec/rails_helper.rb
-    - db/*
+    - db/**/*
     - bin/*
     - lib/tasks/*
     - spec/cypress/app_commands/log_fail.rb
+    - config/**/*
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes

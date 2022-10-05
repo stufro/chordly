@@ -1,7 +1,7 @@
 nav.navbar.is-primary aria-label="main navigation" role="navigation"
   .container
     .navbar-brand
-      a.navbar-item href=root_path
+      a.navbar-item href=authenticated_root_path
         b Chordly
       a.navbar-burger[aria-expanded="false" aria-label="menu"
                       data-target="navbar-main" role="button"]
@@ -10,20 +10,40 @@ nav.navbar.is-primary aria-label="main navigation" role="navigation"
         span aria-hidden="true"
     #navbar-main.navbar-menu
       .navbar-start
-        = link_to "My Chord Sheets", chord_sheets_path, class: "navbar-item"
+        - if user_signed_in?
+          = link_to chord_sheets_path, class: "navbar-item" do
+            span.icon-text.is-flex-wrap-nowrap
+              span.icon
+                i.fas.fa-book-bookmark
+              span My Library
+
         .navbar-item.has-dropdown.is-hoverable
           a.navbar-link
             | More
           .navbar-dropdown
+            a.navbar-item
+              | All Features
             a.navbar-item
               | About
             hr.navbar-divider/
             a.navbar-item
               | Report an issue
       .navbar-end
-        .navbar-item
-          .buttons
-            a.button.is-light
-              strong Sign up
-            a.button.is-primary
-              | Log in
+        - if user_signed_in?
+          .navbar-item
+            .buttons
+              = button_to destroy_user_session_path, class: "button is-primary", method: :delete do
+                span.icon-text.is-flex-wrap-nowrap
+                  span.icon
+                    i.fas.fa-sign-out-alt
+                  span Logout
+
+        - else
+          .navbar-item
+            .buttons
+              = link_to new_registration_path(resource_name), class: "button is-light" do
+                strong Sign up
+              = link_to "Log in", new_session_path(resource_name), class: "button is-primary"
+
+        - if Rails.env.development?
+          = render "layouts/development_menu"

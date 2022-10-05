@@ -1,6 +1,10 @@
 import * as helper from "../support/helpers"
 
 describe("Creating/editing a chord sheet", () => {
+  beforeEach(() => {
+    cy.login()
+  })
+
   afterEach(() => {
     cy.app("clean")
   })
@@ -47,6 +51,10 @@ describe("Creating/editing a chord sheet", () => {
 })
 
 describe("Transposing a chord sheet", () => {
+  beforeEach(() => {
+    cy.login()
+  })
+
   afterEach(() => {
     cy.app("clean")
   })
@@ -63,5 +71,34 @@ describe("Transposing a chord sheet", () => {
 
     cy.get("#transpose-down").click()
     cy.contains("F#  G#m   C#")
+  })
+})
+
+describe("Chord sheets page", () => {
+  beforeEach(() => {
+    cy.login()
+
+    cy.appFactories([
+      ["create", "chord_sheet", { name: "Wonderwall" }],
+      ["create", "chord_sheet", { name: "Want you back" }]
+    ])
+  })
+
+  afterEach(() => {
+    cy.app("clean")
+  })
+
+  it("shows all chord sheets on 'My Library' page", () => {
+    cy.visit("/")
+    cy.contains("My Library").click()
+    cy.contains("Wonderwall")
+    cy.contains("Want you back")
+  })
+
+  it("allows you to search for a chord sheet", () => {
+    cy.visit("/chord_sheets")
+    cy.get("#search-box").type("Want y")
+    cy.contains("Want you back")
+    cy.contains("Wonderwall").not()
   })
 })

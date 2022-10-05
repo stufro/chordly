@@ -13,7 +13,6 @@ export default class extends Controller {
   save() {
     if(this.element.innerText === this.originalValue) return 
 
-    console.log(this.element.innerText)
     let formData = new FormData()
     formData.append(`chord_sheet[${this.fieldValue}]`, this.element.innerText);
 
