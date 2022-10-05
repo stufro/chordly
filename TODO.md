@@ -15,15 +15,17 @@
 - [x] Sort by time or title
 - [x] Chord sheets belong to users
 - [x] Authorization
-- [ ] Home splash page
-  - [ ] Quickly transpose text
+- [x] Home splash page
+  - [x] Quickly transpose text
   - [ ] Option to save to library
-  - [ ] 
 - [ ] About page
 - [ ] Accessibility report
 - [ ] Pagination
 - [x] Rake task to call foreman run with another procfile which runs Rails server with cypress_server.pid file, js and css and then call yarn cy:run
 - [ ] Add boiler plate & teasers for set lists
+- [ ] Add tooltips to buttons
+- [ ] Auto generate icon for songs
+- [ ] Destroy chord sheet (soft delete?)
 
 ## v0.2.0
 - [ ] SEO

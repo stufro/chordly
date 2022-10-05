@@ -7,5 +7,6 @@ class TrialsController < ApplicationController
       content: ChordSheetModeller.new("G   Em   D\r\nType or paste your song here").parse
     )
     render "chord_sheets/show"
+    session[:trial_id] = @chord_sheet.id
   end
 end

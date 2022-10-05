@@ -6,6 +6,17 @@ span.icon-text.is-align-items-center
   span.icon.is-medium.mb-5.ml-3.edit-icon
     i.far.fa-edit.fa-2x
 
+- unless user_signed_in?
+  .notification.is-danger.is-light
+    .is-flex.is-align-items-center
+      span.icon.is-large.mr-3
+        i.fas.fa-triangle-exclamation.fa-2x
+      span.is-size-5
+        = link_to "Sign up", new_registration_path(:user), id: "sign-up-to-save"
+        | &nbsp;or&nbsp;
+        = link_to "Log in", new_session_path(:user), id: "login-to-save"
+        |  to save this chord sheet to your library.
+
 div[data-controller="clipboard"
     data-clipboard-success-content="<span class='icon'><i class='fas fa-check'></i></span>"]
   .card.mb-3

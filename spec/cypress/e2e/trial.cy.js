@@ -12,4 +12,33 @@ describe("Trialing chordly without an account", () => {
     cy.contains("F#   D#m    G#m")
     cy.contains("A new line of lyrics")
   })
+
+  it("lets you create an account and save your trial chord sheet", () => {
+    cy.visit("/trial/new")
+    cy.get("#sign-up-to-save").click()
+
+    cy.get("#user_email").type("a@a.com")
+    cy.get("#user_password").type("123456789")
+    cy.get("#user_password_confirmation").type("123456789")
+    cy.get("#complete-sign-up").click()
+
+    cy.contains("My Chord Sheets")
+    cy.contains("My Song")
+  })
+
+  it("lets you log in and save your trial chord sheet", () => {
+    cy.appFactories([
+      ["create", "user", {email: "a@a.com", password: "123456789"} ]
+    ])
+
+    cy.visit("/trial/new")
+    cy.get("#login-to-save").click()
+
+    cy.get("#user_email").type("a@a.com")
+    cy.get("#user_password").type("123456789")
+    cy.get("#login-button").click()
+
+    cy.contains("My Chord Sheets")
+    cy.contains("My Song")
+  })
 })
