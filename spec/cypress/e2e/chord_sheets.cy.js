@@ -99,10 +99,10 @@ describe("Chord sheets page", () => {
 
   it("allows you to search for a chord sheet", () => {
     cy.visit("/chord_sheets")
-    cy.get("#search-box").type("Want y")
-    cy.contains("Wonderwall").not()
+    cy.get("#search-box").type("Hote")
     cy.contains("Hotel California")
-    cy.contains("ABC").not()
+    cy.contains("Wonderwall").should("not.be.visible")
+    cy.contains("ABC").should("not.be.visible")
   })
 
   it("allows you to sort the chord sheets by name", () => {
@@ -121,5 +121,14 @@ describe("Chord sheets page", () => {
         .then(($elems) => { return Cypress._.map($elems, "innerText") })
         .should("deep.equal", ["Wonderwall", "Hotel California", "ABC"])
     })
+  })
+
+  it("only shows you chord sheets which you own", () => {
+    cy.appFactories([["create", "user", { email: "other@user.com" }]]).then((records) => {
+      cy.appFactories([["create", "chord_sheet", { name: "Another users sheet", user_id: records[0].id }]])
+    })
+
+    cy.visit("/chord_sheets")
+    cy.contains("Another users sheet").should("not.exist")
   })
 })

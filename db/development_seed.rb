@@ -2,6 +2,7 @@ User.destroy_all
 ChordSheet.destroy_all
 
 FactoryBot.create :user
+FactoryBot.create :user, email: "beta@chordly.co.uk", password: "123456789"
 
 FactoryBot.create :chord_sheet, name: "Yellow - Coldplay", content_string: "[Intro]
 G D C G

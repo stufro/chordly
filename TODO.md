@@ -13,7 +13,7 @@
 - [x] Export chord sheet to PDF
 - [x] Login auth / sign up
 - [x] Sort by time or title
-- [ ] Chord sheets belong to users
+- [x] Chord sheets belong to users
 - [ ] Authorization
 - [ ] Home splash page
   - [ ] Quickly transpose text
@@ -29,3 +29,4 @@
 - [ ] Admin page
 - [ ] Chord diagrams at top of sheet
 - [ ] Prefer sharps/flats option
+- [ ] Undo changes

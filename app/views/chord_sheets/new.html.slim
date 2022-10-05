@@ -1,17 +1,3 @@
 h1.title.is-1 New Chord Sheet
 
-= form_with model: @chord_sheet do |f|
-  .field
-    = f.label :name, class: "label"
-    .control
-      = f.text_field :name, class: "input"
-
-  .field
-    = f.label :content, class: "label"
-    .control
-      = f.text_area :content, class: "textarea",
-                              placeholder: "Paste your chord sheet here"
-
-  .field
-    .control
-      = f.submit class: "button is-primary", id: "create-btn"
+= render("form", chord_sheet: @chord_sheet)

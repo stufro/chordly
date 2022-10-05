@@ -29,7 +29,7 @@ factory = FactoryBot if defined?(FactoryBot)
 factory = FactoryGirl if defined?(FactoryGirl)
 
 CypressOnRails::SmartFactoryWrapper.configure(
-  always_reload: false,
+  always_reload: !Rails.configuration.cache_classes,
   factory:,
   files: [
     Rails.root.join("spec/factories.rb"),

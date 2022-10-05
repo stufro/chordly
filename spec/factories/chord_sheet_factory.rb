@@ -5,6 +5,7 @@ FactoryBot.define do
     end
 
     name { "My amazing song" }
-    content { ChordSheetModeller.new(content_string).parse }
+    content { ChordSheetModeller.new(content_string.gsub("\n", "\r\n")).parse }
+    user { User.first || User.create(email: "a@a.com", password: "123456789") }
   end
 end

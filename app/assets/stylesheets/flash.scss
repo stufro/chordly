@@ -25,12 +25,12 @@
 @keyframes scroll-in-out {
   20% { 
     right: 10%;
-    opacity: 0.8;
+    opacity: 0.9;
   }
 
   80% { 
     right: 10%;
-    opacity: 0.8;
+    opacity: 0.9;
   }
 
   100% {
@@ -40,7 +40,7 @@
 
 @keyframes scroll-in {
   100% {
-    opacity: 0.8;
+    opacity: 0.9;
     right: 10%;
   }
 }

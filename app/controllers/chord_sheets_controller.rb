@@ -1,6 +1,6 @@
 class ChordSheetsController < ApplicationController
   def index
-    @chord_sheets = ChordSheet.order(build_order_query)
+    @chord_sheets = ChordSheet.for_user(current_user).order(build_order_query)
   end
 
   def new
@@ -13,7 +13,9 @@ class ChordSheetsController < ApplicationController
     if @chord_sheet.save
       redirect_to @chord_sheet
     else
-      render :new
+      flash.now[:alert] = "Something went wrong creating your chord sheet, if this persists " \
+                          "please contact support"
+      respond_to { |format| format.turbo_stream }
     end
   end
 
@@ -48,6 +50,7 @@ class ChordSheetsController < ApplicationController
   def chord_sheet_params
     params.require(:chord_sheet).permit(:name, :content).tap do |p|
       p[:content] = ChordSheetModeller.new(p[:content]).parse if p[:content]
+      p[:user] = current_user
     end
   end
 
