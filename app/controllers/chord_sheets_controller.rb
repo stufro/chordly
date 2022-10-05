@@ -8,6 +8,7 @@ class ChordSheetsController < ApplicationController
   end
 
   def create
+    params[:chord_sheet][:content] = params[:chord_sheet][:content].gsub("\n", "\r\n")
     @chord_sheet = ChordSheet.new(chord_sheet_params)
     if @chord_sheet.save
       redirect_to @chord_sheet

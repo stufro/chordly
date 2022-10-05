@@ -16,12 +16,11 @@ export default class extends Clipboard {
   copied() {
     super.copied()
 
-    this.buttonTarget.disabled = true
     this.buttonTarget.innerHTML = this.data.get('successContent')
 
     this.timeout = setTimeout(() => {
       this.buttonTarget.innerHTML = this.originalText
-      this.buttonTarget.disabled = false
     }, this.successDurationValue)
   }
 }
+

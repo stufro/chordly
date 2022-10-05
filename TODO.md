@@ -11,17 +11,17 @@
 - [x] Filter chord sheets
 - [x] Bug: allow whitespace lines
 - [x] Export chord sheet to PDF
-- [ ] Login auth / sign up
+- [x] Login auth / sign up
+- [ ] Sort by time or title
+- [ ] Chord sheets belong to users
+- [ ] Authorization
 - [ ] Home splash page
   - [ ] Quickly transpose text
   - [ ] Option to save to library
 - [ ] About page
 - [ ] Accessibility report
-- [ ] Sort by time or title
 - [ ] Pagination
-- [ ] Authorization
-- [ ] Chord sheets belong to users
-- [ ] Rake task to call foreman run with another procfile which runs Rails server with cypress_server.pid file, js and css and then call yarn cy:run
+- [x] Rake task to call foreman run with another procfile which runs Rails server with cypress_server.pid file, js and css and then call yarn cy:run
 
 ## v0.2.0
 - [ ] SEO
