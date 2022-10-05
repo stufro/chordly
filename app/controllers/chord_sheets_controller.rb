@@ -3,7 +3,11 @@ class ChordSheetsController < ApplicationController
   before_action :authorize_user, only: %i[show transpose update]
 
   def index
-    current_user.chord_sheets << ChordSheet.find_by(id: session[:trial_id]) if session[:trial_id]
+    if session[:trial_id]
+      @trial = ChordSheet.find_by(id: session[:trial_id])
+      current_user.chord_sheets << @trial
+      @trial.update(trial: false)
+    end
 
     @chord_sheets = ChordSheet.for_user(current_user).order(build_order_query)
   end
