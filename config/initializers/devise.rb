@@ -289,6 +289,14 @@ Devise.setup do |config|
     manager.serialize_from_session(:user) do |user_attr|
       User.find_by(user_attr)
     end
+
+    Warden::Manager.after_set_user do |user, auth, opts|
+      if auth.env["rack.session"][:trial_id]
+        trial = ChordSheet.find_by(id: auth.env["rack.session"][:trial_id])
+        user.chord_sheets << trial
+        trial.update(trial: false)
+      end
+    end
   end
 
   # ==> Mountable engine configurations
