@@ -1,0 +1,20 @@
+h1.title.is-1 Try out Chordly
+
+= form_with model: @chord_sheet do |f|
+  = f.hidden_field :trial
+  = f.hidden_field :trial_user_id
+
+  .field
+    = f.label :name, class: "label"
+    .control
+      = f.text_field :name, class: "input"
+
+  .field
+    = f.label :content, class: "label"
+    .control
+      = f.text_area :content, class: "textarea",
+                              placeholder: "Paste your chord sheet here"
+
+  .field
+    .control
+      = f.submit class: "button is-primary", id: "create-btn"

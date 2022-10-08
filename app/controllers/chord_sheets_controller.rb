@@ -1,5 +1,5 @@
 class ChordSheetsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[transpose update]
+  skip_before_action :authenticate_user!, only: %i[create show transpose update]
   before_action :authorize_user, only: %i[show transpose update]
 
   def index
@@ -47,7 +47,7 @@ class ChordSheetsController < ApplicationController
   private
 
   def chord_sheet_params
-    params.require(:chord_sheet).permit(:name, :content).tap do |p|
+    params.require(:chord_sheet).permit(:name, :content, :trial, :trial_user_id).tap do |p|
       p[:content] = ChordSheetModeller.new(p[:content]).parse if p[:content]
       p[:user] = current_user
     end

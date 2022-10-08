@@ -1,5 +1,13 @@
+exclude:
+  - app/views/home/roadmap.html.slim
+
 linters:
   LineLength:
     max: 100
     exclude:
       - app/views/devise/shared/_links.html.slim
+      - app/views/home/privacy.html.slim
+  TrailingWhitespace:
+    exclude:
+      - app/views/home/about.html.slim
+      - app/views/home/privacy.html.slim

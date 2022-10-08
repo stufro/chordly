@@ -30,7 +30,8 @@ nav.navbar.is-primary aria-label="main navigation" role="navigation" data-contro
               | Report an issue
       .navbar-end
         - if user_signed_in?
-          = link_to "https://www.buymeacoffee.com/stuartfrosG", target: "_blank", class: "navbar-item" do
+          = link_to "https://www.buymeacoffee.com/stuartfrosG", target: "_blank",
+              rel: "noopener", class: "navbar-item" do
             span.icon-text.is-flex-wrap-nowrap
               span.icon
                 i.fas.fa-coffee

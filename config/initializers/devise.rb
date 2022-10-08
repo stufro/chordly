@@ -291,10 +291,12 @@ Devise.setup do |config|
     end
 
     Warden::Manager.after_set_user do |user, auth, opts|
-      if auth.env["rack.session"][:trial_id]
-        trial = ChordSheet.find_by(id: auth.env["rack.session"][:trial_id])
-        user.chord_sheets << trial
-        trial.update(trial: false)
+      if auth.env["rack.session"][:trial_user_id]
+        sheets = ChordSheet.where(trial_user_id: auth.env["rack.session"][:trial_user_id])
+        sheets.each do |sheet|
+          user.chord_sheets << sheet
+          sheet.update(trial: false)
+        end
       end
     end
   end

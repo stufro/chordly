@@ -7,7 +7,7 @@ class HomeController < ApplicationController
     markdown = Redcarpet::Markdown.new(
       Redcarpet::Render::HTML, strikethrough: true
     )
-    @content = markdown.render(File.read(Rails.root.join("TODO.md")))
+    @content = markdown.render(Rails.root.join("TODO.md").read)
   end
 
   def about; end
