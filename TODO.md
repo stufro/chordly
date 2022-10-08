@@ -25,7 +25,7 @@
   - [x] Quickly transpose text
   - [x] Option to save to library
   - [ ] Add gifs / screenshots of features
-- [ ] About page
+- [x] About page
 - [ ] Accessibility report
 - [ ] Pagination
 - [ ] Destroy chord sheet (soft delete?)

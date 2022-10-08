@@ -9,4 +9,6 @@ class HomeController < ApplicationController
     )
     @content = markdown.render(File.read(Rails.root.join("TODO.md")))
   end
+
+  def about; end
 end
