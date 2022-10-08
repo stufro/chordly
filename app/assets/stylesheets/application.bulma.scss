@@ -36,3 +36,13 @@ $link: $primary;
 @import "flash";
 @import "contenteditable";
 @import "markdown";
+
+.privacy-page {
+  ul {
+    list-style: disc;
+  }
+
+  li {
+    margin-left: 3em;
+  }
+}

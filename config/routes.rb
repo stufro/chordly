@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resource :home, only: %i[index], controller: "home" do
     get :roadmap
     get :about
+    get :privacy
   end
 
   if Rails.env.development?

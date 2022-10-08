@@ -29,8 +29,8 @@
 - [ ] Accessibility report
 - [ ] Pagination
 - [ ] Destroy chord sheet (soft delete?)
-- [ ] Privacy statement page
-- [ ] Cookies permissions page
+- [x] Privacy statement page
+- [x] Cookies permissions page
 - [x] Style/animate flash message entry
 - [x] Auto close flash message
 - [x] Only submit contenteditable form if value has changed
