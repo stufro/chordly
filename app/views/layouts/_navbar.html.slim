@@ -23,8 +23,7 @@ nav.navbar.is-primary aria-label="main navigation" role="navigation" data-contro
           .navbar-dropdown
             a.navbar-item
               | Features
-            a.navbar-item
-              | Development Roadmap
+            = link_to "Development Roadmap", roadmap_home_path, class: "navbar-item"
             a.navbar-item
               | About
             hr.navbar-divider/

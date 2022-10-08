@@ -17,7 +17,9 @@ Rails.application.routes.draw do
 
   resource :trial, only: %i[new]
 
-  resource :home, only: %i[index]
+  resource :home, only: %i[index], controller: "home" do
+    get :roadmap
+  end
 
   if Rails.env.development?
     namespace :dev do
