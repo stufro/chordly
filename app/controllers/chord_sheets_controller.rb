@@ -1,9 +1,9 @@
 class ChordSheetsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[create show transpose update]
-  before_action :authorize_user, only: %i[show transpose update]
+  before_action :authorize_user, only: %i[show transpose update destroy]
 
   def index
-    @chord_sheets = ChordSheet.for_user(current_user).order(build_order_query)
+    @chord_sheets = ChordSheet.not_deleted.for_user(current_user).order(build_order_query)
   end
 
   def new
@@ -42,6 +42,12 @@ class ChordSheetsController < ApplicationController
     else
       flash.now[:alert] = "Failed to update chord sheet"
     end
+  end
+
+  def destroy
+    @chord_sheet.update(deleted: true)
+    flash.now[:notice] = "Chord sheet deleted"
+    redirect_to chord_sheets_path
   end
 
   private

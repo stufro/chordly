@@ -33,7 +33,7 @@
 - [x] About page
 - [ ] Accessibility report
 - [x] Pagination
-- [ ] Destroy chord sheet (soft delete?)
+- [x] Destroy chord sheet (soft delete?)
 - [x] Privacy statement page
 - [x] Cookies permissions page
 - [x] Style/animate flash message entry

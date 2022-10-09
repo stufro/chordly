@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :chord_sheets, only: %i[index new create show update] do
+  resources :chord_sheets, only: %i[index new create show update destroy] do
     put :transpose, on: :member
   end
 

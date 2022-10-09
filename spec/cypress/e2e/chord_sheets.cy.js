@@ -37,6 +37,14 @@ describe("Creating/editing a chord sheet", () => {
     cy.contains("A new line of lyrics")
   })
 
+  it("allows the user to delete the chord sheet", () => {
+    helper.visitChordSheet();
+
+    cy.get("#delete-chord-sheet").click()
+    cy.contains("My Chord Sheets")
+    cy.contains("My amazing song").should("not.exist")
+  })
+
   it("allows the user to copy the chord sheet to clipboard", () => {
     helper.visitChordSheet();
 

@@ -40,6 +40,10 @@ div[data-controller="clipboard"
                 i.fas.fa-arrow-circle-down
 
         .level-right
+          = button_to(chord_sheet_path(@chord_sheet), class: "button is-danger is-rounded mr-2",
+              id: "delete-chord-sheet", data: { "turbo" => false }, method: :delete)
+            span.icon
+              i.fas.fa-trash
           = button_to "#", class: "button is-rounded is-info mr-2", id: "copy-to-clipboard",
             "data-clipboard-target" => "button", "data-action" => "clipboard#copy",
             title: "Copy to clipboard"
