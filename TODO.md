@@ -1,6 +1,11 @@
 # Development Roadmap
 ---
 
+## v0.4.0
+- [ ] Restore deleted chord sheets
+
+---
+
 ## v0.3.0
 - [ ] Undo changes for chord sheets
 - [ ] Styling chord sheets
@@ -11,10 +16,10 @@
 ---
 ## v0.2.0
 - [ ] SEO
-- [ ] Timestamps in local user time (https://github.com/basecamp/local_time)
+- [ ] Show timestamps in local user time (https://github.com/basecamp/local_time)
 - [ ] Admin page
-- [ ] Set lists
-- [ ] Alert when there is a chord sheet with same name
+- [ ] Set lists CRUD
+- [ ] Alert when creating a chord sheet with the same name
 
 ---
 ## v0.1.0
@@ -27,7 +32,7 @@
   - [ ] Add gifs / screenshots of features
 - [x] About page
 - [ ] Accessibility report
-- [ ] Pagination
+- [x] Pagination
 - [ ] Destroy chord sheet (soft delete?)
 - [x] Privacy statement page
 - [x] Cookies permissions page

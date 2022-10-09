@@ -18,3 +18,6 @@ application.register("search", SearchController)
 
 import NavbarController from "./navbar_controller"
 application.register("navbar", NavbarController)
+
+import ShowMoreController from "./show_more_controller"
+application.register("show-more", ShowMoreController)

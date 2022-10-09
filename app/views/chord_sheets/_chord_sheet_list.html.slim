@@ -1,4 +1,4 @@
-.mb-6 data-controller="search"
+.mb-6 data-controller="search show-more"
   .is-flex.is-justify-content-space-between.is-align-items-center
     .is-flex-grow-1
       input[class="input mb-0 has-text-centered" id="search-box" type="text"
@@ -15,7 +15,8 @@
       id: "sort-chord-sheets" do
       i.fas.fa-2x class="#{icon_class}"
 
-  .is-flex.is-flex-wrap-wrap.is-justify-content-center#chord-sheets-container
+  .is-flex.is-flex-wrap-wrap.is-justify-content-center.see-more-container#chord-sheets-container[
+      data-show-more-target="container"]
     - chord_sheets.each do |chord_sheet|
       .m-3 style="min-width: 30%" data-search-target="searchable"
         a href=chord_sheet_path(chord_sheet)
@@ -30,3 +31,17 @@
                     span.icon
                       i.far.fa-clock
                     span = format_datetime(chord_sheet.updated_at)
+
+  .is-flex.is-justify-content-center
+    button.button.is-primary data-action="show-more#toggle" data-show-more-target="showMoreButton"
+      span.icon-text.is-flex-wrap-nowrap
+        span.icon
+          i.fas.fa-arrow-down
+        span Show All
+
+    button.button.is-primary.is-hidden[data-action="show-more#toggle"
+                                       data-show-more-target="showFewerButton"]
+      span.icon-text.is-flex-wrap-nowrap
+        span.icon
+          i.fas.fa-arrow-up
+        span Show Fewer
