@@ -23,6 +23,7 @@
 
 ---
 ## v0.1.0
+- [ ] Create project README
 
 ---
 ## v0.1.0-pre
@@ -31,7 +32,7 @@
   - [x] Option to save to library
   - [x] Add gifs / screenshots of features
 - [x] About page
-- [ ] Accessibility report
+- [x] Accessibility report
 - [x] Pagination
 - [x] Destroy chord sheet (soft delete?)
 - [x] Privacy statement page

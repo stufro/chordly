@@ -27,21 +27,22 @@ div[data-controller="clipboard"
             span.has-text-primary Transpose:
           .level-item
             = button_to transpose_chord_sheet_path(@chord_sheet, direction: "up"),
-              class: "button is-rounded is-primary",
+              class: "button is-rounded is-primary", title: "Transpose chords up a semitone",
               id: "transpose-up", method: :put do
               span.icon
                 i.fas.fa-arrow-circle-up
 
           .level-item
             = button_to transpose_chord_sheet_path(@chord_sheet, direction: "down"),
-              class: "button is-rounded is-primary",
+              class: "button is-rounded is-primary", title: "Transpose chords down a semitone",
               id: "transpose-down", method: :put
               span.icon
                 i.fas.fa-arrow-circle-down
 
         .level-right
           = button_to(chord_sheet_path(@chord_sheet), class: "button is-danger is-rounded mr-2",
-              id: "delete-chord-sheet", data: { "turbo" => false }, method: :delete)
+              id: "delete-chord-sheet", data: { "turbo" => false }, method: :delete,
+              title: "Delete chord sheet")
             span.icon
               i.fas.fa-trash
           = button_to "#", class: "button is-rounded is-info mr-2", id: "copy-to-clipboard",

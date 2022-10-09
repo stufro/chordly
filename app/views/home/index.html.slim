@@ -1,4 +1,5 @@
 - content_for(:container_class, "full-width")
+- content_for(:meta_description, "Chordly - a free, open-source, online chord sheet creator")
 
 - get_started_path = user_signed_in? ? new_chord_sheet_path : new_trial_path
 
@@ -21,7 +22,9 @@ div data-controller="fade-in"
         h3.subtitle.is-6.mt-1.has-text-primary.has-text-weight-bold No account required
 
       .container.has-text-centered.mt-5.fadeable
-        = image_tag "chordly_features.gif", style: "max-width: 75vw", class: "is-hidden-mobile"
+        = video_tag ["chordly_features.webm", "chordly_features.mp4"],
+          style: "max-width: 75vw", class: "is-hidden-mobile",
+          autoplay: true, loop: :loop, playsinline: true, muted: true
 
   .hero.is-primary.is-medium
     .hero-body
@@ -32,4 +35,5 @@ div data-controller="fade-in"
         = link_to "View All Features", features_home_path, class: "button is-light"
 
       .container.has-text-centered.mt-5.fadeable
-        = image_tag "pdf_screenshot.png", style: "max-width: 50vw", class: "is-hidden-mobile"
+        = image_tag "pdf_screenshot.webp", style: "max-width: 50vw", class: "is-hidden-mobile",
+          alt: "Screenshot of PDF chord sheet exported from Chordly"

@@ -4,6 +4,7 @@ html lang="en"
     meta content="text/html; charset=UTF-8" http-equiv="Content-Type"
     title Chordly
     meta content="width=device-width,initial-scale=1" name="viewport"
+    meta content="#{yield(:meta_description)}" name="description"
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
@@ -18,7 +19,7 @@ html lang="en"
 
     footer.footer.pb-6.mt-6.has-background-white
       .has-text-centered
-        p
+        p.mb-2
           strong Chordly
           |  by&nbsp;
           a href="https://github.com/stufro" target="_blank"
@@ -30,9 +31,9 @@ html lang="en"
           | .
         .level.is-justify-content-center
           = link_to "Privacy & Cookies", privacy_home_path
-          span.mx-2 |
+          span.mx-3 |
           = link_to "About", about_home_path
-          span.mx-2 |
+          span.mx-3 |
           = link_to "https://www.buymeacoffee.com/stuartfrosG", target: "_blank", rel: "noopener" do
             span.icon-text.is-flex-wrap-nowrap
               span.icon

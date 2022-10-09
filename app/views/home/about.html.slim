@@ -1,3 +1,5 @@
+- content_for :meta_description, "Information about Chordly, the creator and how you can help"
+
 .section
   h1.title.is-1 About
   p
@@ -13,13 +15,13 @@
 .section
   .level.is-justify-content-start.is-align-items-center
     h2.title.is-3.mb-0 Buy me a coffee
-    = image_tag "buy_me_a_coffee.webp", class: "ml-3"
+    = image_tag "buy_me_a_coffee.webp", class: "ml-3", alt: "Buy me a coffee logo"
   p
     | Creating good software takes a lot of time and effort plus hosting a website costs money. 
     | If you get value from using Chordly and you would like to support the future of it, 
     | please consider&nbsp;
-    a href="https://www.buymeacoffee.com/stuartfrosG" target="_blank" rel="noopener" buying me a coffee.
-
+    a[href="https://www.buymeacoffee.com/stuartfrosG"
+        target="_blank" rel="noopener"] buying me a coffee.
 
 .section
   .level.is-justify-content-start.is-align-items-center
@@ -27,5 +29,6 @@
   p
     | If you like writing software and have an interest in contributing to Chordly, 
     | head over to the&nbsp;
-    a href="https://github.com/stufro/chordly/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener" GitHub page
+    a[href="https://github.com/stufro/chordly/blob/main/CONTRIBUTING.md"
+      target="_blank" rel="noopener"] GitHub page
     | &nbsp;for instructions on getting started. 
