@@ -13,4 +13,6 @@ class HomeController < ApplicationController
   def about; end
 
   def privacy; end
+
+  def features; end
 end

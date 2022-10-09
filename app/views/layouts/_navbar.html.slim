@@ -26,8 +26,8 @@ nav.navbar.is-primary aria-label="main navigation" role="navigation" data-contro
             = link_to "Development Roadmap", roadmap_home_path, class: "navbar-item"
             = link_to "About", about_home_path, class: "navbar-item"
             hr.navbar-divider/
-            a.navbar-item
-              | Report an issue
+            = mail_to "support@chordly.co.uk", "Report an Issue", class: "navbar-item",
+              subject: "Chordly issue - #{request.url}"
       .navbar-end
         - if user_signed_in?
           = link_to "https://www.buymeacoffee.com/stuartfrosG", target: "_blank",

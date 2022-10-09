@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     get :roadmap
     get :about
     get :privacy
+    get :features
   end
 
   if Rails.env.development?
