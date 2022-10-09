@@ -21,3 +21,6 @@ application.register("navbar", NavbarController)
 
 import ShowMoreController from "./show_more_controller"
 application.register("show-more", ShowMoreController)
+
+import FadeInController from "./fade_in_controller"
+application.register("fade-in", FadeInController)

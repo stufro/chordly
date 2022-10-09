@@ -1,0 +1,10 @@
+.fadeable {
+  opacity: 0;
+  bottom: -20px;
+  transition: opacity 2s, bottom 1s;
+}
+
+.faded {
+  bottom: 0;
+  opacity: 1;
+}

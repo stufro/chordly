@@ -2,33 +2,34 @@
 
 - get_started_path = user_signed_in? ? new_chord_sheet_path : new_trial_path
 
-.hero.is-primary.is-medium
-  .hero-body
-    .container.has-text-centered
-      h1.title Chordly
-      h2.subtitle A free, open-source, online chord sheet creator
+div data-controller="fade-in"
+  .hero.is-primary.is-medium
+    .hero-body
+      .container.has-text-centered.fadeable
+        h1.title Chordly
+        h2.subtitle A free, open-source, online chord sheet creator
 
-      = link_to "Get Started", get_started_path, class: "button is-light"
+        = link_to "Get Started", get_started_path, class: "button is-light"
 
-.hero.is-medium
-  .hero-body
-    .container.has-text-centered
-      h1.title Transpose Chords
-      h2.subtitle And edit chord sheets inline
+  .hero.is-medium
+    .hero-body
+      .container.has-text-centered.fadeable
+        h1.title Transpose Chords
+        h2.subtitle And edit chord sheets inline
 
-      = link_to "Transpose Song Now", get_started_path, class: "button is-primary"
-      h3.subtitle.is-6.mt-1.has-text-primary.has-text-weight-bold No account required
-    
-    .container.has-text-centered.mt-5
-      = image_tag "chordly_features.gif", style: "max-width: 75vw", class: "is-hidden-mobile"
+        = link_to "Transpose Song Now", get_started_path, class: "button is-primary"
+        h3.subtitle.is-6.mt-1.has-text-primary.has-text-weight-bold No account required
+      
+      .container.has-text-centered.mt-5.fadeable
+        = image_tag "chordly_features.gif", style: "max-width: 75vw", class: "is-hidden-mobile"
 
-.hero.is-primary.is-medium
-  .hero-body
-    .container.has-text-centered
-      h1.title Export to PDF
-      h2.subtitle Download chord sheets or entire set lists in one click
+  .hero.is-primary.is-medium
+    .hero-body
+      .container.has-text-centered.fadeable
+        h1.title Export to PDF
+        h2.subtitle Download chord sheets or entire set lists in one click
 
-      = link_to "View All Features", "", class: "button is-light"
+        = link_to "View All Features", "", class: "button is-light"
 
-    .container.has-text-centered.mt-5
-      = image_tag "pdf_screenshot.png", style: "max-width: 75vw", class: "is-hidden-mobile"
+      .container.has-text-centered.mt-5.fadeable
+        = image_tag "pdf_screenshot.png", style: "max-width: 50vw", class: "is-hidden-mobile"

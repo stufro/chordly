@@ -29,7 +29,7 @@
 - [x] Home splash page
   - [x] Quickly transpose text
   - [x] Option to save to library
-  - [ ] Add gifs / screenshots of features
+  - [x] Add gifs / screenshots of features
 - [x] About page
 - [ ] Accessibility report
 - [x] Pagination
