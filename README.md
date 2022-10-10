@@ -1,24 +1,32 @@
-# README
+# Chordly
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A free, open-source, online chord sheet creator.
 
-Things you may want to cover:
+## Development
+Dependencies:
+- Ruby 3.1.2
+- Rails 7.0.4
+- PostgreSQL
+- Yarn
 
-* Ruby version
+### Installation
+1. Install Ruby dependencies
+```bash
+bundle install
+```
 
-* System dependencies
+2. Install JavaScript dependencies
+```bash
+yarn install
+```
 
-* Configuration
+3. Initialize database
+```bash
+rails db:create db:migrate db:seed
+```
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Running tests
+```bash
+rake cy:open # this will open Cypress and also run a test server which tests will be run against in the following command
+rake
+```
