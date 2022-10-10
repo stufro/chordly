@@ -1,0 +1,22 @@
+.privacy-page {
+  ul {
+    list-style: disc;
+  }
+
+  li {
+    margin-left: 3em;
+  }
+}
+
+.cookies-container {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: rgb(0, 0, 0, 0.7);
+  padding: 1em;
+  text-align: center;
+
+  a {
+    color: lighten($color: $primary, $amount: 20)
+  }
+}

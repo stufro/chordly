@@ -17,7 +17,6 @@ export default class extends Controller {
 
 
   fadeElem(entry, observer) {
-    console.log("fading: ", entry.target.innerText)
     entry.target.classList.add("faded")
     observer.unobserve(entry.target);
   }

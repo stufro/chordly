@@ -37,13 +37,4 @@ $link: $primary;
 @import "contenteditable";
 @import "markdown";
 @import "fadeable";
-
-.privacy-page {
-  ul {
-    list-style: disc;
-  }
-
-  li {
-    margin-left: 3em;
-  }
-}
+@import "cookies";

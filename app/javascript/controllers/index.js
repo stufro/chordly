@@ -24,3 +24,6 @@ application.register("show-more", ShowMoreController)
 
 import FadeInController from "./fade_in_controller"
 application.register("fade-in", FadeInController)
+
+import CookiesController from "./cookies_controller"
+application.register("cookies", CookiesController)

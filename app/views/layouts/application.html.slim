@@ -11,6 +11,14 @@ html lang="en"
     = javascript_include_tag "application", "data-turbo-track": "reload",
       defer: true
   body
+    .cookies-container data-controller="cookies"
+      p.title.is-5.has-text-light.mb-3
+        | This website uses cookies to ensure you get the best experience on our website.
+        = link_to " Learn more", privacy_home_path
+
+      button.button.is-info.is-rounded data-cookies-target="button" data-action="cookies#accept"
+        | Got it!
+
     = render "layouts/navbar"
     = render("partials/flash")
 
