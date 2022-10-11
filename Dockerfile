@@ -138,8 +138,6 @@ CMD ${SERVER_COMMAND}
 
 # install google puppeteer
 
-ENV CHROMIUM_FLAGS "--no-sandbox"
-
 RUN apt-get update \
   && apt-get install curl gnupg -y \
   && curl --location --silent https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \

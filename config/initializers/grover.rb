@@ -6,6 +6,7 @@ Grover.configure do |config|
       bottom: "2cm",
       left: "2cm",
       right: "2cm"
-    }
+    },
+    launch_args: ["--no-sandbox"]
   }
 end
