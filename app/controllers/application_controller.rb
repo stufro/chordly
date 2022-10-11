@@ -6,8 +6,19 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize(resource)
-    return if (current_user.nil? && resource.trial?) || resource.user_id == current_user.id
+    return if trial_user_owns_resource?(resource)
+    return if user_owns_resource?(resource)
 
     redirect_to "/", alert: "You are not authorized to view this #{resource.class.name.underscore.titleize}", code: 401
+  end
+
+  private
+
+  def trial_user_owns_resource?(resource)
+    (current_user.nil? && (resource.trial? && resource.trial_user_id == session[:trial_user_id]))
+  end
+
+  def user_owns_resource?(resource)
+    current_user && resource.user_id == current_user.id
   end
 end

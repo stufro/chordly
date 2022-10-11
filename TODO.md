@@ -24,10 +24,12 @@
 ---
 ## v0.1.0
 - [ ] Create project README
-- [ ] Fix: ensure you can't view other trial sheets
+- [x] Fix: ensure you can't view other trial sheets
 - [ ] Add version to footer
 - [ ] Make favicon
 - [ ] Sending emails
+- [ ] Pick opensource license
+- [ ] Make homepage more appealing
 
 ---
 ## v0.1.0-pre
