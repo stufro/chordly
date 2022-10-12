@@ -23,13 +23,13 @@
 
 ---
 ## v0.1.0
-- [ ] Create project README
+- [x] Create project README
 - [x] Fix: ensure you can't view other trial sheets
-- [ ] Add version to footer
+- [x] Add version to footer
 - [ ] Make favicon
 - [ ] Sending emails
-- [ ] Pick opensource license
-- [ ] Make homepage more appealing
+- [x] Pick opensource license
+- [x] Make homepage more appealing
 
 ---
 ## v0.1.0-pre
