@@ -23,7 +23,7 @@ module Chordly
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
     config.middleware.use Rack::Deflater
-    config.chordly_version = Open3.capture2("git describe --tags --abbrev=0").first.strip
+    config.chordly_version = File.read(Rails.root.join(".version"))
 
     # Configuration for the application, engines, and railties goes here.
     #
