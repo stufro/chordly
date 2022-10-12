@@ -38,3 +38,18 @@ $link: $primary;
 @import "markdown";
 @import "fadeable";
 @import "cookies";
+
+
+.hero-image {
+  max-width: -webkit-fill-available;
+}
+
+@media (min-width: 600px) {
+  .hero-image {
+    max-width: 60%;
+  }
+}
+
+.media-content {
+  overflow-x: initial;
+}

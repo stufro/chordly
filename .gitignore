@@ -38,3 +38,5 @@
 /spec/cypress/screenshots
 
 /config/credentials/production.key
+
+.DS_Store

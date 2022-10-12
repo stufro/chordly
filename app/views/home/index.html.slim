@@ -12,25 +12,34 @@ div data-controller="fade-in"
 
         = link_to "Get Started", get_started_path, class: "button is-light"
 
+      .container.has-text-centered.mt-5.fadeable
+        = video_tag ["chordly_features.webm", "chordly_features.mp4"], class: "hero-image",
+          autoplay: true, loop: :loop, playsinline: true, muted: true
+
   .hero.is-medium
     .hero-body
       .container.has-text-centered.fadeable
-        h1.title Transpose Chords
-        h2.subtitle And edit chord sheets inline
+        .is-flex.is-justify-content-center.is-align-items-center.is-flex-wrap-wrap
+          span.icon-text.is-flex-wrap-nowrap.has-text-primary
+            span.icon.is-large.mr-5
+              i.fas.fa-music.fa-3x
+          h1.title Transpose Chords
+
+        h2.subtitle.mt-2 And edit chord sheets inline
 
         = link_to "Transpose Song Now", get_started_path, class: "button is-primary"
         h3.subtitle.is-6.mt-1.has-text-primary.has-text-weight-bold No account required
 
-      .container.has-text-centered.mt-5.fadeable
-        = video_tag ["chordly_features.webm", "chordly_features.mp4"],
-          style: "max-width: 75vw", class: "is-hidden-mobile",
-          autoplay: true, loop: :loop, playsinline: true, muted: true
-
   .hero.is-primary.is-medium
     .hero-body
       .container.has-text-centered.fadeable
-        h1.title Export to PDF
-        h2.subtitle Download chord sheets or entire set lists in one click
+        .is-flex.is-justify-content-center.is-align-items-center.is-flex-wrap-wrap
+          span.icon-text.is-flex-wrap-nowrap
+            span.icon.is-large.mr-5
+              i.fas.fa-download.fa-3x
+          h1.title Export to PDF
+
+        h2.subtitle.mt-2 Download chord sheets or entire set lists in one click
 
         = link_to "View All Features", features_home_path, class: "button is-light"
 
