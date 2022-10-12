@@ -10,6 +10,8 @@ html lang="en"
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload",
       defer: true
+
+    = render("layouts/favicons")
   body
     - unless user_signed_in?
       .cookies-container data-controller="cookies"

@@ -26,7 +26,7 @@
 - [x] Create project README
 - [x] Fix: ensure you can't view other trial sheets
 - [x] Add version to footer
-- [ ] Make favicon
+- [x] Make favicon
 - [ ] Sending emails
 - [x] Pick opensource license
 - [x] Make homepage more appealing
