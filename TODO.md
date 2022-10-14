@@ -30,6 +30,8 @@
 - [ ] Sending emails (email verification, password resets)
 - [x] Pick opensource license
 - [x] Make homepage more appealing
+- [ ] Make sign up/login banner smaller on trial page
+- [ ] Look at responsiveness of show page
 
 ---
 ## v0.1.0-pre
