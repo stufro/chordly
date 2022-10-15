@@ -109,6 +109,7 @@ GEM
     e2mmap (0.1.0)
     erubi (1.11.0)
     erubis (2.7.0)
+    execjs (2.8.1)
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.2.0)
@@ -318,6 +319,8 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
+    uglifier (4.2.0)
+      execjs (>= 0.3.0, < 3)
     unicode-display_width (2.3.0)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -371,6 +374,7 @@ DEPENDENCIES
   term-ansicolor
   turbo-rails
   tzinfo-data
+  uglifier
   web-console
 
 RUBY VERSION
