@@ -13,7 +13,7 @@ div data-controller="fade-in"
         = link_to "Get Started", get_started_path, class: "button is-light"
 
       .container.has-text-centered.mt-5.fadeable
-        = video_tag "chordly_features.webm", class: "hero-image",
+        = video_tag ["chordly_features.webm", "chordly_features.mp4"], class: "hero-image",
           autoplay: true, loop: :loop, playsinline: true, muted: true
 
   .hero.is-medium
