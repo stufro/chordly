@@ -74,6 +74,7 @@ Rails.application.configure do
     password: Rails.application.credentials.dig(:aws, :smtp_password) 
   }
   config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.asset_host = "https://chordly.co.uk"
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

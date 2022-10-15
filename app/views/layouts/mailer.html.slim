@@ -3,6 +3,14 @@ html
   head
     meta content="text/html; charset=utf-8" http-equiv="Content-Type" /
     css:
-      /!* Email styles need to be inline */
+      @font-face {
+        font-family: Nunito;
+        src: url("https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap");
+      }
+
+      body {
+        font-family: "Nunito", sans-serif;
+      }
   body
+    = image_tag "email_header.png", style: "max-width: 90vw"
     = yield
