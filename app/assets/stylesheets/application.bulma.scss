@@ -24,11 +24,6 @@ $success: $green;
 $warning: $yellow;
 $danger: $red;
 
-// Update some of Bulma"s component variables
-// $body-background-color: $beige-lighter;
-// $control-border-width: 2px;
-// $input-border-color: transparent;
-// $input-shadow: none;
 $link: $primary;
 
 @import "bulma/bulma";
@@ -38,7 +33,6 @@ $link: $primary;
 @import "markdown";
 @import "fadeable";
 @import "cookies";
-
 
 .hero-image {
   max-width: -webkit-fill-available;

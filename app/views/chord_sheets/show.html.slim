@@ -1,10 +1,16 @@
-span.icon-text.is-align-items-center
-  h1.title.is-1.p-2#show-page-title[data-controller="editable"
-                                data-editable-field-value="name"
-                                data-editable-url-value=chord_sheet_path(@chord_sheet)]
-    = @chord_sheet.name
-  span.icon.is-medium.mb-5.ml-3.edit-icon
-    i.far.fa-edit.fa-2x
+div.is-flex.is-align-items-baseline.is-justify-content-space-between.is-flex-wrap-wrap
+  div.is-flex.is-wrap-nowrap.is-align-items-center
+    h1.title.is-1.p-2#show-page-title[data-controller="editable"
+                                  data-editable-field-value="name"
+                                  data-editable-url-value=chord_sheet_path(@chord_sheet)]
+      = @chord_sheet.name
+    span.icon.is-medium.mb-5.ml-3.edit-icon
+      i.far.fa-edit.fa-2x
+
+  = link_to chord_sheets_path, class: "button is-primary mb-2 is-hidden-desktop" do
+    span.icon
+      i.fas.fa-book-bookmark
+    span Back to library
 
 - unless user_signed_in?
   .notification.is-danger.is-light

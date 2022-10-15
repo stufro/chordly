@@ -30,11 +30,10 @@
 - [ ] Sending emails (email verification, password resets)
 - [x] Pick opensource license
 - [x] Make homepage more appealing
-- [ ] Make sign up/login banner smaller on trial page
-- [ ] Look at responsiveness of show page
-- [ ] Compress features mp4 video
-- [ ] Look into minifying css/js
-- [ ] Look at bulma navbar breakpoint
+- [x] Make sign up/login banner smaller on trial page
+- [x] Look at responsiveness of show page
+- [x] Compress features mp4 video
+- [x] Minify css/js
 
 ---
 ## v0.1.0-pre
