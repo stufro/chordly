@@ -32,6 +32,9 @@
 - [x] Make homepage more appealing
 - [ ] Make sign up/login banner smaller on trial page
 - [ ] Look at responsiveness of show page
+- [ ] Compress features mp4 video
+- [ ] Look into minifying css/js
+- [ ] Look at bulma navbar breakpoint
 
 ---
 ## v0.1.0-pre
