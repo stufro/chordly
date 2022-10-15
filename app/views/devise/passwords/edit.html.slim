@@ -1,23 +1,37 @@
-h2
-  | Change your password
-= form_for(resource, as: resource_name, url: password_path(resource_name),
-    html: { method: :put }) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  = f.hidden_field :reset_password_token
-  .field
-    = f.label :password, "New password"
-    br
-    - if @minimum_password_length
-      em
-        | (
-        = @minimum_password_length
-        |  characters minimum)
-      br
-    = f.password_field :password, autofocus: true, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation, "Confirm new password"
-    br
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Change my password"
-= render "devise/shared/links"
+.card
+  .card-content
+    h1.title.is-1 Change your password
+
+    = form_for(resource, as: resource_name, url: password_path(resource_name),
+        html: { method: :put }) do |f|
+      = render "devise/shared/error_messages", resource: resource
+
+      = f.hidden_field :reset_password_token
+
+      .field
+        = f.label :password, "New password", class: "has-text-weight-semibold"
+        - if @minimum_password_length
+          em
+            | (
+            = @minimum_password_length
+            |  characters minimum)
+
+        .control.has-icons-left
+          = f.password_field :password, autofocus: true, autocomplete: "new-password", class: "input"
+          .span.icon.is-small.is-left
+            i.fas.fa-key
+
+      .field
+        = f.label :password_confirmation, "Confirm new password", class: "label"
+        .control.has-icons-left
+          = f.password_field :password_confirmation, autocomplete: "new-password", class: "input"
+          .span.icon.is-small.is-left
+            i.fas.fa-key
+
+      .actions.is-flex.is-justify-content-center
+        = f.submit "Change my password", class: "button is-primary is-medium",
+          data: { turbo: false }, style: "width: 100%"
+
+  .card-footer.is-justify-content-center.py-3
+    .is-flex.is-align-items-center.is-flex-direction-column.mt-3
+      = render "devise/shared/links"
