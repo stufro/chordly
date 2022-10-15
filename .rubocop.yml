@@ -1,4 +1,4 @@
-require: 
+require:
   - rubocop-rails
   - rubocop-rspec
 
@@ -18,4 +18,11 @@ Style/StringLiterals:
 Style/Documentation:
   Enabled: false
 Style/FrozenStringLiteralComment:
+  Enabled: false
+RSpec/ExampleLength:
+  Enabled: false
+RSpec/SubjectStub:
+  Exclude:
+    - spec/controllers/application_controller_spec.rb
+RSpec/NamedSubject:
   Enabled: false

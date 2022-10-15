@@ -12,7 +12,7 @@ describe ApplicationController do
 
       it "returns nil" do
         session[:trial_user_id] = "abcdefg"
-        expect(subject.authorize(ChordSheet.new(trial_user_id: "abcdefg", trial: true))).to eq nil
+        expect(subject.authorize(ChordSheet.new(trial_user_id: "abcdefg", trial: true))).to be_nil
       end
     end
 
@@ -35,7 +35,7 @@ describe ApplicationController do
       let(:user) { instance_double User, :user, id: 1 }
 
       it "returns nil" do
-        expect(subject.authorize(ChordSheet.new(user_id: 1))).to eq nil
+        expect(subject.authorize(ChordSheet.new(user_id: 1))).to be_nil
       end
     end
 

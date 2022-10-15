@@ -69,9 +69,9 @@ Rails.application.configure do
   config.x.mail_from = %(Chordly <support@chordly.co.uk>)
   config.action_mailer.default_url_options = { host: "https://chordly.co.uk", port: 443 }
   config.action_mailer.smtp_settings = {
-    address: "email-smtp.eu-west-2.amazonaws.com", 
+    address: "email-smtp.eu-west-2.amazonaws.com",
     user_name: Rails.application.credentials.dig(:aws, :smtp_username),
-    password: Rails.application.credentials.dig(:aws, :smtp_password) 
+    password: Rails.application.credentials.dig(:aws, :smtp_password)
   }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.asset_host = "https://chordly.co.uk"

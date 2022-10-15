@@ -1,44 +1,69 @@
-h2
-  | Edit
-  = resource_name.to_s.humanize
-= form_for(resource, as: resource_name, url: registration_path(resource_name),
-    html: { method: :put }) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-  br
-  = f.email_field :email, autofocus: true, autocomplete: "email"
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-    div
-      | Currently waiting confirmation for:
-      = resource.unconfirmed_email
-  .field
-    = f.label :password
-  i
-    | (leave blank if you don"t want to change it)
-  br
-  = f.password_field :password, autocomplete: "new-password"
-  - if @minimum_password_length
-    br
-    em
-      = @minimum_password_length
-      |  characters minimum
-  .field
-    = f.label :password_confirmation
-  br
-  = f.password_field :password_confirmation, autocomplete: "new-password"
-  .field
-    = f.label :current_password
-  i
-    | (we need your current password to confirm your changes)
-  br
-  = f.password_field :current_password, autocomplete: "current-password"
-  .actions
-    = f.submit "Update"
-h3
-  | Cancel my account
-p
-  | Unhappy?
-  = button_to "Cancel my account", registration_path(resource_name),
-    data: { confirm: "Are you sure?" }, method: :delete
-= link_to "Back", :back
+.card
+  .card-content
+    h1.title.is-1
+      | Edit&nbsp;
+      = resource_name.to_s.humanize
+
+    = form_for(resource, as: resource_name, url: registration_path(resource_name),
+        html: { method: :put }) do |f|
+      = render "devise/shared/error_messages", resource: resource
+
+      .field
+        = f.label :email, class: "label"
+        .control.has-icons-left
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: "input"
+          span.icon.is-small.is-left
+            i.fas.fa-envelope
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        div
+          | Currently waiting confirmation for:
+          = resource.unconfirmed_email
+
+      .field
+        = f.label :password, "New Password", class: "has-text-weight-semibold"
+        i
+          |  (leave blank if you don't want to change it)
+        = f.password_field :password, autocomplete: "new-password", class: "input"
+        - if @minimum_password_length
+          br
+          em
+            = @minimum_password_length
+            |  characters minimum
+
+      .field
+        = f.label :password_confirmation, class: "label"
+        .control.has-icons-left
+          = f.password_field :password_confirmation, autocomplete: "new-password", class: "input"
+          span.icon.is-small.is-left
+            i.fas.fa-key
+
+      .field
+        = f.label :current_password, class: "has-text-weight-semibold"
+        i
+          |  (we need your current password to confirm your changes)
+        .control.has-icons-left
+          = f.password_field :current_password, autocomplete: "current-password", class: "input"
+          span.icon.is-small.is-left
+            i.fas.fa-key
+
+      .actions.is-flex.is-justify-content-center
+        = f.submit "Update", class: "button is-primary is-medium",
+            data: { turbo: false }, style: "width: 100%"
+
+    .message.is-danger.mt-5
+      .message-header
+        h2.title.is-4.has-text-light Delete account
+
+      .message-body
+        p
+          | If you wish to delete your account and all the data we store including your chord sheets
+          |  & set lists, click the button below.
+        b This CANNOT be undone.
+
+        = button_to registration_path(resource_name), class: "button is-danger mt-3",
+          data: { turbo: false, confirm: "Are you sure? You will lose ALL of your saved data" },
+          method: :delete do
+          span.icon-text.is-flex-wrap-nowrap
+            span.icon
+              i.fas.fa-trash
+            span Delete my account
