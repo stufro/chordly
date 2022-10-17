@@ -7,10 +7,11 @@
     span.icon.is-medium.mb-5.ml-3.edit-icon
       i.far.fa-edit.fa-2x
 
-  = link_to chord_sheets_path, class: "button is-primary mb-2 is-hidden-desktop" do
-    span.icon
-      i.fas.fa-book-bookmark
-    span Back to library
+  - if user_signed_in?
+    = link_to chord_sheets_path, class: "button is-primary mb-2 is-hidden-desktop" do
+      span.icon
+        i.fas.fa-book-bookmark
+      span Back to library
 
 - unless user_signed_in?
   .notification.is-info.is-light
