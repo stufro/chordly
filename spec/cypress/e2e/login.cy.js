@@ -13,7 +13,7 @@ describe("Signing up for chordly", () => {
 
     cy.contains("Logout")
     cy.contains("Welcome! You have signed up successfully.")
-    cy.contains("My Chord Sheets")
+    cy.contains("Chord Sheets")
   })
 })
 
@@ -36,7 +36,7 @@ describe("Logging in with existing account", () => {
 
     cy.contains("Logout")
     cy.contains("Signed in successfully.")
-    cy.contains("My Chord Sheets")
+    cy.contains("Chord Sheets")
   })
 })
 

@@ -41,7 +41,7 @@ describe("Creating/editing a chord sheet", () => {
     helper.visitChordSheet();
 
     cy.get("#delete-chord-sheet").click()
-    cy.contains("My Chord Sheets")
+    cy.contains("Chord Sheets")
     cy.contains("My amazing song").should("not.exist")
   })
 
@@ -116,7 +116,7 @@ describe("Chord sheets page", () => {
   it("allows you to sort the chord sheets by name", () => {
     cy.visit("/chord_sheets")
     cy.get("#sort-chord-sheets").click()
-    
+
     cy.get("#chord-sheets-container").within(() => {
       cy.get("p.title")
         .then(($elems) => { return Cypress._.map($elems, "innerText") })

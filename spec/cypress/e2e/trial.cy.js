@@ -25,7 +25,7 @@ describe("Trialing chordly without an account", () => {
     cy.get("#user_password_confirmation").type("123456789")
     cy.get("#complete-sign-up").click()
 
-    cy.contains("My Chord Sheets")
+    cy.contains("Chord Sheets")
     cy.contains("My Song")
   })
 
@@ -43,7 +43,7 @@ describe("Trialing chordly without an account", () => {
     cy.get("#user_password").type("123456789")
     cy.get("#login-button").click()
 
-    cy.contains("My Chord Sheets")
+    cy.contains("Chord Sheets")
     cy.contains("My Song")
   })
 })
