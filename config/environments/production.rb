@@ -25,7 +25,8 @@ Rails.application.configure do
   config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # Compress CSS using a preprocessor.
-  # config.assets.css_compressor = :sass
+  config.assets.css_compressor = :sass
+  config.assets.js_compressor = Uglifier.new(harmony: true)
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
@@ -69,11 +70,12 @@ Rails.application.configure do
   config.x.mail_from = %(Chordly <support@chordly.co.uk>)
   config.action_mailer.default_url_options = { host: "https://chordly.co.uk", port: 443 }
   config.action_mailer.smtp_settings = {
-    address: "email-smtp.eu-west-2.amazonaws.com", 
+    address: "email-smtp.eu-west-2.amazonaws.com",
     user_name: Rails.application.credentials.dig(:aws, :smtp_username),
-    password: Rails.application.credentials.dig(:aws, :smtp_password) 
+    password: Rails.application.credentials.dig(:aws, :smtp_password)
   }
   config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.asset_host = "https://chordly.co.uk"
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

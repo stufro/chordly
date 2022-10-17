@@ -21,6 +21,7 @@ gem "stimulus-rails"
 gem "term-ansicolor"
 gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
+gem "uglifier"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"

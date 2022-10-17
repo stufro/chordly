@@ -26,6 +26,18 @@ html lang="en"
     = render("partials/flash")
 
     div class="#{yield(:container_class).presence || "container mt-6 px-2"}"
+      - if user_signed_in? && !current_user.confirmed? && !yield(:container_class).presence
+        .notification.is-warning.is-light
+          .is-flex.is-align-items-center
+            span.icon.icon-large.mr-3
+              i.fas.fa-info-circle.fa-2x
+            span.is-size-6
+              | You haven't confirmed your email address yet. You have&nbsp;
+              = distance_of_time_in_words_to_now(current_user.confirmation_sent_at + 24.hours)
+              |  to do so before you will be unable to continue using Chordly.&nbsp;
+              = link_to "Click here", new_user_confirmation_path(:user), id: "sign-up-to-save"
+              |  to resend the confirmation email.
+
       = yield
 
     footer.footer.pb-6.mt-6.has-background-white

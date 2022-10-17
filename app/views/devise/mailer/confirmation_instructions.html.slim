@@ -1,8 +1,16 @@
 p
-  | Welcome
+  | Welcome&nbsp;
   = @email
   | !
 p
-  | You can confirm your account email through the link below
+  | You can confirm your account email through the link below.
+  |  Confirm your email address within&nbsp;
+  strong 24 hours
+  |  to continue using Chordly.
 p
   = link_to "Confirm my account", confirmation_url(@resource, confirmation_token: @token)
+
+p
+  span Thanks,
+  br
+  span Chordly

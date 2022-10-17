@@ -35,8 +35,7 @@ nav.navbar.is-primary aria-label="main navigation" role="navigation" data-contro
               span.icon
                 i.fas.fa-coffee
               span Buy me a coffee
-          .navbar-item
-            span = current_user.email
+          = link_to current_user.email, edit_user_registration_path, class: "navbar-item"
           .navbar-item
             .buttons
               = button_to destroy_user_session_path, class: "button is-primary", method: :delete do

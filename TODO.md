@@ -27,7 +27,7 @@
 - [x] Fix: ensure you can't view other trial sheets
 - [x] Add version to footer
 - [x] Make favicon
-- [ ] Sending emails (email verification, password resets)
+- [x] Sending emails (email verification, password resets)
 - [x] Pick opensource license
 - [x] Make homepage more appealing
 - [x] Make sign up/login banner smaller on trial page

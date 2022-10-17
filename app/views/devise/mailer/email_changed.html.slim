@@ -1,14 +1,19 @@
 p
-  | Hello
+  | Hello&nbsp;
   = @email
   | !
 - if @resource.try(:unconfirmed_email?)
   p
-    | We"re contacting you to notify you that your email is being changed to
+    | We're contacting you to notify you that your email is being changed to&nbsp;
     = @resource.unconfirmed_email
     | .
 - else
   p
-    | We"re contacting you to notify you that your email has been changed to
+    | We're contacting you to notify you that your email has been changed to&nbsp;
     = @resource.email
     | .
+
+p
+  span Thanks,
+  br
+  span Chordly

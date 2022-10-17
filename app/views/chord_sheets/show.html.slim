@@ -13,10 +13,10 @@ div.is-flex.is-align-items-baseline.is-justify-content-space-between.is-flex-wra
     span Back to library
 
 - unless user_signed_in?
-  .notification.is-danger.is-light
+  .notification.is-info.is-light
     .is-flex.is-align-items-center
       span.icon.is-large.mr-3
-        i.fas.fa-triangle-exclamation.fa-2x
+        i.fas.fa-info-circle.fa-2x
       span.is-size-5
         = link_to "Sign up", new_registration_path(:user), id: "sign-up-to-save"
         | &nbsp;or&nbsp;
@@ -29,37 +29,40 @@ div[data-controller="clipboard"
     .card-content
       .level.is-mobile.is-flex-wrap-wrap
         .level-left
-          .level-item
+          .level-item.mt-2
             span.has-text-primary Transpose:
-          .level-item
+          .level-item.mt-2
             = button_to transpose_chord_sheet_path(@chord_sheet, direction: "up"),
               class: "button is-rounded is-primary", title: "Transpose chords up a semitone",
               id: "transpose-up", method: :put do
               span.icon
                 i.fas.fa-arrow-circle-up
 
-          .level-item
+          .level-item.mt-2
             = button_to transpose_chord_sheet_path(@chord_sheet, direction: "down"),
               class: "button is-rounded is-primary", title: "Transpose chords down a semitone",
               id: "transpose-down", method: :put
               span.icon
                 i.fas.fa-arrow-circle-down
 
-        .level-right
-          = button_to(chord_sheet_path(@chord_sheet), class: "button is-danger is-rounded mr-2",
-              id: "delete-chord-sheet", data: { "turbo" => false }, method: :delete,
-              title: "Delete chord sheet")
-            span.icon
-              i.fas.fa-trash
-          = button_to "#", class: "button is-rounded is-info mr-2", id: "copy-to-clipboard",
-            "data-clipboard-target" => "button", "data-action" => "clipboard#copy",
-            title: "Copy to clipboard"
-            span.icon
-              i.fas.fa-copy
-          = button_to chord_sheet_path(@chord_sheet, format: :pdf),
-            class: "button is-rounded is-info", id: "export", disabled: !user_signed_in?,
-            method: :get, title: "Download PDF"
-            span.icon
-              i.fas.fa-download
+        .level-right.align-items-space-between
+          .level-item.mt-2
+            span.has-text-primary Actions:
+          .level-item.mt-2
+            = button_to(chord_sheet_path(@chord_sheet), class: "button is-danger is-rounded mr-2",
+                id: "delete-chord-sheet", data: { "turbo" => false }, method: :delete,
+                title: "Delete chord sheet")
+              span.icon
+                i.fas.fa-trash
+            = button_to "#", class: "button is-rounded is-info mr-2", id: "copy-to-clipboard",
+              "data-clipboard-target" => "button", "data-action" => "clipboard#copy",
+              title: "Copy to clipboard"
+              span.icon
+                i.fas.fa-copy
+            = button_to chord_sheet_path(@chord_sheet, format: :pdf),
+              class: "button is-rounded is-info", id: "export", disabled: !user_signed_in?,
+              method: :get, title: "Download PDF"
+              span.icon
+                i.fas.fa-download
 
   = render("chord_sheets/content", chord_sheet: @chord_sheet)
