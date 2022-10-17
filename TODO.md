@@ -20,6 +20,8 @@
 - [ ] Admin page
 - [ ] Set lists CRUD
 - [ ] Alert when creating a chord sheet with the same name
+- [ ] Fix: Add support to chord lines for bar separators (|, :|, |:)
+- [ ] Fix: Handle enharmonic chords e.g. E#
 
 ---
 ## v0.1.0
