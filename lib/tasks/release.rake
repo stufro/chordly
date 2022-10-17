@@ -2,7 +2,7 @@ namespace :release do
   task :commit_and_tag do
     new_tag = `semver tag`.strip
     if system("git add .semver && git commit -m 'chore: bump version to #{new_tag}' && git tag -a #{new_tag} -m 'chore: bump version to #{new_tag}'")
-      puts "\n\nNew release #{new_tag} created\nPush new tag using: git push origin main --tags"
+      puts "\nNew release #{new_tag} created\nPush new tag using: git push origin main --tags"
     else
       system("git checkout .semver")
       fail
