@@ -16,9 +16,14 @@ class ChordSheetModeller
   end
 
   def line_type(line)
-    line.split.each { |token| extract_note!(token) }
+    remove_bar_chars(line).split.each { |token| extract_note!(token) }
     :chords
   rescue ArgumentError
     :lyrics
+  end
+
+  def remove_bar_chars(line)
+    line.delete("|")
+        .delete(":")
   end
 end

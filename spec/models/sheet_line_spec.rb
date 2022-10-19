@@ -112,5 +112,15 @@ describe SheetLine do
         expect(sheet_line.content).to eq(expected_chords)
       end
     end
+
+    context "when there are bar lines in the chords" do
+      let(:original_chords) { "|: G  |  Am  |  D :|" }
+      let(:expected_chords) { "|: F# |  G#m |  C# :|" }
+
+      it "transposes the chords and leaves the chord lines in place" do
+        sheet_line.transpose(:down)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
   end
 end
