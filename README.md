@@ -1,32 +1,24 @@
-# Chordly
+<p align="center">
+  <img width="1329" alt="Screenshot 2022-10-23 at 14 38 29" src="https://user-images.githubusercontent.com/6583312/197395503-bd29e05b-4005-4458-b8bc-ce848305e083.png">
+</p>
 
-A free, open-source, online chord sheet creator.
+[![GitHub license](https://img.shields.io/github/license/stufro/chordly?color=80475E)](https://github.com/stufro/chordly/blob/main/LICENSE.txt)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/stufro/chordly?color=4B88A2)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/stufro/chordly?color=ABD1B5)
 
-## Development
-Dependencies:
-- Ruby 3.1.2
-- Rails 7.0.4
-- PostgreSQL
-- Yarn
+[Chordly](https://chordly.co.uk) is a free, open-source, online chord sheet creator.
 
-### Installation
-1. Install Ruby dependencies
-```bash
-bundle install
-```
+# All features
+- :notes: Transpose all chords at once
+- :pencil2: Edit chord sheet inline
+- :page_facing_up: Export chord sheets PDF
+- :book: Store chord sheets in searchable/sortable library
 
-2. Install JavaScript dependencies
-```bash
-yarn install
-```
+# Contributing
+Have a look at the [contributing](https://github.com/stufro/chordly/blob/main/CONTRIBUTING.md) documentation if you are interested in writing some code for Chordly. There's instructions in there on how to setup a development environment.
 
-3. Initialize database
-```bash
-rails db:create db:migrate db:seed
-```
+- If you find a bug or have an idea for features, [raise an issue.](https://github.com/stufro/chordly/issues)
+- For info on further developments which are currently planned, see [TODO.md.](https://github.com/stufro/chordly/blob/main/TODO.md)
 
-### Running tests
-```bash
-rake cy:open # this will open Cypress and also run a test server which tests will be run against in the following command
-rake
-```
+# License
+Chordly by Stuart Frost - Released under the GNU General Public License v3.0
