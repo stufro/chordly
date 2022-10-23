@@ -1,25 +1,37 @@
 # Development Roadmap
 ---
 
-## v0.4.0
+## Potential ideas for beyond the planned releases below
+- [ ] Chord diagrams at top of sheet
+- [ ] Auto generate icon for songs
+- [ ] Prefer sharps/flats option
+- [ ] Alert when creating a chord sheet with the same name
+
+---
+
+## v0.5.0
 - [ ] Restore deleted chord sheets
+- [ ] Undo changes for chord sheets
+
+---
+
+## v0.4.0
+- [ ] Styling chord sheets
+- [ ] Chord diagrams at top of sheet
 
 ---
 
 ## v0.3.0
-- [ ] Undo changes for chord sheets
-- [ ] Styling chord sheets
-- [ ] Chord diagrams at top of sheet
-- [ ] Prefer sharps/flats option
-- [ ] Auto generate icon for songs
+- [ ] Set lists functionality
+  - [ ] CRUD
+  - [ ] Drag'n'drop chord sheets into set list
+  - [ ] Add chord sheet to set list from chord sheet show
 
 ---
 ## v0.2.0
 - [ ] SEO
 - [x] Show timestamps in local user time (https://github.com/basecamp/local_time)
 - [ ] Admin page
-- [ ] Set lists CRUD
-- [ ] Alert when creating a chord sheet with the same name
 
 ---
 ## v0.1.0
