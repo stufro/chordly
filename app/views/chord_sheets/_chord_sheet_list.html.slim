@@ -31,7 +31,7 @@
                   .level.is-justify-content-center
                     span.icon
                       i.far.fa-clock
-                    span = format_datetime(chord_sheet.updated_at)
+                    span = local_time(chord_sheet.updated_at)
 
   .is-flex.is-justify-content-center
     button.button.is-primary data-action="show-more#toggle" data-show-more-target="showMoreButton"

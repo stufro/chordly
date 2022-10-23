@@ -16,12 +16,10 @@
 ---
 ## v0.2.0
 - [ ] SEO
-- [ ] Show timestamps in local user time (https://github.com/basecamp/local_time)
+- [x] Show timestamps in local user time (https://github.com/basecamp/local_time)
 - [ ] Admin page
 - [ ] Set lists CRUD
 - [ ] Alert when creating a chord sheet with the same name
-- [ ] Fix: Add support to chord lines for bar separators (|, :|, |:)
-- [ ] Fix: Handle enharmonic chords e.g. E#
 
 ---
 ## v0.1.0
