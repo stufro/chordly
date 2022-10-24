@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     get :features
   end
 
+  get "/admin", to: "admin#index"
+
   if Rails.env.development?
     namespace :dev do
       post "/change_user", to: "change_user#index"

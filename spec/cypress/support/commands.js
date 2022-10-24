@@ -24,13 +24,15 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('login', () => {
+Cypress.Commands.add('login', (attributes) => {
+  attributes = (typeof attributes === undefined) ? {email: "a@a.com", password: "123456789"} : attributes
+
   cy.appFactories([
-    ["create", "user", {email: "a@a.com", password: "123456789"} ]
+    ["create", "user", attributes]
   ]).then((records) => {
-    cy.session([records[0].email, "123456789"], () => {
+    cy.session([attributes.email, attributes.password], () => {
       cy.visit("users/sign_in")
-      cy.get("#user_email").type(records[0].email)
+      cy.get("#user_email").type(attributes.email)
       cy.get("#user_password").type("123456789")
       cy.get("#login-button").click()
       cy.contains("Signed in successfully.")

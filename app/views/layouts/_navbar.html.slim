@@ -16,6 +16,12 @@ nav.navbar.is-primary aria-label="main navigation" role="navigation" data-contro
               span.icon
                 i.fas.fa-book-bookmark
               span My Library
+        - if user_signed_in? && current_user.admin?
+          = link_to admin_path, class: "navbar-item" do
+            span.icon-text.is-flex-wrap-nowrap
+              span.icon
+                i.fas.fa-lock-open
+              span Admin
 
         .navbar-item.has-dropdown.is-hoverable
           a.navbar-link
