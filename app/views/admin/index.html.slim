@@ -1,0 +1,75 @@
+h1.title.is-1 Users
+
+.level.is-flex-wrap-wrap.has-text-centered
+  .card.stat-card
+    .card-content
+      h2.subtitle Total Users
+      p.title = @users.count
+  .card.stat-card
+    .card-content
+      h2.subtitle Active Users (Last 7 days)
+      p.title = @users.where("current_sign_in_at > ?", 7.days.ago).count
+  .card.stat-card
+    .card-content
+      h2.subtitle Active Users (Last 30 days)
+      p.title = @users.where("current_sign_in_at > ?", 30.days.ago).count
+
+i Last 10 active users
+.table-container
+  table.table.is-fullwidth.is-striped
+    thead
+      tr
+        th User
+        th Created at
+        th Sign in count
+        th Current sign in at
+        th Last sign in at
+        th Confirmed at
+    tbody
+      - @users.order(current_sign_in_at: :desc).limit(10).each do |user|
+        tr
+          td = user.email
+          td = local_time(user.created_at)
+          td = user.sign_in_count
+          td = local_time(user.current_sign_in_at) if user.current_sign_in_at
+          td = local_time(user.last_sign_in_at) if user.last_sign_in_at
+          td = local_time(user.confirmed_at) if user.confirmed_at
+
+hr
+
+h1.title.is-1 Chord Sheets
+
+.level.is-flex-wrap-wrap.has-text-centered
+  .card.stat-card
+    .card-content
+      h2.subtitle Total Chord Sheets
+      p.title = @chord_sheets.count
+  .card.stat-card
+    .card-content
+      h2.subtitle Chord Sheets Created (Last 7 days)
+      p.title = @chord_sheets.where("created_at > ?", 7.days.ago).count
+  .card.stat-card
+    .card-content
+      h2.subtitle Chord Sheets Created (Last 30 days)
+      p.title = @chord_sheets.where("created_at > ?", 30.days.ago).count
+
+i Last 10 created chord sheets
+.table-container
+  table.table.is-fullwidth.is-striped
+    thead
+      tr
+        th User
+        th Name
+        th Created at
+        th Updated at
+        th Trial?
+        th Trial user ID
+    tbody
+      - @chord_sheets.order(created_at: :desc).limit(10).each do |sheet|
+        tr
+          td = sheet.user.email
+          td = sheet.name
+          td = local_time(sheet.created_at)
+          td = local_time(sheet.updated_at)
+          td = sheet.trial?
+          td = sheet.trial_user_id

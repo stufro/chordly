@@ -3,9 +3,11 @@ ChordSheet.destroy_all
 
 user1 = FactoryBot.create :user, email: "user@chordly.co.uk"
 user2 = FactoryBot.create :user, email: "beta@chordly.co.uk"
-user3 = FactoryBot.create :user, email: "unconfirmed@chordly.co.uk"
+user3 = FactoryBot.create :user, email: "admin@chordly.co.uk", admin: true
+user4 = FactoryBot.create :user, email: "unconfirmed@chordly.co.uk"
 user1.confirm
 user2.confirm
+user3.confirm
 
 FactoryBot.create :chord_sheet, name: "Yellow - Coldplay", user: user1, content_string: "[Intro]
 G D C G
@@ -17,7 +19,7 @@ Look at the stars
 Look how they shine for you
                       Cmaj7
 And everything you do
- 
+
 Yeah, they were all yellow
 G
 I came along
@@ -25,7 +27,7 @@ I came along
 I wrote a song for you
                           Cmaj7
 And all the things you do
- 
+
 And it was called 'Yellow.'
 G                D
 So then I took my turn
@@ -33,7 +35,7 @@ So then I took my turn
 Oh what a thing to have done
                        G Gsus4
 And it was all yellow
- 
+
 [Chorus 1]
 Cmaj7
 Your skin
@@ -43,12 +45,12 @@ Cmaj7  Em7          D
 Turn into something beautiful
 Cmaj7     Em7        D          Cmaj7
 You know, you know I love you so
- 
+
 You know I love you so
- 
+
 [Instrumental]
 G   D   C   G Gsus4
- 
+
 [Verse 2]
 G
 I swam across
@@ -56,7 +58,7 @@ I swam across
 I jumped across for you
                       Cmaj7
 Oh, what a thing to do
- 
+
 'Cause you were all yellow
 G
 I drew a line
@@ -66,7 +68,7 @@ I drew a line for you
 Oh, what a thing to do
                       G Gsus4
 And it was all yellow
- 
+
 [Chorus 2]
 C
 Your skin
@@ -78,113 +80,113 @@ Cmaj7
 And you know
 Em7       D            Cmaj7
 For you I bleed myself dry
- 
+
 For you I bleed myself dry"
 
 FactoryBot.create :chord_sheet, name: "Hotel California", user: user1, content_string: "Capo 2
- 
+
 [Intro]
-Am   E7   G   D   F   C   Dm   E7   
- 
+Am   E7   G   D   F   C   Dm   E7
+
 [Verse]
 Am                         E7
   On a dark desert highway, cool wind in my hair
-G                      D 
+G                      D
   Warm smell of colitas rising up through the air
-F                          C 
+F                          C
   Up ahead in the distance, I saw a shimmering light
-Dm 
+Dm
    My head grew heavy and my sight grew dim
 E7
   I had to stop for the night
- 
+
 Am                               E7
   There she stood in the doorway; I heard the mission bell
-G 
+G
   And I was thinking to myself
-              D 
+              D
 This could be heaven or this could be hell
-F                          C 
+F                          C
   Then she lit up a candle, and she showed me the way
-Dm 
+Dm
    There were voices down the corridor,
 E7
   I thought I heard them say...
- 
+
 [Chorus]
-F                          C 
+F                          C
   Welcome to the Hotel California.
-       E7                                          Am 
+       E7                                          Am
 Such a lovely place, (such a lovely place), such a lovely face
-F                               C 
+F                               C
 Plenty of room at the Hotel California
     Dm                                       E7
 Any time of year, (any time of year) You can find it here
- 
+
 [Verse]
 Am                            E7
  Her mind is Tiffany-twisted, She got the Mercedes bends
-G                                    D 
+G                                    D
  She got a lot of pretty pretty boys   she calls friends
-F                                   C 
+F                                   C
   How they danced in the courtyard, sweet summer sweat
 Dm                       E7
   Some dance to remember, some dance to forget
- 
+
 Am                           E7
   So I called up the captain; Please bring me my wine (he said)
-G                                     D 
+G                                     D
  We haven't had that spirit here since 1969
-F                                         C 
+F                                         C
   and still those voices are calling from far away
-Dm 
+Dm
    Wake you up in the middle of the night
 E7
   Just to hear them say...
- 
+
 [Chorus]
-F                         C 
+F                         C
  Welcome to the Hotel California.
-       E7                                          Am 
+       E7                                          Am
 Such a lovely place, (such a lovely place), such a lovely face
-        F                             C 
+        F                             C
 They're livin' it up at the Hotel California
        Dm                                               E7
 What a nice surprise, (what a nice surprise) Bring your alibis
- 
+
 [Verse]
 Am                        E7
    Mirrors on the ceiling; the pink champagne on ice (and she said)
-G                                D 
+G                                D
   We are all just prisoners here, of our own device
-F                              C 
+F                              C
   and in the master's chambers, they gathered for the feast
-Dm 
+Dm
  They stab it with their steely knives but they
 E7
 just can't kill the beast
- 
+
 Am                             E7
    Last thing I remember, I was running for the door
-G                                       D 
+G                                       D
   I had to find the passage back to the place I was before
-F                                   C 
+F                                   C
   'Relax' said the night man; we are programmed to receive
-Dm 
+Dm
   You can check out any time you like
 E7
  But you can never leave...
- 
+
 [Outro Solo]
-Am   E7   G   D   F   C   Dm   E7   
- 
+Am   E7   G   D   F   C   Dm   E7
+
 [Harmonies]
-Am   E7   G   D   F   C   Dm   E7   
+Am   E7   G   D   F   C   Dm   E7
 (fade out)"
 
 FactoryBot.create :chord_sheet, name: "Perfect - Ed Sheeran", user: user1, content_string: "[Intro]
 G
- 
+
 [Verse 1]
           G        Em
 I found a love for me
@@ -194,7 +196,7 @@ Darling, just dive right in, and follow my lead
 Well, I found a girl beautiful and sweet
         C                                     D
 I never knew you were the someone waiting for me
- 
+
 [Pre-Chorus]
                                 G
 Cause we were just kids when we fell in love
@@ -204,7 +206,7 @@ Not knowing what it was, I will not give you up this ti-ime
 Darling just kiss me slow, your heart is all I own
             C                     D
 And in your eyes you're holding mine
- 
+
 [Chorus]
       Em   C             G          D              Em
 Baby, I'm dancing in the dark, with you between my arms
@@ -214,9 +216,9 @@ Barefoot on the grass, listening to our favourite song
 When you said you looked a mess, I whispered underneath my breath
          C                G        D             G
 But you heard it, darling you look perfect tonight
- 
+
 | G D/F# Em D | C  D  |
- 
+
 [Verse 2]
                 G                    Em
 Well, I found a woman, stronger than anyone I know
@@ -226,7 +228,7 @@ She shares my dreams, I hope that someday I'll share her home
 I found a love, to carry more than just my secrets
          C                              D
 To carry love, to carry children of our own
- 
+
 [Pre-Chorus]
                              G                     Em
 We are still kids, but we're so in love, fighting against all odds
@@ -236,7 +238,7 @@ I know we'll be alright this ti-ime
 Darling just hold my hand, be my girl, I'll be your man
          C               D
 I see my future in your eyes
- 
+
 [Chorus]
       Em   C              G         D              Em
 Baby, I'm dancing in the dark, with you between my arms
@@ -246,11 +248,11 @@ Barefoot on the grass, listening to our favourite song
 When I saw you in that dress, looking so beautiful
   Em       C                  G        D          [ G ]
 I don't deserve this, darling you look perfect tonight
- 
+
 [Interlude]
 | G  | % | Em | % |
 | C  | % | D  | % |
- 
+
 [Chorus]
       Em   C              G         D              Em
 Baby, I'm dancing in the dark, with you between my arms
@@ -260,15 +262,15 @@ Barefoot on the grass, listening to our favourite song
 I have faith in what I see, now I know I have met an angel
     C          G         D
 In person, and she looks perfect
- 
+
 [Outro]
   G/B     C           Dsus4    D        [ G ]
 I don't deserve this, you look perfect tonight
- 
+
 | G D/F# Em D | C  D  | G"
 
 FactoryBot.create :chord_sheet, name: "Talking to the moon", user: user2, content_string: "[Verse 1]
- 
+
 C
   I know you're somewhere out there
 E7
@@ -277,7 +279,7 @@ Somewhere far away
 I want you back
   F
 I want you back
- 
+
 C
   My neighbors think I'm crazy
     E7
@@ -286,20 +288,20 @@ But they don't understand
 You're all I had
        F
 You're all I had
- 
- 
+
+
 [Pre-Chorus]
- 
+
 Dm                      G
    At night when the stars
                Dm
 light up my room
             G
 I sit by myself
- 
- 
+
+
 [Chorus]
- 
+
                F G Am
 Talking to the moon
               F G Am
@@ -312,10 +314,10 @@ Or am I a fool who sits alone
 Talking to the moon
      D
 Ohhhhhhhhhhhhhhhhhhhhhh
- 
- 
+
+
 [Verse 2]
- 
+
 C
   I'm feelin' like I'm famous
     E7
@@ -324,7 +326,7 @@ The talk of the town
 They say I've gone mad
       F
 Yeah, I've gone mad
- 
+
 C
   But they don't know what I know
       E7
@@ -333,20 +335,20 @@ Cause when the sun goes down
 Someone's talkin' back
               F
 Yeah, they're talkin' back, ohhh
- 
- 
+
+
 [Pre-Chorus]
- 
+
 Dm                      G
    At night when the stars
                Dm
 light up my room
             G
 I sit by myself
- 
- 
+
+
 [Chorus]
- 
+
                F G Am
 Talking to the moon
               F G Am
@@ -355,22 +357,22 @@ Tryna get to you
 In hopes you're on the other side talking to me too
    G      F              G
 Or am I a fool who sits alone
- 
+
 Talking to the moon
- 
- 
+
+
 [Interlude]
- 
+
 Dm      C      Dm
   Ahh... ahh... ahh...
 G
 Do you ever hear me calling?
 Dm      C      Dm
   (Ahh... ahh... ahh...)
- 
- 
+
+
 [Chorus]
- 
+
       G                              F G Am
 Cause every night I'm talking to the moon
                        F G Am
