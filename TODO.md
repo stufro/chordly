@@ -33,7 +33,7 @@
 ## v0.2.0
 - [ ] SEO
 - [x] Show timestamps in local user time (https://github.com/basecamp/local_time)
-- [ ] Admin page
+- [x] Admin page
 
 ---
 ## v0.1.0

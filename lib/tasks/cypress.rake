@@ -2,7 +2,18 @@
 namespace :cy do
   task :run do
     RakeAnnouncer.log_step "Running Cypress"
-    fail unless system('yarn cy:run')
+    if File.exists?(Rails.root.join("tmp/pids/test_server.pid"))
+      fail unless system('yarn cy:run')
+    else
+      RakeAnnouncer.log_step "Starting test server & running tests"
+      fork { exec("RAILS_ENV=test bin/rails server -p 5017 -P tmp/pids/test_server.pid") }
+      passed = system('yarn cy:run')
+
+      pid = File.read(Rails.root.join("tmp/pids/test_server.pid"))
+      RakeAnnouncer.log_step "Stopping test server"
+      system("kill #{pid}")
+      fail unless passed
+    end
   end
 
   task :open do

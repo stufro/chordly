@@ -43,7 +43,6 @@ yarn install
 
 ## Running tests
 ```bash
-rake cy:open # this will open Cypress and also run a test server which tests will be run against in the following command
 rake
 ```
 
