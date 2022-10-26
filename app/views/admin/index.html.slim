@@ -21,17 +21,19 @@ i Last 10 active users
       tr
         th User
         th Created at
+        th Sign in count
         th Current sign in at
         th Last sign in at
-        th Sign in count
+        th Confirmed at
     tbody
       - @users.order(current_sign_in_at: :desc).limit(10).each do |user|
         tr
           td = user.email
           td = local_time(user.created_at)
+          td = user.sign_in_count
           td = local_time(user.current_sign_in_at) if user.current_sign_in_at
           td = local_time(user.last_sign_in_at) if user.last_sign_in_at
-          td = user.sign_in_count
+          td = local_time(user.confirmed_at) if user.confirmed_at
 
 hr
 
@@ -60,6 +62,8 @@ i Last 10 created chord sheets
         th Name
         th Created at
         th Updated at
+        th Trial?
+        th Trial user ID
     tbody
       - @chord_sheets.order(created_at: :desc).limit(10).each do |sheet|
         tr
@@ -67,3 +71,5 @@ i Last 10 created chord sheets
           td = sheet.name
           td = local_time(sheet.created_at)
           td = local_time(sheet.updated_at)
+          td = sheet.trial?
+          td = sheet.trial_user_id
