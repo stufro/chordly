@@ -6,6 +6,8 @@
 - [ ] Auto generate icon for songs
 - [ ] Prefer sharps/flats option
 - [ ] Alert when creating a chord sheet with the same name
+- [ ] Better formatting for PDFs (page breaks etc.)
+  - [ ] Option to print PDF with content in 1 column or 2
 
 ---
 
