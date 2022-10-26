@@ -26,3 +26,5 @@ RSpec/SubjectStub:
     - spec/controllers/application_controller_spec.rb
 RSpec/NamedSubject:
   Enabled: false
+Rails/I18nLocaleTexts:
+  Enabled: false

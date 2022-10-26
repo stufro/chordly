@@ -25,7 +25,7 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('login', (attributes) => {
-  attributes = (typeof attributes === undefined) ? {email: "a@a.com", password: "123456789"} : attributes
+  attributes = (typeof attributes == "undefined") ? {email: "a@a.com", password: "123456789"} : attributes
 
   cy.appFactories([
     ["create", "user", attributes]
