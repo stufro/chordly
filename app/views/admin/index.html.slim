@@ -69,7 +69,7 @@ i Last 10 created chord sheets
     tbody
       - @chord_sheets.order(created_at: :desc).limit(10).each do |sheet|
         tr
-          td = sheet.user.email
+          td = sheet.user&.email
           td = sheet.name
           td = local_time(sheet.created_at)
           td = local_time(sheet.updated_at)
