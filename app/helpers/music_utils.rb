@@ -1,9 +1,9 @@
 module MusicUtils
   ASSUMED_OCTAVE = 5
-  ACCIDENTALS = "(?:#|b|♭)?".freeze
-  CHORD_TYPES = "(maj|min|m|sus|dim|aug)?".freeze
-  CHORD_EXTENSIONS = "(2|4|5|7|9|13)?".freeze
-  BASS_NOTE = "(?:\/([A-Ga-g]#{ACCIDENTALS}))?".freeze
+  ACCIDENTALS = /(?:#|b|♭)?/
+  CHORD_TYPES = /(maj|min|m|sus|dim|aug)?/
+  CHORD_EXTENSIONS = /(2|4|5|7|9|13)?/
+  BASS_NOTE = %r{(?:/([A-Ga-g]#{ACCIDENTALS}))?}
   NOTE_REGEX = /([A-Ga-g]#{ACCIDENTALS})#{CHORD_TYPES}#{CHORD_EXTENSIONS}#{BASS_NOTE}/
 
   def extract_note(potential_chord)

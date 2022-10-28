@@ -6,6 +6,16 @@ class ChordSheetsController < ApplicationController
     @chord_sheets = ChordSheet.not_deleted.for_user(current_user).order(build_order_query)
   end
 
+  def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        html = render_to_string(layout: "application")
+        send_data Grover.new(html).to_pdf, filename: "#{@chord_sheet.name}.pdf", type: "application/pdf"
+      end
+    end
+  end
+
   def new
     @chord_sheet = ChordSheet.new
   end
@@ -19,16 +29,6 @@ class ChordSheetsController < ApplicationController
       flash.now[:alert] = "Something went wrong creating your chord sheet, if this persists " \
                           "please contact support"
       respond_to { |format| format.turbo_stream }
-    end
-  end
-
-  def show
-    respond_to do |format|
-      format.html
-      format.pdf do
-        html = render_to_string(layout: "application")
-        send_data Grover.new(html).to_pdf, filename: "#{@chord_sheet.name}.pdf", type: "application/pdf"
-      end
     end
   end
 
