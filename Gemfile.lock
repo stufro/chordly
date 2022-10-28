@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/stufro/music.git
+  revision: 31f3a1d2c4538fe76f9209eb15f9f968bb088b89
+  branch: special_enharmonics
+  specs:
+    music (0.7.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -156,7 +163,6 @@ GEM
     mini_mime (1.1.2)
     minitest (5.16.3)
     msgpack (1.5.6)
-    music (0.7.0)
     net-imap (0.2.3)
       digest
       net-protocol
@@ -370,7 +376,7 @@ DEPENDENCIES
   jsbundling-rails
   local_time
   meta-tags
-  music
+  music!
   pg (~> 1.1)
   puma (~> 5.0)
   rack-mini-profiler
