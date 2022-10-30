@@ -1,6 +1,24 @@
 require "rails_helper"
 
 describe ChordSheet do
+  describe ".for_user" do
+    it "returns the sheets which belong to the given user" do
+      FactoryBot.create :chord_sheet
+      user = FactoryBot.create :user, email: "b@b.com"
+      wanted_sheet = FactoryBot.create :chord_sheet, user: user
+
+      expect(ChordSheet.for_user(user)).to eq [wanted_sheet]
+    end
+  end
+
+  describe ".not_deleted" do
+    it "returns chord sheets which aren't deleted" do
+      FactoryBot.create :chord_sheet, deleted: true
+      sheet1 = FactoryBot.create :chord_sheet, deleted: false
+      sheet2 = FactoryBot.create :chord_sheet, deleted: nil
+    end
+  end
+
   describe "#transpose" do
     subject(:chord_sheet) { described_class.new(content: original_content) }
 
