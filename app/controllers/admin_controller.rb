@@ -11,6 +11,6 @@ class AdminController < ApplicationController
   def authorize_admin
     return if current_user.admin?
 
-    redirect_to "/", alert: "You are not authorized to view this page", code: 401
+    redirect_to "/", alert: "You are not authorized to view this page"
   end
 end
