@@ -1,0 +1,24 @@
+{
+  "[ruby]": {
+    "editor.formatOnSave": true
+  },
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+
+  "solargraph.autoformat": true,
+  "solargraph.diagnostics": true,
+  "solargraph.formatting": true,
+  "solargraph.useBundler": true,
+
+  "cucumberautocomplete.steps": [
+    "features/step_definitions/*.rb"
+  ],
+  "cucumberautocomplete.syncfeatures": "features/*.feature",
+  "cucumberautocomplete.customParameters": [
+    {
+      "parameter": "{string}",
+      "value": ".*"
+    }
+  ]
+}
