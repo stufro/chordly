@@ -13,3 +13,11 @@ export function createChordSheet() {
     return records[0]
   })
 }
+
+export function visitSetList() {
+  cy.appFactories([
+    ["create", "set_list", {name: "My Set List" } ]
+  ]).then((records) => {
+    cy.visit(`/set_list/${records[0].id}`)
+  })
+}

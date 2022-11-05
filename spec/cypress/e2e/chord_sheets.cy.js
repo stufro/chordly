@@ -11,7 +11,7 @@ describe("Creating/editing a chord sheet", () => {
 
   it("saves a new chord sheet", () => {
     cy.visit("/chord_sheets")
-    cy.contains("Create New").click()
+    cy.get("#create-chord-sheet").click()
     cy.get("#chord_sheet_name").type("My amazing song")
     cy.get("#chord_sheet_content").type("G   Am    D\nMy great lyrics")
     cy.get("#create-btn").click()

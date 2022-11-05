@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     put :transpose, on: :member
   end
 
+  resources :set_lists, only: %i[new create show update destroy]
+
   resource :trial, only: %i[new]
 
   resource :home, only: %i[index], controller: "home" do
