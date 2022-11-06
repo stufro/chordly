@@ -12,13 +12,10 @@ describe("Creating/editing a set list", () => {
   it.only("saves a new set list", () => {
     cy.visit("/chord_sheets")
     cy.get("#create-set-list").click()
-    cy.get("#set_list_name").type("My amazing song")
-    cy.get("#set_list_content").type("G   Am    D\nMy great lyrics")
+    cy.get("#set_list_name").type("Friday Night")
     cy.get("#create-btn").click()
 
-    cy.contains("My amazing song")
-    cy.contains("G   Am    D")
-    cy.contains("My great lyrics")
+    cy.contains("Friday Night")
   })
 
   it("allows the set list to be edited inline", () => {
