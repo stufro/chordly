@@ -16,9 +16,20 @@ class SetListsController < ApplicationController
     end
   end
 
+  def update
+    @set_list = SetList.find(params[:id])
+    if @set_list.update(set_list_params)
+      flash.now[:notice] = "Changes saved"
+    else
+      flash.now[:alert] = "Failed to update set list"
+    end
+  end
+
   private
 
   def set_list_params
-    params.require(:set_list).permit(:name)
+    params.require(:set_list).permit(:name).tap do |p|
+      p[:user] = current_user
+    end
   end
 end

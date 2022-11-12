@@ -6,4 +6,5 @@ class User < ApplicationRecord
          :trackable, :confirmable
 
   has_many :chord_sheets, dependent: :destroy
+  has_many :set_lists, dependent: :destroy
 end

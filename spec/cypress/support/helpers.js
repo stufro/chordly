@@ -18,6 +18,6 @@ export function visitSetList() {
   cy.appFactories([
     ["create", "set_list", {name: "My Set List" } ]
   ]).then((records) => {
-    cy.visit(`/set_list/${records[0].id}`)
+    cy.visit(`/set_lists/${records[0].id}`)
   })
 }

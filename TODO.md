@@ -25,9 +25,11 @@
 
 ## v0.3.0
 - [ ] Set lists functionality
-  - [ ] CRUD
+  - [ ] Delete chord sheets
   - [ ] Drag'n'drop chord sheets into set list
   - [ ] Add chord sheet to set list from chord sheet show
+  - [ ] Authentication
+- [ ] Chord sheet validations
 
 ---
 ## v0.2.0

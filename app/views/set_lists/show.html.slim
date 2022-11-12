@@ -2,7 +2,8 @@
   .is-flex.is-wrap-nowrap.is-align-items-center
     h1.title.is-1.p-2#show-page-title[data-controller="editable"
                                   data-editable-field-value="name"
-                                  data-editable-url-value=set_list_path(@set_list)]
+                                  data-editable-url-value=set_list_path(@set_list)
+                                  data-editable-model-value="set_list"]
       = title @set_list.name
     span.icon.is-medium.mb-5.ml-3.edit-icon
       i.far.fa-edit.fa-2x
