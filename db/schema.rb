@@ -26,7 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_12_114004) do
     t.index ["user_id"], name: "index_chord_sheets_on_user_id"
   end
 
-  create_table "chord_sheets_set_lists", id: false, force: :cascade do |t|
+  create_table "chord_sheets_set_lists", force: :cascade do |t|
     t.bigint "chord_sheet_id", null: false
     t.bigint "set_list_id", null: false
     t.index ["chord_sheet_id"], name: "index_chord_sheets_set_lists_on_chord_sheet_id"
