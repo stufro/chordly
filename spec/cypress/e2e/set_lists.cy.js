@@ -58,9 +58,9 @@ describe("Building a set list of chord sheets", () => {
     })
   })
 
-  it.only("allows chord sheets to be added to the set list", () => {
+  it("allows chord sheets to be added to the set list", () => {
     helper.createChordSheet().then((chordSheet) => {
-      helper.visitSetList([chordSheet.id])
+      helper.visitSetList()
       cy.get(`#add-chord-sheet-${chordSheet.id}`).click()
 
       cy.get("#set-list-chord-sheets").within(() => {

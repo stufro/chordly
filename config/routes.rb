@@ -15,7 +15,9 @@ Rails.application.routes.draw do
     put :transpose, on: :member
   end
 
-  resources :set_lists, only: %i[new create show update]
+  resources :set_lists, only: %i[new create show update] do
+    put :add_chord_sheet, on: :member
+  end
 
   resource :trial, only: %i[new]
 

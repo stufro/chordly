@@ -1,6 +1,7 @@
 class SetListsController < ApplicationController
   def show
     @set_list = SetList.find(params[:id])
+    @available_chord_sheets = current_user.chord_sheets - @set_list.chord_sheets
   end
 
   def new
@@ -23,6 +24,14 @@ class SetListsController < ApplicationController
     else
       flash.now[:alert] = "Failed to update set list: #{@set_list.errors.full_messages.join(', ')}"
     end
+  end
+
+  def add_chord_sheet
+    set_list = SetList.find(params[:id])
+    chord_sheet = ChordSheet.find(params[:chord_sheet_id])
+    set_list.chord_sheets << chord_sheet
+
+    redirect_to(set_list)
   end
 
   private

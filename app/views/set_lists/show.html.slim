@@ -14,5 +14,19 @@
         i.fas.fa-book-bookmark
       span Back to library
 
-- @set_list.chord_sheets.each do |chord_sheet|
-  p = chord_sheet.name
+.columns
+  .column.is-one-quarter style="border-right: 1px #C7C7CC solid"
+    - @available_chord_sheets.each do |chord_sheet|
+      .card
+        .card-content.p-3
+          .is-flex.is-justify-content-space-between.is-align-items-center
+            p.title.is-5.mb-0 = chord_sheet.name
+            = button_to add_chord_sheet_set_list_path(@set_list, chord_sheet_id: chord_sheet.id),
+              class: "button is-success", id: "add-chord-sheet-#{chord_sheet.id}",
+              method: :put do
+              span.icon
+                i.fas.fa-plus
+
+  .column#set-list-chord-sheets
+    .is-flex.is-flex-wrap-wrap.is-justify-content-center
+      = render(@set_list.chord_sheets)
