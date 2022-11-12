@@ -1,0 +1,13 @@
+.m-3 style="min-width: 30%" data-search-target="searchable"
+  a href=chord_sheet_path(chord_sheet)
+    .card.card-link
+      .card-content
+        .level.is-mobile.has-text-centered.is-justify-content-space-around
+          span.icon.has-text-primary.is-large.mr-2
+            i.fas.fa-music.fa-3x
+          div
+            p.title.is-4 = chord_sheet.name
+            .level.is-justify-content-center
+              span.icon
+                i.far.fa-clock
+              span = local_time(chord_sheet.updated_at)
