@@ -383,4 +383,4 @@ In hopes you're on the other side talking to me too
    G      F              G                     Am   G    D
 Or am I a fool who sits alone talking to the moon?     Ohoooo..."
 
-FactoryBot.create :set_list, chord_sheets: [chord_sheet1, chord_sheet2, chord_sheet3], user: user1
+FactoryBot.create :set_list, chord_sheets: [chord_sheet1, chord_sheet3], user: user1

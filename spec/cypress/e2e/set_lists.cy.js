@@ -48,11 +48,22 @@ describe("Building a set list of chord sheets", () => {
     cy.app("clean")
   })
 
-  it.only("shows chord sheets which belong to the set list", () => {
+  it("shows chord sheets which belong to the set list", () => {
     helper.createChordSheet().then((chordSheet) => {
       helper.createSetList([chordSheet.id]).then((setList) => {
         cy.visit("/chord_sheets")
         cy.contains(setList.name).click()
+        cy.contains(chordSheet.name)
+      })
+    })
+  })
+
+  it.only("allows chord sheets to be added to the set list", () => {
+    helper.createChordSheet().then((chordSheet) => {
+      helper.visitSetList([chordSheet.id])
+      cy.get(`#add-chord-sheet-${chordSheet.id}`).click()
+
+      cy.get("#set-list-chord-sheets").within(() => {
         cy.contains(chordSheet.name)
       })
     })
