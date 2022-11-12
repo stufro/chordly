@@ -1,0 +1,13 @@
+.m-3 style="min-width: 30%" data-search-target="searchable"
+  a href=set_list_path(set_list)
+    .card.card-link
+      .card-content
+        .level.is-mobile.has-text-centered.is-justify-content-space-around
+          span.icon.has-text-primary.is-large.mr-2
+            i.fas.fa-rectangle-list.fa-3x
+          div
+            p.title.is-4 = set_list.name
+            .level.is-justify-content-center
+              span.icon
+                i.far.fa-clock
+              span = local_time(set_list.updated_at)

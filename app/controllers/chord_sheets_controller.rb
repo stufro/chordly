@@ -4,6 +4,7 @@ class ChordSheetsController < ApplicationController
 
   def index
     @chord_sheets = ChordSheet.not_deleted.for_user(current_user).order(build_order_query)
+    @set_lists = current_user.set_lists
   end
 
   def show

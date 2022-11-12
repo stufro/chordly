@@ -1,0 +1,10 @@
+.mb-6 data-controller="search show-more"
+  .is-flex.is-justify-content-space-between.is-align-items-center
+    .is-flex-grow-1
+      input[class="input mb-0 has-text-centered" id="search-box" type="text"
+            placeholder="Search for a set list" data-search-target="input"
+            data-action="search#search"]
+
+  .is-flex.is-flex-wrap-wrap.is-justify-content-center.see-more-container#chord-sheets-container[
+      data-show-more-target="container"]
+    = render(set_lists)

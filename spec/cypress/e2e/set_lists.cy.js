@@ -50,8 +50,11 @@ describe("Building a set list of chord sheets", () => {
 
   it.only("shows chord sheets which belong to the set list", () => {
     helper.createChordSheet().then((chordSheet) => {
-      helper.visitSetList([chordSheet.id])
-      cy.contains(chordSheet.name)
+      helper.createSetList([chordSheet.id]).then((setList) => {
+        cy.visit("/chord_sheets")
+        cy.contains(setList.name).click()
+        cy.contains(chordSheet.name)
+      })
     })
   })
 })
