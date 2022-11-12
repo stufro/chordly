@@ -21,7 +21,7 @@ class SetListsController < ApplicationController
     if @set_list.update(set_list_params)
       flash.now[:notice] = "Changes saved"
     else
-      flash.now[:alert] = "Failed to update set list"
+      flash.now[:alert] = "Failed to update set list: #{@set_list.errors.full_messages.join(', ')}"
     end
   end
 
