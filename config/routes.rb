@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   resources :set_lists, only: %i[new create show update] do
     put :add_chord_sheet, on: :member
+    put :remove_chord_sheet, on: :member
   end
 
   resource :trial, only: %i[new]

@@ -68,4 +68,15 @@ describe("Building a set list of chord sheets", () => {
       })
     })
   })
+
+  it("allows chord sheets to be removed from the set list", () => {
+    helper.createChordSheet().then((chordSheet) => {
+      helper.visitSetList([chordSheet.id])
+      cy.get(`#remove-chord-sheet-${chordSheet.id}`).click()
+
+      cy.get("#available-chord-sheets").within(() => {
+        cy.contains(chordSheet.name)
+      })
+    })
+  })
 })

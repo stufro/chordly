@@ -29,6 +29,7 @@
   - [ ] Drag'n'drop chord sheets into set list
   - [ ] Add chord sheet to set list from chord sheet show
   - [ ] Authentication
+  - [ ] Fix show more button on set lists
 - [ ] Chord sheet validations
 
 ---
