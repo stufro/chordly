@@ -1,6 +1,6 @@
 import * as helper from "../support/helpers"
 
-describe("Creating/editing a set list", () => {
+describe("Set list CRUD", () => {
   beforeEach(() => {
     cy.login()
   })
@@ -36,4 +36,22 @@ describe("Creating/editing a set list", () => {
   //   cy.contains("set lists")
   //   cy.contains("My amazing song").should("not.exist")
   // })
+})
+
+
+describe("Building a set list of chord sheets", () => {
+  beforeEach(() => {
+    cy.login()
+  })
+
+  afterEach(() => {
+    cy.app("clean")
+  })
+
+  it.only("shows chord sheets which belong to the set list", () => {
+    helper.createChordSheet().then((chordSheet) => {
+      helper.visitSetList([chordSheet.id])
+      cy.contains(chordSheet.name)
+    })
+  })
 })

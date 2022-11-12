@@ -7,16 +7,24 @@ export function visitChordSheet() {
 }
 
 export function createChordSheet() {
-  cy.appFactories([
+  return cy.appFactories([
     ["create", "chord_sheet"]
   ]).then((records) => {
     return records[0]
   })
 }
 
-export function visitSetList() {
+export function createSetList() {
+  return cy.appFactories([
+    ["create", "set_list"]
+  ]).then((records) => {
+    return records[0]
+  })
+}
+
+export function visitSetList(chordSheets) {
   cy.appFactories([
-    ["create", "set_list", {name: "My Set List" } ]
+    ["create", "set_list", {name: "My Set List", chord_sheet_ids: chordSheets } ]
   ]).then((records) => {
     cy.visit(`/set_lists/${records[0].id}`)
   })
