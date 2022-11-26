@@ -29,7 +29,7 @@ class SetListsController < ApplicationController
   def add_chord_sheet
     set_list = SetList.find(params[:id])
     chord_sheet = ChordSheet.find(params[:chord_sheet_id])
-    set_list.chord_sheets << chord_sheet
+    ChordSheetsSetList.create(chord_sheet:, set_list:, order: set_list.next_order)
 
     redirect_to(set_list)
   end

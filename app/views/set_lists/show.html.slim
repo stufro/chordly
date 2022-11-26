@@ -40,7 +40,7 @@
         .m-3 style="min-width: 30%" data-search-target="searchable"
           .is-flex
             .card-sidebar
-              p.is-size-3.has-text-centered 1
+              p.is-size-3.has-text-centered = chord_sheet.chord_sheets_set_list.find_by(set_list: @set_list).order
               i.fas.fa-up-down-left-right.fa-2x
 
             .card

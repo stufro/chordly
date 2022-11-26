@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_26_160347) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_26_205923) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,6 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_26_160347) do
   create_table "chord_sheets_set_lists", force: :cascade do |t|
     t.bigint "chord_sheet_id", null: false
     t.bigint "set_list_id", null: false
+    t.integer "order"
     t.index ["chord_sheet_id"], name: "index_chord_sheets_set_lists_on_chord_sheet_id"
     t.index ["set_list_id"], name: "index_chord_sheets_set_lists_on_set_list_id"
   end
