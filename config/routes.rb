@@ -31,6 +31,10 @@ Rails.application.routes.draw do
 
   get "/admin", to: "admin#index"
 
+  constraints FlipperUIAccess do
+    mount Flipper::UI.app(Flipper) => "/flipper"
+  end
+
   if Rails.env.development?
     namespace :dev do
       post "/change_user", to: "change_user#index"
