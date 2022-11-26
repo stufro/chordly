@@ -16,16 +16,23 @@
 
 .columns
   .column.is-one-quarter#available-chord-sheets style="border-right: 1px #C7C7CC solid"
-    - @available_chord_sheets.each do |chord_sheet|
-      .card
-        .card-content.p-3
-          .is-flex.is-justify-content-space-between.is-align-items-center
-            p.title.is-5.mb-0 = chord_sheet.name
-            = button_to add_chord_sheet_set_list_path(@set_list, chord_sheet_id: chord_sheet.id),
-              class: "button is-success", id: "add-chord-sheet-#{chord_sheet.id}",
-              method: :put do
-              span.icon
-                i.fas.fa-plus
+    .card style="max-height: 80vh"
+      .card-header.has-background-primary
+        h2.card-header-title.has-text-light My Chord Sheets
+
+      .card-body
+        - if @available_chord_sheets.present?
+          - @available_chord_sheets.each do |chord_sheet|
+            .is-flex.is-justify-content-space-between.is-align-items-center.p-3
+              p.title.is-5.mb-0 = chord_sheet.name
+              = button_to add_chord_sheet_set_list_path(@set_list, chord_sheet_id: chord_sheet.id),
+                class: "button is-success", id: "add-chord-sheet-#{chord_sheet.id}",
+                method: :put do
+                span.icon
+                  i.fas.fa-plus
+        - else
+          .is-flex.is-justify-content-space-between.is-align-items-center.p-3
+            i No remaining chord sheets
 
   .column#set-list-chord-sheets
     .is-flex.is-flex-wrap-wrap.is-justify-content-center
