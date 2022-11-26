@@ -19,13 +19,13 @@
 
 ## v0.4.0
 - [ ] Styling chord sheets
-- [ ] Chord diagrams at top of sheet
 
 ---
 
 ## v0.3.0
 - [ ] Set lists functionality
-  - [ ] Delete chord sheets
+  - [x] Set lists CRUD
+  - [x] Delete chord sheets
   - [ ] Drag'n'drop chord sheets into set list
   - [ ] Add chord sheet to set list from chord sheet show
   - [ ] Authentication

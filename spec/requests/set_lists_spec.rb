@@ -89,19 +89,35 @@ describe "Set lists" do
   end
 
   describe "PUT remove_chord_sheet" do
+    subject do
+      put remove_chord_sheet_set_list_path(set_list), params: { id: set_list.id, chord_sheet_id: chord_sheet1.id }
+    end
+
     let(:set_list) { create(:set_list) }
-    let(:chord_sheet) { create(:chord_sheet, set_lists: [set_list]) }
+    let(:chord_sheet1) { create(:chord_sheet, set_lists: [set_list]) }
 
     it "removes the chord sheet to the set list" do
-      put remove_chord_sheet_set_list_path(set_list), params: { id: set_list.id, chord_sheet_id: chord_sheet.id }
-
+      subject
       expect(set_list.chord_sheets).to eq []
     end
 
     it "redirects to the set list show" do
-      put add_chord_sheet_set_list_path(set_list), params: { id: set_list.id, chord_sheet_id: chord_sheet.id }
-
+      subject
       expect(response).to redirect_to set_list
+    end
+
+    context "when there are existing chord sheets on a set list" do
+      let(:set_list) { create(:set_list) }
+      let(:chord_sheet1) { create(:chord_sheet) }
+      let(:chord_sheet2) { create(:chord_sheet) }
+
+      it "sets the order to 1 more than the last chord sheet" do
+        ChordSheetsSetList.create(chord_sheet: chord_sheet1, set_list:, order: 1)
+        chord_sheet2_join_record = ChordSheetsSetList.create(chord_sheet: chord_sheet2, set_list:, order: 2)
+
+        subject
+        expect(chord_sheet2_join_record.reload.order).to eq 1
+      end
     end
   end
 end

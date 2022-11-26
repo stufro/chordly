@@ -37,6 +37,7 @@ class SetListsController < ApplicationController
   def remove_chord_sheet
     set_list = SetList.find(params[:id])
     set_list.chord_sheets.delete(params[:chord_sheet_id])
+    set_list.refresh_orders
 
     redirect_to(set_list)
   end

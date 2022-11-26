@@ -8,4 +8,10 @@ class SetList < ApplicationRecord
   def next_order
     chord_sheets_set_list.pluck(:order).max.to_i + 1
   end
+
+  def refresh_orders
+    chord_sheets_set_list.each_with_index do |record, index|
+      record.update(order: index + 1)
+    end
+  end
 end
