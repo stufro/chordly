@@ -4,24 +4,34 @@
 .level.mb-4
   h1.title.is-1.mb-0.has-text-centered Chord Sheets
   .is-flex.is-justify-content-center
-    = link_to new_chord_sheet_path, class: "button is-primary" do
+    = link_to new_chord_sheet_path, class: "button is-primary", id: "create-chord-sheet" do
       span.icon-text.is-flex-wrap-nowrap
         span.icon
           i.fas.fa-plus
         span Create New
 
-= render("chord_sheet_list", chord_sheets: @chord_sheets)
+= render("library", chord_sheets: @chord_sheets)
 
 hr
 
 .level.mb-4
   h1.title.is-1.mb-0 Set Lists
   .is-flex.is-justify-content-center
-    = button_to "#", class: "button is-primary", disabled: true do
-      span.icon-text.is-flex-wrap-nowrap
-        span.icon
-          i.fas.fa-plus
-        span Create New
+    - if Flipper.enabled?(:set_lists)
+      = link_to new_set_list_path, class: "button is-primary", id: "create-set-list" do
+        span.icon-text.is-flex-wrap-nowrap
+          span.icon
+            i.fas.fa-plus
+          span Create New
+    - else
+      = link_to "", disabled: true, class: "button is-primary" do
+        span.icon-text.is-flex-wrap-nowrap
+          span.icon
+            i.fas.fa-plus
+          span Create New
 
-.notification.is-primary.is-light
-  h2.title.is-4 Coming soon in v0.3.0
+- if Flipper.enabled?(:set_lists)
+  = render("set_lists/library", set_lists: @set_lists)
+- else
+  .notification.is-primary.is-light
+    h2.title.is-4 Coming soon in v0.3.0

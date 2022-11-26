@@ -1,5 +1,6 @@
 User.destroy_all
 ChordSheet.destroy_all
+SetList.destroy_all
 
 user1 = FactoryBot.create :user, email: "user@chordly.co.uk"
 user2 = FactoryBot.create :user, email: "beta@chordly.co.uk"
@@ -9,7 +10,7 @@ user1.confirm
 user2.confirm
 user3.confirm
 
-FactoryBot.create :chord_sheet, name: "Yellow - Coldplay", user: user1, content_string: "[Intro]
+chord_sheet1 = FactoryBot.create :chord_sheet, name: "Yellow - Coldplay", user: user1, content_string: "[Intro]
 G D C G
 
 [Verse 1]
@@ -83,7 +84,7 @@ For you I bleed myself dry
 
 For you I bleed myself dry"
 
-FactoryBot.create :chord_sheet, name: "Hotel California", user: user1, content_string: "Capo 2
+chord_sheet2 = FactoryBot.create :chord_sheet, name: "Hotel California", user: user1, content_string: "Capo 2
 
 [Intro]
 Am   E7   G   D   F   C   Dm   E7
@@ -184,7 +185,7 @@ Am   E7   G   D   F   C   Dm   E7
 Am   E7   G   D   F   C   Dm   E7
 (fade out)"
 
-FactoryBot.create :chord_sheet, name: "Perfect - Ed Sheeran", user: user1, content_string: "[Intro]
+chord_sheet3 = FactoryBot.create :chord_sheet, name: "Perfect - Ed Sheeran", user: user1, content_string: "[Intro]
 G
 
 [Verse 1]
@@ -269,7 +270,7 @@ I don't deserve this, you look perfect tonight
 
 | G D/F# Em D | C  D  | G"
 
-FactoryBot.create :chord_sheet, name: "Talking to the moon", user: user2, content_string: "[Verse 1]
+chord_sheet4 = FactoryBot.create :chord_sheet, name: "Talking to the moon", user: user2, content_string: "[Verse 1]
 
 C
   I know you're somewhere out there
@@ -381,3 +382,5 @@ Still tryna to get to you
 In hopes you're on the other side talking to me too
    G      F              G                     Am   G    D
 Or am I a fool who sits alone talking to the moon?     Ohoooo..."
+
+FactoryBot.create :set_list, chord_sheets: [chord_sheet1, chord_sheet3], user: user1

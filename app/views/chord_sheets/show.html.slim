@@ -2,7 +2,8 @@
   .is-flex.is-wrap-nowrap.is-align-items-center
     h1.title.is-1.p-2#show-page-title[data-controller="editable"
                                   data-editable-field-value="name"
-                                  data-editable-url-value=chord_sheet_path(@chord_sheet)]
+                                  data-editable-url-value=chord_sheet_path(@chord_sheet)
+                                  data-editable-model-value="chord_sheet"]
       = title @chord_sheet.name
     span.icon.is-medium.mb-5.ml-3.edit-icon
       i.far.fa-edit.fa-2x

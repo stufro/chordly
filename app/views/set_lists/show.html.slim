@@ -1,0 +1,46 @@
+.is-flex.is-align-items-baseline.is-justify-content-space-between.is-flex-wrap-wrap
+  .is-flex.is-wrap-nowrap.is-align-items-center
+    h1.title.is-1.p-2#show-page-title[data-controller="editable"
+                                  data-editable-field-value="name"
+                                  data-editable-url-value=set_list_path(@set_list)
+                                  data-editable-model-value="set_list"]
+      = title @set_list.name
+    span.icon.is-medium.mb-5.ml-3.edit-icon
+      i.far.fa-edit.fa-2x
+
+  - if user_signed_in?
+    = link_to chord_sheets_path, class: "button is-primary mb-2 is-hidden-desktop" do
+      span.icon
+        i.fas.fa-book-bookmark
+      span Back to library
+
+.columns
+  .column.is-one-quarter#available-chord-sheets style="border-right: 1px #C7C7CC solid"
+    - @available_chord_sheets.each do |chord_sheet|
+      .card
+        .card-content.p-3
+          .is-flex.is-justify-content-space-between.is-align-items-center
+            p.title.is-5.mb-0 = chord_sheet.name
+            = button_to add_chord_sheet_set_list_path(@set_list, chord_sheet_id: chord_sheet.id),
+              class: "button is-success", id: "add-chord-sheet-#{chord_sheet.id}",
+              method: :put do
+              span.icon
+                i.fas.fa-plus
+
+  .column#set-list-chord-sheets
+    .is-flex.is-flex-wrap-wrap.is-justify-content-center
+      - @set_list.chord_sheets.each do |chord_sheet|
+        .m-3 style="min-width: 30%" data-search-target="searchable"
+          .card.card-link
+            .card-content
+              .level.is-mobile.has-text-centered.is-justify-content-space-around
+                span.icon.has-text-primary.is-large.mr-2
+                  i.fas.fa-music.fa-3x
+                div
+                  p.title.is-4 = chord_sheet.name
+                  = button_to remove_chord_sheet_set_list_path(@set_list,
+                                                               chord_sheet_id: chord_sheet.id),
+                    class: "button is-danger is-light", id: "remove-chord-sheet-#{chord_sheet.id}",
+                    method: :put do
+                    span.icon
+                      i.fas.fa-minus

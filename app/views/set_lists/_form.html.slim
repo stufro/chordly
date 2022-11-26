@@ -1,0 +1,9 @@
+= form_with model: set_list do |f|
+  .field
+    = f.label :name, class: "label"
+    .control
+      = f.text_field :name, class: "input"
+
+  .field
+    .control
+      = f.submit class: "button is-primary", id: "create-btn"

@@ -15,6 +15,11 @@ Rails.application.routes.draw do
     put :transpose, on: :member
   end
 
+  resources :set_lists, only: %i[new create show update] do
+    put :add_chord_sheet, on: :member
+    put :remove_chord_sheet, on: :member
+  end
+
   resource :trial, only: %i[new]
 
   resource :home, only: %i[index], controller: "home" do
@@ -25,6 +30,10 @@ Rails.application.routes.draw do
   end
 
   get "/admin", to: "admin#index"
+
+  constraints FlipperUIAccess do
+    mount Flipper::UI.app(Flipper) => "/flipper"
+  end
 
   if Rails.env.development?
     namespace :dev do

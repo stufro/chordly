@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_24_184659) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_26_160347) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,6 +24,37 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_184659) do
     t.string "trial_user_id"
     t.boolean "deleted"
     t.index ["user_id"], name: "index_chord_sheets_on_user_id"
+  end
+
+  create_table "chord_sheets_set_lists", force: :cascade do |t|
+    t.bigint "chord_sheet_id", null: false
+    t.bigint "set_list_id", null: false
+    t.index ["chord_sheet_id"], name: "index_chord_sheets_set_lists_on_chord_sheet_id"
+    t.index ["set_list_id"], name: "index_chord_sheets_set_lists_on_set_list_id"
+  end
+
+  create_table "flipper_features", force: :cascade do |t|
+    t.string "key", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["key"], name: "index_flipper_features_on_key", unique: true
+  end
+
+  create_table "flipper_gates", force: :cascade do |t|
+    t.string "feature_key", null: false
+    t.string "key", null: false
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["feature_key", "key", "value"], name: "index_flipper_gates_on_feature_key_and_key_and_value", unique: true
+  end
+
+  create_table "set_lists", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_set_lists_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
