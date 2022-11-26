@@ -51,4 +51,38 @@ describe "Set lists" do
       end
     end
   end
+
+  describe "PUT add_chord_sheet" do
+    let(:set_list) { create(:set_list) }
+    let(:chord_sheet) { create(:chord_sheet) }
+
+    it "adds the chord sheet to the set list" do
+      put add_chord_sheet_set_list_path(set_list), params: { id: set_list.id, chord_sheet_id: chord_sheet.id }
+
+      expect(set_list.chord_sheets).to eq [chord_sheet]
+    end
+
+    it "redirects to the set list show" do
+      put add_chord_sheet_set_list_path(set_list), params: { id: set_list.id, chord_sheet_id: chord_sheet.id }
+
+      expect(response).to redirect_to set_list
+    end
+  end
+
+  describe "PUT remove_chord_sheet" do
+    let(:set_list) { create(:set_list) }
+    let(:chord_sheet) { create(:chord_sheet, set_lists: [set_list]) }
+
+    it "removes the chord sheet to the set list" do
+      put remove_chord_sheet_set_list_path(set_list), params: { id: set_list.id, chord_sheet_id: chord_sheet.id }
+
+      expect(set_list.chord_sheets).to eq []
+    end
+
+    it "redirects to the set list show" do
+      put add_chord_sheet_set_list_path(set_list), params: { id: set_list.id, chord_sheet_id: chord_sheet.id }
+
+      expect(response).to redirect_to set_list
+    end
+  end
 end
