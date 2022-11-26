@@ -52,3 +52,17 @@ $link: $primary;
   min-width: 20rem;
   margin-top: .5rem;
 }
+
+.card-sidebar {
+  display: flex;
+  flex-direction: column;
+  cursor: grab;
+
+  background-color: $primary;
+  color: hsl(0, 0%, 96%);
+  padding: .75rem;
+
+  p {
+    margin-bottom: .5rem;
+  }
+}
