@@ -3,6 +3,7 @@ import * as helper from "../support/helpers"
 describe("Set list CRUD", () => {
   beforeEach(() => {
     cy.login()
+    cy.appEval('Flipper.enable :set_lists')
   })
 
   afterEach(() => {
@@ -42,6 +43,7 @@ describe("Set list CRUD", () => {
 describe("Building a set list of chord sheets", () => {
   beforeEach(() => {
     cy.login()
+    cy.appEval('Flipper.enable :set_lists')
   })
 
   afterEach(() => {

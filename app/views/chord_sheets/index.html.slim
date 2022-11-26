@@ -17,10 +17,21 @@ hr
 .level.mb-4
   h1.title.is-1.mb-0 Set Lists
   .is-flex.is-justify-content-center
-    = link_to new_set_list_path, class: "button is-primary", id: "create-set-list" do
-      span.icon-text.is-flex-wrap-nowrap
-        span.icon
-          i.fas.fa-plus
-        span Create New
+    - if Flipper.enabled?(:set_lists)
+      = link_to new_set_list_path, class: "button is-primary", id: "create-set-list" do
+        span.icon-text.is-flex-wrap-nowrap
+          span.icon
+            i.fas.fa-plus
+          span Create New
+    - else
+      = link_to "", disabled: true, class: "button is-primary" do
+        span.icon-text.is-flex-wrap-nowrap
+          span.icon
+            i.fas.fa-plus
+          span Create New
 
-= render("set_lists/library", set_lists: @set_lists)
+- if Flipper.enabled?(:set_lists)
+  = render("set_lists/library", set_lists: @set_lists)
+- else
+  .notification.is-primary.is-light
+    h2.title.is-4 Coming soon in v0.3.0
