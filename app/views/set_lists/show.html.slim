@@ -8,11 +8,19 @@
     span.icon.is-medium.mb-5.ml-3.edit-icon
       i.far.fa-edit.fa-2x
 
-  - if user_signed_in?
-    = link_to chord_sheets_path, class: "button is-primary mb-2 is-hidden-desktop" do
+  .is-flex.mb-2
+    - if user_signed_in?
+      = link_to chord_sheets_path, class: "button is-primary mr-1 is-hidden-desktop" do
+        span.icon
+          i.fas.fa-book-bookmark
+        span Back to library
+
+    = button_to(set_list_path(@set_list), class: "button is-danger",
+        id: "delete-set-list", data: { "turbo" => false }, method: :delete,
+        title: "Delete Set List")
       span.icon
-        i.fas.fa-book-bookmark
-      span Back to library
+        i.fas.fa-trash
+      span Delete Set List
 
 .columns
   .column.is-one-quarter#available-chord-sheets style="border-right: 1px #C7C7CC solid"

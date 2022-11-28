@@ -5,6 +5,8 @@ class SetList < ApplicationRecord
   has_many :chord_sheets_set_list, dependent: :destroy
   has_many :chord_sheets, through: :chord_sheets_set_list
 
+  scope :not_deleted, -> { where(deleted: [false, nil]) }
+
   def next_position
     chord_sheets_set_list.pluck(:position).max.to_i + 1
   end

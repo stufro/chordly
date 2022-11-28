@@ -27,6 +27,13 @@ class SetListsController < ApplicationController
     end
   end
 
+  def destroy
+    @set_list = SetList.find(params[:id])
+    @set_list.update(deleted: true)
+    flash[:notice] = "Set list deleted"
+    redirect_to chord_sheets_path
+  end
+
   def add_chord_sheet
     set_list = SetList.find(params[:id])
     chord_sheet = ChordSheet.find(params[:chord_sheet_id])

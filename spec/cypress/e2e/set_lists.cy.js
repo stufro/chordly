@@ -31,15 +31,15 @@ describe("Set list CRUD", () => {
     cy.contains("A new SetList title")
   })
 
-  // it("allows the user to delete the set list", () => {
-  //   helper.visitSetList();
+  it("allows the user to delete the set list", () => {
+    helper.visitSetList();
 
-  //   cy.get("#delete-chord-sheet").click()
-  //   cy.contains("set lists")
-  //   cy.contains("My amazing song").should("not.exist")
-  // })
+    cy.get("#delete-set-list").click()
+    cy.contains("Set Lists")
+    cy.contains("My amazing set").should("not.exist")
+  })
 
-  it.only("allows the user to reorder the chord sheets", () => {
+  it("allows the user to reorder the chord sheets", () => {
     helper.createChordSheet({name: "1st chord sheet"}).then((chordSheet1) => {
       helper.createChordSheet({name: "2nd chord sheet"}).then((chordSheet2) => {
         helper.createSetList([chordSheet1.id, chordSheet2.id]).then((setList) => {

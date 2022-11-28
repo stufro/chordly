@@ -4,7 +4,7 @@ class ChordSheetsController < ApplicationController
 
   def index
     @chord_sheets = ChordSheet.not_deleted.for_user(current_user).order(build_order_query)
-    @set_lists = current_user.set_lists
+    @set_lists = current_user.set_lists.not_deleted
   end
 
   def show
@@ -47,7 +47,7 @@ class ChordSheetsController < ApplicationController
 
   def destroy
     @chord_sheet.update(deleted: true)
-    flash.now[:notice] = "Chord sheet deleted"
+    flash[:notice] = "Chord sheet deleted"
     redirect_to chord_sheets_path
   end
 

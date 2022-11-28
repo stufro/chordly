@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     put :transpose, on: :member
   end
 
-  resources :set_lists, only: %i[new create show update] do
+  resources :set_lists, only: %i[new create show update destroy] do
     put :add_chord_sheet, on: :member
     put :remove_chord_sheet, on: :member
     patch :reorder, on: :member

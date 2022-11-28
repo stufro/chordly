@@ -8,7 +8,7 @@ export function visitChordSheet() {
 
 export function createChordSheet(attrs) {
   return cy.appFactories([
-    ["create", "chord_sheet", attrs]
+    ["create", "chord_sheet", attrs || {}]
   ]).then((records) => {
     return records[0]
   })
