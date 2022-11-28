@@ -8,6 +8,7 @@
 - [ ] Alert when creating a chord sheet with the same name
 - [ ] Better formatting for PDFs (page breaks etc.)
   - [ ] Option to print PDF with content in 1 column or 2
+  - [ ] Export set list as separate PDFs
 
 ---
 
@@ -33,6 +34,7 @@
   - [ ] Authentication
   - [ ] Fix show more button on set lists
   - [ ] Fix JS errors with show more stimulus controller
+  - [ ] Export entire set to PDF
 - [ ] Chord sheet validations
 
 ---
