@@ -29,7 +29,7 @@ class SetListsController < ApplicationController
   def add_chord_sheet
     set_list = SetList.find(params[:id])
     chord_sheet = ChordSheet.find(params[:chord_sheet_id])
-    ChordSheetsSetList.create(chord_sheet:, set_list:, order: set_list.next_order)
+    ChordSheetsSetList.create(chord_sheet:, set_list:, position: set_list.next_position)
 
     redirect_to(set_list)
   end
@@ -37,9 +37,15 @@ class SetListsController < ApplicationController
   def remove_chord_sheet
     set_list = SetList.find(params[:id])
     set_list.chord_sheets.delete(params[:chord_sheet_id])
-    set_list.refresh_orders
+    set_list.refresh_positions
 
     redirect_to(set_list)
+  end
+
+  def reorder
+    params[:new_order].split(",").each_with_index do |id, index|
+      ChordSheetsSetList.find(id).update(position: index + 1)
+    end
   end
 
   private

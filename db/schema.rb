@@ -29,7 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_26_205923) do
   create_table "chord_sheets_set_lists", force: :cascade do |t|
     t.bigint "chord_sheet_id", null: false
     t.bigint "set_list_id", null: false
-    t.integer "order"
+    t.integer "position"
     t.index ["chord_sheet_id"], name: "index_chord_sheets_set_lists_on_chord_sheet_id"
     t.index ["set_list_id"], name: "index_chord_sheets_set_lists_on_set_list_id"
   end

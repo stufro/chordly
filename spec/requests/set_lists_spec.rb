@@ -69,21 +69,21 @@ describe "Set lists" do
     end
 
     context "when it's the first chord sheet added to a set list" do
-      it "sets the order to 1" do
+      it "sets the position to 1" do
         subject
         join_record = ChordSheetsSetList.find_by(chord_sheet_id: chord_sheet.id, set_list_id: set_list.id)
-        expect(join_record.order).to eq 1
+        expect(join_record.position).to eq 1
       end
     end
 
     context "when there is already a chord sheet on a set list" do
-      it "sets the order to 1 more than the last chord sheet" do
+      it "sets the position to 1 more than the last chord sheet" do
         existing_sheet = create(:chord_sheet)
-        ChordSheetsSetList.create(chord_sheet: existing_sheet, set_list:, order: 1)
+        ChordSheetsSetList.create(chord_sheet: existing_sheet, set_list:, position: 1)
 
         subject
         join_record = ChordSheetsSetList.find_by(chord_sheet_id: chord_sheet.id, set_list_id: set_list.id)
-        expect(join_record.order).to eq 2
+        expect(join_record.position).to eq 2
       end
     end
   end
@@ -111,13 +111,27 @@ describe "Set lists" do
       let(:chord_sheet1) { create(:chord_sheet) }
       let(:chord_sheet2) { create(:chord_sheet) }
 
-      it "sets the order to 1 more than the last chord sheet" do
-        ChordSheetsSetList.create(chord_sheet: chord_sheet1, set_list:, order: 1)
-        chord_sheet2_join_record = ChordSheetsSetList.create(chord_sheet: chord_sheet2, set_list:, order: 2)
+      it "sets the position to 1 more than the last chord sheet" do
+        ChordSheetsSetList.create(chord_sheet: chord_sheet1, set_list:, position: 1)
+        chord_sheet2_join_record = ChordSheetsSetList.create(chord_sheet: chord_sheet2, set_list:, position: 2)
 
         subject
-        expect(chord_sheet2_join_record.reload.order).to eq 1
+        expect(chord_sheet2_join_record.reload.position).to eq 1
       end
+    end
+  end
+
+  describe "PATCH reoder" do
+    let(:set_list) { create(:set_list) }
+    let(:chord_sheet1) { create(:chord_sheet, set_lists: [set_list]) }
+
+    it "updates the position of the given ChordSheetsSetList based on the position of the array" do
+      record1 = ChordSheetsSetList.create(chord_sheet: chord_sheet1, set_list:, position: 1)
+      record2 = ChordSheetsSetList.create(chord_sheet: chord_sheet1, set_list:, position: 2)
+      record3 = ChordSheetsSetList.create(chord_sheet: chord_sheet1, set_list:, position: 3)
+
+      patch reorder_set_list_path(set_list, params: { new_order: [record2.id, record3.id, record1.id] })
+      expect([record2, record3, record1].each(&:reload).map(&:position)).to eq [1, 2, 3]
     end
   end
 end
