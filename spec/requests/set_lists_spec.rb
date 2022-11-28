@@ -121,7 +121,7 @@ describe "Set lists" do
     end
   end
 
-  describe "PATCH reoder" do
+  describe "PATCH reorder" do
     let(:set_list) { create(:set_list) }
     let(:chord_sheet1) { create(:chord_sheet, set_lists: [set_list]) }
 
@@ -130,7 +130,7 @@ describe "Set lists" do
       record2 = ChordSheetsSetList.create(chord_sheet: chord_sheet1, set_list:, position: 2)
       record3 = ChordSheetsSetList.create(chord_sheet: chord_sheet1, set_list:, position: 3)
 
-      patch reorder_set_list_path(set_list, params: { new_order: [record2.id, record3.id, record1.id] })
+      patch reorder_set_list_path(set_list, params: { new_order: "#{record2.id},#{record3.id},#{record1.id}" })
       expect([record2, record3, record1].each(&:reload).map(&:position)).to eq [1, 2, 3]
     end
   end

@@ -35,14 +35,17 @@
             i No remaining chord sheets
 
   .column#set-list-chord-sheets
-    .is-flex.is-flex-wrap-wrap.is-justify-content-center[data-controller="sortable"
-                                                         data-sortable-url-value="#{reorder_set_list_path}"]
-      - @set_list.chord_sheets.order("chord_sheets_set_lists.position").each do |chord_sheet|
+    .is-flex.is-flex-wrap-wrap.is-justify-content-center[
+      data-controller="sortable" data-sortable-url-value="#{reorder_set_list_path}"
+    ]
+      - @set_list_chord_sheets.each do |chord_sheet|
+        - join_record = chord_sheet.chord_sheets_set_list.find_by(set_list: @set_list)
+
         .m-3 style="min-width: 30%" data-search-target="searchable"
-          .is-flex.chord-sheet-card data-id="#{chord_sheet.chord_sheets_set_list.find_by(set_list: @set_list).id}"
+          .is-flex.chord-sheet-card data-id="#{join_record.id}"
             .card-sidebar.handle id="#{chord_sheet.id}"
               p.is-size-3.has-text-centered data-sortable-target="position"
-                = chord_sheet.chord_sheets_set_list.find_by(set_list: @set_list).position
+                = join_record.position
               i.fas.fa-up-down-left-right.fa-2x
 
             .card
