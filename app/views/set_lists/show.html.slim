@@ -35,12 +35,12 @@
             i No remaining chord sheets
 
   .column#set-list-chord-sheets
-    .is-flex.is-flex-wrap-wrap.is-justify-content-center
+    .is-flex.is-flex-wrap-wrap.is-justify-content-center data-controller="sortable" data-sortable-value="#{reorder_set_list_path}"
       - @set_list.chord_sheets.each do |chord_sheet|
         .m-3 style="min-width: 30%" data-search-target="searchable"
-          .is-flex
-            .card-sidebar
-              p.is-size-3.has-text-centered
+          .is-flex.chord-sheet-card data-id="#{chord_sheet.chord_sheets_set_list.find_by(set_list: @set_list).id}"
+            .card-sidebar.handle
+              p.is-size-3.has-text-centered data-sortable-target="position"
                 = chord_sheet.chord_sheets_set_list.find_by(set_list: @set_list).order
               i.fas.fa-up-down-left-right.fa-2x
 

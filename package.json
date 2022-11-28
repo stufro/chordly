@@ -12,6 +12,7 @@
     "local-time": "^2.1.0",
     "puppeteer": "^18.0.5",
     "sass": "^1.52.1",
+    "sortablejs": "^1.15.0",
     "stimulus-clipboard": "^3.2.0"
   },
   "scripts": {
