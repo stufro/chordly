@@ -22,6 +22,7 @@
     "cy:run": "cypress run --project ./spec"
   },
   "devDependencies": {
+    "@4tw/cypress-drag-drop": "^2.2.2",
     "cypress": "^10.9.0"
   }
 }

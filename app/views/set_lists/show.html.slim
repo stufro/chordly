@@ -40,7 +40,7 @@
       - @set_list.chord_sheets.order("chord_sheets_set_lists.position").each do |chord_sheet|
         .m-3 style="min-width: 30%" data-search-target="searchable"
           .is-flex.chord-sheet-card data-id="#{chord_sheet.chord_sheets_set_list.find_by(set_list: @set_list).id}"
-            .card-sidebar.handle
+            .card-sidebar.handle id="#{chord_sheet.id}"
               p.is-size-3.has-text-centered data-sortable-target="position"
                 = chord_sheet.chord_sheets_set_list.find_by(set_list: @set_list).position
               i.fas.fa-up-down-left-right.fa-2x

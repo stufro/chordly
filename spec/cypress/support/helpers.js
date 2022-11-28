@@ -6,9 +6,9 @@ export function visitChordSheet() {
   })
 }
 
-export function createChordSheet() {
+export function createChordSheet(attrs) {
   return cy.appFactories([
-    ["create", "chord_sheet"]
+    ["create", "chord_sheet", attrs]
   ]).then((records) => {
     return records[0]
   })
