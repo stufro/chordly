@@ -3,7 +3,7 @@ class ChordSheetsController < ApplicationController
   before_action :authorize_user, only: %i[show transpose update destroy]
 
   def index
-    @chord_sheets = ChordSheet.not_deleted.for_user(current_user).order(build_order_query)
+    @chord_sheets = current_user.chord_sheets.not_deleted.order(build_order_query)
     @set_lists = current_user.set_lists.not_deleted
   end
 

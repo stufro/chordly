@@ -3,7 +3,6 @@ class ChordSheet < ApplicationRecord
   has_many :chord_sheets_set_list, dependent: :destroy
   has_many :set_lists, through: :chord_sheets_set_list
 
-  scope :for_user, ->(user) { where(user:) }
   scope :not_deleted, -> { where(deleted: [false, nil]) }
 
   def transpose(direction)

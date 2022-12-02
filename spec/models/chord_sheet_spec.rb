@@ -1,16 +1,6 @@
 require "rails_helper"
 
 describe ChordSheet do
-  describe ".for_user" do
-    it "returns the sheets which belong to the given user" do
-      create(:chord_sheet)
-      user = create(:user, email: "b@b.com")
-      wanted_sheet = create(:chord_sheet, user:)
-
-      expect(described_class.for_user(user)).to eq [wanted_sheet]
-    end
-  end
-
   describe ".not_deleted" do
     it "returns chord sheets which aren't deleted" do
       create(:chord_sheet, deleted: true)

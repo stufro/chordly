@@ -28,7 +28,7 @@
   - [x] Set lists CRUD
   - [x] Delete chord sheets
   - [x] Drag'n'drop chord sheets to reorder
-  - [ ] hide deleted sheets from set list show (& remove from set list once deleted)
+  - [x] hide deleted sheets from set list show (& remove from set list once deleted)
   - [ ] show 2 tabs on available chord sheets: recent & A-Z
   - [ ] Add chord sheet to set list from chord sheet show
   - [ ] Authentication
