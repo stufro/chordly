@@ -38,24 +38,6 @@ describe("Set list CRUD", () => {
     cy.contains("Set Lists")
     cy.contains("My amazing set").should("not.exist")
   })
-
-  it("allows the user to reorder the chord sheets", () => {
-    helper.createChordSheet({name: "1st chord sheet"}).then((chordSheet1) => {
-      helper.createChordSheet({name: "2nd chord sheet"}).then((chordSheet2) => {
-        helper.createSetList([chordSheet1.id, chordSheet2.id]).then((setList) => {
-          cy.visit("/chord_sheets")
-          cy.contains(setList.name).click()
-
-          cy.get(`#${chordSheet1.id}`).drag(`#${chordSheet2.id}`)
-          cy.get(`#${chordSheet1.id}`).contains("2")
-
-          cy.reload()
-          cy.get(`#${chordSheet1.id}`).contains("2")
-          cy.get(`#${chordSheet2.id}`).contains("1")
-        })
-      })
-    })
-  })
 })
 
 
@@ -67,16 +49,6 @@ describe("Building a set list of chord sheets", () => {
 
   afterEach(() => {
     cy.app("clean")
-  })
-
-  it("shows chord sheets which belong to the set list", () => {
-    helper.createChordSheet().then((chordSheet) => {
-      helper.createSetList([chordSheet.id]).then((setList) => {
-        cy.visit("/chord_sheets")
-        cy.contains(setList.name).click()
-        cy.contains(chordSheet.name)
-      })
-    })
   })
 
   it("allows chord sheets to be added to the set list", () => {
@@ -97,6 +69,24 @@ describe("Building a set list of chord sheets", () => {
 
       cy.get("#available-chord-sheets").within(() => {
         cy.contains(chordSheet.name)
+      })
+    })
+  })
+
+  it("allows the user to reorder the chord sheets", () => {
+    helper.createChordSheet({name: "1st chord sheet"}).then((chordSheet1) => {
+      helper.createChordSheet({name: "2nd chord sheet"}).then((chordSheet2) => {
+        helper.createSetList([chordSheet1.id, chordSheet2.id]).then((setList) => {
+          cy.visit("/chord_sheets")
+          cy.contains(setList.name).click()
+
+          cy.get(`#${chordSheet1.id}`).drag(`#${chordSheet2.id}`)
+          cy.get(`#${chordSheet1.id}`).contains("2")
+
+          cy.reload()
+          cy.get(`#${chordSheet1.id}`).contains("2")
+          cy.get(`#${chordSheet2.id}`).contains("1")
+        })
       })
     })
   })

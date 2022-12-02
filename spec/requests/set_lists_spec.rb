@@ -5,6 +5,25 @@ describe "Set lists" do
 
   before { sign_in user }
 
+  describe "GET /sets_lists/:id" do
+    let(:set_list) { create(:set_list, chord_sheets: [chord_sheet]) }
+    let(:chord_sheet) { create(:chord_sheet) }
+
+    context "when fetching available chord sheets" do
+      it "assigns chord sheets which aren't already in the set list" do
+        other_chord_sheet = create(:chord_sheet)
+        get set_list_path(set_list)
+        expect(assigns(:available_chord_sheets)).to eq [other_chord_sheet]
+      end
+
+      it "excludes deleted sheets" do
+        create(:chord_sheet, deleted: true)
+        get set_list_path(set_list)
+        expect(assigns(:available_chord_sheets)).to eq []
+      end
+    end
+  end
+
   describe "POST /set_lists" do
     context "when the set list creates successfully" do
       it "redirects to the set list" do

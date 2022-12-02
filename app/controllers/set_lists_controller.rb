@@ -1,7 +1,7 @@
 class SetListsController < ApplicationController
   def show
     @set_list = SetList.find(params[:id])
-    @available_chord_sheets = current_user.chord_sheets - @set_list.chord_sheets
+    @available_chord_sheets = current_user.chord_sheets.not_deleted - @set_list.chord_sheets
     @set_list_chord_sheets = @set_list.chord_sheets.order("chord_sheets_set_lists.position")
   end
 
