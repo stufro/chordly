@@ -15,7 +15,8 @@ class SetListsController < ApplicationController
     if @set_list.save
       redirect_to set_list_path(@set_list)
     else
-      render :new
+      flash.now[:alert] = "Failed to create set list: #{@set_list.errors.full_messages.join(', ')}"
+      respond_to { |format| format.turbo_stream }
     end
   end
 
