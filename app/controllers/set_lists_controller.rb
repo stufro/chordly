@@ -1,6 +1,7 @@
 class SetListsController < ApplicationController
+  before_action :authorize_user, only: %i[show update destroy add_chord_sheet remove_chord_sheet]
+
   def show
-    @set_list = SetList.find(params[:id])
     @available_chord_sheets = current_user.chord_sheets.not_deleted - @set_list.chord_sheets
     @set_list_chord_sheets = @set_list.chord_sheets.order("chord_sheets_set_lists.position")
   end
@@ -19,7 +20,6 @@ class SetListsController < ApplicationController
   end
 
   def update
-    @set_list = SetList.find(params[:id])
     if @set_list.update(set_list_params)
       flash.now[:notice] = "Changes saved"
     else
@@ -28,26 +28,23 @@ class SetListsController < ApplicationController
   end
 
   def destroy
-    @set_list = SetList.find(params[:id])
     @set_list.update(deleted: true)
     flash[:notice] = "Set list deleted"
     redirect_to chord_sheets_path
   end
 
   def add_chord_sheet
-    set_list = SetList.find(params[:id])
     chord_sheet = ChordSheet.find(params[:chord_sheet_id])
-    ChordSheetsSetList.create(chord_sheet:, set_list:, position: set_list.next_position)
+    ChordSheetsSetList.create(chord_sheet:, set_list: @set_list, position: @set_list.next_position)
 
-    redirect_to(set_list)
+    redirect_to(@set_list)
   end
 
   def remove_chord_sheet
-    set_list = SetList.find(params[:id])
-    set_list.chord_sheets.delete(params[:chord_sheet_id])
-    set_list.refresh_positions
+    @set_list.chord_sheets.delete(params[:chord_sheet_id])
+    @set_list.refresh_positions
 
-    redirect_to(set_list)
+    redirect_to(@set_list)
   end
 
   def reorder
@@ -62,5 +59,10 @@ class SetListsController < ApplicationController
     params.require(:set_list).permit(:name).tap do |p|
       p[:user] = current_user
     end
+  end
+
+  def authorize_user
+    @set_list = SetList.find(params[:id])
+    authorize(@set_list)
   end
 end

@@ -88,8 +88,8 @@ describe("Set list library", () => {
       cy.appFactories([["create", "set_list", { name: "Another users set", user_id: users[0].id }]]).then((setLists) => {
         cy.visit(`/set_lists/${setLists[0].id}`)
 
-        cy.contains("Another users sheet").should("not.exist")
-        cy.contains("You are not authorized to view this Chord Sheet")
+        cy.contains("Another users set").should("not.exist")
+        cy.contains("You are not authorized to view this Set List")
       })
     })
   })

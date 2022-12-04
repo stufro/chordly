@@ -11,7 +11,7 @@
         i.fas.fa-2x.fa-close
     - new_order = params[:set_list_order] == "asc" ? :desc : :asc
     - icon_class = params[:set_list_order] == "desc" ? "fa-arrow-down-a-z" : "fa-arrow-up-a-z"
-    = link_to chord_sheets_path(set_list_order: new_order),
+    = link_to chord_sheets_path(params.permit!.merge(set_list_order: new_order)),
       class: "icon is-large sort-by-icon #{'is-active' if params[:set_list_order].present?}",
       id: "sort-set-lists", "aria-label" => "Sort set lists alphabetically" do
       i.fas.fa-2x class="#{icon_class}"

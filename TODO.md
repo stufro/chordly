@@ -9,6 +9,9 @@
 - [ ] Better formatting for PDFs (page breaks etc.)
   - [ ] Option to print PDF with content in 1 column or 2
   - [ ] Export set list as separate PDFs
+- [ ] Set list enhancements
+  - [ ] Show 2 tabs on available chord sheets: recent & A-Z
+  - [ ] Add chord sheet to set list from chord sheet show
 
 ---
 
@@ -29,11 +32,9 @@
   - [x] Delete chord sheets
   - [x] Drag'n'drop chord sheets to reorder
   - [x] hide deleted sheets from set list show (& remove from set list once deleted)
-  - [ ] show 2 tabs on available chord sheets: recent & A-Z
-  - [ ] Add chord sheet to set list from chord sheet show
-  - [ ] Authentication
-  - [ ] Fix show more button on set lists
-  - [ ] Fix JS errors with show more stimulus controller
+  - [x] Authentication
+  - [x] Fix show more button on set lists
+  - [x] Fix JS errors with show more stimulus controller
   - [ ] Export entire set to PDF
 - [ ] Chord sheet validations
 
