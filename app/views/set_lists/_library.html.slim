@@ -8,3 +8,17 @@
   .is-flex.is-flex-wrap-wrap.is-justify-content-center.see-more-container[
     data-show-more-target="container"]
     = render(set_lists)
+
+  .is-flex.is-justify-content-center
+    button.button.is-primary data-action="show-more#toggle" data-show-more-target="showMoreButton"
+      span.icon-text.is-flex-wrap-nowrap
+        span.icon
+          i.fas.fa-arrow-down
+        span Show All
+
+    button.button.is-primary.is-hidden[data-action="show-more#toggle"
+                                       data-show-more-target="showFewerButton"]
+      span.icon-text.is-flex-wrap-nowrap
+        span.icon
+          i.fas.fa-arrow-up
+        span Show Fewer
