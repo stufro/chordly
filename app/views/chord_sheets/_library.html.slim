@@ -5,14 +5,14 @@
             placeholder="Search for a chord sheet" data-search-target="input"
             data-action="search#search"]
 
-    - if params[:order].present?
+    - if params[:chord_sheet_order].present?
       = link_to chord_sheets_path, class: "icon is-large sort-by-icon",
           "aria-label" => "Reset search and sorting" do
         i.fas.fa-2x.fa-close
-    - new_order = params[:order] == "asc" ? :desc : :asc
-    - icon_class = params[:order] == "desc" ? "fa-arrow-down-a-z" : "fa-arrow-up-a-z"
-    = link_to chord_sheets_path(order: new_order),
-      class: "icon is-large sort-by-icon #{'is-active' if params[:order].present?}",
+    - new_order = params[:chord_sheet_order] == "asc" ? :desc : :asc
+    - icon_class = params[:chord_sheet_order] == "desc" ? "fa-arrow-down-a-z" : "fa-arrow-up-a-z"
+    = link_to chord_sheets_path(chord_sheet_order: new_order),
+      class: "icon is-large sort-by-icon #{'is-active' if params[:chord_sheet_order].present?}",
       id: "sort-chord-sheets", "aria-label" => "Sort chord sheets alphabetically" do
       i.fas.fa-2x class="#{icon_class}"
 

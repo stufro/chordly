@@ -5,7 +5,18 @@
             placeholder="Search for a set list" data-search-target="input"
             data-action="search#search"]
 
-  .is-flex.is-flex-wrap-wrap.is-justify-content-center.see-more-container[
+    - if params[:set_list_order].present?
+      = link_to chord_sheets_path, class: "icon is-large sort-by-icon",
+          "aria-label" => "Reset search and sorting" do
+        i.fas.fa-2x.fa-close
+    - new_order = params[:set_list_order] == "asc" ? :desc : :asc
+    - icon_class = params[:set_list_order] == "desc" ? "fa-arrow-down-a-z" : "fa-arrow-up-a-z"
+    = link_to chord_sheets_path(set_list_order: new_order),
+      class: "icon is-large sort-by-icon #{'is-active' if params[:set_list_order].present?}",
+      id: "sort-set-lists", "aria-label" => "Sort set lists alphabetically" do
+      i.fas.fa-2x class="#{icon_class}"
+
+  .is-flex.is-flex-wrap-wrap.is-justify-content-center.see-more-container#set-lists-container[
     data-show-more-target="container"]
     = render(set_lists)
 

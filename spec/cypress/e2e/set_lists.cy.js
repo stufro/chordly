@@ -40,6 +40,60 @@ describe("Set list CRUD", () => {
   })
 })
 
+describe("Set list library", () => {
+  beforeEach(() => {
+    cy.appEval('Flipper.enable :set_lists')
+    cy.login()
+
+    cy.appFactories([
+      ["create", "set_list", { name: "Friday Night" }],
+      ["create", "set_list", { name: "Open Mic Night" }],
+      ["create", "set_list", { name: "Afternoon Gig" }],
+    ])
+  })
+
+  afterEach(() => {
+    cy.app("clean")
+  })
+
+  it("allows you to sort the chord sheets by name", () => {
+    cy.visit("/chord_sheets")
+    cy.get("#sort-set-lists").click()
+
+    cy.get("#set-lists-container").within(() => {
+      cy.get("p.title")
+        .then(($elems) => { return Cypress._.map($elems, "innerText") })
+        .should("deep.equal", ["Afternoon Gig", "Friday Night", "Open Mic Night"])
+    })
+
+    cy.get("#sort-set-lists").click()
+    cy.get("#set-lists-container").within(() => {
+      cy.get("p.title")
+        .then(($elems) => { return Cypress._.map($elems, "innerText") })
+        .should("deep.equal", ["Open Mic Night", "Friday Night", "Afternoon Gig"])
+    })
+  })
+
+  it("only shows you chord sheets which you own", () => {
+    cy.appFactories([["create", "user", { email: "other@user.com" }]]).then((records) => {
+      cy.appFactories([["create", "set_list", { name: "Another users sheet", user_id: records[0].id }]])
+    })
+
+    cy.visit("/chord_sheets")
+    cy.contains("Another users sheet").should("not.exist")
+  })
+
+  it("won't let you directly visit another users chord sheet", () => {
+    cy.appFactories([["create", "user", { email: "other@user.com" }]]).then((users) => {
+      cy.appFactories([["create", "set_list", { name: "Another users set", user_id: users[0].id }]]).then((setLists) => {
+        cy.visit(`/set_lists/${setLists[0].id}`)
+
+        cy.contains("Another users sheet").should("not.exist")
+        cy.contains("You are not authorized to view this Chord Sheet")
+      })
+    })
+  })
+})
 
 describe("Building a set list of chord sheets", () => {
   beforeEach(() => {

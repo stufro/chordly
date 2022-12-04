@@ -3,8 +3,8 @@ class ChordSheetsController < ApplicationController
   before_action :authorize_user, only: %i[show transpose update destroy]
 
   def index
-    @chord_sheets = current_user.chord_sheets.not_deleted.order(build_order_query)
-    @set_lists = current_user.set_lists.not_deleted
+    @chord_sheets = current_user.chord_sheets.not_deleted.order(build_order_query(:chord_sheet))
+    @set_lists = current_user.set_lists.not_deleted.order(build_order_query(:set_list))
   end
 
   def show
@@ -60,10 +60,10 @@ class ChordSheetsController < ApplicationController
     end
   end
 
-  def build_order_query
-    return { created_at: :desc } unless params[:order]
+  def build_order_query(resource)
+    return { created_at: :desc } unless params["#{resource}_order"]
 
-    { name: params[:order] }
+    { name: params["#{resource}_order"] }
   end
 
   def authorize_user
