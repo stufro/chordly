@@ -36,7 +36,7 @@
   - [x] Fix show more button on set lists
   - [x] Fix JS errors with show more stimulus controller
   - [ ] Export entire set to PDF
-- [ ] Chord sheet validations
+- [x] Chord sheet validations
 
 ---
 ## v0.2.0

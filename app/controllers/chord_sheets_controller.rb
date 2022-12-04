@@ -1,6 +1,7 @@
 class ChordSheetsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[create show transpose update]
   before_action :authorize_user, only: %i[show transpose update destroy]
+  before_action :adjust_new_lines, only: %i[create]
 
   def index
     @chord_sheets = current_user.chord_sheets.not_deleted.order(build_order_query(:chord_sheet))
@@ -22,13 +23,11 @@ class ChordSheetsController < ApplicationController
   end
 
   def create
-    params[:chord_sheet][:content] = params[:chord_sheet][:content].gsub("\n", "\r\n")
     @chord_sheet = ChordSheet.new(chord_sheet_params)
     if @chord_sheet.save
       redirect_to @chord_sheet
     else
-      flash.now[:alert] = "Something went wrong creating your chord sheet, if this persists " \
-                          "please contact support"
+      flash.now[:alert] = "Failed to create chord sheet: #{@chord_sheet.errors.full_messages.join(', ')}"
       respond_to { |format| format.turbo_stream }
     end
   end
@@ -41,7 +40,7 @@ class ChordSheetsController < ApplicationController
     if @chord_sheet.update(chord_sheet_params)
       flash.now[:notice] = "Changes saved"
     else
-      flash.now[:alert] = "Failed to update chord sheet"
+      flash.now[:alert] = "Failed to update chord sheet: #{@chord_sheet.errors.full_messages.join(', ')}"
     end
   end
 
@@ -58,6 +57,10 @@ class ChordSheetsController < ApplicationController
       p[:content] = ChordSheetModeller.new(p[:content]).parse if p[:content]
       p[:user] = current_user
     end
+  end
+
+  def adjust_new_lines
+    params[:chord_sheet][:content] = params[:chord_sheet][:content].gsub("\n", "\r\n")
   end
 
   def build_order_query(resource)

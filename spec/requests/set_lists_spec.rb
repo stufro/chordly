@@ -42,9 +42,9 @@ describe "Set lists" do
     end
 
     context "when the set list fails to create" do
-      it "renders the new page" do
-        post "/set_lists", params: { set_list: { name: "" } }
-        expect(response).to render_template(:new)
+      it "sets a flash message" do
+        post "/set_lists.turbo_stream", params: { set_list: { name: "" } }
+        expect(flash[:alert]).to eq "Failed to create set list: Name can't be blank"
       end
     end
   end
