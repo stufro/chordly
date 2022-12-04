@@ -14,9 +14,9 @@ div data-controller="fade-in"
         = link_to "Get Started", get_started_path, class: "button is-light"
 
       .container.has-text-centered.mt-5.fadeable
-        = video_tag ["chordly_features.webm", "chordly_features.mp4"], class: "hero-image",
+        = video_tag "chordly_features.webm", class: "hero-image",
           autoplay: true, loop: :loop, playsinline: true, muted: true, "webkit-playsinline": true,
-          preload: "auto", poster: asset_url("chordly_features_still.png")
+          preload: "auto", poster: asset_url("chordly_features_still.webp")
 
   .hero.is-medium
     .hero-body
@@ -47,4 +47,5 @@ div data-controller="fade-in"
 
       .container.has-text-centered.mt-5.fadeable
         = image_tag "pdf_screenshot.webp", class: "hero-image",
-          alt: "Screenshot of PDF chord sheet exported from Chordly"
+          alt: "Screenshot of PDF chord sheet exported from Chordly",
+          width: 640, height: 360
