@@ -57,7 +57,7 @@ describe("Creating/editing a chord sheet", () => {
     })
   })
 
-  it.only("allows the user to download as PDF", () => {
+  it("allows the user to download as PDF", () => {
     helper.visitChordSheet();
 
     cy.intercept({

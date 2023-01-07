@@ -52,8 +52,8 @@ div[data-controller="clipboard"
             span.has-text-primary Actions:
           .level-item.mt-2
             = button_to(chord_sheet_path(@chord_sheet), class: "button is-danger is-rounded mr-2",
-                id: "delete-chord-sheet", data: { "turbo" => false }, method: :delete,
-                title: "Delete chord sheet")
+                id: "delete-chord-sheet", form: { data: { turbo_confirm: "Are you sure?" } },
+                method: :delete, title: "Delete chord sheet")
               span.icon
                 i.fas.fa-trash
             = button_to "#", class: "button is-rounded is-info mr-2", id: "copy-to-clipboard",

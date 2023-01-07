@@ -15,16 +15,23 @@
           i.fas.fa-book-bookmark
         span Back to library
 
-    = button_to(set_list_path(@set_list), class: "button is-danger",
-        id: "delete-set-list", data: { "turbo" => false }, method: :delete,
-        title: "Delete Set List")
+    = button_to set_list_path(@set_list, format: :pdf),
+              class: "button is-info mr-2",
+              method: :get, title: "Download PDF"
+              span.icon
+                i.fas.fa-download
+              span Download
+
+    = button_to set_list_path(@set_list), class: "button is-danger",
+        id: "delete-set-list", form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete,
+        title: "Delete Set List"
       span.icon
         i.fas.fa-trash
       span Delete Set List
 
 .columns
   .column.is-one-quarter#available-chord-sheets style="border-right: 1px #C7C7CC solid"
-    .card style="max-height: 80vh"
+    .card style="max-height: 80vh; overflow-y: scroll"
       .card-header.has-background-primary
         h2.card-header-title.has-text-light My Chord Sheets
 
