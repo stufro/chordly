@@ -36,6 +36,7 @@
 /node_modules
 /spec/cypress/videos
 /spec/cypress/screenshots
+/spec/cypress/downloads
 
 /config/credentials/production.key
 

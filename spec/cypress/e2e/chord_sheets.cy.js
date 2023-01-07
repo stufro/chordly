@@ -51,9 +51,29 @@ describe("Creating/editing a chord sheet", () => {
     cy.get("#copy-to-clipboard").click().then(() => {
       cy.window().then((win) => {
         win.navigator.clipboard.readText().then((text) => {
-        expect(text).to.eq("G   Am    D\nMy great lyrics");
+          expect(text).to.eq("G   Am    D\nMy great lyrics");
         });
       });
+    })
+  })
+
+  it.only("allows the user to download as PDF", () => {
+    helper.visitChordSheet();
+
+    cy.intercept({
+      pathname: '/chord_sheets/*.pdf',
+    }, (req) => {
+      req.redirect('/')
+    }).as('file')
+
+    cy.get("#export").click()
+
+    cy.wait('@file').its('request').then((req) => {
+      cy.request(req)
+      .then(({ body, headers }) => {
+        expect(headers["content-type"]).to.eq("application/pdf")
+        expect(headers["content-disposition"]).to.include('filename="My amazing song.pdf"')
+      })
     })
   })
 })
