@@ -2,8 +2,16 @@ class SetListsController < ApplicationController
   before_action :authorize_user, only: %i[show update destroy add_chord_sheet remove_chord_sheet]
 
   def show
-    @available_chord_sheets = current_user.chord_sheets.not_deleted - @set_list.chord_sheets
-    @set_list_chord_sheets = @set_list.chord_sheets.order("chord_sheets_set_lists.position")
+    respond_to do |format|
+      format.html do
+        @available_chord_sheets = current_user.chord_sheets.not_deleted - @set_list.chord_sheets
+        @set_list_chord_sheets = @set_list.chord_sheets.order("chord_sheets_set_lists.position")
+      end
+
+      format.pdf do
+        send_data SetListExporter.new(@set_list).to_zip, filename: "#{@set_list.name}.zip", type: "application/zip"
+      end
+    end
   end
 
   def new

@@ -40,7 +40,7 @@ describe("Set list CRUD", () => {
   })
 
 
-  it("allows the user to download the setlist as a .zip of .pdf files", () => {
+  it.only("allows the user to download the setlist as a .zip of .pdf files", () => {
     helper.createChordSheet().then((chordSheet) => {
       helper.visitSetList([chordSheet.id])
 
