@@ -15,12 +15,23 @@
           i.fas.fa-book-bookmark
         span Back to library
 
-    = button_to set_list_path(@set_list, format: :pdf),
-              class: "button is-info mr-2",
+    .dropdown.is-hoverable
+      .dropdown-trigger
+        button.button.is-info.mr-2 aria-haspopup="true" aria-controls="download-menu"
+          span.icon
+            i.fas.fa-download
+          span Download
+          span.icon.is-small
+            i.fas.fa-angle-down aria-hidden="true"
+      #download-menu.dropdown-menu role="menu"
+        .dropdown-content
+          .dropdown-item
+            = link_to "Separate PDFs", set_list_path(@set_list, format: :pdf),
               method: :get, title: "Download PDF"
-              span.icon
-                i.fas.fa-download
-              span Download
+          .dropdown-item
+            = link_to "All-in-one PDF", set_list_path(@set_list, type: "single_file", format: :pdf),
+              method: :get, title: "Download PDF"
+
 
     = button_to set_list_path(@set_list), class: "button is-danger",
         id: "delete-set-list", form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete,

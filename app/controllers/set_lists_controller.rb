@@ -9,7 +9,7 @@ class SetListsController < ApplicationController
       end
 
       format.pdf do
-        send_data SetListExporter.new(@set_list).to_zip, filename: "#{@set_list.name}.zip", type: "application/zip"
+        download_file(params[:type])
       end
     end
   end
@@ -63,6 +63,12 @@ class SetListsController < ApplicationController
   end
 
   private
+
+  def download_file(type)
+    file_type = type == "single_file" ? "pdf" : "zip"
+    send_data SetListExporter.new(@set_list, params[:type]).export, filename: "#{@set_list.name}.#{file_type}",
+                                                                    type: "application/#{file_type}"
+  end
 
   def set_list_params
     params.require(:set_list).permit(:name).tap do |p|

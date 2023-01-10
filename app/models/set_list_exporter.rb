@@ -1,8 +1,20 @@
 require "zip"
 
 class SetListExporter
-  def initialize(set_list)
+  def initialize(set_list, type)
     @set_list = set_list
+    @type = type
+  end
+
+  def export
+    @type == "single_file" ? to_pdf : to_zip
+  end
+
+  def to_pdf
+    html = ApplicationController.new.render_to_string(
+      template: "set_lists/show", formats: :pdf, layout: "application", assigns: { set_list: @set_list }
+    )
+    Grover.new(html).to_pdf
   end
 
   def to_zip
