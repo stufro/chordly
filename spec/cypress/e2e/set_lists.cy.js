@@ -39,7 +39,6 @@ describe("Set list CRUD", () => {
     cy.contains("My amazing set").should("not.exist")
   })
 
-
   it("allows the user to download the setlist as a .zip of .pdf files", () => {
     helper.createChordSheet().then((chordSheet) => {
       helper.visitSetList([chordSheet.id])
@@ -50,13 +49,35 @@ describe("Set list CRUD", () => {
         req.redirect('/')
       }).as('file')
 
-      cy.contains("Download").click()
+      cy.contains("Separate PDFs").click({force: true})
 
       cy.wait('@file').its('request').then((req) => {
         cy.request(req)
         .then(({ body, headers }) => {
           expect(headers["content-type"]).to.eq("application/zip")
           expect(headers["content-disposition"]).to.include('filename="My amazing set.zip"')
+        })
+      })
+    })
+  })
+
+  it("allows the user to download the setlist as a single .pdf file", () => {
+    helper.createChordSheet().then((chordSheet) => {
+      helper.visitSetList([chordSheet.id])
+
+      cy.intercept({
+        pathname: '/set_lists/*.pdf',
+      }, (req) => {
+        req.redirect('/')
+      }).as('file')
+
+      cy.contains("All-in-one PDF").click({force: true})
+
+      cy.wait('@file').its('request').then((req) => {
+        cy.request(req)
+        .then(({ body, headers }) => {
+          expect(headers["content-type"]).to.eq("application/pdf")
+          expect(headers["content-disposition"]).to.include('filename="My amazing set.pdf"')
         })
       })
     })

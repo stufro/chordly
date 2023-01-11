@@ -35,7 +35,8 @@
   - [x] Authentication
   - [x] Fix show more button on set lists
   - [x] Fix JS errors with show more stimulus controller
-  - [ ] Export entire set to PDF
+  - [x] Export entire set to PDF
+  - [ ] Searching available chord sheets
 - [x] Chord sheet validations
 
 ---

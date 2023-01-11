@@ -10,6 +10,8 @@ class SetListExporter
     @type == "single_file" ? to_pdf : to_zip
   end
 
+  private
+
   def to_pdf
     html = ApplicationController.new.render_to_string(
       template: "set_lists/show", formats: :pdf, layout: "application", assigns: { set_list: @set_list }
