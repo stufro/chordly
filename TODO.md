@@ -16,18 +16,18 @@
 ---
 
 ## v0.5.0
+- [ ] Styling chord sheets
+
+---
+
+## v0.4.0
 - [ ] Restore deleted chord sheets
 - [ ] Undo changes for chord sheets
 
 ---
 
-## v0.4.0
-- [ ] Styling chord sheets
-
----
-
 ## v0.3.0
-- [ ] Set lists functionality
+- [x] Set lists functionality
   - [x] Set lists CRUD
   - [x] Delete chord sheets
   - [x] Drag'n'drop chord sheets to reorder
@@ -36,7 +36,7 @@
   - [x] Fix show more button on set lists
   - [x] Fix JS errors with show more stimulus controller
   - [x] Export entire set to PDF
-  - [ ] Searching available chord sheets
+  - [x] Searching available chord sheets
 - [x] Chord sheet validations
 
 ---

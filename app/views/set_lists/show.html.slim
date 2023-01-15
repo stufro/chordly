@@ -32,10 +32,9 @@
             = link_to "All-in-one PDF", set_list_path(@set_list, type: "single_file", format: :pdf),
               method: :get, title: "Download PDF"
 
-
     = button_to set_list_path(@set_list), class: "button is-danger",
-        id: "delete-set-list", form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete,
-        title: "Delete Set List"
+      id: "delete-set-list", form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete,
+      title: "Delete Set List"
       span.icon
         i.fas.fa-trash
       span Delete Set List
@@ -46,10 +45,12 @@
       .card-header.has-background-primary
         h2.card-header-title.has-text-light My Chord Sheets
 
-      .card-body
+      .card-body data-controller="search"
         - if @available_chord_sheets.present?
+          input.input[style="border: 0" data-search-target="input" data-action="search#search"
+                      type="text" placeholder="Search for a chord sheet"]
           - @available_chord_sheets.sort_by(&:name).each do |chord_sheet|
-            .is-flex.is-justify-content-space-between.is-align-items-center.p-3
+            .available-chord-sheet.p-3 data-search-target="searchable"
               p.title.is-5.mb-0 = chord_sheet.name
               = button_to add_chord_sheet_set_list_path(@set_list, chord_sheet_id: chord_sheet.id),
                 class: "button is-success", id: "add-chord-sheet-#{chord_sheet.id}",
