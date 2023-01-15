@@ -8,16 +8,16 @@
     span.icon.is-medium.mb-5.ml-3.edit-icon
       i.far.fa-edit.fa-2x
 
-  .is-flex.mb-2
+  .is-flex.mb-2.is-flex-wrap-wrap.is-justify-content-center style="gap: 10px"
     - if user_signed_in?
-      = link_to chord_sheets_path, class: "button is-primary mr-1 is-hidden-desktop" do
+      = link_to chord_sheets_path, class: "button is-primary is-hidden-desktop" do
         span.icon
           i.fas.fa-book-bookmark
         span Back to library
 
     .dropdown.is-hoverable
       .dropdown-trigger
-        button.button.is-info.mr-2 aria-haspopup="true" aria-controls="download-menu"
+        button.button.is-info aria-haspopup="true" aria-controls="download-menu"
           span.icon
             i.fas.fa-download
           span Download
