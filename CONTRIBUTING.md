@@ -50,3 +50,10 @@ rake
 ```bash
 ./bin/rails db:seed
 ```
+
+## Deploying
+```
+semver inc [major|minor|patch]
+git tag `semver`
+git push origin main --tags
+```
