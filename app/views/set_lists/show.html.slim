@@ -75,16 +75,18 @@
                 = join_record.position
               i.fas.fa-up-down-left-right.fa-2x
 
-            .card
-              .card-content
-                .level.is-mobile.has-text-centered.is-justify-content-space-around
-                  span.icon.has-text-primary.is-large.mr-2
-                    i.fas.fa-music.fa-3x
-                  div
-                    p.title.is-4 = chord_sheet.name
-                    = button_to remove_chord_sheet_set_list_path(@set_list,
-                                                                chord_sheet_id: chord_sheet.id),
-                      class: "button is-danger is-light",
-                      id: "remove-chord-sheet-#{chord_sheet.id}", method: :put do
-                      span.icon
-                        i.fas.fa-minus
+            = link_to chord_sheet do
+              .card data-controller="set_lists"
+                .card-content
+                  .level.is-mobile.has-text-centered.is-justify-content-space-around
+                    span.icon.has-text-primary.is-large.mr-2
+                      i.fas.fa-music.fa-3x
+                    div
+                      p.title.is-4 = chord_sheet.name
+                      = button_to remove_chord_sheet_set_list_path(@set_list,
+                                                                  chord_sheet_id: chord_sheet.id),
+                        class: "button is-danger is-light",
+                        data: { action: "set_lists#stopPropagation" },
+                        id: "remove-chord-sheet-#{chord_sheet.id}", method: :put do
+                        span.icon
+                          i.fas.fa-minus

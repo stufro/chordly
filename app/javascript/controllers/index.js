@@ -27,3 +27,6 @@ application.register("fade-in", FadeInController)
 
 import SortableController from "./sortable_controller"
 application.register("sortable", SortableController)
+
+import SetListsController from "./set_lists_controller"
+application.register("set_lists", SetListsController)
