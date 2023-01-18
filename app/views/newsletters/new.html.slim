@@ -1,2 +1,17 @@
-= form_for :newsletter do |f|
-  = f.rich_text_area :content, class: "input"
+h1.title.is-1 = "Send a Newsletter"
+
+= form_for :newsletter, url: newsletters_path, data: { turbo_confirm: "Are you sure?" } do |f|
+  .field
+    = f.label :subject, "Subject"
+    .control
+      = f.text_field :subject, class: "input"
+
+  .field
+    = f.label :content, "Email Content"
+    .control
+      = f.rich_text_area :content, class: "input"
+
+  .is-flex.is-justify-content-flex-end style="gap: .5rem"
+    = f.submit "Send Preview to Me", name: "preview", class: "button is-success"
+
+    = f.submit "Send to All", class: "button is-warning"

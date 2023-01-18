@@ -12,6 +12,12 @@ class ApplicationController < ActionController::Base
     redirect_to "/", alert: "You are not authorized to view this #{resource.class.name.underscore.titleize}", code: 401
   end
 
+  def authorize_admin
+    return if current_user.admin?
+
+    redirect_to "/", alert: "You are not authorized to view this page"
+  end
+
   private
 
   def trial_user_owns_resource?(resource)
