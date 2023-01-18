@@ -11,6 +11,7 @@
 # All features
 - :notes: Transpose all chords at once
 - :pencil2: Edit chord sheet inline
+- :microphone: Arrange chord sheets into set lists 
 - :page_facing_up: Export chord sheets PDF
 - :book: Store chord sheets in searchable/sortable library
 
