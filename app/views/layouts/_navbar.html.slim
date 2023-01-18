@@ -27,6 +27,11 @@ nav.navbar.is-primary aria-label="main navigation" role="navigation" data-contro
               span.icon
                 i.fas.fa-toggle-off
               span Flipper
+          = link_to new_newsletter_path, class: "navbar-item" do
+            span.icon-text.is-flex-wrap-nowrap
+              span.icon
+                i.fas.fa-envelope
+              span Newsletter
 
         .navbar-item.has-dropdown.is-hoverable
           span.navbar-link

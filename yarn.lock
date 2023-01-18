@@ -72,6 +72,20 @@
   resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-7.0.3.tgz#71f08e958883af64f6a20489318b5e95d2c6dc5b"
   integrity sha512-Iefl21FZD+ck1di6xSHMYzSzRiNJTHV4NrAzCfDfqc/wPz4xncrP8f2/fJ+2jzwKIaDn76UVMsALh7R5OzsF8Q==
 
+"@rails/actiontext@^7.0.4-1":
+  version "7.0.4-1"
+  resolved "https://registry.yarnpkg.com/@rails/actiontext/-/actiontext-7.0.4-1.tgz#f753c4fbcc92359537fc00e8ab70907464b6bb01"
+  integrity sha512-MoHoMX7m+aYB/1q0386a6OF/ErIiIbzK1LTaJ8ki5yxF46nDPFhjmqCjSnkVl5HYLjYHUDd1yWHwPSiMMxKUjQ==
+  dependencies:
+    "@rails/activestorage" ">= 7.0.0-alpha1"
+
+"@rails/activestorage@>= 7.0.0-alpha1":
+  version "7.0.4"
+  resolved "https://registry.yarnpkg.com/@rails/activestorage/-/activestorage-7.0.4.tgz#56bc3052f60e8867b40a87ed5ff3c0afe536643e"
+  integrity sha512-K2fV9C0z88fapu58nt9uHzMylsmJWUFuaIFvuZQEf1WTiPMsgTsj1bf8+cD81zXfTXYMZDQNRq4164JmuBKD3A==
+  dependencies:
+    spark-md5 "^3.0.1"
+
 "@rails/request.js@^0.0.6":
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/@rails/request.js/-/request.js-0.0.6.tgz#5f0347a9f363e50ec45118c7134080490cda81d8"
@@ -1348,6 +1362,11 @@ sortablejs@^1.15.0:
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
   integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
 
+spark-md5@^3.0.1:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/spark-md5/-/spark-md5-3.0.2.tgz#7952c4a30784347abcee73268e473b9c0167e3fc"
+  integrity sha512-wcFzz9cDfbuqe0FZzfi2or1sgyIrsDwmPwfZC4hiNidPdPINjeUwNfv5kldczoEAcjl9Y1L3SM7Uz2PUEQzxQw==
+
 sshpk@^1.14.1:
   version "1.17.0"
   resolved "https://registry.yarnpkg.com/sshpk/-/sshpk-1.17.0.tgz#578082d92d4fe612b13007496e543fa0fbcbe4c5"
@@ -1467,6 +1486,11 @@ tr46@~0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/tr46/-/tr46-0.0.3.tgz#8184fd347dac9cdc185992f3a6622e14b9d9ab6a"
   integrity sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==
+
+trix@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/trix/-/trix-2.0.4.tgz#37ec8092e5d561462cee1d96cc402aa5c5f8c04e"
+  integrity sha512-WOMKqwCVti0i3RVaDrMnrEZWs6XMpFoCfUvFCZNd15KndAy6MsYQscizxEpFiCLUlo+rXMkueK0ldRDo5xpVJA==
 
 tslib@^2.1.0:
   version "2.4.0"

@@ -11,17 +11,11 @@ Rails.application.routes.draw do
     end
   end
 
+  get "/admin", to: "admin#index"
+
   resources :chord_sheets, only: %i[index new create show update destroy] do
     put :transpose, on: :member
   end
-
-  resources :set_lists, only: %i[new create show update destroy] do
-    put :add_chord_sheet, on: :member
-    put :remove_chord_sheet, on: :member
-    patch :reorder, on: :member
-  end
-
-  resource :trial, only: %i[new]
 
   resource :home, only: %i[index], controller: "home" do
     get :roadmap
@@ -30,7 +24,15 @@ Rails.application.routes.draw do
     get :features
   end
 
-  get "/admin", to: "admin#index"
+  resources :newsletters, only: %i[new create]
+
+  resources :set_lists, only: %i[new create show update destroy] do
+    put :add_chord_sheet, on: :member
+    put :remove_chord_sheet, on: :member
+    patch :reorder, on: :member
+  end
+
+  resource :trial, only: %i[new]
 
   constraints FlipperUIAccess do
     mount Flipper::UI.app(Flipper) => "/flipper"
