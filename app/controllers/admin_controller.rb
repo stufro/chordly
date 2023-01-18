@@ -3,6 +3,7 @@ class AdminController < ApplicationController
 
   def index
     @chord_sheets = ChordSheet.all
+    @set_lists = SetList.all
     @users = User.all
   end
 

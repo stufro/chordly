@@ -75,3 +75,40 @@ i Last 10 created chord sheets
           td = local_time(sheet.updated_at)
           td = sheet.trial?
           td = sheet.trial_user_id
+
+hr
+
+h1.title.is-1 Set Lists
+
+.level.is-flex-wrap-wrap.has-text-centered
+  .card.stat-card
+    .card-content
+      h2.subtitle Total Set Lists
+      p.title = @set_lists.count
+  .card.stat-card
+    .card-content
+      h2.subtitle Set Lists Created (Last 7 days)
+      p.title = @set_lists.where("created_at > ?", 7.days.ago).count
+  .card.stat-card
+    .card-content
+      h2.subtitle Set Lists Created (Last 30 days)
+      p.title = @set_lists.where("created_at > ?", 30.days.ago).count
+
+i Last 10 created set lists
+.table-container
+  table.table.is-fullwidth.is-striped
+    thead
+      tr
+        th User
+        th Name
+        th Created at
+        th Updated at
+        th No. Chord Sheets
+    tbody
+      - @set_lists.order(created_at: :desc).limit(10).each do |set|
+        tr
+          td = set.user&.email
+          td = set.name
+          td = local_time(set.created_at)
+          td = local_time(set.updated_at)
+          td = set.chord_sheets.count
