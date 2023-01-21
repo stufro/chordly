@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(_resource)
     chord_sheets_path
@@ -26,5 +27,11 @@ class ApplicationController < ActionController::Base
 
   def user_owns_resource?(resource)
     current_user && resource.user_id == current_user.id
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(
+      :account_update, keys: %i[username password password_confirmation current_password receive_emails]
+    )
   end
 end

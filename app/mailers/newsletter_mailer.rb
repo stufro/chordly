@@ -9,6 +9,6 @@ class NewsletterMailer < ApplicationMailer
   def users
     return [params[:user].email] if params[:user]
 
-    # User.all.map(&:email).compact
+    User.where(receive_emails: true).map(&:email).compact
   end
 end

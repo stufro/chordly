@@ -39,10 +39,17 @@
           span.icon.is-small.is-left
             i.fas.fa-key
 
+      .field.is-flex
+        .control
+          = f.check_box :receive_emails, class: "checkbox mr-2"
+        = f.label :receive_emails, "Are you happy to receive infrequent email updates about Chordly?", class: "label"
+
+      hr
+
       .field
         = f.label :current_password, class: "has-text-weight-semibold"
         i
-          |  (we need your current password to confirm your changes)
+          |  (we need your current password to confirm any changes)
         .control.has-icons-left
           = f.password_field :current_password, autocomplete: "current-password", class: "input"
           span.icon.is-small.is-left
