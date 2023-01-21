@@ -9,7 +9,7 @@ h1.title.is-1 = "Send a Newsletter"
   .field
     = f.label :content, "Email Content"
     .control
-      = f.rich_text_area :content, class: "input"
+      = f.rich_text_area :content
 
   .is-flex.is-justify-content-flex-end style="gap: .5rem"
     = f.submit "Send Preview to Me", name: "preview", class: "button is-success"
