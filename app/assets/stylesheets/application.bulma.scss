@@ -34,6 +34,8 @@ $link: $primary;
 @import "markdown";
 @import "fadeable";
 @import "cookies";
+@import "actiontext";
+@import "trix/dist/trix";
 
 .hero-image {
   max-width: -webkit-fill-available;
