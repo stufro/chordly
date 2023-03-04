@@ -59,3 +59,5 @@ group :development do
   gem "solargraph"
   gem "web-console"
 end
+
+gem "dockerfile-rails", ">= 1.2", :group => :development
