@@ -10,11 +10,11 @@ html lang="en"
     = stylesheet_link_tag "actiontext", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload",
       defer: true
+    - if Rails.env.production?
+      = render("layouts/piwik_analytics")
 
     = render("layouts/favicons")
   body
-    - if Rails.env.production?
-      = render("layouts/piwik_analytics")
 
     = render "layouts/navbar"
     = render("partials/flash")
