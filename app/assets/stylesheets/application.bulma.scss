@@ -75,4 +75,10 @@ $link: $primary;
   max-width: 95%;
   height: 12em
 }
-@import 'actiontext.css';
+
+.tap-target {
+  min-width: 48px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
