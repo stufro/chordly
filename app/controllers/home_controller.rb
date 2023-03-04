@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   skip_before_action :authenticate_user!
+  PERMITTED_ASSET_FRAMES = %w[features_gif pdf_feature_webp].freeze
 
   def index; end
 
@@ -15,4 +16,10 @@ class HomeController < ApplicationController
   def privacy; end
 
   def features; end
+
+  def asset_frame
+    return unless PERMITTED_ASSET_FRAMES.include? params[:asset]
+
+    render "home/asset_frames/#{params[:asset]}", layout: nil
+  end
 end

@@ -13,10 +13,10 @@ div data-controller="fade-in"
 
         = link_to "Get Started", get_started_path, class: "button is-light"
 
-      .container.has-text-centered.mt-5
-        = video_tag "chordly_features.webm", class: "hero-image",
-          autoplay: true, loop: :loop, playsinline: true, muted: true, "webkit-playsinline": true,
-          preload: "auto", poster: asset_url("chordly_features_still.webp")
+      .container.mt-5
+        = turbo_frame_tag "features-gif", src: asset_frame_path(asset: "features_gif"),
+            class: "is-flex is-justify-content-center my-6 py-6" do
+          .hero-image.spinner
 
   .hero.is-medium
     .hero-body
@@ -46,6 +46,6 @@ div data-controller="fade-in"
         = link_to "View All Features", features_home_path, class: "button is-light"
 
       .container.has-text-centered.mt-5.fadeable
-        = image_tag "pdf_screenshot.webp", class: "hero-image",
-          alt: "Screenshot of PDF chord sheet exported from Chordly",
-          width: 640, height: 360
+        = turbo_frame_tag "pdf-feature-webp", src: asset_frame_path(asset: "pdf_feature_webp"),
+            class: "is-flex is-justify-content-center" do
+          .hero-image.spinner

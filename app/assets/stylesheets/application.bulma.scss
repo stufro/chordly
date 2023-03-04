@@ -82,3 +82,16 @@ $link: $primary;
   display: flex;
   align-items: center;
 }
+
+.spinner {
+  width: 5em;
+  height: 5em;
+  border: $grey-lightest solid 5px;
+  border-bottom-color: $grey;
+  border-radius: 50%;
+  animation: spin linear infinite 1s;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg);}
+}
