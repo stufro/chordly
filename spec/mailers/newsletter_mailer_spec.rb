@@ -8,7 +8,7 @@ describe NewsletterMailer do
       user1 = create(:user)
       create(:user, receive_emails: false)
 
-      expect(mail.bcc).to match_array [user1.email]
+      expect(mail.bcc).to contain_exactly(user1.email)
     end
 
     context "when the user param is present" do
@@ -20,7 +20,7 @@ describe NewsletterMailer do
       it "sends an email to the given user" do
         create(:user, receive_emails: true)
 
-        expect(mail.bcc).to match_array [user.email]
+        expect(mail.bcc).to contain_exactly(user.email)
       end
     end
   end

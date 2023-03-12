@@ -7,7 +7,7 @@ describe ChordSheet do
       sheet1 = create(:chord_sheet, deleted: false)
       sheet2 = create(:chord_sheet, deleted: nil)
 
-      expect(described_class.not_deleted).to match_array [sheet1, sheet2]
+      expect(described_class.not_deleted).to contain_exactly(sheet1, sheet2)
     end
   end
 
