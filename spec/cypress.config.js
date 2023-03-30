@@ -5,7 +5,6 @@ module.exports = defineConfig({
     baseUrl: "http://localhost:5017",
     defaultCommandTimeout: 5000,
     viewportHeight: 1080,
-    viewportWidth: 1920,
-    experimentalSessionAndOrigin: true
+    viewportWidth: 1920
   }
 });
