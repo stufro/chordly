@@ -122,7 +122,7 @@ describe("Undoing changes", () => {
     cy.contains("My amazing song")
   })
 
-  it.only("allows the user to restore a previous version", () => {
+  it("allows the user to restore a previous version", () => {
     helper.visitChordSheet()
 
     cy.get("#show-page-title").clear().type("A new chordsheet title")

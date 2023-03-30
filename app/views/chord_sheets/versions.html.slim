@@ -3,11 +3,11 @@
   i Last 10 versions are stored
 
   - @chord_sheet.versions.reverse.each do |version|
-    - next unless version.reify.present?
+    - next if version.reify.blank?
 
     hr
     .version-container
-      div.is-flex.is-justify-content-space-between.is-flex-wrap-wrap style="gap: .5rem"
+      .is-flex.is-justify-content-space-between.is-flex-wrap-wrap style="gap: .5rem"
         p
           b Name:&nbsp;
           span = version.reify.name
@@ -18,7 +18,8 @@
               i.fas.fa-clock
             span = local_time(version.created_at)
 
-        = button_to restore_chord_sheet_path(@chord_sheet, version_id: version.id), class: "button is-warning is-small"
+        = button_to(restore_chord_sheet_path(@chord_sheet, version_id: version.id),
+                    class: "button is-warning is-small")
           span.icon-text.is-flex-wrap-nowrap
             span.icon
               i.fas.fa-history
