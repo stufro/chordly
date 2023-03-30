@@ -11,11 +11,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function closeModal($el) {
     $el.classList.remove('is-active');
+    if($el.classList.contains('modal-turbo-frame')) {
+      $el.querySelector(".modal-content .box turbo-frame").innerHTML = ""
+    }
   }
 
   function closeAllModals() {
     (document.querySelectorAll('.modal') || []).forEach(($modal) => {
       closeModal($modal);
+      if($modal.classList.contains('modal-turbo-frame')) {
+        $modal.querySelector(".modal-content .box turbo-frame").innerHTML = ""
+      }
     });
   }
 
