@@ -1,6 +1,6 @@
 class ChordSheetsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[create show transpose update]
-  before_action :authorize_user, only: %i[show transpose update destroy versions]
+  before_action :authorize_user, only: %i[show transpose update destroy versions restore]
   before_action :adjust_new_lines, only: %i[create]
 
   def index
@@ -51,6 +51,12 @@ class ChordSheetsController < ApplicationController
   end
 
   def versions; end
+
+  def restore
+    version = @chord_sheet.versions.find(params[:version_id])
+    version.reify.save
+    redirect_to @chord_sheet
+  end
 
   private
 
