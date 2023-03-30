@@ -6,6 +6,8 @@ class ChordSheet < ApplicationRecord
   validates :name, presence: true
   validates :content, presence: true
 
+  has_paper_trail limit: 10
+
   scope :not_deleted, -> { where(deleted: [false, nil]) }
 
   def transpose(direction)

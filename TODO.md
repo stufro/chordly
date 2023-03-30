@@ -2,14 +2,14 @@
 ---
 
 ## Potential ideas for beyond the planned releases below
-- [ ] Chord diagrams at top of sheet
 - [ ] Prefer sharps/flats option
+- [ ] Alert when creating a chord sheet with the same name
 - [ ] Better formatting for PDFs (page breaks etc.)
   - [ ] Option to print PDF with content in 1 column or 2
-  - [ ] Export set list as separate PDFs
 - [ ] Set list enhancements
   - [ ] Show 2 tabs on available chord sheets: recent & A-Z
   - [ ] Add chord sheet to set list from chord sheet show
+- [ ] Restore deleted chord sheets
 - [ ] Styling chord sheets
 
 ---
@@ -19,10 +19,11 @@
 
 ---
 
+## v0.5.0
+- [ ] Chord diagrams at top of sheet
+
 ## v0.4.0
-- [ ] Restore deleted chord sheets
-- [ ] Undo changes for chord sheets
-- [ ] Alert when creating a chord sheet with the same name
+- [x] Undo changes for chord sheets
 
 ---
 
