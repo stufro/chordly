@@ -79,5 +79,7 @@ div[data-controller="clipboard"
   .modal-content style="width: 75%"
     .box
       = turbo_frame_tag "versions", target: "_top"
+        .is-flex.is-justify-content-center
+          .spinner
 
   button.modal-close.is-large aria-label="close"

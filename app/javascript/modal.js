@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function closeModal($el) {
     $el.classList.remove('is-active');
     if($el.classList.contains('modal-turbo-frame')) {
-      $el.querySelector(".modal-content .box turbo-frame").innerHTML = ""
+      $el.querySelector(".modal-content .box turbo-frame").innerHTML = '<div class="is-flex is-justify-content-center"><div class="spinner"></div></div>'
     }
   }
 
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     (document.querySelectorAll('.modal') || []).forEach(($modal) => {
       closeModal($modal);
       if($modal.classList.contains('modal-turbo-frame')) {
-        $modal.querySelector(".modal-content .box turbo-frame").innerHTML = ""
+        $modal.querySelector(".modal-content .box turbo-frame").innerHTML = '<div class="is-flex is-justify-content-center"><div class="spinner"></div></div>'
       }
     });
   }
