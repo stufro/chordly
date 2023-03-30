@@ -39,5 +39,17 @@ module Chordly
     config.to_prepare do
       Devise::Mailer.layout "mailer"
     end
+
+    # https://discuss.rubyonrails.org/t/cve-2022-32224-possible-rce-escalation-bug-with-serialized-columns-in-active-record/81017
+    config.active_record.yaml_column_permitted_classes = [
+      ::ActiveSupport::HashWithIndifferentAccess,
+      ::ActiveRecord::Type::Time::Value,
+      ::ActiveSupport::TimeWithZone,
+      ::ActiveSupport::TimeZone,
+      ::BigDecimal,
+      ::Date,
+      ::Symbol,
+      ::Time
+    ]
   end
 end
