@@ -8,6 +8,7 @@ import '@fortawesome/fontawesome-free/js/regular.js'
 import '@fortawesome/fontawesome-free/js/brands.js'
 import "trix"
 import "@rails/actiontext"
+import "./modal"
 
 import LocalTime from "local-time"
 LocalTime.start()

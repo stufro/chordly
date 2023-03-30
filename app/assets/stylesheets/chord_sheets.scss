@@ -34,3 +34,12 @@ a.sort-by-icon.is-active:hover {
 
   transition: max-height 1s ease-in;
 }
+
+.version-container {
+  border-radius: 2rem;
+  border: 1px solid $grey-lightest;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1),
+              0 0px 0 1px rgba(10,10,10,.02);;
+}

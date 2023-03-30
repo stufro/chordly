@@ -70,10 +70,10 @@ describe("Creating/editing a chord sheet", () => {
 
     cy.wait('@file').its('request').then((req) => {
       cy.request(req)
-      .then(({ body, headers }) => {
-        expect(headers["content-type"]).to.eq("application/pdf")
-        expect(headers["content-disposition"]).to.include('filename="My amazing song.pdf"')
-      })
+        .then(({ body, headers }) => {
+          expect(headers["content-type"]).to.eq("application/pdf")
+          expect(headers["content-disposition"]).to.include('filename="My amazing song.pdf"')
+        })
     })
   })
 })
@@ -102,7 +102,28 @@ describe("Transposing a chord sheet", () => {
   })
 })
 
-describe("Chord sheets page", () => {
+describe("Undoing changes", () => {
+  beforeEach(() => {
+    cy.login()
+  })
+
+  afterEach(() => {
+    cy.app("clean")
+  })
+
+  it.only("shows previous versions", () => {
+    helper.visitChordSheet()
+
+    cy.get("#show-page-title").clear().type("A new chordsheet title")
+    cy.get("#navbar-main").click()
+
+    cy.get("#versions").click()
+
+    cy.contains("My Amazing Song")
+  })
+})
+
+describe("Chord sheets index page", () => {
   beforeEach(() => {
     cy.login()
 
