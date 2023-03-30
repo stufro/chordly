@@ -72,4 +72,11 @@ div[data-controller="clipboard"
 
   = render("content", chord_sheet: @chord_sheet)
 
-= render("versions_modal", chord_sheet: @chord_sheet)
+#versions-modal.modal.modal-turbo-frame data-turbo-frame-src=versions_chord_sheet_path(@chord_sheet)
+  .modal-background
+
+  .modal-content style="width: 75%"
+    .box
+      = turbo_frame_tag "versions"
+
+  button.modal-close.is-large aria-label="close"

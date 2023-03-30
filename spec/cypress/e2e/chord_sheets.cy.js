@@ -111,7 +111,7 @@ describe("Undoing changes", () => {
     cy.app("clean")
   })
 
-  it.only("shows previous versions", () => {
+  it("shows previous versions", () => {
     helper.visitChordSheet()
 
     cy.get("#show-page-title").clear().type("A new chordsheet title")
@@ -119,7 +119,20 @@ describe("Undoing changes", () => {
 
     cy.get("#versions").click()
 
-    cy.contains("My Amazing Song")
+    cy.contains("My amazing song")
+  })
+
+  it.only("allows the user to restore a previous version", () => {
+    helper.visitChordSheet()
+
+    cy.get("#show-page-title").clear().type("A new chordsheet title")
+    cy.get("#navbar-main").click()
+
+    cy.get("#versions").click()
+
+    cy.get('.is-flex > .button_to > .button').click()
+
+    cy.get("#show-page-title").contains("My amazing song")
   })
 })
 

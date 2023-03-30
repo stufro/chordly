@@ -1,6 +1,6 @@
 class ChordSheetsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[create show transpose update]
-  before_action :authorize_user, only: %i[show transpose update destroy]
+  before_action :authorize_user, only: %i[show transpose update destroy versions]
   before_action :adjust_new_lines, only: %i[create]
 
   def index
@@ -49,6 +49,8 @@ class ChordSheetsController < ApplicationController
     flash[:notice] = "Chord sheet deleted"
     redirect_to chord_sheets_path
   end
+
+  def versions; end
 
   private
 

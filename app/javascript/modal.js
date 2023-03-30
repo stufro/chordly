@@ -4,6 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     $el.classList.add('is-active');
   }
 
+  function setTurboFrameSrc($el) {
+    const frame = $el.querySelector('turbo-frame')
+    frame.setAttribute('src', $el.getAttribute("data-turbo-frame-src"))
+  }
+
   function closeModal($el) {
     $el.classList.remove('is-active');
   }
@@ -22,6 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
     $trigger.addEventListener('click', (event) => {
       event.preventDefault();
       openModal($target);
+      if($target.classList.contains('modal-turbo-frame')) {
+        setTurboFrameSrc($target);
+      }
     });
   });
 
