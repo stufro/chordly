@@ -9,7 +9,6 @@
 - [ ] Set list enhancements
   - [ ] Show 2 tabs on available chord sheets: recent & A-Z
   - [ ] Add chord sheet to set list from chord sheet show
-- [ ] Restore deleted chord sheets
 - [ ] Styling chord sheets
 
 ---
@@ -24,6 +23,7 @@
 
 ## v0.4.0
 - [x] Undo changes for chord sheets
+- [ ] Restore deleted chord sheets & set lists
 
 ---
 
