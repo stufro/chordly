@@ -11,6 +11,15 @@ describe ChordSheet do
     end
   end
 
+  describe ".deleted" do
+    it "returns chord sheets which aren't deleted" do
+      sheet1 = create(:chord_sheet, deleted: true)
+      create(:chord_sheet, deleted: false)
+
+      expect(described_class.deleted).to contain_exactly(sheet1)
+    end
+  end
+
   describe "#transpose" do
     subject(:chord_sheet) { described_class.new(content: original_content) }
 

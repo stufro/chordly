@@ -3,7 +3,13 @@
 
 .level.mb-4
   h1.title.is-1.mb-0.has-text-centered Chord Sheets
-  .is-flex.is-justify-content-center
+  .is-flex.is-justify-content-center style="gap: 1rem;"
+    = link_to bin_index_path, class: "button is-info" do
+      span.icon-text.is-flex-wrap-nowrap
+        span.icon
+          i.fas.fa-trash
+        span Bin
+
     = link_to new_chord_sheet_path, class: "button is-primary", id: "create-chord-sheet" do
       span.icon-text.is-flex-wrap-nowrap
         span.icon

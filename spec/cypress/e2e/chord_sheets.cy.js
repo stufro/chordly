@@ -204,4 +204,17 @@ describe("Chord sheets index page", () => {
       })
     })
   })
+
+  it.only("allows you to restore a deleted chord sheet", () => {
+    cy.appFactories([["create", "chord_sheet", { name: "Deleted sheet", deleted: true }]]).then((chordSheets) => {
+      cy.visit("/chord_sheets")
+      cy.contains("Bin").click()
+      cy.get(`#restore-chord-sheet-${chordSheets[0].id}`).click()
+
+      cy.visit("/chord_sheets")
+      cy.get("#chord-sheets-container").within(() => {
+        cy.contains("Deleted sheet")
+      })
+    })
+  })
 })

@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   get "/asset_frame", to: "home#asset_frame"
 
+  resources :bin, only: %i[index update], controller: "bin", param: :resource_id
+
   resources :chord_sheets, only: %i[index new create show update destroy] do
     put :transpose, on: :member
     get :versions, on: :member

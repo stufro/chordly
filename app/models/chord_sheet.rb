@@ -9,6 +9,7 @@ class ChordSheet < ApplicationRecord
   has_paper_trail limit: 10
 
   scope :not_deleted, -> { where(deleted: [false, nil]) }
+  scope :deleted, -> { where(deleted: true) }
 
   def transpose(direction)
     content.map! do |line_hash|
