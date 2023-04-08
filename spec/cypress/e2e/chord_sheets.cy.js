@@ -205,7 +205,7 @@ describe("Chord sheets index page", () => {
     })
   })
 
-  it.only("allows you to restore a deleted chord sheet", () => {
+  it("allows you to restore a deleted chord sheet", () => {
     cy.appFactories([["create", "chord_sheet", { name: "Deleted sheet", deleted: true }]]).then((chordSheets) => {
       cy.visit("/chord_sheets")
       cy.contains("Bin").click()

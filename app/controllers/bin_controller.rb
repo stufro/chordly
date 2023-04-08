@@ -5,7 +5,13 @@ class BinController < ApplicationController
   end
 
   def update
-    @resource = ChordSheet.find(params[:resource_id]).update(deleted: false)
-    redirect_to bin_index_path, notice: "Chord Sheet restored"
+    @resource = resource.delete(" ").constantize.find(params[:resource_id]).update(deleted: false)
+    redirect_to bin_index_path, notice: "#{resource} restored"
+  end
+
+  private
+
+  def resource
+    params[:resource_type] == "ChordSheet" ? "Chord Sheet" : "Set List"
   end
 end

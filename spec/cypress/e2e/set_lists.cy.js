@@ -137,6 +137,19 @@ describe("Set list library", () => {
       })
     })
   })
+
+  it.only("allows you to restore a deleted set list", () => {
+    cy.appFactories([["create", "set_list", { name: "Deleted set", deleted: true }]]).then((setLists) => {
+      cy.visit("/chord_sheets")
+      cy.contains("Bin").click()
+      cy.get(`#restore-set-list-${setLists[0].id}`).click()
+
+      cy.visit("/chord_sheets")
+      cy.get("#set-lists-container").within(() => {
+        cy.contains("Deleted set")
+      })
+    })
+  })
 })
 
 describe("Building a set list of chord sheets", () => {
