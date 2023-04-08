@@ -6,7 +6,7 @@ class ChordSheet < ApplicationRecord
   validates :name, presence: true
   validates :content, presence: true
 
-  has_paper_trail limit: 10
+  has_paper_trail limit: 15
 
   scope :not_deleted, -> { where(deleted: [false, nil]) }
   scope :deleted, -> { where(deleted: true) }

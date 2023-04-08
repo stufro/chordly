@@ -1,6 +1,12 @@
 - title "Bin"
 
-h1.title.is-1 Bin
+.is-flex.is-justify-content-space-between.is-align-items-center
+  h1.title.is-1 Bin
+
+  = link_to chord_sheets_path, class: "button is-primary mb-2" do
+    span.icon
+      i.fas.fa-book-bookmark
+    span Back to library
 
 - if @chord_sheets.blank? && @set_lists.blank?
   i Nothing in the bin!
@@ -23,7 +29,8 @@ h1.title.is-1 Bin
               span = local_time(chord_sheet.updated_at)
 
           = button_to(bin_path(chord_sheet, resource_type: "ChordSheet"), method: :patch,
-                      class: "button is-success is-small", id: "restore-chord-sheet-#{chord_sheet.id}")
+                      class: "button is-success is-small",
+                      id: "restore-chord-sheet-#{chord_sheet.id}")
             span.icon-text.is-flex-wrap-nowrap
               span.icon
                 i.fas.fa-history
@@ -37,7 +44,6 @@ h1.title.is-1 Bin
             - chord_sheet.content.each do |line|
               span class=(line["type"] == "chords" ? "chord-line" : "lyric-line")
                 = line["content"]
-
 
 - if @set_lists.present?
   h2.title.is-3 Deleted Set Lists
@@ -62,7 +68,6 @@ h1.title.is-1 Bin
               span.icon
                 i.fas.fa-history
               span Restore
-
 
         .is-flex.is-align-items-center.is-flex-direction-column
           p

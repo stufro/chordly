@@ -138,7 +138,7 @@ describe("Set list library", () => {
     })
   })
 
-  it.only("allows you to restore a deleted set list", () => {
+  it("allows you to restore a deleted set list", () => {
     cy.appFactories([["create", "set_list", { name: "Deleted set", deleted: true }]]).then((setLists) => {
       cy.visit("/chord_sheets")
       cy.contains("Bin").click()
