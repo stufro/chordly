@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbo:load', () => {
   // Functions to open and close a modal
   function openModal($el) {
     $el.classList.add('is-active');
