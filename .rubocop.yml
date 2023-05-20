@@ -1,6 +1,7 @@
 require:
   - rubocop-rails
   - rubocop-rspec
+  - rubocop-factory_bot
 
 AllCops:
   NewCops: enable
@@ -27,6 +28,8 @@ RSpec/SubjectStub:
 RSpec/NamedSubject:
   Enabled: false
 Rails/I18nLocaleTexts:
+  Enabled: false
+RSpec/IndexedLet:
   Enabled: false
 RSpec/MessageChain:
   Enabled: false
