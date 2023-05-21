@@ -20,4 +20,9 @@ class ChordSheet < ApplicationRecord
     end
     self
   end
+
+  def unique_chords
+    chord_lines = content.select { |line| line["type"] == "chords" }
+    chord_lines.flat_map { |line| line["content"].split }.uniq
+  end
 end

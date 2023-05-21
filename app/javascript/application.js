@@ -9,9 +9,6 @@ import '@fortawesome/fontawesome-free/js/brands.js'
 import "trix"
 import "@rails/actiontext"
 import "./modal"
-import ChordJS from "./chords"
-
 import LocalTime from "local-time"
-LocalTime.start()
 
-ChordJS.replace()
+LocalTime.start()

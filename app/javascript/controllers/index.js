@@ -29,4 +29,7 @@ import SortableController from "./sortable_controller"
 application.register("sortable", SortableController)
 
 import SetListsController from "./set_lists_controller"
-application.register("set_lists", SetListsController)
+application.register("set-lists", SetListsController)
+
+import ChordDiagramController from "./chord_diagram_controller"
+application.register("chord-diagram", ChordDiagramController)

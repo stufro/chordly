@@ -56,4 +56,19 @@ describe ChordSheet do
       end
     end
   end
+
+  describe "#unique_chords" do
+    let(:content) do
+      [
+        { "type" => "chords", "content" => "G   Am7   C" },
+        { "type" => "lyrics", "content" => "Some song lyrics" },
+        { "type" => "chords", "content" => "G   Am7   Dsus4" }
+      ]
+    end
+
+    it "returns an array of the chords included in the sheet" do
+      chord_sheet = create(:chord_sheet, content:)
+      expect(chord_sheet.unique_chords).to match_array %w[G Am7 C Dsus4]
+    end
+  end
 end
