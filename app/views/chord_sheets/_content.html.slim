@@ -1,8 +1,7 @@
 div id=dom_id(chord_sheet) data-clipboard-target="source"
   div data-controller="chord-diagram"
     - chord_sheet.unique_chords.each do |chord|
-      chord[name="#{chord}" positions="#{positions(chord)}" fingers="#{fingerings(chord)}"
-            layout="2" size="3"]
+      == ChordDiagrams.guitar_svg(chord)
 
   pre#chord-sheet-content[data-controller="editable"
                                   data-editable-field-value="content"
