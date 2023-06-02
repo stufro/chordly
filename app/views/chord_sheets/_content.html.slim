@@ -1,7 +1,11 @@
 div id=dom_id(chord_sheet) data-clipboard-target="source"
-  div data-controller="chord-diagram"
+  .guitar-chords data-chord-diagram-target="guitarChords"
     - chord_sheet.unique_chords.each do |chord|
       == ChordDiagrams.guitar_svg(chord)
+
+  .ukulele-chords data-chord-diagram-target="ukuleleChords"
+    - chord_sheet.unique_chords.each do |chord|
+      == ChordDiagrams.ukulele_svg(chord)
 
   pre#chord-sheet-content[data-controller="editable"
                                   data-editable-field-value="content"

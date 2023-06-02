@@ -218,3 +218,29 @@ describe("Chord sheets index page", () => {
     })
   })
 })
+
+describe.only("Chord diagrams", () => {
+  beforeEach(() => {
+    cy.login()
+  })
+
+  afterEach(() => {
+    cy.app("clean")
+  })
+
+  it("allows the user to view the guitar chords", () => {
+    helper.visitChordSheet()
+
+    cy.get("#diagram-select").invoke('show')
+    cy.contains("Guitar").click()
+    cy.get("svg[viewBox='0 0 200 200']").should('be.visible'); // unique to guitar chord diagrams
+  })
+
+  it("allows the user to view the ukulele chords", () => {
+    helper.visitChordSheet()
+
+    cy.get("#diagram-select").invoke('show')
+    cy.contains("Ukulele").click()
+    cy.get("svg[viewBox='0 0 160 200']").should('be.visible'); // unique to ukulele chord diagrams
+  })
+})

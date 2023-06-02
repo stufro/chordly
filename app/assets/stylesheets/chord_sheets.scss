@@ -43,3 +43,33 @@ a.sort-by-icon.is-active:hover {
   box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1),
               0 0px 0 1px rgba(10,10,10,.02);;
 }
+
+#chord-diagram {
+  cursor: pointer;
+}
+
+#diagram-select {
+  display: none;
+  position: absolute;
+  top: 70px;
+  background-color: white;
+  box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1),
+}
+
+.diagram-option {
+  cursor: pointer;
+  padding: 1rem;
+  border-bottom: 1px $grey-lightest solid;
+
+  &:hover {
+    background-color: $grey-lightest;
+  }
+}
+
+.diagram-option:last-child {
+  border-bottom: 0;
+}
+
+.guitar-chords, .ukulele-chords {
+  display: none;
+}

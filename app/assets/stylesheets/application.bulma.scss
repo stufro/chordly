@@ -95,3 +95,11 @@ $link: $primary;
 @keyframes spin {
   100% { transform: rotate(360deg);}
 }
+
+.svg-primary {
+  stroke: $primary;
+}
+
+.svg-disabled {
+  stroke: $grey;
+}
