@@ -1,9 +1,9 @@
 div id=dom_id(chord_sheet) data-clipboard-target="source"
-  .guitar-chords data-chord-diagram-target="guitarChords"
+  .guitar-chords.hidden data-chord-diagram-target="guitarChords"
     - chord_sheet.unique_chords.each do |chord|
       == ChordDiagrams.guitar_svg(chord)
 
-  .ukulele-chords data-chord-diagram-target="ukuleleChords"
+  .ukulele-chords.hidden data-chord-diagram-target="ukuleleChords"
     - chord_sheet.unique_chords.each do |chord|
       == ChordDiagrams.ukulele_svg(chord)
 

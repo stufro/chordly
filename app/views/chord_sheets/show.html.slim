@@ -50,7 +50,7 @@ div[data-controller="clipboard chord-diagram"
         .level-right.align-items-space-between
           .level-item.mt-2
             = render("chord_diagram_icon")
-            #diagram-select data-chord-diagram-target="selectBox"
+            .hidden#diagram-select data-chord-diagram-target="selectBox"
               .diagram-option#guitar data-action="click->chord-diagram#show" Guitar
               .diagram-option#ukulele data-action="click->chord-diagram#show" Ukulele
 

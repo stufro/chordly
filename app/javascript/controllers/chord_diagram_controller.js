@@ -7,15 +7,19 @@ export default class extends Controller {
     const selected = event.target.id;
     const toShow = this.targets.findTarget(`${selected}Chords`)
 
-    toShow.style.display = "block"
-    this.selectBoxTarget.style.display = "none"
+    toShow.classList.remove("hidden")
+    this.selectBoxTarget.classList.add("hidden")
     this.iconTarget.classList = ["svg-primary"]
   }
 
   click_icon() {
-    this.iconTarget.classList = ["svg-disabled"]
-    this.selectBoxTarget.style.display = "block"
-    this.guitarChordsTarget.style.display = "none"
-    this.ukuleleChordsTarget.style.display = "none"
+    if(!this.guitarChordsTarget.classList.contains("hidden") || !this.ukuleleChordsTarget.classList.contains("hidden")) {
+      this.guitarChordsTarget.classList.add("hidden")
+      this.ukuleleChordsTarget.classList.add("hidden")
+      this.iconTarget.classList = ["svg-disabled"]
+    } else {
+      this.selectBoxTarget.classList.toggle("hidden")
+    }
+
   }
 }

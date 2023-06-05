@@ -49,11 +49,15 @@ a.sort-by-icon.is-active:hover {
 }
 
 #diagram-select {
-  display: none;
   position: absolute;
   top: 70px;
   background-color: white;
-  box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1),
+  box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1);
+  border-radius: 1rem;
+}
+
+.hidden {
+  display: none;
 }
 
 .diagram-option {
@@ -64,12 +68,18 @@ a.sort-by-icon.is-active:hover {
   &:hover {
     background-color: $grey-lightest;
   }
+
+  &:first-child {
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+  }
+
+  &:last-child {
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+  }
 }
 
 .diagram-option:last-child {
   border-bottom: 0;
-}
-
-.guitar-chords, .ukulele-chords {
-  display: none;
 }
