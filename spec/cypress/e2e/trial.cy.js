@@ -9,6 +9,7 @@ describe("Trialing chordly without an account", () => {
     cy.contains("Create Chord sheet").click()
 
     cy.get("#chord-sheet-content").type("\r   G    Em     Am\rA new line of lyrics")
+    cy.get("#navbar-main").click()
     cy.get("#transpose-down").click()
     cy.contains("F#   D#m    G#m")
     cy.contains("A new line of lyrics")
@@ -31,7 +32,7 @@ describe("Trialing chordly without an account", () => {
 
   it("lets you log in and save your trial chord sheet", () => {
     cy.appFactories([
-      ["create", "user", {email: "a@a.com", password: "123456789"} ]
+      ["create", "user", { email: "a@a.com", password: "123456789" }]
     ])
 
     cy.visit("/")

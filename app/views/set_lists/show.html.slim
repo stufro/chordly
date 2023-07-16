@@ -86,7 +86,7 @@
                       = button_to remove_chord_sheet_set_list_path(@set_list,
                                                                   chord_sheet_id: chord_sheet.id),
                         class: "button is-danger is-light",
-                        data: { action: "set_lists#stopPropagation" },
+                        data: { action: "set-lists#stopPropagation" },
                         id: "remove-chord-sheet-#{chord_sheet.id}", method: :put do
                         span.icon
                           i.fas.fa-minus
