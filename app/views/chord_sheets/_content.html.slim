@@ -1,4 +1,4 @@
-div id=dom_id(chord_sheet) data-clipboard-target="source"
+div data-clipboard-target="source"
   .guitar-chords.hidden data-chord-diagram-target="guitarChords"
     - chord_sheet.unique_chords.each do |chord|
       == ChordDiagrams.guitar_svg(chord)

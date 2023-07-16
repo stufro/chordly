@@ -25,57 +25,7 @@
         = link_to "Log in", new_session_path(:user), id: "login-to-save"
         |  to save this chord sheet to your library.
 
-div[data-controller="clipboard chord-diagram"
-    data-clipboard-success-content="<span class='icon'><i class='fas fa-check'></i></span>"]
-  .card.mb-3
-    .card-content
-      .level.is-mobile.is-flex-wrap-wrap
-        .level-left
-          .level-item.mt-2
-            span.has-text-primary Transpose:
-          .level-item.mt-2
-            = button_to transpose_chord_sheet_path(@chord_sheet, direction: "up"),
-              class: "button is-rounded is-primary", title: "Transpose chords up a semitone",
-              id: "transpose-up", method: :put do
-              span.icon
-                i.fas.fa-arrow-circle-up
-
-          .level-item.mt-2
-            = button_to transpose_chord_sheet_path(@chord_sheet, direction: "down"),
-              class: "button is-rounded is-primary", title: "Transpose chords down a semitone",
-              id: "transpose-down", method: :put
-              span.icon
-                i.fas.fa-arrow-circle-down
-
-        .level-right.align-items-space-between
-          .level-item.mt-2
-            = render("chord_diagram_icon")
-            .hidden#diagram-select data-chord-diagram-target="selectBox"
-              .diagram-option#guitar data-action="click->chord-diagram#show" Guitar
-              .diagram-option#ukulele data-action="click->chord-diagram#show" Ukulele
-
-          .level-item.mt-2
-            = button_to(chord_sheet_path(@chord_sheet), class: "button is-danger is-rounded mr-2",
-                id: "delete-chord-sheet", form: { data: { turbo_confirm: "Are you sure?" } },
-                method: :delete, title: "Delete chord sheet")
-              span.icon
-                i.fas.fa-trash
-            = button_to("#", class: "button is-rounded is-info mr-2 modal-trigger",
-                             id: "versions", data: { target: "versions-modal" })
-              span.icon
-                i.fas.fa-history
-            = button_to "#", class: "button is-rounded is-info mr-2", id: "copy-to-clipboard",
-              "data-clipboard-target" => "button", "data-action" => "clipboard#copy",
-              title: "Copy to clipboard"
-              span.icon
-                i.fas.fa-copy
-            = button_to chord_sheet_path(@chord_sheet, format: :pdf),
-              class: "button is-rounded is-info", id: "export", disabled: !user_signed_in?,
-              method: :get, title: "Download PDF"
-              span.icon
-                i.fas.fa-download
-
-  = render("content", chord_sheet: @chord_sheet)
+= render("main", chord_sheet: @chord_sheet)
 
 #versions-modal.modal.modal-turbo-frame data-turbo-frame-src=versions_chord_sheet_path(@chord_sheet)
   .modal-background

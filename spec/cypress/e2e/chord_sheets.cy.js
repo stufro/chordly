@@ -219,7 +219,7 @@ describe("Chord sheets index page", () => {
   })
 })
 
-describe.only("Chord diagrams", () => {
+describe("Chord diagrams", () => {
   beforeEach(() => {
     cy.login()
   })
@@ -231,6 +231,7 @@ describe.only("Chord diagrams", () => {
   it("allows the user to view the guitar chords", () => {
     helper.visitChordSheet()
 
+    cy.get("#chord-diagram").click()
     cy.get("#diagram-select").invoke('show')
     cy.contains("Guitar").click()
     cy.get("svg[viewBox='0 0 200 200']").should('be.visible'); // unique to guitar chord diagrams
@@ -239,6 +240,7 @@ describe.only("Chord diagrams", () => {
   it("allows the user to view the ukulele chords", () => {
     helper.visitChordSheet()
 
+    cy.get("#chord-diagram").click()
     cy.get("#diagram-select").invoke('show')
     cy.contains("Ukulele").click()
     cy.get("svg[viewBox='0 0 160 200']").should('be.visible'); // unique to ukulele chord diagrams

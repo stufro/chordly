@@ -33,3 +33,6 @@ application.register("set-lists", SetListsController)
 
 import ChordDiagramController from "./chord_diagram_controller"
 application.register("chord-diagram", ChordDiagramController)
+
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)

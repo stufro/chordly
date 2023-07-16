@@ -1,6 +1,7 @@
 exclude:
   - app/views/home/roadmap.html.slim
   - app/views/newsletter_mailer/newsletter.html.slim
+  - app/views/chord_sheets/_chord_diagram_icon.html.slim
 
 linters:
   LineLength:

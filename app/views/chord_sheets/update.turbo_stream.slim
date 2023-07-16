@@ -1,4 +1,4 @@
 = turbo_stream.replace "flash-message-container", partial: "partials/flash"
 
-= turbo_stream.replace dom_id(@chord_sheet), partial: "chord_sheets/content",
+= turbo_stream.replace dom_id(@chord_sheet), partial: "chord_sheets/main",
                                              locals: { chord_sheet: @chord_sheet }
