@@ -1,11 +1,16 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["icon", "guitarChords", "ukuleleChords", "selectBox"]
+  static targets = ["icon", "guitarChords", "ukuleleChords", "selectBox", "wrapper"]
 
   connect() {
     this.show()
     document.addEventListener("turbo:frame-render", () => this.show())
+
+    document.addEventListener("click", (event) => {
+      if (this.wrapperTarget.contains(event.target)) return
+      this.selectBoxTarget.classList.add("hidden")
+    })
   }
 
   set(event) {
@@ -15,11 +20,8 @@ export default class extends Controller {
   }
 
   click_icon() {
-    if (localStorage.getItem("chord-diagrams")) {
-      localStorage.removeItem("chord-diagrams")
-    } else {
-      this.selectBoxTarget.classList.toggle("hidden")
-    }
+    localStorage.removeItem("chord-diagrams")
+    this.selectBoxTarget.classList.toggle("hidden")
     this.show()
   }
 

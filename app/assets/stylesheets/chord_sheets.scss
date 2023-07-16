@@ -40,8 +40,9 @@ a.sort-by-icon.is-active:hover {
   border: 1px solid $grey-lightest;
   padding: 1rem;
   margin-bottom: 2rem;
-  box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1),
-              0 0px 0 1px rgba(10,10,10,.02);;
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, .1),
+    0 0px 0 1px rgba(10, 10, 10, .02);
+  ;
 }
 
 #chord-diagram {
@@ -52,8 +53,9 @@ a.sort-by-icon.is-active:hover {
   position: absolute;
   top: 70px;
   background-color: white;
-  box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1);
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, .1);
   border-radius: 1rem;
+  z-index: 1;
 }
 
 .hidden {

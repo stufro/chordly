@@ -22,7 +22,7 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
                 i.fas.fa-arrow-circle-down
 
         .level-right.align-items-space-between
-          .level-item.mt-2
+          .level-item.mt-2 data-chord-diagram-target="wrapper"
             = render("chord_diagram_icon")
             .hidden#diagram-select data-chord-diagram-target="selectBox"
               .diagram-option#guitar data-action="click->chord-diagram#set" Guitar
@@ -36,7 +36,8 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
               span.icon
                 i.fas.fa-trash
             = button_to("#", class: "button is-rounded is-info mr-2 modal-trigger",
-                             id: "versions", data: { target: "versions-modal" })
+                             id: "versions", title: "Previous versions",
+                             data: { target: "versions-modal" })
               span.icon
                 i.fas.fa-history
             = button_to "#", class: "button is-rounded is-info mr-2", id: "copy-to-clipboard",
