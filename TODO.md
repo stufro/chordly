@@ -19,11 +19,11 @@
 ---
 
 ## v0.5.0
-- [ ] Chord diagrams at top of sheet
+- [x] Chord diagrams at top of sheet
 
 ## v0.4.0
 - [x] Undo changes for chord sheets
-- [ ] Restore deleted chord sheets & set lists
+- [x] Restore deleted chord sheets & set lists
 
 ---
 
