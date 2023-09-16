@@ -49,14 +49,14 @@ describe("Set list CRUD", () => {
         req.redirect('/')
       }).as('file')
 
-      cy.contains("Separate PDFs").click({force: true})
+      cy.contains("Separate PDFs").click({ force: true })
 
       cy.wait('@file').its('request').then((req) => {
         cy.request(req)
-        .then(({ body, headers }) => {
-          expect(headers["content-type"]).to.eq("application/zip")
-          expect(headers["content-disposition"]).to.include('filename="My amazing set.zip"')
-        })
+          .then(({ body, headers }) => {
+            expect(headers["content-type"]).to.eq("application/zip")
+            expect(headers["content-disposition"]).to.include('filename="My amazing set.zip"')
+          })
       })
     })
   })
@@ -71,14 +71,14 @@ describe("Set list CRUD", () => {
         req.redirect('/')
       }).as('file')
 
-      cy.contains("All-in-one PDF").click({force: true})
+      cy.contains("All-in-one PDF").click({ force: true })
 
       cy.wait('@file').its('request').then((req) => {
         cy.request(req)
-        .then(({ body, headers }) => {
-          expect(headers["content-type"]).to.eq("application/pdf")
-          expect(headers["content-disposition"]).to.include('filename="My amazing set.pdf"')
-        })
+          .then(({ body, headers }) => {
+            expect(headers["content-type"]).to.eq("application/pdf")
+            expect(headers["content-disposition"]).to.include('filename="My amazing set.pdf"')
+          })
       })
     })
   })
@@ -100,7 +100,7 @@ describe("Set list library", () => {
     cy.app("clean")
   })
 
-  it("allows you to sort the chord sheets by name", () => {
+  it("allows you to sort the set lists by name", () => {
     cy.visit("/chord_sheets")
     cy.get("#sort-set-lists").click()
 
@@ -118,13 +118,13 @@ describe("Set list library", () => {
     })
   })
 
-  it("only shows you chord sheets which you own", () => {
+  it("only shows you set lists which you own", () => {
     cy.appFactories([["create", "user", { email: "other@user.com" }]]).then((records) => {
-      cy.appFactories([["create", "set_list", { name: "Another users sheet", user_id: records[0].id }]])
+      cy.appFactories([["create", "set_list", { name: "Another users set", user_id: records[0].id }]])
     })
 
     cy.visit("/chord_sheets")
-    cy.contains("Another users sheet").should("not.exist")
+    cy.contains("Another users set").should("not.exist")
   })
 
   it("won't let you directly visit another users chord sheet", () => {
@@ -185,8 +185,8 @@ describe("Building a set list of chord sheets", () => {
   })
 
   it("allows the user to reorder the chord sheets", () => {
-    helper.createChordSheet({name: "1st chord sheet"}).then((chordSheet1) => {
-      helper.createChordSheet({name: "2nd chord sheet"}).then((chordSheet2) => {
+    helper.createChordSheet({ name: "1st chord sheet" }).then((chordSheet1) => {
+      helper.createChordSheet({ name: "2nd chord sheet" }).then((chordSheet2) => {
         helper.createSetList([chordSheet1.id, chordSheet2.id]).then((setList) => {
           cy.visit("/chord_sheets")
           cy.contains(setList.name).click()
