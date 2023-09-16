@@ -51,7 +51,7 @@
                       type="text" placeholder="Search for a chord sheet"]
           - @available_chord_sheets.sort_by(&:name).each do |chord_sheet|
             .available-chord-sheet.p-3 data-search-target="searchable"
-              p.title.is-5.mb-0 = chord_sheet.name
+              p.title.is-5.mb-0 = chord_sheet.name.truncate(50)
               = button_to add_chord_sheet_set_list_path(@set_list, chord_sheet_id: chord_sheet.id),
                 class: "button is-success", id: "add-chord-sheet-#{chord_sheet.id}",
                 method: :put do
@@ -82,7 +82,7 @@
                     span.icon.has-text-primary.is-large.mr-2
                       i.fas.fa-music.fa-3x
                     div
-                      p.title.is-4 = chord_sheet.name
+                      p.title.is-4 = chord_sheet.name.truncate(21)
                       = button_to remove_chord_sheet_set_list_path(@set_list,
                                                                   chord_sheet_id: chord_sheet.id),
                         class: "button is-danger is-light",

@@ -4,7 +4,7 @@ Cypress.Commands.add('appCommands', function (body) {
   const log = Cypress.log({ name: "APP", message: body, autoEnd: false })
   return cy.request({
     method: 'POST',
-    url: "/__cypress__/command",
+    url: "/__e2e__/command",
     body: JSON.stringify(body),
     log: false,
     failOnStatusCode: false
@@ -19,7 +19,7 @@ Cypress.Commands.add('appCommands', function (body) {
 });
 
 Cypress.Commands.add('app', function (name, command_options) {
-  return cy.appCommands({name: name, options: command_options}).then((body) => {
+  return cy.appCommands({ name: name, options: command_options }).then((body) => {
     return body[0]
   });
 });
@@ -50,8 +50,8 @@ Cypress.Commands.add('appFixtures', function (options) {
 Cypress.on('fail', (err, runnable) => {
   // allow app to generate additional logging data
   Cypress.$.ajax({
-    url: '/__cypress__/command',
-    data: JSON.stringify({name: 'log_fail', options: {error_message: err.message, runnable_full_title: runnable.fullTitle() }}),
+    url: '/__e2e__/command',
+    data: JSON.stringify({ name: 'log_fail', options: { error_message: err.message, runnable_full_title: runnable.fullTitle() } }),
     async: false,
     method: 'POST'
   });
