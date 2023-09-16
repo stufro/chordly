@@ -6,7 +6,7 @@
           span.icon.has-text-primary.is-large.mr-2
             i.fas.fa-rectangle-list.fa-3x
           div
-            p.title.is-4 = set_list.name
+            p.title.is-4 data-search-full-term=set_list.name = set_list.name.truncate(21)
             .level.is-justify-content-center
               span.icon
                 i.far.fa-clock
