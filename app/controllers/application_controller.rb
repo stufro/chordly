@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   private
 
   def trial_user_owns_resource?(resource)
-    (current_user.nil? && (resource.trial? && resource.trial_user_id == session[:trial_user_id]))
+    current_user.nil? && (resource.trial? && resource.trial_user_id == session[:trial_user_id])
   end
 
   def user_owns_resource?(resource)

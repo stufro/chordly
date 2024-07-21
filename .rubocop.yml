@@ -1,6 +1,7 @@
 require:
   - rubocop-rails
   - rubocop-rspec
+  - rubocop-rspec_rails
   - rubocop-factory_bot
 
 AllCops:
@@ -9,6 +10,7 @@ AllCops:
     - spec/spec_helper.rb
     - spec/rails_helper.rb
     - db/**/*
+    - tmp/**/*
     - bin/*
     - lib/tasks/*
     - spec/cypress/app_commands/log_fail.rb

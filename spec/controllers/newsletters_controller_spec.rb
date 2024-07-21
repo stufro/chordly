@@ -7,8 +7,7 @@ describe NewslettersController do
     let(:user) { create(:user, admin: true) }
 
     before do
-      allow(controller).to receive(:authenticate_user!).and_return true
-      allow(controller).to receive(:current_user).and_return user
+      allow(controller).to receive_messages(authenticate_user!: true, current_user: user)
       allow(NewsletterMailer).to receive_message_chain(:with, :newsletter, :deliver_later)
     end
 

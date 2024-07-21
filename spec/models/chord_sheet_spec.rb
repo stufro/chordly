@@ -48,8 +48,7 @@ describe ChordSheet do
       end
 
       it "mutates the line with transposed chords" do
-        allow(sheet_line).to receive(:chords?).and_return true
-        allow(sheet_line).to receive(:transpose).and_return :new_sheet_line
+        allow(sheet_line).to receive_messages(chords?: true, transpose: :new_sheet_line)
 
         chord_sheet.transpose(:up)
         expect(chord_sheet.content).to eq [:new_sheet_line]
