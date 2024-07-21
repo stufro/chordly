@@ -5,10 +5,10 @@ const application = Application.start()
 
 // Configure Stimulus development experience
 application.debug = false
-window.Stimulus   = application
+window.Stimulus = application
 window.Turbo = Turbo
 
-import Clipboard from 'stimulus-clipboard'
+import Clipboard from '@stimulus-components/clipboard'
 application.register('clipboard', Clipboard)
 
 export { application }

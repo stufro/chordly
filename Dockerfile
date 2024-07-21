@@ -23,7 +23,7 @@ FROM quay.io/evl.ms/fullstaq-ruby:${RUBY_VERSION}-${VARIANT} as base
 
 LABEL fly_launch_runtime="rails"
 
-ARG NODE_VERSION=19.4.0
+ARG NODE_VERSION=21.1.0
 ARG BUNDLER_VERSION=2.4.17
 
 ARG RAILS_ENV=production
