@@ -4,8 +4,7 @@
 .level.mb-4
   h1.title.is-1.mb-0.has-text-centered Chord Sheets
   .is-flex.is-justify-content-center style="gap: 1rem;"
-    - unless current_user.chord_sheets.deleted.count.zero? && \
-              current_user.set_lists.deleted.count.zero?
+    - if current_user.deleted_content?
       = link_to bin_index_path, class: "button is-info" do
         span.icon-text.is-flex-wrap-nowrap
           span.icon

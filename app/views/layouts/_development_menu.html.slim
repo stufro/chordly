@@ -3,7 +3,7 @@
     span.icon
       i.fas.fa-wrench
   .navbar-dropdown
-    - User.all.each do |user|
+    - User.find_each do |user|
       - unless current_user&.email == user.email
         = link_to user.email, dev_change_user_path(email: user.email),
             class: "navbar-item", data: { "turbo-method" => :post }
