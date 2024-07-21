@@ -424,6 +424,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  arm64-darwin-23
 
 DEPENDENCIES
   bootsnap
@@ -442,20 +443,20 @@ DEPENDENCIES
   flipper-ui
   foreman
   grover
-  image_processing (~> 1.2)
+  image_processing
   jbuilder
   jsbundling-rails
   local_time
   meta-tags
   music
   paper_trail (~> 15.0)
-  pg (~> 1.1)
+  pg
   puma (~> 6.0)
   rack-mini-profiler
   rails
   rails-controller-testing
   rails_best_practices
-  redcarpet (~> 3.5)
+  redcarpet
   rspec-rails
   rubocop-factory_bot
   rubocop-rails
@@ -476,7 +477,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 3.2.1p31
+   ruby 3.3.4p94
 
 BUNDLED WITH
    2.4.17
