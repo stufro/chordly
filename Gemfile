@@ -55,8 +55,10 @@ group :development do
   gem "foreman"
   gem "rack-mini-profiler"
   gem "rails_best_practices"
+  gem "rubocop-factory_bot", require: false
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
+  gem "rubocop-rspec_rails", require: false
   gem "slim_lint"
   gem "solargraph"
   gem "web-console"
