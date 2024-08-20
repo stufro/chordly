@@ -120,6 +120,13 @@ describe("Undoing changes", () => {
     cy.get("#versions").click()
 
     cy.contains("My amazing song")
+
+    cy.get(".modal-close").click()
+    cy.get("#transpose-up").click() // even after transposing
+
+    cy.get("#versions").click()
+
+    cy.contains("My amazing song")
   })
 
   it("allows the user to restore a previous version", () => {
