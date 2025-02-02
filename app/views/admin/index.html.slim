@@ -16,26 +16,26 @@ h1.title.is-1 Users
       h2.subtitle Active Users (Last 30 days)
       p.title = @users.where("current_sign_in_at > ?", 30.days.ago).count
 
-i Last 10 active users
+i Last 20 active users
 .table-container
   table.table.is-fullwidth.is-striped
     thead
       tr
         th User
-        th Created at
         th Sign in count
-        th Current sign in at
-        th Last sign in at
-        th Confirmed at
+        th Signed up from trial?
+        th Confirmed?
+        th Last sign in
+        th Created at
     tbody
-      - @users.order(current_sign_in_at: :desc).limit(10).each do |user|
+      - @users.order(current_sign_in_at: :desc).limit(20).each do |user|
         tr
           td = user.email
-          td = local_time(user.created_at)
           td = user.sign_in_count
+          td = "☑️" if user.chord_sheets.first&.trial?
+          td = "☑️" if user.confirmed_at?
           td = local_time(user.current_sign_in_at) if user.current_sign_in_at
-          td = local_time(user.last_sign_in_at) if user.last_sign_in_at
-          td = local_time(user.confirmed_at) if user.confirmed_at
+          td = local_time(user.created_at)
 
 hr
 
@@ -55,7 +55,7 @@ h1.title.is-1 Chord Sheets
       h2.subtitle Chord Sheets Created (Last 30 days)
       p.title = @chord_sheets.where("created_at > ?", 30.days.ago).count
 
-i Last 10 created chord sheets
+i Last 20 created chord sheets
 .table-container
   table.table.is-fullwidth.is-striped
     thead
@@ -64,16 +64,14 @@ i Last 10 created chord sheets
         th Name
         th Created at
         th Updated at
-        th Trial?
         th Trial user ID
     tbody
-      - @chord_sheets.order(created_at: :desc).limit(10).each do |sheet|
+      - @chord_sheets.order(created_at: :desc).limit(20).each do |sheet|
         tr
           td = sheet.user&.email
           td = sheet.name
           td = local_time(sheet.created_at)
           td = local_time(sheet.updated_at)
-          td = sheet.trial?
           td = sheet.trial_user_id
 
 hr
@@ -94,7 +92,7 @@ h1.title.is-1 Set Lists
       h2.subtitle Set Lists Created (Last 30 days)
       p.title = @set_lists.where("created_at > ?", 30.days.ago).count
 
-i Last 10 created set lists
+i Last 20 created set lists
 .table-container
   table.table.is-fullwidth.is-striped
     thead
@@ -105,7 +103,7 @@ i Last 10 created set lists
         th Updated at
         th No. Chord Sheets
     tbody
-      - @set_lists.order(created_at: :desc).limit(10).each do |set|
+      - @set_lists.order(created_at: :desc).limit(20).each do |set|
         tr
           td = set.user&.email
           td = set.name
