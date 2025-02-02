@@ -34,7 +34,7 @@ class ChordSheetsController < ApplicationController
 
   def transpose
     @chord_sheet.transpose(params[:direction]).save
-    redirect_to @chord_sheet
+    render :show
   end
 
   def update
