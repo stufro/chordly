@@ -2,7 +2,7 @@ module MusicUtils
   ASSUMED_OCTAVE = 5
   ACCIDENTALS = /(?:#|b|♭)?/
   CHORD_TYPES = /(maj|min|m|sus|dim|aug)?/
-  CHORD_EXTENSIONS = /(2|4|5|7|9|13)?/
+  CHORD_EXTENSIONS = /(2|4|5|6|7|9|13)?/
   BASS_NOTE = %r{(?:/([A-Ga-g]#{ACCIDENTALS}))?}
   NOTE_REGEX = /([A-Ga-g]#{ACCIDENTALS})#{CHORD_TYPES}#{CHORD_EXTENSIONS}#{BASS_NOTE}/
 
