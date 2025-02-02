@@ -32,7 +32,7 @@ i Last 20 active users
         tr
           td = user.email
           td = user.sign_in_count
-          td = "☑️" if user.chord_sheets.first&.trial?
+          td = "☑️" if user.chord_sheets.first&.trial_user_id?
           td = "☑️" if user.confirmed_at?
           td = local_time(user.current_sign_in_at) if user.current_sign_in_at
           td = local_time(user.created_at)
