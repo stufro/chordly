@@ -26,5 +26,9 @@
   "devDependencies": {
     "@4tw/cypress-drag-drop": "^2.2.5",
     "cypress": "^13.0.0"
+  },
+  "volta": {
+    "node": "21.1.0",
+    "yarn": "1.22.22"
   }
 }

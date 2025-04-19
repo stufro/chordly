@@ -79,6 +79,9 @@ RUN bundle install &&  rm -rf vendor/bundle/ruby/*/cache
 
 FROM build_deps as node_modules
 
+ENV NODE_ENV=production
+ENV PUPPETEER_SKIP_DOWNLOAD=true
+
 COPY package*json ./
 COPY yarn.* ./
 RUN yarn install
@@ -125,6 +128,9 @@ ENV SECRET_KEY_BASE 1
 # ENV AWS_SECRET_ACCESS_KEY=1
 
 # Run build task defined in lib/tasks/fly.rake
+ENV NODE_ENV=production
+ENV PUPPETEER_SKIP_DOWNLOAD=true
+
 ARG BUILD_COMMAND="bin/rails fly:build"
 RUN ${BUILD_COMMAND}
 
@@ -144,5 +150,4 @@ RUN apt-get update \
   && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
   && apt-get update \
   && apt-get install google-chrome-stable -y --no-install-recommends \
-  && apt-get remove google-chrome-stable -y \
   && rm -rf /var/lib/apt/lists/*
