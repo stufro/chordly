@@ -6,11 +6,25 @@
     h1.title.is-1 Sign up
 
     = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-      = render "devise/shared/error_messages", resource:
+      #flash-message-container
+        - if flash[:recaptcha_error]
+          #flash-message.box.has-background-danger.has-text-light data-controller="flash"
+            .icon
+              i.fas.fa-exclamation-circle
+            = flash[:recaptcha_error]
+            button.delete.ml-1.mt-1 data-flash-target="closeButton"
+
+        - if resource.errors.any?
+          #flash-message.box.has-background-danger.has-text-light data-controller="flash"
+            .icon
+              i.fas.fa-exclamation-circle
+            = resource.errors.full_messages.join(", ")
+            button.delete.ml-1.mt-1 data-flash-target="closeButton"
+
       .field
         = f.label :email, class: "label"
         .control.has-icons-left
-          = f.email_field :email, autofocus: true, autocomplete: "email", class: "input"
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: "input", required: true
           span.icon.is-small.is-left
             i.fas.fa-envelope
 
@@ -22,18 +36,21 @@
             = @minimum_password_length
             |  characters minimum)
         .control.has-icons-left
-          = f.password_field :password, autocomplete: "new-password", class: "input"
+          = f.password_field :password, autocomplete: "new-password", class: "input", required: true
           span.icon.is-small.is-left
             i.fas.fa-key
 
       .field
         = f.label :password_confirmation, "Confirm password", class: "label"
         .control.has-icons-left
-          = f.password_field :password_confirmation, autocomplete: "new-password", class: "input"
+          = f.password_field :password_confirmation, autocomplete: "new-password", class: "input", required: true
           span.icon.is-small.is-left
             i.fas.fa-key
 
-      .actions.is-flex.is-justify-content-center
+      - unless Rails.env.test?
+        = recaptcha_tags
+
+      .actions.is-flex.is-justify-content-center.mt-3
         = f.submit "Sign up", class: "button is-primary is-medium", id: "complete-sign-up",
             data: { turbo: false }, style: "width: 100%"
 
