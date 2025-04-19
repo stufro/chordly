@@ -280,6 +280,7 @@ GEM
       logger
     rdoc (6.12.0)
       psych (>= 4.0.0)
+    recaptcha (5.19.0)
     redcarpet (3.6.0)
     regexp_parser (2.10.0)
     reline (0.6.0)
@@ -461,6 +462,7 @@ DEPENDENCIES
   rails (~> 7.2)
   rails-controller-testing
   rails_best_practices
+  recaptcha
   redcarpet
   rspec-rails
   rubocop-factory_bot
