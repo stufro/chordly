@@ -1,0 +1,20 @@
+.field
+  = f.label :name, class: "label"
+  .control
+    = f.text_field :name, class: "input"
+
+.field
+  = f.label :content, class: "label mb-0"
+
+  small.is-size-7.has-text-grey
+    span.icon.icon-large
+      i.fas.fa-info-circle
+    | For a line to be treated as chords, it must not contain other text. However, bar lines are allowed e.g. | or :
+
+  .control
+    = f.text_area :content, class: "textarea",
+                            placeholder: "Paste your chord sheet here"
+
+.field
+  .control
+    = f.submit class: "button is-primary", id: "create-btn"

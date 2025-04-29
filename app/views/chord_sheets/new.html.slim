@@ -1,3 +1,4 @@
 h1.title.is-1 = title "New Chord Sheet"
 
-= render("form", chord_sheet: @chord_sheet)
+= form_with model: @chord_sheet do |f|
+  = render("form_fields", f: f)
