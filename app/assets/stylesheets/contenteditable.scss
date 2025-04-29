@@ -17,7 +17,7 @@
 [contenteditable="true"]:focus {
   border: none;
   outline: none;
-  background-color: $white-bis;
+  background-color: var(--bulma-schema-main-ter);
 
   > .edit-icon, + .edit-icon {
     opacity: 1;

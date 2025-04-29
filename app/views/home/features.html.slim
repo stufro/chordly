@@ -4,7 +4,13 @@
 
 h1.title.is-1 Features
 
-.level.is-justify-content-space-around.is-flex-wrap-wrap
+- get_started_path = user_signed_in? ? new_chord_sheet_path : new_trial_path
+= link_to get_started_path, class: "button is-primary is-large is-fullwidth" do
+  span.icon.is-small.mr-1
+    i.fas.fa-circle-play
+  | Get Started
+
+.level.is-justify-content-space-around.is-flex-wrap-wrap.mt-2
   .card.m-3.feature-card
     .card-content
       .media.is-align-items-center.has-text-centered
@@ -82,3 +88,8 @@ h1.title.is-1 Features
 
       .content.has-text-centered
         | Copy chord sheets to clipboard so you can paste elsewhere for further editing.
+
+= link_to get_started_path, class: "button is-primary is-large is-fullwidth" do
+  span.icon.is-small.mr-1
+    i.fas.fa-circle-play
+  | Get Started
