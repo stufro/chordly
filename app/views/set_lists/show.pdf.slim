@@ -1,4 +1,4 @@
-- @set_list.chord_sheets.each do |chord_sheet|
+- @set_list.chord_sheets.order(:position).each do |chord_sheet|
   div style="page-break-after: always"
     span.icon-text.is-align-items-center
       h1.title.is-1.p-2#show-page-title

@@ -21,7 +21,7 @@ class SetListExporter
 
   def to_zip
     io = Zip::OutputStream.write_buffer do |zio|
-      @set_list.chord_sheets.each do |chord_sheet|
+      @set_list.chord_sheets.order(:position).each do |chord_sheet|
         zio.put_next_entry(file_name(chord_sheet))
         zio.write(generate_pdf(chord_sheet))
       end
