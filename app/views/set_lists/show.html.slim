@@ -82,7 +82,7 @@
                     span.icon.has-text-primary.is-large.mr-2
                       i.fas.fa-music.fa-3x
                     div
-                      p.title.is-4 = chord_sheet.name.truncate(21)
+                      p.title.is-5 = chord_sheet.name.truncate(50)
                       = button_to remove_chord_sheet_set_list_path(@set_list,
                                                                   chord_sheet_id: chord_sheet.id),
                         class: "button is-danger is-light",
