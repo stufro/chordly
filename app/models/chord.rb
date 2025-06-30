@@ -1,5 +1,5 @@
 class Chord
-  attr_accessor :note, :type, :extension, :bass_note
+  attr_accessor :note, :type, :extension, :added_tone, :bass_note
 
   delegate :length, to: :to_s
 
@@ -7,11 +7,12 @@ class Chord
     @note = chord_parts[0]
     @type = chord_parts[1]
     @extension = chord_parts[2]
-    @bass_note = chord_parts[3]
+    @added_tone = chord_parts[3]
+    @bass_note = chord_parts[4]
   end
 
   def to_s
-    chord = [@note, @type, @extension].join
+    chord = [@note, @type, @extension, @added_tone].join
     chord += "/#{@bass_note}" if @bass_note
     chord
   end
