@@ -25,7 +25,7 @@ Rails.application.configure do
   config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # Compress CSS using a preprocessor.
-  config.assets.css_compressor = :sass
+  config.assets.css_compressor = nil # css compressed by sass in package.json script
   # config.assets.js_compressor = Uglifier.new(harmony: true)
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
@@ -66,7 +66,6 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-
   config.x.mail_from = %(Chordly <support@chordly.co.uk>)
   config.action_mailer.default_url_options = { host: "https://chordly.co.uk", port: 443 }
   config.action_mailer.smtp_settings = {
@@ -89,7 +88,7 @@ Rails.application.configure do
   config.active_support.report_deprecations = false
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
-  config.log_formatter = ::Logger::Formatter.new
+  config.log_formatter = Logger::Formatter.new
 
   # Use a different logger for distributed setups.
   # require "syslog/logger"
