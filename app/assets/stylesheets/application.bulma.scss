@@ -21,8 +21,10 @@ $primary: $purple;
   $success: $green,
   $warning: $yellow,
   $danger: $red,
-  $link: $primary
+  $link: $primary,
+  $navbar-burger-color: $grey-lightest,
 );
+
 
 // Import a Google Font
 @import url("https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap");
@@ -108,3 +110,4 @@ $primary: $purple;
 .footer {
   --bulma-footer-background-color: var(--bulma-scheme-main);
 }
+

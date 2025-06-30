@@ -4,7 +4,7 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
   .card.mb-3
     .card-content
       .level.is-mobile.is-flex-wrap-wrap
-        .level-left
+        .level-left.is-flex-direction-row
           .level-item.mt-2
             span.has-text-primary Transpose:
           .level-item.mt-2
@@ -21,7 +21,7 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
               span.icon
                 i.fas.fa-arrow-circle-down
 
-        .level-right.align-items-space-between#level-right[data-turbo-permanent]
+        .level-right.align-items-space-between.is-flex-direction-row#level-right[data-turbo-permanent]
           .level-item.mt-2 data-chord-diagram-target="wrapper"
             = render("chord_diagram_icon")
             .hidden#diagram-select data-chord-diagram-target="selectBox"
