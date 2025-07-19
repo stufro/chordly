@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     put :add_chord_sheet, on: :member
     put :remove_chord_sheet, on: :member
     patch :reorder, on: :member
+    get :live, on: :member
   end
 
   resource :trial, only: %i[new]

@@ -1,5 +1,5 @@
 class SetListsController < ApplicationController
-  before_action :authorize_user, only: %i[show update destroy add_chord_sheet remove_chord_sheet]
+  before_action :authorize_user, only: %i[show update destroy add_chord_sheet remove_chord_sheet live]
 
   def show
     respond_to do |format|
@@ -60,6 +60,10 @@ class SetListsController < ApplicationController
     params[:new_order].split(",").each_with_index do |id, index|
       ChordSheetsSetList.find(id).update(position: index + 1)
     end
+  end
+
+  def live
+    @set_list_chord_sheets = @set_list.chord_sheets.order("chord_sheets_set_lists.position")
   end
 
   private
