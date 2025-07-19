@@ -15,6 +15,11 @@
           i.fas.fa-book-bookmark
         span Back to library
 
+    = link_to live_set_list_path(@set_list), class: "button is-success", title: "Live View" do
+      span.icon
+        i.fas.fa-play
+      span Live View
+
     .dropdown.is-hoverable
       .dropdown-trigger
         button.button.is-info aria-haspopup="true" aria-controls="download-menu"
