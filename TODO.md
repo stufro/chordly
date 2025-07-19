@@ -10,19 +10,13 @@
   - [ ] Show 2 tabs on available chord sheets: recent & A-Z
   - [ ] Add chord sheet to set list from chord sheet show
 - [ ] Styling chord sheets
-- [ ] Support for chordpro format
-
----
-
-## v1.0.0
 - [ ] Sharing chord sheets with other users
 
 ---
 
-## v0.9.0
+## v1.0.0
+- [ ] Support for chordpro format
 - [ ] Dark mode
-
----
 
 ## v0.5.0
 - [x] Chord diagrams at top of sheet
