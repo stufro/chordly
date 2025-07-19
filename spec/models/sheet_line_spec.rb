@@ -152,5 +152,15 @@ describe SheetLine do
         expect(sheet_line.content).to eq(expected_chords)
       end
     end
+
+    context "with nashville numbers" do
+      let(:original_chords) { "1 2 3 Gm" }
+      let(:expected_chords) { "1 2 3 G#m" }
+
+      it "does not transpose nashville numbers" do
+        sheet_line.transpose(:up)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
   end
 end

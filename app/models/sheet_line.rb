@@ -13,6 +13,8 @@ class SheetLine
     scan_start = 0
     chords.each do |chord_parts|
       old_chord = Chord.new(chord_parts)
+      next if old_chord.nashville_number?
+
       new_chord = old_chord.transpose(direction)
 
       chord_start_index, chord_end_index = calculate_range_to_replace(scan_start, old_chord, new_chord)

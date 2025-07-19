@@ -25,6 +25,10 @@ class Chord
     new_chord
   end
 
+  def nashville_number?
+    note.match?(/^\d$/)
+  end
+
   private
 
   def transpose_note(note, direction)

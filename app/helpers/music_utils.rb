@@ -4,9 +4,9 @@ module MusicUtils
   CHORD_TYPES = /(maj|min|m|sus|dim|aug|mmaj)?/
   CHORD_EXTENSIONS = /(2|4|5|6|7|9|13)?/
   ADD_CHORDS = /(add\d+)?/
-  BASS_NOTE = %r{(?:/([A-Ga-g]#{ACCIDENTALS}))?}
+  BASS_NOTE = %r{(?:/([A-Ga-g1-7]#{ACCIDENTALS}))?}
   # if you change NOTE_REGEX, make sure you update Chord to handle any additional parts
-  NOTE_REGEX = /([A-Ga-g]#{ACCIDENTALS})#{CHORD_TYPES}#{CHORD_EXTENSIONS}#{ADD_CHORDS}#{BASS_NOTE}/
+  NOTE_REGEX = /([A-Ga-g1-7]#{ACCIDENTALS})#{CHORD_TYPES}#{CHORD_EXTENSIONS}#{ADD_CHORDS}#{BASS_NOTE}/
 
   def extract_note(potential_chord)
     no_note_proc = -> { potential_chord }

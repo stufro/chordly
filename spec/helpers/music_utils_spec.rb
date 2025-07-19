@@ -30,6 +30,12 @@ describe MusicUtils do
         expect(music_utils.extract_note("G#/D#")).to eq "G#"
       end
     end
+
+    context "with the nashville number system" do
+      it "returns the root note" do
+        expect(music_utils.extract_note("1m")).to eq "1"
+      end
+    end
   end
 
   describe "#extract_note!" do
