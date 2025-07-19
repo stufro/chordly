@@ -16,14 +16,16 @@ class ChordSheetModeller
   end
 
   def line_type(line)
-    remove_bar_chars(line).split.each { |token| extract_note!(token) }
+    remove_ignored_chars(line).split.each { |token| extract_note!(token) }
     :chords
   rescue ArgumentError
     :lyrics
   end
 
-  def remove_bar_chars(line)
+  def remove_ignored_chars(line)
     line.delete("|")
         .delete(":")
+        .delete("*")
+        .delete("N.C.")
   end
 end

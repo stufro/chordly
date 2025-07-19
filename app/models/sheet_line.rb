@@ -9,7 +9,7 @@ class SheetLine
 
   # rubocop:disable Metrics/MethodLength
   def transpose(direction)
-    chords = content.scan(NOTE_REGEX)
+    chords = sanitised_content.scan(NOTE_REGEX)
     scan_start = 0
     chords.each do |chord_parts|
       old_chord = Chord.new(chord_parts)
@@ -29,6 +29,10 @@ class SheetLine
   end
 
   private
+
+  def sanitised_content
+    content.dup.gsub("N.C.", "")
+  end
 
   def calculate_range_to_replace(scan_start, old_chord, new_chord)
     chord_start_index = @content[scan_start..].index(old_chord.to_s) + scan_start

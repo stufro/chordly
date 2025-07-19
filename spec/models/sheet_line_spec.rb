@@ -142,5 +142,15 @@ describe SheetLine do
         expect(sheet_line.content).to eq(expected_chords)
       end
     end
+
+    context "with a N.C. chord" do
+      let(:original_chords) { "G Em D N.C." }
+      let(:expected_chords) { "F# D#m C# N.C." }
+
+      it "transposes the chords and leaves the N.C. in place" do
+        sheet_line.transpose(:down)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
   end
 end
