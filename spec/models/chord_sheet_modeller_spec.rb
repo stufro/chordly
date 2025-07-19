@@ -4,7 +4,7 @@ describe ChordSheetModeller do
   describe "#parse" do
     let(:raw_content) do
       <<~TEXT
-        G     Em    C
+        Gsus4     Em    C/E
         Some lyrics here
       TEXT
     end
@@ -12,7 +12,7 @@ describe ChordSheetModeller do
     it "returns the chord sheet string modelled as JSON" do
       expect(described_class.new(raw_content).parse).to eq(
         [
-          { type: :chords, content: "G     Em    C\n" },
+          { type: :chords, content: "Gsus4     Em    C/E\n" },
           { type: :lyrics, content: "Some lyrics here\n" }
         ]
       )

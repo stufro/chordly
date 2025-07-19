@@ -26,6 +26,6 @@ class ChordSheetModeller
     line.delete("|")
         .delete(":")
         .delete("*")
-        .delete("N.C.")
+        .gsub("N.C.", "")
   end
 end
