@@ -1,3 +1,5 @@
+- read_only = defined?(read_only)
+
 div data-clipboard-target="source"
   .guitar-chords.hidden data-chord-diagram-target="guitarChords"
     - chord_sheet.unique_chords.each do |chord|
@@ -7,12 +9,13 @@ div data-clipboard-target="source"
     - chord_sheet.unique_chords.each do |chord|
       == ChordDiagrams.ukulele_svg(chord)
 
-  pre#chord-sheet-content[data-controller="editable"
+  pre#chord-sheet-content[data-controller=("editable" unless read_only)
                                   data-editable-field-value="content"
                                   data-editable-url-value=chord_sheet_path(chord_sheet)
                                   data-editable-model-value="chord_sheet"]
-    span.icon.is-medium.edit-icon#content-edit-icon
-      i.far.fa-edit.fa-2x
+    - unless read_only
+      span.icon.is-medium.edit-icon#content-edit-icon
+        i.far.fa-edit.fa-2x
 
     - chord_sheet.content.each do |line|
       span class=(line["type"] == "chords" ? "chord-line" : "lyric-line")
