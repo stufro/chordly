@@ -1,4 +1,11 @@
-h1.title.is-1 = @set_list.name
+.is-flex.mb-6.is-justify-content-space-between.is-align-items-center
+  h1.title.is-1.mb-0 = @set_list.name
+
+  = link_to set_list_path(@set_list), class: "button is-primary", title: "Back to set list" do
+    span.icon-text.is-flex-wrap-nowrap
+      span.icon
+        i.fas.fa-arrow-left
+      span Back to set list
 
 - @set_list_chord_sheets.each_with_index do |chord_sheet, index|
   div data-controller="chord-diagram"
