@@ -1,13 +1,14 @@
-- read_only = defined?(read_only)
+- read_only = defined?(read_only) ? read_only : false
 
 div data-clipboard-target="source"
-  .guitar-chords.hidden data-chord-diagram-target="guitarChords"
-    - chord_sheet.unique_chords.each do |chord|
-      == ChordDiagrams.guitar_svg(chord)
+  - unless read_only
+    .guitar-chords.hidden data-chord-diagram-target="guitarChords"
+      - chord_sheet.unique_chords.each do |chord|
+        == ChordDiagrams.guitar_svg(chord)
 
-  .ukulele-chords.hidden data-chord-diagram-target="ukuleleChords"
-    - chord_sheet.unique_chords.each do |chord|
-      == ChordDiagrams.ukulele_svg(chord)
+    .ukulele-chords.hidden data-chord-diagram-target="ukuleleChords"
+      - chord_sheet.unique_chords.each do |chord|
+        == ChordDiagrams.ukulele_svg(chord)
 
   pre#chord-sheet-content[data-controller=("editable" unless read_only)
                                   data-editable-field-value="content"

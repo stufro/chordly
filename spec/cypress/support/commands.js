@@ -41,3 +41,17 @@ Cypress.Commands.add('login', (attributes) => {
     })
   })
 })
+
+Cypress.Commands.addQuery('isWithinViewport', () => {
+  const viewportWidth = Cypress.config('viewportWidth')
+  const viewportHeight = Cypress.config('viewportHeight')
+
+  const innerFn = (subject) => {
+    const {top, left, bottom, right} = subject[0].getBoundingClientRect();
+    expect(top).to.be.at.least(0);
+    expect(left).to.be.at.least(0);
+    expect(right).to.be.at.most(viewportWidth);
+    expect(bottom).to.be.at.most(viewportHeight);
+  }
+  return innerFn;
+})
