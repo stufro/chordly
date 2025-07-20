@@ -12,4 +12,5 @@ git add .
 git commit -m "chore: bump version"
 git tag "$(semver)"
 
+echo
 echo "Now run git push origin main --tags"
