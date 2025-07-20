@@ -52,9 +52,6 @@ rake
 
 ## Deploying
 ```
-semver inc [major|minor|patch]
-git add .
-git commit -m "chore: bump version"
-git tag `semver`
+./release.bash [major|minor|patch]
 git push origin main --tags
 ```
