@@ -1,23 +1,30 @@
 h1.title.is-1 = @set_list.name
 
 - @set_list_chord_sheets.each_with_index do |chord_sheet, index|
-  .is-flex.is-justify-content-space-between.is-align-items-center.is-flex-wrap-wrap
-    h2.title.is-3 id="chord-sheet-#{index + 1}" = "#{index + 1}. #{chord_sheet.name}"
-    .is-flex style="gap: .5rem"
-      - if index > 0
-        = link_to "#chord-sheet-#{index}", class: "button button is-primary" do
+  div data-controller="chord-diagram"
+    .is-flex.is-justify-content-space-between.is-align-items-center.is-flex-wrap-wrap
+      .is-flex.is-align-items-center
+        h2.title.is-3.mb-0.mr-2 id="chord-sheet-#{index + 1}" = "#{index + 1}. #{chord_sheet.name}"
+        = link_to chord_sheet_path(chord_sheet), class: "button is-info is-small", title: "Edit chord sheet" do
           span.icon-text.is-flex-wrap-nowrap
             span.icon
-              i.fas.fa-arrow-circle-up
-            span Previous
+              i.fas.fa-pencil
 
-      - if index < @set_list_chord_sheets.size - 1
-        = link_to "#chord-sheet-#{index + 2}", class: "button button is-primary"
+      .is-flex style="gap: .5rem"
+        - if index > 0
+          = link_to "#chord-sheet-#{index}", class: "button button is-primary", title: "Previous song" do
             span.icon-text.is-flex-wrap-nowrap
               span.icon
-                i.fas.fa-arrow-circle-down
-              span Next
+                i.fas.fa-arrow-circle-up
+              span Previous
 
-  .mt-2
-    = render "chord_sheets/content", chord_sheet:
-  hr
+        - if index < @set_list_chord_sheets.size - 1
+          = link_to "#chord-sheet-#{index + 2}", class: "button button is-primary", title: "Next song" do
+              span.icon-text.is-flex-wrap-nowrap
+                span.icon
+                  i.fas.fa-arrow-circle-down
+                span Next
+
+    .mt-2
+      = render "chord_sheets/content", chord_sheet:, read_only: true
+    hr
