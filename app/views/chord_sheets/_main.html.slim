@@ -22,7 +22,7 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
                 i.fas.fa-arrow-circle-down
 
         .level-right.align-items-space-between.is-flex-direction-row#level-right[data-turbo-permanent]
-          .level-item.mt-2 data-chord-diagram-target="wrapper"
+          .level-item.mt-2 data-chord-diagram-target="wrapper" title="Show chord diagrams"
             = render("chord_diagram_icon")
             .hidden#diagram-select data-chord-diagram-target="selectBox"
               .diagram-option#guitar data-action="click->chord-diagram#set" Guitar
