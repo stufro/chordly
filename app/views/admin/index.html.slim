@@ -2,21 +2,21 @@
 
 h1.title.is-1 Users
 
-.level.is-flex-wrap-wrap.has-text-centered
+.level.has-text-centered.is-justify-content-space-around
   .card.stat-card
     .card-content
       h2.subtitle Total Users
       p.title = @users.count
-  .card.stat-card
-    .card-content
-      h2.subtitle Active Users (Last 7 days)
-      p.title = @users.where("current_sign_in_at > ?", 7.days.ago).count
-  .card.stat-card
-    .card-content
-      h2.subtitle Active Users (Last 30 days)
-      p.title = @users.where("current_sign_in_at > ?", 30.days.ago).count
 
-i Last 20 active users
+.level.is-flex-wrap-wrap.has-text-centered.is-align-items-baseline.is-justify-content-space-around.is-align-content-center
+  = render("admin/stat_card", title: "Active", header: "7 Days", count: @users.where("current_sign_in_at > ?", 7.days.ago).count)
+  = render("admin/stat_card", title: "New", header: "7 Days", count: @users.where("created_at > ?", 7.days.ago).count)
+
+.level.is-flex-wrap-wrap.has-text-centered.is-align-items-baseline.is-justify-content-space-around.is-align-content-center
+  = render("admin/stat_card", title: "Active", header: "30 Days", count: @users.where("current_sign_in_at > ?", 30.days.ago).count)
+  = render("admin/stat_card", title: "New", header: "30 Days", count: @users.where("created_at > ?", 30.days.ago).count)
+
+i Last 10 active users
 .table-container
   table.table.is-fullwidth.is-striped
     thead
@@ -28,7 +28,7 @@ i Last 20 active users
         th Last sign in
         th Created at
     tbody
-      - @users.order(current_sign_in_at: :desc).limit(20).each do |user|
+      - @users.order(current_sign_in_at: :desc).limit(10).each do |user|
         tr
           td = user.email
           td = user.sign_in_count
@@ -46,16 +46,11 @@ h1.title.is-1 Chord Sheets
     .card-content
       h2.subtitle Total Chord Sheets
       p.title = @chord_sheets.count
-  .card.stat-card
-    .card-content
-      h2.subtitle Chord Sheets Created (Last 7 days)
-      p.title = @chord_sheets.where("created_at > ?", 7.days.ago).count
-  .card.stat-card
-    .card-content
-      h2.subtitle Chord Sheets Created (Last 30 days)
-      p.title = @chord_sheets.where("created_at > ?", 30.days.ago).count
 
-i Last 20 created chord sheets
+  = render("admin/stat_card", title: "Created", header: "7 Days", count: @chord_sheets.where("created_at > ?", 7.days.ago).count)
+  = render("admin/stat_card", title: "Created", header: "30 Days", count: @chord_sheets.where("created_at > ?", 30.days.ago).count)
+
+i Last 10 created chord sheets
 .table-container
   table.table.is-fullwidth.is-striped
     thead
@@ -66,7 +61,7 @@ i Last 20 created chord sheets
         th Updated at
         th Trial user ID
     tbody
-      - @chord_sheets.order(created_at: :desc).limit(20).each do |sheet|
+      - @chord_sheets.order(created_at: :desc).limit(10).each do |sheet|
         tr
           td = sheet.user&.email
           td = sheet.name
@@ -83,16 +78,11 @@ h1.title.is-1 Set Lists
     .card-content
       h2.subtitle Total Set Lists
       p.title = @set_lists.count
-  .card.stat-card
-    .card-content
-      h2.subtitle Set Lists Created (Last 7 days)
-      p.title = @set_lists.where("created_at > ?", 7.days.ago).count
-  .card.stat-card
-    .card-content
-      h2.subtitle Set Lists Created (Last 30 days)
-      p.title = @set_lists.where("created_at > ?", 30.days.ago).count
 
-i Last 20 created set lists
+  = render("admin/stat_card", title: "Created", header: "7 Days", count: @set_lists.where("created_at > ?", 7.days.ago).count)
+  = render("admin/stat_card", title: "Created", header: "30 Days", count: @set_lists.where("created_at > ?", 30.days.ago).count)
+
+i Last 10 created set lists
 .table-container
   table.table.is-fullwidth.is-striped
     thead
@@ -103,7 +93,7 @@ i Last 20 created set lists
         th Updated at
         th No. Chord Sheets
     tbody
-      - @set_lists.order(created_at: :desc).limit(20).each do |set|
+      - @set_lists.order(created_at: :desc).limit(10).each do |set|
         tr
           td = set.user&.email
           td = set.name

@@ -4,6 +4,6 @@ class AdminController < ApplicationController
   def index
     @chord_sheets = ChordSheet.all
     @set_lists = SetList.all
-    @users = User.all
+    @users = User.where.not(id: current_user.id)
   end
 end
