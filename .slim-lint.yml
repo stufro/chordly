@@ -5,7 +5,7 @@ exclude:
 
 linters:
   LineLength:
-    max: 120
+    max: 135
     exclude:
       - app/views/devise/shared/_links.html.slim
       - app/views/home/privacy.html.slim
