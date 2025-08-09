@@ -17,7 +17,7 @@
             i.fas.fa-pencil
 
     .is-flex style="gap: .5rem"
-      - if index > 0
+      - if index.positive?
         = link_to "#chord-sheet-#{index}", class: "button button is-primary", title: "Previous song" do
           span.icon-text.is-flex-wrap-nowrap
             span.icon
