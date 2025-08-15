@@ -1,0 +1,6 @@
+- title @filename.humanize
+- description @content.truncate(150)
+
+.container.is-flex.is-justify-content-center
+  .markdown-content
+    = @content.html_safe

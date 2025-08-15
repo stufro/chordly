@@ -41,6 +41,8 @@ Rails.application.routes.draw do
 
   resource :trial, only: %i[new]
 
+  resources :articles, only: %i[show]
+
   constraints FlipperUIAccess do
     mount Flipper::UI.app(Flipper) => "/flipper"
   end

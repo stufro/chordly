@@ -23,7 +23,7 @@ div data-controller="fade-in"
 
   .hero.is-medium
     .hero-body
-      .container.has-text-centered.fadeable
+      .has-text-centered
         .is-flex.is-justify-content-center.is-align-items-center.is-flex-wrap-wrap
           span.icon-text.is-flex-wrap-nowrap.has-text-primary
             span.icon.is-large.mr-5
@@ -38,6 +38,23 @@ div data-controller="fade-in"
           | Transpose Song Now
 
         h3.subtitle.is-4.mt-3.has-text-primary.has-text-weight-bold No account required
+
+        br
+        .container.is-max-tablet
+          .card
+            .card-content
+              .is-flex.is-justify-content-center.is-align-items-center.is-flex-wrap-wrap
+                span.icon-text.is-flex-wrap-nowrap.has-text-primary
+                  span.icon.is-large.mr-5
+                    i.fas.fa-file-lines.fa-3x
+                h1.title Take the hassle out of chord sheets
+
+              br
+              h2.subtitle.mb-2 🎸 Chordly makes creating, organizing, and sharing chord sheets effortless.
+              h2.subtitle.mb-2 🎤 Whether you’re prepping for a gig, crafting practice material, or experimenting with ideas, Chordly saves time and keeps your music neatly arranged.
+              h2.subtitle.mb-2 🎶 Transpose songs instantly, export PDFs, and keep your set lists and chord sheets all in one place
+              h2.subtitle.has-text-weight-bold No more scattered notes or last-minute scrambling.
+
 
   .hero.is-primary.is-medium
     .hero-body
@@ -56,3 +73,44 @@ div data-controller="fade-in"
         = turbo_frame_tag "pdf-feature-webp", src: asset_frame_path(asset: "pdf_feature_webp"),
             class: "is-flex is-justify-content-center" do
           .hero-image.spinner
+
+  .hero.is-medium
+    .hero-body
+      .container.has-text-centered.fadeable
+        h1.title.is-3 Featured Articles
+        h2.subtitle.is-5.mb-4 Explore our latest articles on music theory, Chordly tutorials, and more.
+
+        ruby:
+          articles = [ 
+            { 
+              title: "Music Theory – A Beginner's Guide to Transposing", id: "beginners-guide-to-transposing", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Music_notes_%28495026%29_-_The_Noun_Project.svg/640px-Music_notes_%28495026%29_-_The_Noun_Project.svg.png",
+              description: "Transposing is one of those musical skills that sounds complicated but is surprisingly straightforward once you understand the basics."
+            },
+            { 
+              title: "Chordly User Guide", id: "guide-to-using-chordly", image: "/article_assets/library.png",
+              description: "Chordly is designed to make creating and managing chord sheets as simple as possible. This short guide will walk you through the main features so you can get started quickly."
+            },
+            { 
+              title: "Putting Together a Set List for Your Next Gig", id: "tips-for-your-setlist", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Musicians_at_Velour_Live_Music_Gallery_%28Unsplash%29.jpg/640px-Musicians_at_Velour_Live_Music_Gallery_%28Unsplash%29.jpg",
+              description: "A great set list is more than just a list of songs—it’s the roadmap for your performance, shaping the audience’s energy and keeping your band on track. Whether you’re preparing..."
+            },
+            { 
+              title: "How to restore Chord Sheets in Chordly", id: "restoring-old-chord-sheets", image: "/article_assets/previous_versions.png",
+              description: "Accidentally deleted a chord sheet? Or maybe you want to go back to an earlier draft of a song?"
+            },
+          ]
+
+        .columns.mt-6
+          - articles.each do |article|
+            .column.is-flex
+              .card.is-flex.is-flex-direction-column
+                .card-image
+                  = link_to article_path(article[:id]) do
+                    figure.image.is-4by3
+                      img[src=article[:image] alt="#{article[:title]} preview image" style="object-fit: contain;"]
+                .card-content.is-flex-grow-1
+                  .content
+                    = link_to article[:title], article_path(article[:id]), class: "title is-4"
+                    p = article[:description]
+
+  hr
