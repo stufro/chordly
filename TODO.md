@@ -1,4 +1,10 @@
 # Development Roadmap
+
+Chordly is an evolving project, and the roadmap exists to give users and contributors a clear view of where it’s heading.
+Features are prioritised based on community feedback, ease of use, and the goal of making chord management as simple and
+reliable as possible. While not every idea will make it into the final product, sharing the roadmap helps keep development
+transparent and ensures that musicians, teachers, and performers can see how Chordly will continue to grow over time.
+
 ---
 
 ## Potential ideas for beyond the planned releases below

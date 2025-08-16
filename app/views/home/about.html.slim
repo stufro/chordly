@@ -5,32 +5,47 @@
 .section
   h1.title.is-1 About
   p
-    | Chordly is a free, open-source online chord sheet creator. It is a hobby project created by
+    | Chordly is a free, open-source online chord sheet creator. 
+    |  It helps musicians write, organise, and share chord sheets without the hassle of clunky software or scattered notes.
+    |  It is a hobby project created by
     a href="https://github.com/stufro" target="_blank" rel="noopener"  Stuart Frost
-    |  which was launched in the Autumn of 2022.
+    |  which was launched in the Autumn of 2022. What began as a small side project quickly grew into a tool that musicians,
+    |  teachers, and performers around the world now use to prepare for gigs, lessons, and practice sessions.
+
+.section.hero.is-small.is-primary
+  .hero-body
+    .is-flex.is-justify-content-around
+      .icon.is-large.mr-4
+        i.fas.fa-quote-left.fa-5x
+
+      .content.ml-4
+        p.title.mb-2 "I created Chordly purely to solve my own problem of quickly transposing chord sheets."
+        i.subtitle = "- Stuart, Creator of Chordly"
 
 .section
   h2.title.is-3 Why open-source?
-  a href="https://opensource.google/documentation/reference/why/" target="_blank"
-    | Read Google's article on open source software and why it's important.
+  p
+    | Chordly is open-source because great software becomes even better when a community can shape it. Transparency,
+    |  collaboration, and shared learning are at the heart of open-source projects.
+    |  If you’re curious about why open-source matters, you can
+    a href="https://opensource.google/documentation/reference/why/" target="_blank"
+      |  read Google's article on open source software and why it's important.
 
 .section
   .level.is-justify-content-start.is-align-items-center
-    h2.title.is-3.mb-0 Buy me a coffee
-    = image_tag "buy_me_a_coffee.webp", class: "ml-3", alt: "Buy me a coffee logo"
+    h2.title.is-3.mb-0 Support the Project ❤️
   p
-    | Creating good software takes a lot of time and effort plus hosting a website costs money.
-    |  If you get value from using Chordly and you would like to support the future of it,
-    |  please consider
+    | Creating good software takes time, effort, and ongoing costs for hosting and maintenance. If Chordly has been useful 
+    | to you and you’d like to support its future, please consider
     a[href="https://www.buymeacoffee.com/stuartfrosG"
         target="_blank" rel="noopener"]  buying me a coffee.
+    |  Every contribution helps keep the project alive and evolving.
 
 .section
   .level.is-justify-content-start.is-align-items-center
     h2.title.is-3.mb-0 Contributing
   p
-    | If you like writing software and have an interest in contributing to Chordly,
-    |  head over to the
+    | If you’re a developer and want to get involved, contributions are always welcome. Check out the
     a[href="https://github.com/stufro/chordly/blob/main/CONTRIBUTING.md"
-      target="_blank" rel="noopener"]  GitHub page
-    | &nbsp;for instructions on getting started.
+      target="_blank" rel="noopener"]  Chordly GitHub repository
+    |  for instructions on how to get started, submit improvements, or suggest new features.
