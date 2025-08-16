@@ -16,8 +16,6 @@ To go back to an earlier version:
 
 ![](/article_assets/previous_versions.png)
 
-This is useful if you’ve made changes you no longer want, but don’t want to lose the sheet entirely.
-
 ---
 
 ## 2. Restoring from the Bin
@@ -35,7 +33,7 @@ This is perfect for recovering songs you thought you didn’t need anymore but l
 
 ---
 
-### Final Thoughts
+## Final Thoughts
 Whether you’re fixing a mistake or retrieving an old set list, Chordly gives you the flexibility to restore your work quickly.  
 With both **Previous Versions** and the **Bin**, you’ll never have to worry about losing your music.
 

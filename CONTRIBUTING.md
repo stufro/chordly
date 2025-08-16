@@ -1,6 +1,6 @@
 # Contributing to Chordly
 Dependencies:
-- Ruby 3.3.4
+- Ruby 3.4.5
 - PostgreSQL
 - Yarn
 - Chrome or Chromium browser (for [Grover gem](https://github.com/Studiosity/grover))

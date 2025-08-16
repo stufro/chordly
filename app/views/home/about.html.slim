@@ -15,11 +15,13 @@
 .section.hero.is-small.is-primary
   .hero-body
     .is-flex.is-justify-content-around
-      .icon.is-large.mr-4
+      .icon.is-large.mr-4.is-hidden-mobile
         i.fas.fa-quote-left.fa-5x
 
       .content.ml-4
-        p.title.mb-2 "I created Chordly purely to solve my own problem of quickly transposing chord sheets."
+        p.title.mb-2
+          | "I created Chordly purely to solve my own problem of quickly transposing chord sheets.
+          |  The fact that other people find it useful is just a bonus!"
         i.subtitle = "- Stuart, Creator of Chordly"
 
 .section
@@ -27,25 +29,66 @@
   p
     | Chordly is open-source because great software becomes even better when a community can shape it. Transparency,
     |  collaboration, and shared learning are at the heart of open-source projects.
-    |  If you’re curious about why open-source matters, you can
+    |  If you're curious about why open-source matters, you can
     a href="https://opensource.google/documentation/reference/why/" target="_blank"
       |  read Google's article on open source software and why it's important.
 
 .section
   .level.is-justify-content-start.is-align-items-center
-    h2.title.is-3.mb-0 Support the Project ❤️
+    h2.title.is-3.mb-0#support Support Chordly ❤️
   p
     | Creating good software takes time, effort, and ongoing costs for hosting and maintenance. If Chordly has been useful 
-    | to you and you’d like to support its future, please consider
-    a[href="https://www.buymeacoffee.com/stuartfrosG"
-        target="_blank" rel="noopener"]  buying me a coffee.
-    |  Every contribution helps keep the project alive and evolving.
+    | to you and you'd like to support its future, please consider making a donation. Every contribution helps keep the
+    | project alive and evolving.
+
+  .columns.mt-6
+    .column.is-flex
+      .card.is-flex.is-flex-direction-column.is-align-content-center
+        .card-image.p-2
+          = link_to "https://www.buymeacoffee.com/stuartfrosG" do
+            figure.image.is-2by3
+              = image_tag "buy_me_a_coffee.svg", alt: "Buy me a coffee logo", style: "object-fit: contain;"
+        .card-footer.is-flex-grow-1
+          a.card-footer-item.p-0 href="https://www.buymeacoffee.com/stuartfrosG" target="_blank" rel="noopener"
+            img[
+              src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=stuartfrosG&button_colour=7f465d&
+              font_colour=ffffff&font_family=Cookie&outline_colour=ffffff&coffee_colour=FFDD00"
+            ]
+
+    .column.is-flex
+      .card.is-flex.is-flex-direction-column.is-justify-content-space-between
+        .card-image
+          = link_to "bitcoin:bc1qvhcm95rkq2jrndzkdl4v062mf6dz2e47a4al5f?message=Chordly%20Donation%20" do
+            figure.image.is-1by1
+              = image_tag "electrum_wallet.jpeg", alt: "Bitcoin wallet QR code", style: "object-fit: contain;"
+          p.is-size-7.px-3.pb-2
+            | bc1qvhcm95rkq2jrndzkdl4v062mf6dz2e47a4al5f
+        .card-footer.is-flex-grow-1.pt-0
+          = link_to("bitcoin:bc1qvhcm95rkq2jrndzkdl4v062mf6dz2e47a4al5f?message=Chordly%20Donation%20",
+            class: "button is-primary is-fullwidth card-footer-item") do
+              span.icon.is-small.mr-1
+                i.fas.fa-bitcoin-sign
+              | Donate BTC
+
+    .column.is-flex
+      .card.is-flex.is-flex-direction-column.is-justify-content-space-between
+        .card-image
+          = link_to "ethereum:0x62b55e6761f0c04fADB5D3Ad45149a373e54BF76" do
+            figure.image.is-1by1
+              = image_tag "metamask_wallet.jpeg", alt: "Ethereum wallet QR code", style: "object-fit: contain;"
+          p.is-size-7.px-3.pb-2
+            | 0x62b55e6761f0c04fADB5D3Ad45149a373e54BF76
+        .card-footer.is-flex-grow-1.pt-0
+          = link_to "ethereum:0x62b55e6761f0c04fADB5D3Ad45149a373e54BF76", class: "button is-primary is-fullwidth card-footer-item" do
+            span.icon.is-small.mr-1
+              i.fas.fa-gem
+            | Donate ETH
 
 .section
   .level.is-justify-content-start.is-align-items-center
     h2.title.is-3.mb-0 Contributing
   p
-    | If you’re a developer and want to get involved, contributions are always welcome. Check out the
+    | If you're a developer and want to get involved, contributions are always welcome. Check out the
     a[href="https://github.com/stufro/chordly/blob/main/CONTRIBUTING.md"
       target="_blank" rel="noopener"]  Chordly GitHub repository
     |  for instructions on how to get started, submit improvements, or suggest new features.
