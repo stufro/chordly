@@ -1,5 +1,6 @@
 class SheetLine
   include MusicUtils
+
   attr_accessor :type, :content
 
   def initialize(line_hash)

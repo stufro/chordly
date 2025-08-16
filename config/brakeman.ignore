@@ -1,0 +1,28 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "File Access",
+      "warning_code": 16,
+      "fingerprint": "6f13070ecba6422ed5de8a17d75d99e8d33f86852c2a6ab1750d2b9b59e63244",
+      "check_name": "FileAccess",
+      "message": "Parameter value used in file name",
+      "file": "app/controllers/articles_controller.rb",
+      "line": 18,
+      "link": "https://brakemanscanner.org/docs/warning_types/file_access/",
+      "code": "File.read(Rails.public_path.join(\"articles\", \"#{params[:id].to_s}.md\"))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "ArticlesController",
+        "method": "show"
+      },
+      "user_input": "params[:id].to_s",
+      "confidence": "Weak",
+      "cwe_id": [
+        22
+      ],
+      "note": ""
+    }
+  ],
+  "brakeman_version": "7.1.0"
+}
