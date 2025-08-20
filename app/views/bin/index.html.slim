@@ -16,7 +16,7 @@
 
   .is-flex.is-flex-wrap-wrap.is-justify-content-center style="gap: 2rem;"
     - @chord_sheets.each do |chord_sheet|
-      div style="border: 1px solid lightgrey; border-radius: 1rem; padding: 1rem; min-width: 40vw"
+      div style="border: 1px solid lightgrey; border-radius: 1rem; padding: 1rem; min-width: 40vw" data-search-target="searchable"
         .is-flex.is-justify-content-space-between.is-flex-wrap-wrap style="gap: .5rem"
           p
             b Name:&nbsp;
@@ -50,7 +50,7 @@
 
   .is-flex.is-flex-wrap-wrap.is-justify-content-center style="gap: 2rem;"
     - @set_lists.each do |set_list|
-      div style="border: 1px solid lightgrey; border-radius: 1rem; padding: 1rem; min-width: 40vw"
+      div style="border: 1px solid lightgrey; border-radius: 1rem; padding: 1rem; min-width: 40vw" data-search-target="searchable"
         .is-flex.is-justify-content-space-between.is-flex-wrap-wrap style="gap: .5rem"
           p
             b Name:&nbsp;
