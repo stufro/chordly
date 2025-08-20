@@ -14,63 +14,76 @@
 - if @chord_sheets.present?
   h2.title.is-3 Deleted Chord Sheets
 
-  .is-flex.is-flex-wrap-wrap.is-justify-content-center style="gap: 2rem;"
-    - @chord_sheets.each do |chord_sheet|
-      div style="border: 1px solid lightgrey; border-radius: 1rem; padding: 1rem; min-width: 40vw"
-        .is-flex.is-justify-content-space-between.is-flex-wrap-wrap style="gap: .5rem"
-          p
-            b Name:&nbsp;
-            span = chord_sheet.name
+  .mb-6 data-controller="search show-more" style="gap: 2rem;"
+    .is-flex.is-justify-content-space-between.is-align-items-center
+      .is-flex-grow-1
+        input[class="input mb-0 has-text-centered" id="search-box" type="text"
+          placeholder="Search for a chord sheet" data-search-target="input"
+          data-action="search#search"]
 
-          div
-            small.has-text-grey-light
-              span.icon
-                i.fas.fa-clock
-              span = local_time(chord_sheet.updated_at)
+    .is-flex.is-flex-wrap-wrap.is-justify-content-center style="gap: 2rem;"
+      - @chord_sheets.each do |chord_sheet|
+        div style="border: 1px solid lightgrey; border-radius: 1rem; padding: 1rem; min-width: 40vw" data-search-target="searchable"
+          .is-flex.is-justify-content-space-between.is-flex-wrap-wrap style="gap: 0.3rem"
+            p.title.is-6 data-search-full-term=chord_sheet.name = chord_sheet.name.truncate(50)
+              b Name:&nbsp;
+              span = chord_sheet.name
 
-          = button_to(bin_path(chord_sheet, resource_type: "ChordSheet"), method: :patch,
+            div
+              small.has-text-grey-light
+                span.icon
+                  i.fas.fa-clock
+                span = local_time(chord_sheet.updated_at)
+
+            = button_to(bin_path(chord_sheet, resource_type: "ChordSheet"), method: :patch,
                       class: "button is-success is-small",
                       id: "restore-chord-sheet-#{chord_sheet.id}")
-            span.icon-text.is-flex-wrap-nowrap
-              span.icon
-                i.fas.fa-history
-              span Restore
+              span.icon-text.is-flex-wrap-nowrap
+                span.icon
+                  i.fas.fa-history
+                span Restore
 
-        p
-          b Content:&nbsp;
+          p
+            b Content:&nbsp;
 
-        div style="max-height: 20em; overflow: auto"
-          pre
-            - chord_sheet.content.each do |line|
-              span class=(line["type"] == "chords" ? "chord-line" : "lyric-line")
-                = line["content"]
+          div style="max-height: 20em; overflow: auto"
+            pre
+              - chord_sheet.content.each do |line|
+                span class=(line["type"] == "chords" ? "chord-line" : "lyric-line")
+                  = line["content"]
 
 - if @set_lists.present?
   h2.title.is-3 Deleted Set Lists
 
-  .is-flex.is-flex-wrap-wrap.is-justify-content-center style="gap: 2rem;"
-    - @set_lists.each do |set_list|
-      div style="border: 1px solid lightgrey; border-radius: 1rem; padding: 1rem; min-width: 40vw"
-        .is-flex.is-justify-content-space-between.is-flex-wrap-wrap style="gap: .5rem"
-          p
-            b Name:&nbsp;
-            span = set_list.name
+  .mb-6 data-controller="search show-more" style="gap: 2rem;"
+    .is-flex.is-justify-content-space-between.is-align-items-center
+      .is-flex-grow-1
+        input[class="input mb-0 has-text-centered" id="search-box" type="text"
+          placeholder="Search for a chord sheet" data-search-target="input"
+          data-action="search#search"]
+    .is-flex.is-flex-wrap-wrap.is-justify-content-center style="gap: 2rem;"
+      - @set_lists.each do |set_list|
+        div style="border: 1px solid lightgrey; border-radius: 1rem; padding: 1rem; min-width: 40vw" data-search-target="searchable"
+          .is-flex.is-justify-content-space-between.is-flex-wrap-wrap style="gap: .5rem"
+            p.title.is-6 data-search-full-term=set_list.name = set_list.name.truncate(50)
+              b Name:&nbsp;
+              span = set_list.name
 
-          div
-            small.has-text-grey-light
-              span.icon
-                i.fas.fa-clock
-              span = local_time(set_list.updated_at)
+            div
+              small.has-text-grey-light
+                span.icon
+                  i.fas.fa-clock
+                span = local_time(set_list.updated_at)
 
-          = button_to(bin_path(set_list, resource_type: "SetList"), method: :patch,
+            = button_to(bin_path(set_list, resource_type: "SetList"), method: :patch,
                       class: "button is-success is-small", id: "restore-set-list-#{set_list.id}")
-            span.icon-text.is-flex-wrap-nowrap
-              span.icon
-                i.fas.fa-history
-              span Restore
+              span.icon-text.is-flex-wrap-nowrap
+                span.icon
+                  i.fas.fa-history
+                span Restore
 
-        .is-flex.is-align-items-center.is-flex-direction-column
-          p
-            b Chord Sheets
-          - set_list.chord_sheets.each do |chord_sheet|
-            span = chord_sheet.name
+          .is-flex.is-align-items-center.is-flex-direction-column
+            p
+              b Chord Sheets
+            - set_list.chord_sheets.each do |chord_sheet|
+              span = chord_sheet.name

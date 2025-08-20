@@ -127,8 +127,14 @@ GEM
       railties (>= 6.1.0)
     faker (3.5.2)
       i18n (>= 1.8.11, < 2)
+    ffi (1.17.2-aarch64-linux-gnu)
+    ffi (1.17.2-aarch64-linux-musl)
+    ffi (1.17.2-arm-linux-gnu)
+    ffi (1.17.2-arm-linux-musl)
     ffi (1.17.2-arm64-darwin)
+    ffi (1.17.2-x86_64-darwin)
     ffi (1.17.2-x86_64-linux-gnu)
+    ffi (1.17.2-x86_64-linux-musl)
     flipper (1.3.6)
       concurrent-ruby (< 2)
     flipper-active_record (1.3.6)
@@ -183,7 +189,7 @@ GEM
     marcel (1.0.4)
     meta-tags (2.22.1)
       actionpack (>= 6.0.0, < 8.1)
-    mini_magick (5.3.0)
+    mini_magick (5.3.1)
       logger
     mini_mime (1.1.5)
     minitest (5.25.5)
@@ -199,9 +205,21 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.4)
+    nokogiri (1.18.9-aarch64-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.18.9-aarch64-linux-musl)
+      racc (~> 1.4)
+    nokogiri (1.18.9-arm-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.18.9-arm-linux-musl)
+      racc (~> 1.4)
     nokogiri (1.18.9-arm64-darwin)
       racc (~> 1.4)
+    nokogiri (1.18.9-x86_64-darwin)
+      racc (~> 1.4)
     nokogiri (1.18.9-x86_64-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.18.9-x86_64-linux-musl)
       racc (~> 1.4)
     observer (0.1.2)
     orm_adapter (0.5.0)
@@ -213,8 +231,13 @@ GEM
     parser (3.3.9.0)
       ast (~> 2.4.1)
       racc
+    pg (1.6.1)
+    pg (1.6.1-aarch64-linux)
+    pg (1.6.1-aarch64-linux-musl)
     pg (1.6.1-arm64-darwin)
+    pg (1.6.1-x86_64-darwin)
     pg (1.6.1-x86_64-linux)
+    pg (1.6.1-x86_64-linux-musl)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -282,7 +305,7 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.3.0)
-    rbs (3.9.4)
+    rbs (3.6.1)
       logger
     rdoc (6.14.2)
       erb
@@ -317,7 +340,7 @@ GEM
       rspec-expectations (~> 3.13)
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
-    rspec-support (3.13.4)
+    rspec-support (3.13.5)
     rubocop (1.79.2)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
@@ -349,7 +372,7 @@ GEM
       rubocop (~> 1.72, >= 1.72.1)
       rubocop-rspec (~> 3.5)
     ruby-progressbar (1.13.0)
-    ruby-vips (2.2.4)
+    ruby-vips (2.2.5)
       ffi (~> 1.12)
       logger
     rubyzip (3.0.1)
@@ -366,7 +389,7 @@ GEM
       rexml (~> 3.2)
       rubocop (>= 1.0, < 2.0)
       slim (>= 3.0, < 6.0)
-    solargraph (0.56.0)
+    solargraph (0.56.2)
       backport (~> 1.2)
       benchmark (~> 0.4)
       bundler (~> 2.0)
@@ -379,7 +402,7 @@ GEM
       ostruct (~> 0.6)
       parser (~> 3.0)
       prism (~> 1.4)
-      rbs (~> 3.3)
+      rbs (~> 3.6.1)
       reverse_markdown (~> 3.0)
       rubocop (~> 1.38)
       thor (~> 1.0)
@@ -404,7 +427,7 @@ GEM
     thor (1.4.0)
     tilt (2.6.1)
     timeout (0.4.3)
-    tins (1.39.1)
+    tins (1.42.0)
       bigdecimal
       sync
     turbo-rails (2.0.16)
@@ -436,10 +459,16 @@ GEM
     zeitwerk (2.7.3)
 
 PLATFORMS
-  arm64-darwin-22
-  arm64-darwin-23
-  arm64-darwin-24
+  aarch64-linux
+  aarch64-linux-gnu
+  aarch64-linux-musl
+  arm-linux-gnu
+  arm-linux-musl
+  arm64-darwin
+  x86_64-darwin
   x86_64-linux
+  x86_64-linux-gnu
+  x86_64-linux-musl
 
 DEPENDENCIES
   bootsnap
@@ -495,4 +524,4 @@ RUBY VERSION
    ruby 3.4.5p51
 
 BUNDLED WITH
-   2.4.17
+   2.7.1

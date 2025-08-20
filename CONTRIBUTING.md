@@ -21,6 +21,13 @@ If you want to fix a bug or add a new feature, please:
 1. Install Ruby dependencies
 ```bash
 bundle install
+
+1.1 NOTE: it is possible the installation will fail while installing `pg` gem on MacOS.
+In that case:
+- verify you have PostgreSQL installed and running
+- intall libpq: `brew install libpq`
+- link the library: `brew link --force libpq`
+- Re-run `bundle install`
 ```
 
 2. Install JavaScript dependencies
