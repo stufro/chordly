@@ -13,8 +13,9 @@ html lang="en" data-theme="light"
       = render("layouts/piwik_analytics")
 
     = render("layouts/favicons")
-    script[async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3401313551409918"
-    crossorigin="anonymous"]
+    - unless Rails.env.development?
+      script[async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3401313551409918"
+      crossorigin="anonymous"]
   body
 
     = render "layouts/navbar"

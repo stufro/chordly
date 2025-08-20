@@ -45,6 +45,10 @@
               span class=(line["type"] == "chords" ? "chord-line" : "lyric-line")
                 = line["content"]
 
+hr
+.mb-5
+  = adsense_unit(:horizontal)
+
 - if @set_lists.present?
   h2.title.is-3 Deleted Set Lists
 
@@ -74,3 +78,6 @@
             b Chord Sheets
           - set_list.chord_sheets.each do |chord_sheet|
             span = chord_sheet.name
+
+hr
+= adsense_unit(:multiplex)

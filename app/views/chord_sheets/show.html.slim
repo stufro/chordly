@@ -25,7 +25,13 @@
         = link_to "Log in", new_session_path(:user), id: "login-to-save"
         |  to save this chord sheet to your library.
 
+= adsense_unit(:horizontal)
+
 = render("main", chord_sheet: @chord_sheet)
+
+hr
+
+= adsense_unit(:multiplex)
 
 #versions-modal.modal.modal-turbo-frame data-turbo-frame-src=versions_chord_sheet_path(@chord_sheet)
   .modal-background

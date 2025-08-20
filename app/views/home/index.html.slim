@@ -22,6 +22,7 @@ div data-controller="fade-in"
           .hero-image.spinner
 
   .hero.is-medium
+    = adsense_unit(:horizontal)
     .hero-body
       .has-text-centered
         .is-flex.is-justify-content-center.is-align-items-center.is-flex-wrap-wrap
@@ -38,6 +39,8 @@ div data-controller="fade-in"
           | Transpose Song Now
 
         h3.subtitle.is-4.mt-3.has-text-primary.has-text-weight-bold No account required
+
+        = adsense_unit(:horizontal)
 
         br
         .container.is-max-tablet
@@ -76,6 +79,7 @@ div data-controller="fade-in"
           .hero-image.spinner
 
   .hero.is-medium
+    = adsense_unit(:horizontal)
     .hero-body
       .container.has-text-centered.fadeable
         h1.title.is-3 Featured Articles
@@ -114,12 +118,14 @@ div data-controller="fade-in"
             .column.is-flex
               .card.is-flex.is-flex-direction-column
                 .card-image
-                  = link_to article_path(article[:id]) do
+                  = link_to article_path(article[:id]), data: { turbo: false } do
                     figure.image.is-4by3
                       img[src=article[:image] alt="#{article[:title]} preview image" style="object-fit: contain;"]
                 .card-content.is-flex-grow-1
                   .content
-                    = link_to article[:title], article_path(article[:id]), class: "title is-4"
+                    = link_to article[:title], article_path(article[:id]), class: "title is-4", data: { turbo: false }
                     p = article[:description]
+
+  = adsense_unit(:multiplex)
 
   hr
