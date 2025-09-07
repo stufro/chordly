@@ -1,14 +1,8 @@
 class NewsletterMailer < ApplicationMailer
   def newsletter
     @content = params[:content]
-    mail(bcc: users, subject: params[:subject])
-  end
+    @user_uuid = params[:user_uuid]
 
-  private
-
-  def users
-    return [params[:user].email] if params[:user]
-
-    User.where(receive_emails: true).map(&:email).compact
+    mail(to: params[:email], subject: params[:subject])
   end
 end
