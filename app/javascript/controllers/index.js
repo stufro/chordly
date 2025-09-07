@@ -4,35 +4,38 @@
 
 import { application } from "./application"
 
+import ChordDiagramController from "./chord_diagram_controller"
+application.register("chord-diagram", ChordDiagramController)
+
 import ClipboardController from "./clipboard_controller"
 application.register("clipboard", ClipboardController)
 
 import EditableController from "./editable_controller"
 application.register("editable", EditableController)
 
+import FadeInController from "./fade_in_controller"
+application.register("fade-in", FadeInController)
+
 import FlashController from "./flash_controller"
 application.register("flash", FlashController)
 
-import SearchController from "./search_controller"
-application.register("search", SearchController)
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)
 
 import NavbarController from "./navbar_controller"
 application.register("navbar", NavbarController)
 
-import ShowMoreController from "./show_more_controller"
-application.register("show-more", ShowMoreController)
-
-import FadeInController from "./fade_in_controller"
-application.register("fade-in", FadeInController)
-
-import SortableController from "./sortable_controller"
-application.register("sortable", SortableController)
+import SearchController from "./search_controller"
+application.register("search", SearchController)
 
 import SetListsController from "./set_lists_controller"
 application.register("set-lists", SetListsController)
 
-import ChordDiagramController from "./chord_diagram_controller"
-application.register("chord-diagram", ChordDiagramController)
+import ShowMoreController from "./show_more_controller"
+application.register("show-more", ShowMoreController)
 
-import ModalController from "./modal_controller"
-application.register("modal", ModalController)
+import SortableController from "./sortable_controller"
+application.register("sortable", SortableController)
+
+import ThemeController from "./theme_controller"
+application.register("theme", ThemeController)
