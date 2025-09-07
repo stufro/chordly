@@ -27,6 +27,7 @@ i Last 10 active users
         th Confirmed?
         th Last sign in
         th Created at
+        th Dark mode?
     tbody
       - @users.order(current_sign_in_at: :desc).limit(10).each do |user|
         tr
@@ -36,6 +37,7 @@ i Last 10 active users
           td = "☑️" if user.confirmed_at?
           td = local_time(user.current_sign_in_at) if user.current_sign_in_at
           td = local_time(user.created_at)
+          td = "☑️" if user.theme == "dark"
 
 hr
 

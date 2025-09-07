@@ -1,5 +1,7 @@
 doctype html
-html lang="en" data-theme="light"
+- theme = "light"
+- theme = current_user.theme if current_user.present?
+html lang="en" class=(content_for?(:theme) ? yield(:theme) : "theme-#{theme}")
   head
     meta content="text/html; charset=UTF-8" http-equiv="Content-Type"
     meta content="width=device-width,initial-scale=1" name="viewport"

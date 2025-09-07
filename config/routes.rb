@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations" }
+  devise_scope :user do
+    patch "/users/theme", to: "registrations#update_theme"
+  end
 
   devise_scope :user do
     authenticated :user do

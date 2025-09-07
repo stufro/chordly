@@ -11,13 +11,13 @@ nav.navbar.is-primary aria-label="main navigation" role="navigation" data-contro
     #navbar-main.navbar-menu
       .navbar-start
         - if user_signed_in?
-          = link_to chord_sheets_path, class: "navbar-item" do
+          = link_to chord_sheets_path, class: "navbar-item", data: { turbo: false } do
             span.icon-text.is-flex-wrap-nowrap
               span.icon
                 i.fas.fa-book-bookmark
               span My Library
         - if user_signed_in? && current_user.admin?
-          = link_to admin_path, class: "navbar-item" do
+          = link_to admin_path, class: "navbar-item", data: { turbo: false } do
             span.icon-text.is-flex-wrap-nowrap
               span.icon
                 i.fas.fa-lock-open
@@ -59,6 +59,16 @@ nav.navbar.is-primary aria-label="main navigation" role="navigation" data-contro
                   span.icon
                     i.fas.fa-sign-out-alt
                   span Logout
+
+          .navbar-item
+            div data-controller="theme" data-theme-mode-value=current_user.theme
+              .buttons
+                button.button.is-primary data-action="theme#switch"
+                  span.icon data-theme-target="icon"
+                    - if current_user.theme == "dark"
+                      i.fas.fa-sun
+                    - else
+                      i.fas.fa-moon
 
         - else
           .navbar-item
