@@ -114,3 +114,8 @@ $primary: $purple;
 .guitar-chords {
   background-color: #FFF;
 }
+
+.tabs li.is-disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}

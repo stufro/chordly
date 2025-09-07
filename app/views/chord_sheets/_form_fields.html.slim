@@ -4,14 +4,15 @@
     = f.text_field :name, class: "input"
 
 .field
-  .is-flex.is-flex-wrap-wrap
+  .is-flex.is-flex-wrap-wrap.is-align-items-center.mb-2
     = f.label :content, class: "label mb-0"
 
+    span.icon.has-text-grey
+      i.fas.fa-info-circle
     small.is-size-7.has-text-grey
-      span.icon.icon-large
-        i.fas.fa-info-circle
-      | For a line to be treated as chords, it must not contain other text.
-      |  However, these characters are permitted: | : * and N.C.
+      span
+        | For a line to be treated as chords, it must not contain other text.
+        |  However, these characters are permitted: | : * and N.C.
 
   .control
     = f.text_area :content, class: "textarea",
