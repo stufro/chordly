@@ -2,26 +2,26 @@ require "rails_helper"
 
 describe NewsletterMailer do
   describe "#newsletter" do
-    let(:mail) { described_class.with(subject: "Some subject", content: "Some content").newsletter }
-
-    it "sends an email to all users where receive_emails? is true" do
-      user1 = create(:user)
-      create(:user, receive_emails: false)
-
-      expect(mail.bcc).to contain_exactly(user1.email)
+    let(:user) { create(:user) }
+    let(:mail) do
+      described_class.with(
+        subject: "Some subject",
+        content: "Some content",
+        email: user.email,
+        user_uuid: user.uuid
+      ).newsletter
     end
 
-    context "when the user param is present" do
-      let(:user) { create(:user) }
-      let(:mail) do
-        described_class.with(subject: "Some subject", content: "Some content", user:).newsletter
-      end
+    it "sends an email to the given user" do
+      create(:user, receive_emails: true)
 
-      it "sends an email to the given user" do
-        create(:user, receive_emails: true)
+      expect(mail.to).to contain_exactly(user.email)
+    end
 
-        expect(mail.bcc).to contain_exactly(user.email)
-      end
+    it "includes the unsubscribe link" do
+      create(:user, receive_emails: true)
+
+      expect(mail.body).to include(unsubscribe_url(token: user.uuid))
     end
   end
 end

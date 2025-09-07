@@ -1,0 +1,9 @@
+h1.is-size-3.has-text-centered
+  - if @user
+    span.icon.mr-3.has-text-success
+      i.fas.fa-circle-check
+    | You have successfully unsubscribed from Chordly emails
+  - else
+    span.icon.mr-3.has-text-danger
+      i.fas.fa-circle-xmark
+    | No user found with that token

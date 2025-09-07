@@ -13,7 +13,12 @@ describe NewslettersController do
 
     it "calls the newsletter mailer" do
       post :create, params: { newsletter: { subject: email_subject, content: } }
-      expect(NewsletterMailer).to have_received(:with).with(subject: email_subject, content:)
+      expect(NewsletterMailer).to have_received(:with).with(
+        subject: email_subject,
+        content:,
+        email: user.email,
+        user_uuid: user.uuid
+      )
     end
 
     it "redirects to the new newsletter path" do
@@ -23,7 +28,12 @@ describe NewslettersController do
 
     it "calls the mailer with the current user when the preview param is present" do
       post :create, params: { newsletter: { subject: email_subject, content: }, preview: "true" }
-      expect(NewsletterMailer).to have_received(:with).with(subject: email_subject, content:, user:)
+      expect(NewsletterMailer).to have_received(:with).with(
+        subject: email_subject,
+        content:,
+        email: user.email,
+        user_uuid: user.uuid
+      )
     end
 
     it "renders the new page when the preview param is present" do
