@@ -5,7 +5,7 @@ ruby "3.4.5"
 
 gem "bootsnap", require: false
 gem "chord_diagrams"
-gem "chordpro", require: false
+gem "chordpro"
 gem "cssbundling-rails"
 gem "devise"
 gem "flipper"
