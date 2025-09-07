@@ -25,6 +25,7 @@ class ChordProController < ApplicationController
         p[:name] = chord_pro_parsed.title
       end
 
+      p[:created_from_chord_pro] = true
       p[:user] = current_user
     end
   end

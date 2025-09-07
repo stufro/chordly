@@ -25,6 +25,7 @@ i Last 10 active users
         th Sign in count
         th Signed up from trial?
         th Confirmed?
+        th Chord Sheets
         th Last sign in
         th Created at
         th Dark mode?
@@ -35,6 +36,7 @@ i Last 10 active users
           td = user.sign_in_count
           td = "☑️" if user.chord_sheets.first&.trial_user_id?
           td = "☑️" if user.confirmed_at?
+          td = user.chord_sheets.count
           td = local_time(user.current_sign_in_at) if user.current_sign_in_at
           td = local_time(user.created_at)
           td = "☑️" if user.theme == "dark"
@@ -43,7 +45,7 @@ hr
 
 h1.title.is-1 Chord Sheets
 
-.level.is-flex-wrap-wrap.has-text-centered
+.level.is-flex-wrap-wrap.has-text-centered.is-align-items-start
   .card.stat-card
     .card-content
       h2.subtitle Total Chord Sheets
@@ -51,6 +53,7 @@ h1.title.is-1 Chord Sheets
 
   = render("admin/stat_card", title: "Created", header: "7 Days", count: @chord_sheets.where("created_at > ?", 7.days.ago).count)
   = render("admin/stat_card", title: "Created", header: "30 Days", count: @chord_sheets.where("created_at > ?", 30.days.ago).count)
+  = render("admin/stat_card", title: "ChordPro", header: "30 Days", count: @chord_sheets.where("created_at > ? AND created_from_chord_pro = ?", 30.days.ago, true).count)
 
 i Last 10 created chord sheets
 .table-container
@@ -62,6 +65,7 @@ i Last 10 created chord sheets
         th Created at
         th Updated at
         th Trial user ID
+        th ChordPro?
     tbody
       - @chord_sheets.order(created_at: :desc).limit(10).each do |sheet|
         tr
@@ -70,12 +74,13 @@ i Last 10 created chord sheets
           td = local_time(sheet.created_at)
           td = local_time(sheet.updated_at)
           td = sheet.trial_user_id
+          td = "☑️" if sheet.created_from_chord_pro
 
 hr
 
 h1.title.is-1 Set Lists
 
-.level.is-flex-wrap-wrap.has-text-centered
+.level.is-flex-wrap-wrap.has-text-centered.is-align-items-start
   .card.stat-card
     .card-content
       h2.subtitle Total Set Lists
