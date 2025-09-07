@@ -16,7 +16,8 @@
 
   .control
     = f.text_area :content, class: "textarea",
-                            placeholder: "Paste your chord sheet here"
+                            placeholder: "Paste your chord sheet here",
+                            data: { controller: "textarea-autogrow" }
 
 .field
   .control
