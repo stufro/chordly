@@ -22,7 +22,8 @@ h1.title.is-1 = title "New Chord Sheet"
     .control
       = f.text_area :content,
                     class: "textarea",
-                    placeholder: "Paste ChordPro formatted content here e.g.\n\n{title: My Song}\n[C]This is a ChordPro [G]song"
+                    placeholder: "Paste ChordPro formatted content here e.g.\n\n{title: My Song}\n[C]This is a ChordPro [G]song",
+                    data: { controller: "textarea-autogrow" }
 
   .field
     .control

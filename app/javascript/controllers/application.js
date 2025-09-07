@@ -11,4 +11,7 @@ window.Turbo = Turbo
 import Clipboard from '@stimulus-components/clipboard'
 application.register('clipboard', Clipboard)
 
+import TextareaAutogrow from 'stimulus-textarea-autogrow'
+application.register('textarea-autogrow', TextareaAutogrow)
+
 export { application }
