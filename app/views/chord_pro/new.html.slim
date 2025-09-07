@@ -1,18 +1,7 @@
 h1.title.is-1 = title "New Chord Sheet"
 
 = form_with model: @chord_sheet, url: chord_pro_index_path do |f|
-  .tabs.is-toggle.is-toggle-rounded
-    ul
-      li
-        = link_to new_chord_sheet_path do
-          span.icon.is-small
-            i.fas.fa-file-lines
-          span Standard
-      li.is-active
-        a
-          span.icon.is-small
-            i.fas.fa-music
-          span ChordPro
+  = render "chord_format_tabs", format: :chord_pro
 
   .box.has-background-info-light
     .media.is-align-items-center
@@ -21,7 +10,7 @@ h1.title.is-1 = title "New Chord Sheet"
           i.fas.fa-info-circle.has-text-info.fa-2x
       .media-content
         p
-          | ChordPro is a a simple text format for the notation of lyrics with chords. Read more about at&nbsp;
+          | ChordPro is a a simple text format for the notation of lyrics with chords. Read more about it at&nbsp;
           = link_to "https://www.chordpro.org/", target: "_blank", rel: "noopener"
             span.icon.is-small.has-text-primary.mr-1
               i.fas.fa-arrow-up-right-from-square

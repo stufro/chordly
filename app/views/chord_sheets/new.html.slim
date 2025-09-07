@@ -1,19 +1,7 @@
 h1.title.is-1 = title "New Chord Sheet"
 
 = form_with model: @chord_sheet do |f|
-  .tabs.is-toggle.is-toggle-rounded
-    ul
-      li.is-active
-        a
-          span.icon.is-small
-            i.fas.fa-file-lines
-          span Standard
-      li
-        = link_to new_chord_pro_path do
-          span.icon.is-small
-            i.fas.fa-music
-          span ChordPro
-
+  = render("chord_pro/chord_format_tabs", format: :standard)
   = render("form_fields", f: f)
 
 hr
