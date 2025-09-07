@@ -54,7 +54,7 @@ describe ChordProConverter do
       )
     end
 
-    context "bug" do
+    context "with ChordPro duration notation present" do
       let(:raw_content) do
         <<~TEXT
           [G]Here I st[D]and h[F]ead in h[G]and,
@@ -64,7 +64,7 @@ describe ChordProConverter do
         TEXT
       end
 
-      it "returns the chord sheet" do
+      it "ignores the notation and parses correctly" do
         expect(described_class.new(raw_content).body.gsub("\r\n", "\n")).to eq(
           <<~TEXT.strip
             G        D    F       G

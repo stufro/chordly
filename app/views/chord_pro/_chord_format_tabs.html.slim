@@ -3,14 +3,14 @@
 .is-flex.is-align-items-baseline.is-flex-wrap-wrap
   .tabs.is-toggle.is-toggle-rounded
     ul
-      li class=("is-active" if format == :standard )
-        - path = format == :standard ? "#" : new_chord_sheet_path 
+      li class=("is-active" if format == :standard)
+        - path = format == :standard ? "#" : new_chord_sheet_path
         = link_to path do
           span.icon.is-small
             i.fas.fa-file-lines
           span Standard
-      li class="#{'is-active' if format == :chord_pro} #{'is-disabled' if chord_pro_disabled}"
-        - path = format == :chord_pro || chord_pro_disabled ? "#" : new_chord_pro_path 
+      li class="#{"is-active" if format == :chord_pro} #{"is-disabled" if chord_pro_disabled}"
+        - path = format == :chord_pro || chord_pro_disabled ? "#" : new_chord_pro_path
         = link_to path do
           span.icon.is-small
             i.fas.fa-music
@@ -24,4 +24,4 @@
 
     - if chord_pro_disabled
       span.has-text-grey.ml-2.is-size-7
-        | Sign-up to try out creating a chord sheet from ChordPro format.
+        | Sign-up to create a chord sheet from ChordPro format.
