@@ -1,10 +1,9 @@
-require "chordpro"
-
 class ChordProConverter
   delegate :title, to: :song
 
   def initialize(content)
-    @song = Chordpro.parse(content)
+    stripped_content = content.lines.map(&:strip).join("\n")
+    @song = Chordpro.parse(stripped_content)
   end
 
   def body
@@ -31,7 +30,7 @@ class ChordProConverter
     lines = []
     lines << chords_line.rstrip unless chords_line.strip.empty?
     lines << lyrics_line.rstrip
-    lines.join("\n")
+    lines.join("\r\n")
   end
 
   # rubocop:disable Metrics/AbcSize

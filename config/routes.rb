@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   resources :bin, only: %i[index update], controller: "bin", param: :resource_id
 
+  resources :chord_pro, only: %i[new create]
+
   resources :chord_sheets, only: %i[index new create show update destroy] do
     put :transpose, on: :member
     get :versions, on: :member
