@@ -28,8 +28,8 @@ describe ChordProConverter do
   end
 
   describe "#body" do
-    it "returns the chord sheet string modelled as JSON" do
-      expect(described_class.new(raw_content).body).to eq(
+    it "returns the chord sheet in a string compatible with Chordly" do
+      expect(described_class.new(raw_content).body.gsub("\r\n", "\n")).to eq(
         <<~TEXT.strip
           [Verse 1]
           G
@@ -52,6 +52,32 @@ describe ChordProConverter do
           Please don't take my sunshine away
         TEXT
       )
+    end
+
+    context "bug" do
+      let(:raw_content) do
+        <<~TEXT
+          [G]Here I st[D]and h[F]ead in h[G]and,
+          T[C]urn my face to the w[F]all. [C..]
+          [G]If she's g[D]one I c[F]an't go [G]on,
+          F[C]eeling two foot sm[F]all. [C..] [D..] [Dsus4..]
+        TEXT
+      end
+
+      it "returns the chord sheet" do
+        expect(described_class.new(raw_content).body.gsub("\r\n", "\n")).to eq(
+          <<~TEXT.strip
+            G        D    F       G
+            Here I stand head in hand,
+             C                   F    C
+            Turn my face to the wall.
+            G         D      F       G
+            If she's gone I can't go on,
+             C                 F    C D Dsus4
+            Feeling two foot small.
+          TEXT
+        )
+      end
     end
   end
 end

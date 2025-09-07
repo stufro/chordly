@@ -33,18 +33,25 @@ class ChordProConverter
     lines.join("\r\n")
   end
 
-  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/PerceivedComplexity
   def build_line(line)
     line.parts.reduce(["", ""]) do |(chords, lyrics), part|
       if part.is_a?(Chordpro::Chord)
-        [chords + part.name, lyrics]
+        clean_name = part.name.gsub(/\.+$/, "")
+
+        # if last char of chords is not whitespace, add a space before new chord
+        needs_space = chords[-1] && chords[-1] != " "
+
+        new_chords = chords + (needs_space ? " " : "") + clean_name
+        [new_chords, lyrics]
       elsif part.is_a?(Chordpro::Lyric)
         previous_chord_length = chords.split.last&.length || 0
-        [chords + (" " * (part.text.length - previous_chord_length)), lyrics + part.text]
+        padding = [part.text.length - previous_chord_length, 0].max
+        [chords + (" " * padding), lyrics + part.text]
       else
         [chords, lyrics]
       end
     end
+    # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/PerceivedComplexity
   end
-  # rubocop:enable Metrics/AbcSize
 end
