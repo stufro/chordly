@@ -56,9 +56,8 @@ div data-controller="fade-in"
               h2.subtitle.mb-2 🎸 Chordly makes creating, organizing, and sharing chord sheets effortless.
               h2.subtitle.mb-2
                 |🎤 Whether you're prepping for a gig, crafting practice material, or experimenting with ideas,
-                |  Chordly saves time and keeps your music neatly arranged.
-              h2.subtitle.mb-2 🎶 Transpose songs instantly, export PDFs, and keep your set lists and chord sheets all in one place
-              h2.subtitle.has-text-weight-bold No more scattered notes or last-minute scrambling.
+                |  Chordly saves time.
+              h2.subtitle.mb-2 🎶 Transpose songs instantly, export PDFs, and organize your material.
 
     = adsense_unit(:horizontal)
 
@@ -66,17 +65,28 @@ div data-controller="fade-in"
 
     .hero-body
       .container.has-text-centered.fadeable
-        .is-flex.is-justify-content-center.is-align-items-center.is-flex-wrap-wrap
-          span.icon-text.is-flex-wrap-nowrap
-            span.icon.is-large.mr-5
-              i.fas.fa-download.fa-3x
-          h1.title Export to PDF
+        .is-flex.is-justify-content-space-around.is-align-items-center.is-flex-wrap-wrap style="gap: 3rem"
+          div
+            .is-flex.is-justify-content-center.is-align-items-center.is-flex-wrap-wrap
+              span.icon-text.is-flex-wrap-nowrap
+                span.icon.is-large.mr-5
+                  i.fas.fa-guitar.fa-3x
+              h1.title ChordPro Support
 
-        h2.subtitle.mt-2 Download chord sheets or entire set lists in one click
+            h2.subtitle.mt-2 Import your existing ChordPro files
 
-        = link_to "View All Features", features_home_path, class: "button is-light is-large"
+          div
+            .is-flex.is-justify-content-center.is-align-items-center.is-flex-wrap-wrap
+              span.icon-text.is-flex-wrap-nowrap
+                span.icon.is-large.mr-5
+                  i.fas.fa-download.fa-3x
+              h1.title Export to PDF
+
+            h2.subtitle.mt-2 Download chord sheets or entire set lists
 
       .container.has-text-centered.mt-5.fadeable
+        .block
+          = link_to "View All Features", features_home_path, class: "button is-light is-large"
         = turbo_frame_tag "pdf-feature-webp", src: asset_frame_path(asset: "pdf_feature_webp"),
             class: "is-flex is-justify-content-center" do
           .hero-image.spinner
