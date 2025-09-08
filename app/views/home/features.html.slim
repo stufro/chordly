@@ -11,83 +11,35 @@ h1.title.is-1 Features
   | Get Started
 
 .level.is-justify-content-space-around.is-flex-wrap-wrap.mt-2
-  .card.m-3.feature-card
-    .card-content
-      .media.is-align-items-center.has-text-centered
-        .media-left
-          .icon.is-large.has-text-primary
-            i.fas.fa-music.fa-3x
+  = render("feature_card",
+      icon: "music",
+      title: "Transpose Chords Instantly",
+      description: "Transpose all chords in a chord sheet up or down a semitone with the click of a button.")
 
-        .media-content
-          h2.title.is-4 Transpose Chords Instantly
+  = render "home/feature_card",
+      icon: "guitar",
+      title: "Import from ChordPro",
+      description: "Import your existing ChordPro files to get started quickly."
 
-      .content.has-text-centered
-        | Transpose all chords in a chord sheet up or down a semitone with the click of a button.
+  = render "home/feature_card",
+      icon: "rectangle-list",
+      title: "Create Set Lists",
+      description: "Organise chord sheets into set lists ready for your next gig."
 
-  .card.m-3.feature-card
-    .card-content
-      .media.is-align-items-center.has-text-centered
-        .media-left
-          .icon.is-large.has-text-primary
-            i.fas.fa-pencil.fa-3x
+  = render "home/feature_card",
+      icon: "book-bookmark",
+      title: "Chord Sheet Library",
+      description: "Store your chord sheets + set lists in a searchable library for easy access."
 
-        .media-content
-          h2.title.is-4 Edit Chord Sheets Inline
+  = render "home/feature_card",
+      icon: "download",
+      title: "Export to PDF",
+      description: "Download chord sheets and entire set lists as PDFs for printing or use offline."
 
-      .content.has-text-centered
-        | Edit your chords and lyrics quickly with changes saved instantly.
-
-  .card.m-3.feature-card
-    .card-content
-      .media.is-align-items-center.has-text-centered
-        .media-left
-          .icon.is-large.has-text-primary
-            i.fas.fa-rectangle-list.fa-3x
-
-        .media-content
-          h2.title.is-4 Create Set Lists
-
-      .content.has-text-centered
-        | Organise chord sheets into set lists ready for your next gig.
-
-  .card.m-3.feature-card
-    .card-content
-      .media.is-align-items-center.has-text-centered
-        .media-left
-          .icon.is-large.has-text-primary
-            i.fas.fa-book-bookmark.fa-3x
-
-        .media-content
-          h2.title.is-4 Chord Sheet Library
-
-      .content.has-text-centered
-        | Store all your chord sheets in a searchable and sortable library for easy access.
-
-  .card.m-3.feature-card
-    .card-content
-      .media.is-align-items-center.has-text-centered
-        .media-left
-          .icon.is-large.has-text-primary
-            i.fas.fa-download.fa-3x
-
-        .media-content
-          h2.title.is-4 Export to PDF
-
-      .content.has-text-centered
-        | Download chord sheets and entire set lists as PDFs for printing or use offline.
-
-  .card.m-3.feature-card
-    .card-content
-      .media.is-align-items-center.has-text-centered
-        .media-left
-          .icon.is-large.has-text-primary
-            i.fas.fa-copy.fa-3x
-
-        .media-content
-          h2.title.is-4 Copy to Clipboard
-
-      .content.has-text-centered
-        | Copy chord sheets to clipboard so you can paste elsewhere for further editing.
+  = render("feature_card",
+      icon: "pencil",
+      title: "Edit Chord Sheets Inline",
+      description: "Edit your chords and lyrics quickly with changes saved instantly.")
 
 = link_to get_started_path, class: "button is-primary is-large is-fullwidth" do
   span.icon.is-small.mr-1

@@ -49,7 +49,6 @@ class ChordProConverter
 
   def build_chord(chords, lyrics, part)
     clean_name = part.name.gsub(/\.+$/, "")
-    clean_name = clean_name.gsub(/-+$/, "")
 
     # if last char of chords is not whitespace, add a space before new chord
     needs_space = chords[-1] && chords[-1] != " "
