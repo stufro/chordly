@@ -3,18 +3,39 @@ h1.title.is-1 = title "New Chord Sheet"
 = form_with model: @chord_sheet, url: chord_pro_index_path do |f|
   = render "chord_format_tabs", format: :chord_pro
 
-  .box.has-background-info-light
+  .box.has-background-info
     .media.is-align-items-center
       .media-left
         span.icon.is-medium
-          i.fas.fa-info-circle.has-text-info.fa-2x
-      .media-content
+          i.fas.fa-info-circle.has-text-light.fa-2x
+      .media-content.has-text-light
         p
           | ChordPro is a a simple text format for the notation of lyrics with chords. Read more about it at&nbsp;
-          = link_to "https://www.chordpro.org/", target: "_blank", rel: "noopener"
-            span.icon.is-small.has-text-primary.mr-1
+          = link_to "https://www.chordpro.org/", target: "_blank", rel: "noopener", class: "has-text-light" do
+            span.icon.is-small.mr-1
               i.fas.fa-arrow-up-right-from-square
             span chordpro.org.
+        p.mt-2 Either upload a ChordPro file or paste ChordPro formatted content into the text area below.
+
+  .field
+    .file.has-name.is-medium data-controller="file-picker"
+      = f.label :file, class: "file-label" do
+        = f.file_field(:file, class: "file-input",
+                              accept: ".txt,.pro,.chopro,.chordpro",
+                              data: { action: "file-picker#updateFileName" })
+
+        span.file-cta
+          span.file-icon
+            i.fas.fa-upload
+          span.file-label Choose a file…
+        span.file-name data-file-picker-target="fileName" No file selected
+
+    small.has-text-grey Choose a .pro, .chopro, .chordpro or .txt file.
+
+  .div.is-flex.is-align-items-center.my-4
+    hr.is-flex-grow-1
+    span.mx-3.has-text-grey.is-size-4 OR
+    hr.is-flex-grow-1
 
   .field
     = f.label :content, class: "label mb-0"
