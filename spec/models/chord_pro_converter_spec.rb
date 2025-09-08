@@ -25,6 +25,12 @@ describe ChordProConverter do
     it "returns the title of the song" do
       expect(described_class.new(raw_content).title).to eq("You Are My Sunshine")
     end
+
+    context "with no title present" do
+      it "returns 'Untitled ChordPro'" do
+        expect(described_class.new("[G]The other night dear as I lay sleeping").title).to eq("Untitled ChordPro")
+      end
+    end
   end
 
   describe "#body" do

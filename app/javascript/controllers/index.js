@@ -16,6 +16,9 @@ application.register("editable", EditableController)
 import FadeInController from "./fade_in_controller"
 application.register("fade-in", FadeInController)
 
+import FilePickerController from "./file_picker_controller"
+application.register("file-picker", FilePickerController)
+
 import FlashController from "./flash_controller"
 application.register("flash", FlashController)
 

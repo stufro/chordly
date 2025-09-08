@@ -5,7 +5,7 @@
   z-index: 999;
 }
 
-#flash-message.has-background-success {
+#flash-message.is-success {
   animation: scroll-in-out 3s forwards;
 
   &:hover {
@@ -14,7 +14,7 @@
   }
 }
 
-#flash-message.has-background-danger {
+#flash-message.is-danger {
   animation: scroll-in 1s forwards;
   
   &:hover {

@@ -1,6 +1,4 @@
 class ChordProConverter
-  delegate :title, to: :song
-
   def initialize(content)
     stripped_content = content.lines.map(&:strip).join("\n")
     @song = Chordpro.parse(stripped_content)
@@ -19,6 +17,10 @@ class ChordProConverter
         "\n"
       end
     end.drop_while(&:blank?).join("\n")
+  end
+
+  def title
+    song.title || "Untitled ChordPro"
   end
 
   private
@@ -47,6 +49,7 @@ class ChordProConverter
 
   def build_chord(chords, lyrics, part)
     clean_name = part.name.gsub(/\.+$/, "")
+    clean_name = clean_name.gsub(/-+$/, "")
 
     # if last char of chords is not whitespace, add a space before new chord
     needs_space = chords[-1] && chords[-1] != " "

@@ -18,15 +18,24 @@ class ChordProController < ApplicationController
   private
 
   def chord_sheet_params
-    params.require(:chord_sheet).permit(:name, :content, :trial, :trial_user_id).tap do |p|
-      if p[:content]
-        chord_pro_parsed = ChordProConverter.new(p[:content])
+    params.require(:chord_sheet).permit(:name, :content, :file).tap do |p|
+      chord_pro_parsed = parsed_content(p)
+      if chord_pro_parsed.present?
         p[:content] = ChordSheetModeller.new(chord_pro_parsed.body).parse
         p[:name] = chord_pro_parsed.title
       end
 
       p[:created_from_chord_pro] = true
       p[:user] = current_user
+    end
+  end
+
+  def parsed_content(parameters)
+    if parameters[:file]
+      file = parameters.delete(:file)
+      ChordProConverter.new(file.read)
+    elsif parameters[:content]
+      ChordProConverter.new(parameters[:content])
     end
   end
 end

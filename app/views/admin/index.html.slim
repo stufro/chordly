@@ -53,7 +53,8 @@ h1.title.is-1 Chord Sheets
 
   = render("admin/stat_card", title: "Created", header: "7 Days", count: @chord_sheets.where("created_at > ?", 7.days.ago).count)
   = render("admin/stat_card", title: "Created", header: "30 Days", count: @chord_sheets.where("created_at > ?", 30.days.ago).count)
-  = render("admin/stat_card", title: "ChordPro", header: "30 Days", count: @chord_sheets.where("created_at > ? AND created_from_chord_pro = ?", 30.days.ago, true).count)
+  - chord_pro_count = @chord_sheets.where("created_at > ? AND created_from_chord_pro = ?", 30.days.ago, true).count
+  = render("admin/stat_card", title: "ChordPro", header: "30 Days", count: chord_pro_count)
 
 i Last 10 created chord sheets
 .table-container

@@ -21,6 +21,35 @@ describe("Creating/editing a chord sheet", () => {
     cy.contains("My great lyrics")
   })
 
+  it("saves a new chord sheet in chord pro format", () => {
+    cy.visit("/chord_sheets")
+    cy.get("#create-chord-sheet").click()
+    cy.get("#chord-pro").click()
+    cy.get("#chord_sheet_content").type("{title: My Song}\n[C]This is a ChordPro [G]song", { parseSpecialCharSequences: false })
+    cy.get("#create-btn").click()
+
+    cy.contains("My Song")
+    cy.contains("C                  G")
+    cy.contains("This is a ChordPro song")
+  })
+
+  it("uploading a file in chord pro format", () => {
+    cy.visit("/chord_sheets")
+    cy.get("#create-chord-sheet").click()
+    cy.get("#chord-pro").click()
+
+    cy.get("#chord_sheet_file").selectFile({
+      contents: Cypress.Buffer.from("{title: My Song}\n[C]This is a ChordPro [G]song"),
+      fileName: 'file.chopro',
+    }, { force: true })
+
+    cy.get("#create-btn").click()
+
+    cy.contains("My Song")
+    cy.contains("C                  G")
+    cy.contains("This is a ChordPro song")
+  })
+
   it("allows the chord sheet to be edited inline", () => {
     helper.visitChordSheet();
 
