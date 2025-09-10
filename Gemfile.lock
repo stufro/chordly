@@ -360,6 +360,8 @@ GEM
     sanitize (7.0.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.16.8)
+    schema_dot_org (2.5.3)
+      validated_object (~> 2.3.4)
     securerandom (0.4.1)
     semver (1.0.1)
     sexp_processor (4.17.3)
@@ -422,6 +424,8 @@ GEM
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
     useragent (0.16.11)
+    validated_object (2.3.4)
+      activemodel (>= 3.2.21)
     victor (0.3.4)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -484,6 +488,7 @@ DEPENDENCIES
   rubocop-rspec
   rubocop-rspec_rails
   rubyzip
+  schema_dot_org
   semver
   slim
   slim_lint

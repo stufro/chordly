@@ -9,8 +9,9 @@ html lang="en" class=(content_for?(:theme) ? yield(:theme) : "theme-#{theme}")
     = csp_meta_tag
     = display_meta_tags site: "Chordly"
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
-    = javascript_include_tag "application", "data-turbo-track": "reload",
-      defer: true
+    = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
+    = @organization_schema
+    = @website_schema
     - if Rails.env.production?
       = render("layouts/piwik_analytics")
 
