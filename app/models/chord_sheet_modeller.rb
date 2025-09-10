@@ -27,5 +27,6 @@ class ChordSheetModeller
         .delete(":")
         .delete("*")
         .gsub("N.C.", "")
+        .gsub(/(\{.*?\}|\[.*?\])/, "") # Remove text in {} or []
   end
 end

@@ -162,5 +162,15 @@ describe SheetLine do
         expect(sheet_line.content).to eq(expected_chords)
       end
     end
+
+    context "with bracketed content" do
+      let(:original_chords) { "F [Foo] Bb Dm  {Verse 1}" }
+      let(:expected_chords) { "F# [Foo] B  D#m {Verse 1}" }
+
+      it "ignores the content" do
+        sheet_line.transpose(:up)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
   end
 end

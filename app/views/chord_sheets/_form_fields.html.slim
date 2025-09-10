@@ -12,7 +12,8 @@
     small.is-size-7.has-text-grey
       span
         | For a line to be treated as chords, it must not contain other text.
-        |  However, these characters are permitted: | : * and N.C.
+        |  These characters are permitted: | : *, N.C.
+        |  and text inside [] or {} is ignored.
 
   .control
     = f.text_area :content, class: "textarea",

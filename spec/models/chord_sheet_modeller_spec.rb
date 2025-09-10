@@ -85,5 +85,21 @@ describe ChordSheetModeller do
         )
       end
     end
+
+    context "when the chords contain text in [] or {}" do
+      let(:raw_content) do
+        <<~TEXT
+          G {some text} Em [more text] D
+        TEXT
+      end
+
+      it "returns the chord sheet string modelled as JSON" do
+        expect(described_class.new(raw_content).parse).to eq(
+          [
+            { type: :chords, content: "G {some text} Em [more text] D\n" }
+          ]
+        )
+      end
+    end
   end
 end

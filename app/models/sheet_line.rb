@@ -34,7 +34,9 @@ class SheetLine
   private
 
   def sanitised_content
-    content.dup.gsub("N.C.", "")
+    content.dup
+           .gsub("N.C.", "")
+           .gsub(/(\{.*?\}|\[.*?\])/, "") # Remove text in {} or []
   end
 
   def calculate_range_to_replace(scan_start, old_chord, new_chord)
