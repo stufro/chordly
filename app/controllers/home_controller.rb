@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   skip_before_action :authenticate_user!
-  PERMITTED_ASSET_FRAMES = %w[features_gif pdf_feature_webp].freeze
+  PERMITTED_ASSET_FRAMES = %w[features_gif pdf_feature_webp articles].freeze
 
   def index; end
 

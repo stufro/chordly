@@ -1,0 +1,41 @@
+= turbo_frame_tag "articles" do
+  ruby:
+    articles = [
+      {
+        title: "Music Theory – A Beginner's Guide to Transposing", id: "beginners-guide-to-transposing",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Music_notes_%28495026%29_-_The_Noun_Project.svg" \
+        "/640px-Music_notes_%28495026%29_-_The_Noun_Project.svg.png",
+        description: "Transposing is one of those musical skills that sounds complicated but is surprisingly straightforward " \
+        "once you understand the basics."
+      },
+      {
+        title: "Chordly User Guide", id: "guide-to-using-chordly", image: "/article_assets/library.png",
+        description: "Chordly is designed to make creating and managing chord sheets as simple as possible. This short guide " \
+        "will walk you through the main features so you can get started quickly."
+      },
+      {
+        title: "Putting Together a Set List for Your Next Gig", id: "tips-for-your-setlist",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Musicians_at_Velour_Live_Music_Gallery_%28Unsplash%2" \
+        "9.jpg/640px-Musicians_at_Velour_Live_Music_Gallery_%28Unsplash%29.jpg",
+        description: "A great set list is more than just a list of songs—it's the roadmap for your performance, shaping the " \
+        "audience's energy and keeping your band on track. Whether you're preparing..."
+      },
+      {
+        title: "How to restore Chord Sheets in Chordly", id: "restoring-old-chord-sheets",
+        image: "/article_assets/previous_versions.png",
+        description: "Accidentally deleted a chord sheet? Or maybe you want to go back to an earlier draft of a song?"
+      }
+    ]
+
+  .columns.mt-6
+    - articles.each do |article|
+      .column.is-flex
+        .card.is-flex.is-flex-direction-column
+          .card-image
+            = link_to article_path(article[:id]), data: { turbo: false } do
+              figure.image.is-4by3
+                img[src=article[:image] alt="#{article[:title]} preview image" style="object-fit: contain;"]
+          .card-content.is-flex-grow-1
+            .content
+              = link_to article[:title], article_path(article[:id]), class: "title is-4", data: { turbo: false }
+              p = article[:description]
