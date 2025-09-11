@@ -38,6 +38,10 @@ $primary: $purple;
 @import "actiontext";
 @import "trix/dist/trix";
 
+$fa-font-path: "/webfonts";
+@import "@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "@fortawesome/fontawesome-free/scss/solid.scss";
+
 .hero-image {
   max-width: -webkit-fill-available;
 }
