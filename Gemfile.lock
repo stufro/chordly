@@ -148,8 +148,6 @@ GEM
       thor (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    grover (1.2.3)
-      nokogiri (~> 1)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     image_processing (1.14.0)
@@ -438,6 +436,10 @@ GEM
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    wicked_pdf (2.8.2)
+      activesupport
+      ostruct
+    wkhtmltopdf-binary (0.12.6.10)
     yard (0.9.37)
     yard-solargraph (0.1.0)
       yard (~> 0.9)
@@ -466,7 +468,6 @@ DEPENDENCIES
   flipper-active_record
   flipper-ui
   foreman
-  grover
   image_processing
   jbuilder
   jsbundling-rails
@@ -500,6 +501,8 @@ DEPENDENCIES
   tzinfo-data
   uglifier
   web-console
+  wicked_pdf
+  wkhtmltopdf-binary
 
 RUBY VERSION
    ruby 3.4.5p51

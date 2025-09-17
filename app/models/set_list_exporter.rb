@@ -16,7 +16,7 @@ class SetListExporter
     html = ApplicationController.new.render_to_string(
       template: "set_lists/show", formats: :pdf, layout: "application", assigns: { set_list: @set_list }
     )
-    Grover.new(html).to_pdf
+    WickedPdf.new.pdf_from_string(html)
   end
 
   def to_zip
@@ -40,6 +40,6 @@ class SetListExporter
     html = ApplicationController.new.render_to_string(
       template: "chord_sheets/show", formats: :pdf, layout: "application", assigns: { chord_sheet: }
     )
-    Grover.new(html).to_pdf
+    WickedPdf.new.pdf_from_string(html)
   end
 end

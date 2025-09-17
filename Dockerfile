@@ -80,7 +80,6 @@ RUN bundle install &&  rm -rf vendor/bundle/ruby/*/cache
 FROM build_deps as node_modules
 
 ENV NODE_ENV=production
-ENV PUPPETEER_SKIP_DOWNLOAD=true
 
 COPY package*json ./
 COPY yarn.* ./
@@ -92,10 +91,7 @@ RUN yarn install
 
 FROM base
 
-RUN curl --location --silent https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-
-ARG DEPLOY_PACKAGES="postgresql-client file vim curl gnupg gzip libsqlite3-0 google-chrome-stable"
+ARG DEPLOY_PACKAGES="postgresql-client file vim curl gnupg gzip libsqlite3-0"
 ENV DEPLOY_PACKAGES=${DEPLOY_PACKAGES}
 
 RUN --mount=type=cache,id=prod-apt-cache,sharing=locked,target=/var/cache/apt \
@@ -132,13 +128,11 @@ ENV SECRET_KEY_BASE 1
 
 # Run build task defined in lib/tasks/fly.rake
 ENV NODE_ENV=production
-ENV PUPPETEER_SKIP_DOWNLOAD=true
 
 ARG BUILD_COMMAND="bin/rails fly:build"
 RUN ${BUILD_COMMAND}
 
 # Default server start instructions.  Generally Overridden by fly.toml.
-ENV PUPPETEER_EXECUTABLE_PATH=/opt/google/chrome/google-chrome
 ENV PORT 8080
 ARG SERVER_COMMAND="bin/rails fly:server"
 ENV SERVER_COMMAND ${SERVER_COMMAND}

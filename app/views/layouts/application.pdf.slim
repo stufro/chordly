@@ -4,17 +4,12 @@ html lang="en"
     meta content="text/html; charset=UTF-8" http-equiv="Content-Type"
     title Chordly
     meta content="width=device-width,initial-scale=1" name="viewport"
-    = stylesheet_link_tag "application", "data-turbo-track": "reload"
-    = javascript_include_tag "application", "data-turbo-track": "reload",
-      defer: true
-  body
-    .has-text-centered
-      p.has-text-light
+  body style="font-family: Arial, sans-serif;"
+    div style="text-align: center"
+      p style="color: #a6a4a4"
         | Generated for free using&nbsp;
-        a href="https://chordly.co.uk" target="_blank"
-          span.icon.is-small.has-text-primary
-            i.fas.fa-arrow-up-right-from-square
+        a href="https://chordly.co.uk" target="_blank" style="color: #80475e"
           span chordly.co.uk
 
-    div class="container"
+    div style="padding: 0 4rem"
       = yield

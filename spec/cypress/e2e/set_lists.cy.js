@@ -202,7 +202,7 @@ describe("Building a set list of chord sheets", () => {
     })
   })
 
-  it.only("allows the user to reorder the chord sheets", () => {
+  it("allows the user to reorder the chord sheets", () => {
     helper.createChordSheet({ name: "1st chord sheet", content_string: "Foo\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" }).then((chordSheet1) => {
       helper.createChordSheet({ name: "2nd chord sheet" }).then((chordSheet2) => {
         helper.createSetList([chordSheet1.id, chordSheet2.id]).then((setList) => {

@@ -11,7 +11,6 @@ gem "devise"
 gem "flipper"
 gem "flipper-active_record"
 gem "flipper-ui"
-gem "grover"
 gem "image_processing"
 gem "jbuilder"
 gem "jsbundling-rails"
@@ -34,6 +33,8 @@ gem "term-ansicolor"
 gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "uglifier"
+gem "wicked_pdf"
+gem "wkhtmltopdf-binary"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
