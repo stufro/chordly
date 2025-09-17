@@ -91,7 +91,7 @@ RUN yarn install
 
 FROM base
 
-ARG DEPLOY_PACKAGES="postgresql-client file vim curl gnupg gzip libsqlite3-0"
+ARG DEPLOY_PACKAGES="postgresql-client file vim curl gnupg gzip libsqlite3-0 libjpeg62-turbo libxrender1 libxext6 libfontconfig1 libfreetype6 libpng16-16"
 ENV DEPLOY_PACKAGES=${DEPLOY_PACKAGES}
 
 RUN --mount=type=cache,id=prod-apt-cache,sharing=locked,target=/var/cache/apt \

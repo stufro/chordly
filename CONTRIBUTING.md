@@ -3,7 +3,6 @@ Dependencies:
 - Ruby 3.4.5
 - PostgreSQL
 - Yarn
-- Chrome or Chromium browser (for [Grover gem](https://github.com/Studiosity/grover))
 
 ## Writing some code
 
@@ -13,7 +12,7 @@ If you want to fix a bug or add a new feature, please:
 2. Create a feature branch (`git checkout -b my-new-feature`).
 3. Make your changes. Include tests for your changes, otherwise I may accidentally break them in the future.
 4. Run the tests with the `rake` command. Make sure that they are still passing.
-5. Write [descriptive commit messages](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html) and follow [Angular's commit format](https://gist.github.com/brianclements/841ea7bffdb01346392c#type) e.g. `feat: add new feature`.
+5. Write [descriptive commit messages](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html) and follow [Angular's commit format](https://github.com/angular/angular/blob/main/contributing-docs/commit-message-guidelines.md#type) e.g. `feat: add new feature`.
 6. Push the branch to GitHub (`git push origin my-new-feature`).
 7. [Create a Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) and submit it to be merged with the main branch.
 
