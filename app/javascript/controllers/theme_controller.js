@@ -8,8 +8,8 @@ export default class extends Controller {
   }
 
   switch() {
-    this.iconTarget.querySelector("svg").classList.toggle("fa-moon")
-    this.iconTarget.querySelector("svg").classList.toggle("fa-sun")
+    this.iconTarget.classList.toggle("fa-moon")
+    this.iconTarget.classList.toggle("fa-sun")
 
     document.documentElement.classList.toggle("theme-dark")
     document.documentElement.classList.toggle("theme-light")
