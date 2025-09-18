@@ -4,7 +4,7 @@
       = chord_sheet.name
 
     div
-      pre style='font-size: 1.5rem; font-family: Menlo, Courier, monospace;'
+      pre
         - chord_sheet.content.each do |line|
           span style=(line["type"] == "chords" ? "font-weight: bold;" : "")
             = line["content"]
