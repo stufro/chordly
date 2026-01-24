@@ -69,5 +69,20 @@ describe ChordSheet do
       chord_sheet = create(:chord_sheet, content:)
       expect(chord_sheet.unique_chords).to match_array %w[G Am7 C Dsus4]
     end
+
+    context "when a chord line has annotations" do
+      let(:content) do
+        [
+          { "type" => "chords", "content" => "G   Am7   C {some annotation}" },
+          { "type" => "lyrics", "content" => "Some song lyrics" },
+          { "type" => "chords", "content" => "G   Am7   Dsus4 [another annotation]" }
+        ]
+      end
+
+      it "returns an array of the chords included in the sheet, ignoring annotations" do
+        chord_sheet = create(:chord_sheet, content:)
+        expect(chord_sheet.unique_chords).to match_array %w[G Am7 C Dsus4]
+      end
+    end
   end
 end

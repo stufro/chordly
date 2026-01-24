@@ -23,6 +23,9 @@ class ChordSheet < ApplicationRecord
 
   def unique_chords
     chord_lines = content.select { |line| line["type"] == "chords" }
-    chord_lines.flat_map { |line| line["content"].split }.uniq
+    chord_lines.flat_map do |line|
+      sanitised = line["content"].gsub(/(\{.*?\}|\[.*?\])/, "") # Remove text in {} or []
+      sanitised.split
+    end.uniq
   end
 end
