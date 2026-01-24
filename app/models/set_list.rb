@@ -13,7 +13,7 @@ class SetList < ApplicationRecord
   end
 
   def refresh_positions
-    chord_sheets_set_list.each_with_index do |record, index|
+    chord_sheets_set_list.order(:position).each_with_index do |record, index|
       record.update(position: index + 1)
     end
   end
