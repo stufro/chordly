@@ -2,23 +2,19 @@
 
 begin
   require "database_cleaner-active_record"
-rescue LoadError => e
-  puts e.message
+rescue LoadError
   begin
     require "database_cleaner"
-  rescue LoadError => e
-    puts e.message
+  rescue LoadError # rubocop:disable Lint/SuppressedException
   end
 end
 
 begin
   require "factory_bot_rails"
-rescue LoadError => e
-  puts e.message
+rescue LoadError
   begin
     require "factory_girl_rails"
-  rescue LoadError => e
-    puts e.message
+  rescue LoadError # rubocop:disable Lint/SuppressedException
   end
 end
 
