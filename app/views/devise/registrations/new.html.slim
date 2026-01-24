@@ -5,54 +5,70 @@
   .card-content
     h1.title.is-1 Sign up
 
-    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-      #flash-message-container
-        - if flash[:recaptcha_error]
-          #flash-message.box.has-background-danger.has-text-light data-controller="flash"
-            .icon
-              i.fas.fa-exclamation-circle
-            = flash[:recaptcha_error]
-            button.delete.ml-1.mt-1 data-flash-target="closeButton"
+    - if Flipper.enabled?(:disable_sign_up)
+      .box.has-background-warning
+        .media.is-align-items-center
+          .media-left.mr-5
+            span.icon.is-large
+              i.fas.fa-warning.fa-2x
+          .media-content
+            .mb-1
+              b.is-size-5
+                | Due to a high volume of bot sign ups, new user registrations are temporarily disabled.
+            p.is-size-6
+              | Bots have been creating hundreds of accounts using real people's email addresses, which is causing deliverability issues for my legitimate users.
+            p.is-size-6
+              | I apologise for the inconvenience and I'm actively working to resolve this. Check back tomorrow.
 
-        - if resource.errors.any?
-          #flash-message.box.has-background-danger.has-text-light data-controller="flash"
-            .icon
-              i.fas.fa-exclamation-circle
-            = resource.errors.full_messages.join(", ")
-            button.delete.ml-1.mt-1 data-flash-target="closeButton"
+    - else
+      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        #flash-message-container
+          - if flash[:recaptcha_error]
+            #flash-message.box.has-background-danger.has-text-light data-controller="flash"
+              .icon
+                i.fas.fa-exclamation-circle
+              = flash[:recaptcha_error]
+              button.delete.ml-1.mt-1 data-flash-target="closeButton"
 
-      .field
-        = f.label :email, class: "label"
-        .control.has-icons-left
-          = f.email_field :email, autofocus: true, autocomplete: "email", class: "input", required: true
-          span.icon.is-small.is-left
-            i.fas.fa-envelope
+          - if resource.errors.any?
+            #flash-message.box.has-background-danger.has-text-light data-controller="flash"
+              .icon
+                i.fas.fa-exclamation-circle
+              = resource.errors.full_messages.join(", ")
+              button.delete.ml-1.mt-1 data-flash-target="closeButton"
 
-      .field
-        = f.label :password, class: "has-text-weight-semibold"
-        - if @minimum_password_length
-          em
-            | (
-            = @minimum_password_length
-            |  characters minimum)
-        .control.has-icons-left
-          = f.password_field :password, autocomplete: "new-password", class: "input", required: true
-          span.icon.is-small.is-left
-            i.fas.fa-key
+        .field
+          = f.label :email, class: "label"
+          .control.has-icons-left
+            = f.email_field :email, autofocus: true, autocomplete: "email", class: "input", required: true
+            span.icon.is-small.is-left
+              i.fas.fa-envelope
 
-      .field
-        = f.label :password_confirmation, "Confirm password", class: "label"
-        .control.has-icons-left
-          = f.password_field :password_confirmation, autocomplete: "new-password", class: "input", required: true
-          span.icon.is-small.is-left
-            i.fas.fa-key
+        .field
+          = f.label :password, class: "has-text-weight-semibold"
+          - if @minimum_password_length
+            em
+              | (
+              = @minimum_password_length
+              |  characters minimum)
+          .control.has-icons-left
+            = f.password_field :password, autocomplete: "new-password", class: "input", required: true
+            span.icon.is-small.is-left
+              i.fas.fa-key
 
-      - unless Rails.env.test?
-        = recaptcha_tags
+        .field
+          = f.label :password_confirmation, "Confirm password", class: "label"
+          .control.has-icons-left
+            = f.password_field :password_confirmation, autocomplete: "new-password", class: "input", required: true
+            span.icon.is-small.is-left
+              i.fas.fa-key
 
-      .actions.is-flex.is-justify-content-center.mt-3
-        = f.submit "Sign up", class: "button is-primary is-medium", id: "complete-sign-up",
-            data: { turbo: false }, style: "width: 100%"
+        - unless Rails.env.test?
+          = recaptcha_tags
+
+        .actions.is-flex.is-justify-content-center.mt-3
+          = f.submit "Sign up", class: "button is-primary is-medium", id: "complete-sign-up",
+              data: { turbo: false }, style: "width: 100%"
 
   .card-footer.is-justify-content-center.py-3
     .is-flex.is-align-items-center.is-flex-direction-column.mt-3
