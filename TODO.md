@@ -21,8 +21,8 @@ transparent and ensures that musicians, teachers, and performers can see how Cho
 ---
 
 ## v1.0.0
-- [ ] Support for chordpro format
-- [ ] Dark mode
+- [x] Support for chordpro format
+- [x] Dark mode
 
 ## v0.5.0
 - [x] Chord diagrams at top of sheet

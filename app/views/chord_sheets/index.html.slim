@@ -2,7 +2,9 @@
 - description "Your chord sheet library"
 
 .level.mb-4
-  h1.title.is-1.mb-0.has-text-centered Chord Sheets
+  .is-flex.is-align-items-center style="gap: 1rem;"
+    h1.title.is-1.mb-0.has-text-centered Chord Sheets
+    span.tag.is-primary.is-large = @chord_sheets.size
   .is-flex.is-justify-content-center style="gap: 1rem;"
     - if current_user.deleted_content?
       = link_to bin_index_path, class: "button is-info" do
@@ -24,7 +26,9 @@
 hr
 
 .level.mb-4
-  h1.title.is-1.mb-0 Set Lists
+  .is-flex.is-align-items-center style="gap: 1rem;"
+    h1.title.is-1.mb-0.has-text-centered Set Lists
+    span.tag.is-primary.is-large = @set_lists.size
   .is-flex.is-justify-content-center
     = link_to new_set_list_path, class: "button is-primary", id: "create-set-list" do
       span.icon-text.is-flex-wrap-nowrap

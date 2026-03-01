@@ -1,6 +1,6 @@
 - chord_pro_disabled = current_user.blank?
 
-.is-flex.is-align-items-baseline.is-flex-wrap-wrap
+.is-flex.is-align-items-baseline.is-flex-wrap-wrap.mb-5
   .tabs.is-toggle.is-toggle-rounded
     ul
       li class=("is-active" if format == :standard)
@@ -15,12 +15,6 @@
           span.icon.is-small
             i.fas.fa-music
           span ChordPro
-
-  .mb-5
-    span.icon.ml-3.has-text-primary
-      i.fas.fa-wand-magic-sparkles.mr-1
-
-    span.has-text-primary New!
 
     - if chord_pro_disabled
       span.has-text-grey.ml-2.is-size-7
