@@ -16,7 +16,7 @@ html lang="en" class="theme-#{theme}"
       = render("layouts/piwik_analytics")
 
     = render("layouts/favicons")
-    - unless Rails.env.development?
+    - unless Rails.env.development? || (user_signed_in? && !current_user.standard?)
       script[async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3401313551409918"
       crossorigin="anonymous"]
   body

@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
   before_create :populate_uuid
 
+  enum :user_type, { standard: "standard", admin: "admin", ad_free: "ad_free" }, default: :standard
+
   def deleted_content?
     chord_sheets.deleted.present? || set_lists.deleted.present?
   end
