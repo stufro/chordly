@@ -11,6 +11,8 @@ class ChordSheet < ApplicationRecord
   scope :not_deleted, -> { where(deleted: [false, nil]) }
   scope :deleted, -> { where(deleted: true) }
 
+  serialize :content, coder: JSON
+
   def transpose(direction)
     content.map! do |line_hash|
       line = SheetLine.new(line_hash)
