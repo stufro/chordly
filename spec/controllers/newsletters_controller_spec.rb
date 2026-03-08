@@ -4,7 +4,7 @@ describe NewslettersController do
   describe "POST create" do
     let(:email_subject) { "New Email Update" }
     let(:content) { "Hi, here's an email" }
-    let(:user) { create(:user, admin: true) }
+    let(:user) { create(:user, user_type: :admin) }
 
     before do
       allow(controller).to receive_messages(authenticate_user!: true, current_user: user)
