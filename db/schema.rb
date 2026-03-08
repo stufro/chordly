@@ -11,9 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.2].define(version: 2026_03_08_182624) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -66,8 +63,8 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_08_182624) do
   end
 
   create_table "chord_sheets_set_lists", force: :cascade do |t|
-    t.bigint "chord_sheet_id", null: false
-    t.bigint "set_list_id", null: false
+    t.integer "chord_sheet_id", null: false
+    t.integer "set_list_id", null: false
     t.integer "position"
     t.index ["chord_sheet_id"], name: "index_chord_sheets_set_lists_on_chord_sheet_id"
     t.index ["set_list_id"], name: "index_chord_sheets_set_lists_on_set_list_id"
@@ -91,7 +88,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_08_182624) do
 
   create_table "set_lists", force: :cascade do |t|
     t.string "name"
-    t.bigint "user_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "deleted"
@@ -133,7 +130,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_03_08_182624) do
     t.bigint "item_id", null: false
     t.string "event", null: false
     t.string "whodunnit"
-    t.text "object"
+    t.text "object", limit: 1073741823
     t.datetime "created_at"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end

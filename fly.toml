@@ -15,6 +15,11 @@ processes = []
 
 [env]
   PORT = "8080"
+  PRIMARY_REGION = "lhr"
+
+[mounts]
+  source = "chordly_data"
+  destination = "/data"
 
 [experimental]
   allowed_public_ports = []

@@ -4,8 +4,8 @@ SetList.destroy_all
 
 user1 = FactoryBot.create :user, email: "user@chordly.co.uk"
 user2 = FactoryBot.create :user, email: "beta@chordly.co.uk"
-user3 = FactoryBot.create :user, email: "admin@chordly.co.uk", admin: true
-user4 = FactoryBot.create :user, email: "unconfirmed@chordly.co.uk"
+user3 = FactoryBot.create :user, email: "admin@chordly.co.uk", user_type: :admin
+FactoryBot.create :user, email: "unconfirmed@chordly.co.uk"
 user1.confirm
 user2.confirm
 user3.confirm
@@ -84,7 +84,7 @@ For you I bleed myself dry
 
 For you I bleed myself dry"
 
-chord_sheet2 = FactoryBot.create :chord_sheet, name: "Hotel California", user: user1, content_string: "Capo 2
+FactoryBot.create :chord_sheet, name: "Hotel California", user: user1, content_string: "Capo 2
 
 [Intro]
 Am   E7   G   D   F   C   Dm   E7
@@ -270,7 +270,7 @@ I don't deserve this, you look perfect tonight
 
 | G D/F# Em D | C  D  | G"
 
-chord_sheet4 = FactoryBot.create :chord_sheet, name: "Talking to the moon", user: user2, content_string: "[Verse 1]
+FactoryBot.create :chord_sheet, name: "Talking to the moon", user: user2, content_string: "[Verse 1]
 
 C
   I know you're somewhere out there
