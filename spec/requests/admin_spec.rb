@@ -1,8 +1,8 @@
 require "rails_helper"
 
 describe "Admin" do
-  let(:user) { create(:user, admin:) }
-  let(:admin) { true }
+  let(:user) { create(:user, user_type:) }
+  let(:user_type) { :admin }
 
   before { sign_in user }
 
@@ -13,7 +13,7 @@ describe "Admin" do
     end
 
     context "when the user is not an admin" do
-      let(:admin) { false }
+      let(:user_type) { :standard }
 
       it "redirects to home page" do
         get "/admin"
