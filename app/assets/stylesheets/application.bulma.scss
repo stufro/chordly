@@ -123,3 +123,12 @@ $fa-font-path: "/webfonts";
   pointer-events: none;
   opacity: 0.5;
 }
+
+a.box {
+  transition: border-color 0.2s;
+
+  &:hover {
+    border-color: $primary;
+  }
+}
+

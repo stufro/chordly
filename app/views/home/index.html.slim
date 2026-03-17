@@ -1,8 +1,8 @@
 ruby:
   content_for(:container_class, "full-width")
-  title "Free Online Chord Sheet Creator"
+  title "Free Chord Sheet Maker & Chord Chart Creator Online"
   description(
-    "A free, open-source, online chord sheet creator. Create, edit and transpose guitar chord sheets instantly — free and open source"
+    "Make chord sheets, chord charts, and lead sheets online for free. Transpose chords instantly, import ChordPro files, and export to PDF — free and open source."
   )
 
 - get_started_path = user_signed_in? ? new_chord_sheet_path : new_trial_path
@@ -12,7 +12,7 @@ div data-controller="fade-in"
     .hero-body
       .container.has-text-centered
         h1.title Chordly
-        h2.subtitle A free, open-source, online chord sheet creator
+        h2.subtitle The free, open-source chord sheet & lead sheet maker
 
         = link_to get_started_path, class: "button is-light is-large" do
           span.icon.is-small.mr-1

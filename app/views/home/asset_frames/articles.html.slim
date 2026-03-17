@@ -13,15 +13,12 @@
       }
     ]
 
-  .columns.mt-6
+  .columns.is-centered.mt-6
     - articles.each do |article|
-      .column.is-flex
-        .card.is-flex.is-flex-direction-column
-          .card-image
-            = link_to article_path(article[:id]), data: { turbo: false } do
-              figure.image.is-4by3
-                img[src=article[:image] alt="#{article[:title]} preview image" style="object-fit: contain;"]
-          .card-content.is-flex-grow-1
-            .content
-              = link_to article[:title], article_path(article[:id]), class: "title is-4", data: { turbo: false }
-              p = article[:description]
+      .column.is-3.is-flex
+        = link_to article_path(article[:id]), class: "box p-0", style: "text-decoration: none; color: inherit; overflow: hidden; width: 100%;", data: { turbo: false } do
+          figure.image.is-16by9
+            img[src=article[:image] alt="#{article[:title]} preview image" style="object-fit: contain;"]
+          .p-4
+            p.title.is-6.mb-1 = article[:title]
+            p.is-size-7.has-text-grey = article[:description]

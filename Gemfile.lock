@@ -385,6 +385,8 @@ GEM
     securerandom (0.4.1)
     semver (1.0.1)
     sexp_processor (4.17.5)
+    sitemap_generator (6.3.0)
+      builder (~> 3.0)
     slim (5.2.1)
       temple (~> 0.10.0)
       tilt (>= 2.1.0)
@@ -523,6 +525,7 @@ DEPENDENCIES
   rubyzip
   schema_dot_org
   semver
+  sitemap_generator
   slim
   slim_lint
   solargraph
