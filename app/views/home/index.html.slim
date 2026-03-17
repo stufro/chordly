@@ -24,85 +24,90 @@ div data-controller="fade-in"
             class: "is-flex is-justify-content-center my-6 py-6" do
           .hero-image.spinner
 
-  .hero.is-medium
+  /! Feature highlights
+  section.section
     = adsense_unit(:horizontal)
-    .hero-body
-      .has-text-centered
-        .is-flex.is-justify-content-center.is-align-items-center.is-flex-wrap-wrap
-          span.icon-text.is-flex-wrap-nowrap.has-text-primary
-            span.icon.is-large.mr-5
-              i.fas.fa-music.fa-3x
-          h1.title Transpose Chords
-
-        h2.subtitle.mt-2 And edit chord sheets inline
-
+    .container.fadeable
+      .columns.is-variable.is-8
+        .column.is-6
+          .box.p-6.has-text-centered
+            .mb-4
+              span.icon.is-large.has-text-primary
+                i.fas.fa-music.fa-3x
+            h2.title.is-3 Transpose Chords Instantly
+            p.has-text-grey
+              | Change the key of any song with a single click. No more manual transposing
+                or scribbling over chord sheets.
+            .tags.are-medium.is-justify-content-center.mt-4
+              span.tag.is-primary.is-light No account required
+        .column.is-6
+          .box.p-6.has-text-centered
+            .mb-4
+              span.icon.is-large.has-text-primary
+                i.fas.fa-file-lines.fa-3x
+            h2.title.is-3 Take the hassle out of chord sheets
+            p.has-text-grey
+              | Create, organize, and share chord sheets effortlessly. Prep for gigs,
+                craft practice material, or experiment with new ideas.
+            .tags.are-medium.is-justify-content-center.mt-4
+              span.tag.is-primary.is-light Free and open source
+      .has-text-centered.mt-5
         = link_to get_started_path, class: "button is-primary is-large" do
           span.icon.is-small.mr-1
             i.fas.fa-guitar
-          | Transpose Song Now
+          | Try It Now
 
-        h3.subtitle.is-4.mt-3.has-text-primary.has-text-weight-bold No account required
-
-        br
-        .container.is-max-tablet
-          .card
-            .card-content
-              .is-flex.is-justify-content-center.is-align-items-center.is-flex-wrap-wrap
-                span.icon-text.is-flex-wrap-nowrap.has-text-primary
-                  span.icon.is-large.mr-5
-                    i.fas.fa-file-lines.fa-3x
-                h1.title Take the hassle out of chord sheets
-
-              br
-              h2.subtitle.mb-2 🎸 Chordly makes creating, organizing, and sharing chord sheets effortless.
-              h2.subtitle.mb-2
-                |🎤 Whether you're prepping for a gig, crafting practice material, or experimenting with ideas,
-                |  Chordly saves time.
-              h2.subtitle.mb-2 🎶 Transpose songs instantly, export PDFs, and organize your material.
-
-    = adsense_unit(:horizontal)
-
-  .hero.is-primary.is-medium
-
+  /! Key features grid
+  section.hero.is-primary
     .hero-body
       .container.has-text-centered.fadeable
-        .is-flex.is-justify-content-space-around.is-align-items-center.is-flex-wrap-wrap style="gap: 3rem"
-          div
-            .is-flex.is-justify-content-center.is-align-items-center.is-flex-wrap-wrap
-              span.icon-text.is-flex-wrap-nowrap
-                span.icon.is-large.mr-5
-                  i.fas.fa-guitar.fa-3x
-              h1.title ChordPro Support
+        h2.title.is-3.mb-6 Everything you need
+        .columns.is-multiline.is-centered
+          .column.is-4
+            .mb-3
+              span.icon.is-large
+                i.fas.fa-guitar.fa-3x
+            h3.title.is-4 ChordPro Support
+            p.subtitle.is-6 Import your existing ChordPro files and start editing immediately
 
-            h2.subtitle.mt-2 Import your existing ChordPro files
+          .column.is-4
+            .mb-3
+              span.icon.is-large
+                i.fas.fa-download.fa-3x
+            h3.title.is-4 Export to PDF
+            p.subtitle.is-6 Download chord sheets or entire set lists for printing
 
-          div
-            .is-flex.is-justify-content-center.is-align-items-center.is-flex-wrap-wrap
-              span.icon-text.is-flex-wrap-nowrap
-                span.icon.is-large.mr-5
-                  i.fas.fa-download.fa-3x
-              h1.title Export to PDF
+          .column.is-4
+            .mb-3
+              span.icon.is-large
+                i.fas.fa-rectangle-list.fa-3x
+            h3.title.is-4 Set Lists
+            p.subtitle.is-6 Organize your chord sheets into set lists ready for your next gig
 
-            h2.subtitle.mt-2 Download chord sheets or entire set lists
-
-      .container.has-text-centered.mt-5.fadeable
-        .block
+        .mt-5
           = link_to "View All Features", features_home_path, class: "button is-light is-large"
-        = turbo_frame_tag "pdf-feature-webp", src: asset_frame_path(asset: "pdf_feature_webp"), loading: "lazy",
-            class: "is-flex is-justify-content-center" do
-          .hero-image.spinner
-
-  .hero.is-medium
-    = adsense_unit(:horizontal)
-    .hero-body
-      .container.has-text-centered.fadeable
-        h1.title.is-3 Featured Articles
-        h2.subtitle.is-5.mb-4 Explore our latest articles on music theory, Chordly tutorials, and more.
-
-        = turbo_frame_tag "articles", src: asset_frame_path(asset: "articles"), loading: "lazy",
-            class: "is-flex is-justify-content-center my-6 py-6" do
-          .hero-image.spinner
 
   = adsense_unit(:horizontal)
 
-  hr
+  /! Articles
+  section.section
+    .container.has-text-centered.fadeable
+      h2.title.is-3 Featured Articles
+      p.subtitle.is-5.mb-5 Explore our latest articles on music theory, Chordly tutorials, and more.
+
+      = turbo_frame_tag "articles", src: asset_frame_path(asset: "articles"), loading: "lazy",
+          class: "is-flex is-justify-content-center" do
+        .hero-image.spinner
+
+  /! Final CTA
+  section.hero.is-primary.is-medium
+    .hero-body
+      .container.has-text-centered
+        h2.title.is-2 Ready to simplify your chord sheets?
+        p.subtitle.is-4.mb-5 Join musicians who use Chordly to create, transpose, and organize their music.
+        = link_to get_started_path, class: "button is-light is-large" do
+          span.icon.is-small.mr-1
+            i.fas.fa-circle-play
+          | Get Started for Free
+
+  = adsense_unit(:horizontal)
