@@ -10,7 +10,9 @@ namespace :fly do
   #  - changes to the filesystem made here are DISCARDED
   #  - full access to secrets, databases
   #  - failures here prevent deployment
-  task :release => 'db:migrate'
+  task :release do
+    # SQLite lives on a volume — migrations must run at server startup, not here
+  end
 
   # SERVER step:
   #  - changes to the filesystem made here are deployed
@@ -18,6 +20,7 @@ namespace :fly do
   #  - failures here result in VM being stated, shutdown, and rolled back
   #    to last successful deploy (if any).
   task :server => :swapfile do
+    sh 'bin/rails db:migrate'
     sh 'bin/rails server'
   end
 

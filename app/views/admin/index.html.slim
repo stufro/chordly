@@ -43,6 +43,15 @@ i Last 10 active users
 
 hr
 
+h1.title.is-1 Support Toast
+
+.level.is-flex-wrap-wrap.has-text-centered.is-align-items-baseline.is-justify-content-space-around.is-align-content-center
+  = render("admin/stat_card", title: "Eligible", header: "All Time", count: @support_toast_eligible_count)
+  = render("admin/stat_card", title: "Dismissed", header: "All Time", count: @support_toast_dismissed_count)
+  = render("admin/stat_card", title: "Clicked", header: "All Time", count: @support_toast_clicked_count)
+
+hr
+
 h1.title.is-1 Chord Sheets
 
 .level.is-flex-wrap-wrap.has-text-centered.is-align-items-start
