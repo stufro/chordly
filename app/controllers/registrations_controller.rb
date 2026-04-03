@@ -6,6 +6,18 @@ class RegistrationsController < Devise::RegistrationsController
     head :ok
   end
 
+  def update_support_toast
+    return head(:unauthorized) unless user_signed_in?
+
+    case params[:action_type]
+    when "dismiss"
+      current_user.update(support_toast_dismissed_at: Time.current)
+    when "click"
+      current_user.update(support_toast_clicked_at: Time.current)
+    end
+    head :ok
+  end
+
   private
 
   def check_captcha

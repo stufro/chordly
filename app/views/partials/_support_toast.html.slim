@@ -1,0 +1,24 @@
+- if user_signed_in? && current_user.show_support_toast?
+  #support-toast.notification.is-warning.is-light[data-controller="support-toast"]
+    button.delete data-action="support-toast#dismiss"
+    .is-flex.is-align-items-center style="gap: 0.75rem;"
+      span.icon.is-large
+        i.fas.fa-mug-hot.fa-2x
+      div
+        p.has-text-weight-semibold.mb-1 Can you help support Chordly?
+        p.mb-2.is-size-7
+          | Chordly is a solo-run project; it's
+          b  free
+          |  to use and always will be.
+          |  Your support helps keep it running and growing.
+        .is-flex.is-align-items-center style="gap: 0.75rem; flex-wrap: wrap;"
+          a.button.is-warning.is-small.has-text-weight-bold[
+            href="https://www.buymeacoffee.com/stuartfrosG"
+            target="_blank"
+            rel="noopener"
+            data-action="support-toast#trackClick"
+          ]
+            span.icon
+              i.fas.fa-mug-hot
+            span Buy me a coffee
+          = link_to "Other ways to support", "/home/about#support", class: "is-size-7 has-text-grey", data: { action: "support-toast#dismiss" }

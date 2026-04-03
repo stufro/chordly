@@ -40,5 +40,8 @@ application.register("show-more", ShowMoreController)
 import SortableController from "./sortable_controller"
 application.register("sortable", SortableController)
 
+import SupportToastController from "./support_toast_controller"
+application.register("support-toast", SupportToastController)
+
 import ThemeController from "./theme_controller"
 application.register("theme", ThemeController)

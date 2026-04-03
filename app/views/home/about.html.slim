@@ -45,7 +45,7 @@
     .card.is-flex.is-flex-direction-column
       .card-image.mb-4
         = link_to "https://www.buymeacoffee.com/stuartfrosG" do
-          figure.image.is-2by3
+          figure.image.is-2by3.coffee-image-bg
             = image_tag "buy_me_a_coffee.svg", alt: "Buy me a coffee logo", style: "object-fit: contain;"
       .card-footer.is-flex-grow-1
         a.card-footer-item.p-0 href="https://www.buymeacoffee.com/stuartfrosG" target="_blank" rel="noopener"
@@ -82,11 +82,26 @@
           | Donate ETH
 
 .section
-  h2.title.is-3 Contributing
-  p
-    | If you're a developer and want to get involved, contributions are always welcome. Check out the
-    a[href="https://github.com/stufro/chordly/blob/main/CONTRIBUTING.md"
-      target="_blank" rel="noopener"]  Chordly GitHub repository
-    |  for instructions on how to get started, submit improvements, or suggest new features.
+  h2.title.is-4 Other ways to support
+
+  .content
+    p.has-text-weight-bold.mb-1 Spread the word
+    p
+      | Love Chordly? Tell a fellow musician, share it with your band, or recommend it to a teacher.
+      |  Word of mouth is the most valuable thing you can do.
+
+  .content
+    p.has-text-weight-bold.mb-1 Send feedback
+    p
+      | Help shape Chordly's future by sharing ideas, reporting bugs, or suggesting new features. Reach out at&nbsp;
+      a href="mailto:support@chordly.co.uk" support@chordly.co.uk
+      | .
+
+  .content
+    p.has-text-weight-bold.mb-1 Contribute code
+    p
+      | Chordly is open-source. If you're a developer, contributions are always welcome — check out the&nbsp;
+      a href="https://github.com/stufro/chordly/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener" contributing guide
+      |  to get started.
 
 = adsense_unit(:horizontal)
