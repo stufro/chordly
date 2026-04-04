@@ -10,7 +10,7 @@
     "@rails/request.js": "^0.0.6",
     "@stimulus-components/clipboard": "^5.0.0",
     "bulma": "^1.0.4",
-    "esbuild": "^0.23.0",
+    "esbuild": "^0.25.0",
     "local-time": "^2.1.0",
     "puppeteer": "^22.13.0",
     "sass": "^1.52.1",
