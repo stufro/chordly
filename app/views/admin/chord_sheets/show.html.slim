@@ -1,0 +1,47 @@
+- title "Admin - Chord Sheet ##{@chord_sheet.id}"
+
+h1.title.is-1 Chord Sheet ##{@chord_sheet.id}
+
+= link_to "← Back to Admin", admin_path, class: "button is-light mb-4"
+- if @chord_sheet.user
+  = link_to "← View User", admin_user_path(@chord_sheet.user), class: "button is-light mb-4 ml-2"
+
+.table-container
+  table.table.is-fullwidth.is-striped
+    tbody
+      tr
+        th ID
+        td = @chord_sheet.id
+      tr
+        th Name
+        td = @chord_sheet.name
+      tr
+        th User
+        td = @chord_sheet.user&.email || "Trial (#{@chord_sheet.trial_user_id})"
+      tr
+        th Trial?
+        td = @chord_sheet.trial_user_id?
+      tr
+        th Trial User ID
+        td = @chord_sheet.trial_user_id
+      tr
+        th Created From ChordPro?
+        td = @chord_sheet.created_from_chord_pro
+      tr
+        th Deleted?
+        td = @chord_sheet.deleted
+      tr
+        th Created At
+        td = @chord_sheet.created_at
+      tr
+        th Updated At
+        td = @chord_sheet.updated_at
+
+hr
+
+h2.title.is-3 Content
+
+pre#chord-sheet-content
+  - @chord_sheet.content.each do |line|
+    span class=(line["type"] == "chords" ? "chord-line" : "lyric-line")
+      = line["content"]

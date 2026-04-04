@@ -15,7 +15,7 @@ h1.title.is-1 Users
 
 i Last 10 active users
 .table-container
-  table.table.is-fullwidth.is-striped.admin-table
+  table.table.is-fullwidth.is-striped.admin-table data-controller="clickable-row"
     thead
       tr
         th User
@@ -27,7 +27,7 @@ i Last 10 active users
         th Created
     tbody
       - @users.order(current_sign_in_at: :desc).limit(10).each do |user|
-        tr
+        tr.is-clickable data-href=admin_user_path(user) data-action="click->clickable-row#navigate"
           td = user.email
           td = user.sign_in_count
           td = "☑️" if user.chord_sheets.first&.trial_user_id?
@@ -83,7 +83,7 @@ h1.title.is-1 Chord Sheets
 
 i Last 10 created chord sheets
 .table-container
-  table.table.is-fullwidth.is-striped.admin-table
+  table.table.is-fullwidth.is-striped.admin-table data-controller="clickable-row"
     thead
       tr
         th User
@@ -94,7 +94,7 @@ i Last 10 created chord sheets
         th ChordPro?
     tbody
       - @chord_sheets.order(created_at: :desc).limit(10).each do |sheet|
-        tr
+        tr.is-clickable data-href=admin_chord_sheet_path(sheet) data-action="click->clickable-row#navigate"
           td = sheet.user&.email
           td = sheet.name
           td = local_time_ago(sheet.created_at)

@@ -1,0 +1,92 @@
+- title "Admin - User ##{@user.id}"
+
+h1.title.is-1 User ##{@user.id}
+
+= link_to "← Back to Admin", admin_path, class: "button is-light mb-4"
+
+.table-container
+  table.table.is-fullwidth.is-striped
+    tbody
+      tr
+        th ID
+        td = @user.id
+      tr
+        th UUID
+        td = @user.uuid
+      tr
+        th Email
+        td = @user.email
+      tr
+        th User Type
+        td = @user.user_type
+      tr
+        th Theme
+        td = @user.theme
+      tr
+        th Confirmed At
+        td = @user.confirmed_at
+      tr
+        th Sign In Count
+        td = @user.sign_in_count
+      tr
+        th Current Sign In At
+        td = @user.current_sign_in_at
+      tr
+        th Last Sign In At
+        td = @user.last_sign_in_at
+      tr
+        th Current Sign In IP
+        td = @user.current_sign_in_ip
+      tr
+        th Last Sign In IP
+        td = @user.last_sign_in_ip
+      tr
+        th Receive Emails
+        td = @user.receive_emails
+      tr
+        th Failed Attempts
+        td = @user.failed_attempts
+      tr
+        th Locked At
+        td = @user.locked_at
+      tr
+        th Support Toast Shown At
+        td = @user.support_toast_shown_at
+      tr
+        th Support Toast Dismissed At
+        td = @user.support_toast_dismissed_at
+      tr
+        th Support Toast Clicked At
+        td = @user.support_toast_clicked_at
+      tr
+        th Created At
+        td = @user.created_at
+      tr
+        th Updated At
+        td = @user.updated_at
+
+hr
+
+h2.title.is-3 Chord Sheets (#{@user.chord_sheets.count})
+
+.table-container
+  table.table.is-fullwidth.is-striped.admin-table data-controller="clickable-row"
+    thead
+      tr
+        th ID
+        th Name
+        th Created
+        th Updated
+        th Trial?
+        th ChordPro?
+        th Deleted?
+    tbody
+      - @user.chord_sheets.order(created_at: :desc).each do |sheet|
+        tr.is-clickable data-href=admin_chord_sheet_path(sheet) data-action="click->clickable-row#navigate"
+          td = sheet.id
+          td = sheet.name
+          td = sheet.created_at
+          td = sheet.updated_at
+          td = "☑️" if sheet.trial_user_id
+          td = "☑️" if sheet.created_from_chord_pro
+          td = "☑️" if sheet.deleted

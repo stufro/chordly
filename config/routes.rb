@@ -17,6 +17,11 @@ Rails.application.routes.draw do
 
   get "/admin", to: "admin#index"
 
+  namespace :admin do
+    resources :users, only: %i[show]
+    resources :chord_sheets, only: %i[show]
+  end
+
   get "/asset_frame", to: "home#asset_frame"
 
   get "/unsubscribe", to: "unsubscribe#show"

@@ -7,6 +7,9 @@ import { application } from "./application"
 import ChordDiagramController from "./chord_diagram_controller"
 application.register("chord-diagram", ChordDiagramController)
 
+import ClickableRowController from "./clickable_row_controller"
+application.register("clickable-row", ClickableRowController)
+
 import ClipboardController from "./clipboard_controller"
 application.register("clipboard", ClipboardController)
 

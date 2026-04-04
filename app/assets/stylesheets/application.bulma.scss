@@ -86,6 +86,14 @@ $fa-font-path: "/webfonts";
   }
 }
 
+tr.is-clickable {
+  cursor: pointer;
+
+  &:hover td {
+    background-color: var(--bulma-table-row-hover-background-color);
+  }
+}
+
 .card-sidebar {
   display: flex;
   flex-direction: column;
