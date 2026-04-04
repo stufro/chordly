@@ -21,6 +21,7 @@ namespace :fly do
   #    to last successful deploy (if any).
   task :server => :swapfile do
     sh 'bin/rails db:migrate'
+    sh 'bin/rails sitemap:create'
     sh 'bin/rails server'
   end
 
