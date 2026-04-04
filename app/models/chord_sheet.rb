@@ -13,6 +13,8 @@ class ChordSheet < ApplicationRecord
 
   serialize :content, coder: JSON
 
+  delegate :email, to: :user, prefix: true, allow_nil: true
+
   def transpose(direction)
     content.map! do |line_hash|
       line = SheetLine.new(line_hash)

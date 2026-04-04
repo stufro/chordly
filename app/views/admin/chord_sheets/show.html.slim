@@ -17,7 +17,7 @@ h1.title.is-1 Chord Sheet ##{@chord_sheet.id}
         td = @chord_sheet.name
       tr
         th User
-        td = @chord_sheet.user&.email || "Trial (#{@chord_sheet.trial_user_id})"
+        td = @chord_sheet.user_email || "Trial (#{@chord_sheet.trial_user_id})"
       tr
         th Trial?
         td = @chord_sheet.trial_user_id?
