@@ -47,8 +47,22 @@ h1.title.is-1 Support Toast
 
 .level.is-flex-wrap-wrap.has-text-centered.is-align-items-baseline.is-justify-content-space-around.is-align-content-center
   = render("admin/stat_card", title: "Eligible", header: "All Time", count: @support_toast_eligible_count)
+  = render("admin/stat_card", title: "Seen", header: "All Time", count: @support_toast_seen_count)
   = render("admin/stat_card", title: "Dismissed", header: "All Time", count: @support_toast_dismissed_count)
   = render("admin/stat_card", title: "Clicked", header: "All Time", count: @support_toast_clicked_count)
+
+i Users who clicked the CTA
+.table-container
+  table.table.is-fullwidth.is-striped
+    thead
+      tr
+        th User
+        th Clicked at
+    tbody
+      - @support_toast_clicked_users.each do |user|
+        tr
+          td = user.email
+          td = local_time(user.support_toast_clicked_at)
 
 hr
 

@@ -10,6 +10,8 @@ class RegistrationsController < Devise::RegistrationsController
     return head(:unauthorized) unless user_signed_in?
 
     case params[:action_type]
+    when "show"
+      current_user.update(support_toast_shown_at: Time.current) if current_user.support_toast_shown_at.nil?
     when "dismiss"
       current_user.update(support_toast_dismissed_at: Time.current)
     when "click"
