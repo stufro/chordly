@@ -2,7 +2,8 @@ ruby:
   content_for(:container_class, "full-width")
   title "Free Chord Sheet Maker & Chord Chart Creator Online"
   description(
-    "Make chord sheets, chord charts, and lead sheets online for free. Transpose chords instantly, import ChordPro files, and export to PDF — free and open source."
+    "Make chord sheets, chord charts, and lead sheets online for free. " \
+    "Transpose chords instantly, import ChordPro files, and export to PDF — free and open source."
   )
 
 - get_started_path = user_signed_in? ? new_chord_sheet_path : new_trial_path

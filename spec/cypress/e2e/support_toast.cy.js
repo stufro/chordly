@@ -26,7 +26,7 @@ describe("Support toast", () => {
     it("shows the support toast", () => {
       cy.visit("/")
       cy.get("#support-toast").should("be.visible")
-      cy.get("#support-toast").contains("Enjoying Chordly?")
+      cy.get("#support-toast").contains("Can you help support Chordly?")
     })
 
     it("contains a Buy Me a Coffee link", () => {
@@ -108,12 +108,12 @@ describe("Support toast", () => {
       })
     })
 
-    it("does not show the toast to a user with fewer than 5 sign ins", () => {
+    it("does not show the toast to a user with fewer than 2 sign ins", () => {
       cy.appFactories([
         ["create", "user", {
           email: "infrequent@a.com",
           password: "123456789",
-          sign_in_count: 3,
+          sign_in_count: 0,
           created_at: new Date(Date.now() - 40 * 24 * 60 * 60 * 1000).toISOString()
         }]
       ]).then(() => {

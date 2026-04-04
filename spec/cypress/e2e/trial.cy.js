@@ -5,7 +5,7 @@ describe("Trialing chordly without an account", () => {
 
   it("lets you transpose a song without being signed in", () => {
     cy.visit("/")
-    cy.contains("Transpose Song Now").click()
+    cy.contains("Create Chord Sheet").click()
     cy.contains("Create Chord sheet").click()
 
     cy.get("#chord-sheet-content").type("\r   G    Em     Am\rA new line of lyrics")
@@ -17,7 +17,7 @@ describe("Trialing chordly without an account", () => {
 
   it("lets you create an account and save your trial chord sheet", () => {
     cy.visit("/")
-    cy.contains("Transpose Song Now").click()
+    cy.contains("Create Chord Sheet").click()
     cy.contains("Create Chord sheet").click()
     cy.get("#sign-up-to-save").click()
 
@@ -36,7 +36,7 @@ describe("Trialing chordly without an account", () => {
     ])
 
     cy.visit("/")
-    cy.contains("Transpose Song Now").click()
+    cy.contains("Create Chord Sheet").click()
     cy.contains("Create Chord sheet").click()
     cy.get("#login-to-save").click()
 

@@ -54,7 +54,7 @@ describe("Logging out", () => {
     cy.contains("Logout").click()
 
     cy.contains("Log in")
-    cy.contains("A free, open-source, online chord sheet creator")
+    cy.contains("The free, open-source chord sheet & lead sheet maker")
   })
 })
 

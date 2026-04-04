@@ -7,9 +7,16 @@ html lang="en" class="theme-#{theme}"
     meta content="width=device-width,initial-scale=1" name="viewport"
     = csrf_meta_tags
     = csp_meta_tag
-    - og_title = meta_tags[:title] ? "#{meta_tags[:title]} | Chordly" : "Chordly"
-    - og_desc = meta_tags[:description] || "Free online chord sheet maker and chord chart creator. Transpose chords, import ChordPro, and export to PDF."
-    = display_meta_tags site: "Chordly", canonical: request.original_url, og: { site_name: "Chordly", type: "website", url: request.original_url, title: og_title, description: og_desc, image: "https://chordly.co.uk/favicons/android-icon-192x192.png" }, twitter: { card: "summary", title: og_title, description: og_desc, image: "https://chordly.co.uk/favicons/android-icon-192x192.png" }
+    ruby:
+      og_title = meta_tags[:title] ? "#{meta_tags[:title]} | Chordly" : "Chordly"
+      default_desc = "Free online chord sheet maker and chord chart creator. " \
+                     "Transpose chords, import ChordPro, and export to PDF."
+      og_desc = meta_tags[:description] || default_desc
+      og_image = "https://chordly.co.uk/favicons/android-icon-192x192.png"
+      og_meta = { site_name: "Chordly", type: "website", url: request.original_url,
+                  title: og_title, description: og_desc, image: og_image }
+      tw_meta = { card: "summary", title: og_title, description: og_desc, image: og_image }
+    = display_meta_tags site: "Chordly", canonical: request.original_url, og: og_meta, twitter: tw_meta
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
     = @organization_schema

@@ -45,12 +45,11 @@ describe "Support toast" do
     end
 
     context "when action_type is unrecognised" do
-      it "returns 200 and does not update the user" do
-        patch "/users/support_toast", params: { action_type: "unknown" }
-        expect(response).to have_http_status(:ok)
-        expect(user.reload.support_toast_dismissed_at).to be_nil
-        expect(user.reload.support_toast_clicked_at).to be_nil
-      end
+      before { patch "/users/support_toast", params: { action_type: "unknown" } }
+
+      it { expect(response).to have_http_status(:ok) }
+      it { expect(user.reload.support_toast_dismissed_at).to be_nil }
+      it { expect(user.reload.support_toast_clicked_at).to be_nil }
     end
 
     context "when not signed in" do

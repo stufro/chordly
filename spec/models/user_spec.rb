@@ -17,7 +17,7 @@ RSpec.describe User do
     end
 
     context "when sign_in_count is below the threshold" do
-      let(:user) { create(:user, sign_in_count: 4, created_at: 40.days.ago) }
+      let(:user) { create(:user, sign_in_count: 1, created_at: 40.days.ago) }
 
       it { is_expected.to be false }
     end

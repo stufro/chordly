@@ -41,12 +41,12 @@ hr
 h1.title.is-1 Support Toast
 
 .stat-grid.stat-grid--2
-  = render("admin/stat_card", title: "Eligible", header: "All Time", count: @support_toast_eligible_count)
-  = render("admin/stat_card", title: "Seen", header: "All Time", count: @support_toast_seen_count)
+  = render("admin/stat_card", title: "Eligible", header: "All Time", count: @support_toast_stats[:eligible_count])
+  = render("admin/stat_card", title: "Seen", header: "All Time", count: @support_toast_stats[:seen_count])
 
 .stat-grid.stat-grid--2
-  = render("admin/stat_card", title: "Dismissed", header: "All Time", count: @support_toast_dismissed_count)
-  = render("admin/stat_card", title: "Clicked", header: "All Time", count: @support_toast_clicked_count)
+  = render("admin/stat_card", title: "Dismissed", header: "All Time", count: @support_toast_stats[:dismissed_count])
+  = render("admin/stat_card", title: "Clicked", header: "All Time", count: @support_toast_stats[:clicked_count])
 
 i Users who clicked the CTA
 .table-container
@@ -56,7 +56,7 @@ i Users who clicked the CTA
         th User
         th Clicked
     tbody
-      - @support_toast_clicked_users.each do |user|
+      - @support_toast_stats[:clicked_users].each do |user|
         tr
           td = user.email
           td = local_time_ago(user.support_toast_clicked_at)
@@ -78,7 +78,8 @@ h1.title.is-1 Chord Sheets
 .stat-grid.stat-grid--2
   - chord_pro_count = @chord_sheets.where("created_at > ? AND created_from_chord_pro = ?", 30.days.ago, true).count
   = render("admin/stat_card", title: "ChordPro", header: "30 Days", count: chord_pro_count)
-  = render("admin/stat_card", title: "Trial", header: "30 Days", count: @chord_sheets.where("created_at > ? AND trial_user_id IS NOT NULL", 30.days.ago).count)
+  - trial_count = @chord_sheets.where("created_at > ? AND trial_user_id IS NOT NULL", 30.days.ago).count
+  = render("admin/stat_card", title: "Trial", header: "30 Days", count: trial_count)
 
 i Last 10 created chord sheets
 .table-container
