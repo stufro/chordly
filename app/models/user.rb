@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   enum :user_type, { standard: "standard", admin: "admin", ad_free: "ad_free" }, default: :standard
 
-  SUPPORT_TOAST_SIGN_IN_THRESHOLD = 5
+  SUPPORT_TOAST_SIGN_IN_THRESHOLD = 2
   SUPPORT_TOAST_SNOOZE_PERIOD     = 3.months
   SUPPORT_TOAST_MIN_ACCOUNT_AGE   = 1.month
 

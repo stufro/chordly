@@ -2,33 +2,29 @@
 
 h1.title.is-1 Users
 
-.level.has-text-centered.is-justify-content-space-around
-  .card.stat-card
-    .card-content
-      h2.subtitle Total Users
-      p.title = @users.count
+.stat-grid
+  = render("admin/stat_card", title: "Total Users", header: "All Time", count: @users.count)
 
-.level.is-flex-wrap-wrap.has-text-centered.is-align-items-baseline.is-justify-content-space-around.is-align-content-center
+.stat-grid.stat-grid--2
   = render("admin/stat_card", title: "Active", header: "7 Days", count: @users.where("current_sign_in_at > ?", 7.days.ago).count)
   = render("admin/stat_card", title: "New", header: "7 Days", count: @users.where("created_at > ?", 7.days.ago).count)
 
-.level.is-flex-wrap-wrap.has-text-centered.is-align-items-baseline.is-justify-content-space-around.is-align-content-center
+.stat-grid.stat-grid--2
   = render("admin/stat_card", title: "Active", header: "30 Days", count: @users.where("current_sign_in_at > ?", 30.days.ago).count)
   = render("admin/stat_card", title: "New", header: "30 Days", count: @users.where("created_at > ?", 30.days.ago).count)
 
 i Last 10 active users
 .table-container
-  table.table.is-fullwidth.is-striped
+  table.table.is-fullwidth.is-striped.admin-table
     thead
       tr
         th User
-        th Sign in count
-        th Signed up from trial?
+        th Sign ins
+        th From trial?
         th Confirmed?
         th Chord Sheets
-        th Last sign in
-        th Created at
-        th Dark mode?
+        th Signed in
+        th Created
     tbody
       - @users.order(current_sign_in_at: :desc).limit(10).each do |user|
         tr
@@ -37,97 +33,103 @@ i Last 10 active users
           td = "☑️" if user.chord_sheets.first&.trial_user_id?
           td = "☑️" if user.confirmed_at?
           td = user.chord_sheets.count
-          td = local_time(user.current_sign_in_at) if user.current_sign_in_at
-          td = local_time(user.created_at)
-          td = "☑️" if user.theme == "dark"
+          td = local_time_ago(user.current_sign_in_at) if user.current_sign_in_at
+          td = local_time_ago(user.created_at)
 
 hr
 
 h1.title.is-1 Support Toast
 
-.level.is-flex-wrap-wrap.has-text-centered.is-align-items-baseline.is-justify-content-space-around.is-align-content-center
+.stat-grid.stat-grid--2
   = render("admin/stat_card", title: "Eligible", header: "All Time", count: @support_toast_eligible_count)
   = render("admin/stat_card", title: "Seen", header: "All Time", count: @support_toast_seen_count)
+
+.stat-grid.stat-grid--2
   = render("admin/stat_card", title: "Dismissed", header: "All Time", count: @support_toast_dismissed_count)
   = render("admin/stat_card", title: "Clicked", header: "All Time", count: @support_toast_clicked_count)
 
 i Users who clicked the CTA
 .table-container
-  table.table.is-fullwidth.is-striped
+  table.table.is-fullwidth.is-striped.admin-table
     thead
       tr
         th User
-        th Clicked at
+        th Clicked
     tbody
       - @support_toast_clicked_users.each do |user|
         tr
           td = user.email
-          td = local_time(user.support_toast_clicked_at)
+          td = local_time_ago(user.support_toast_clicked_at)
 
 hr
 
 h1.title.is-1 Chord Sheets
 
-.level.is-flex-wrap-wrap.has-text-centered.is-align-items-start
+.stat-grid
   .card.stat-card
     .card-content
       h2.subtitle Total Chord Sheets
       p.title = @chord_sheets.count
 
+.stat-grid.stat-grid--2
   = render("admin/stat_card", title: "Created", header: "7 Days", count: @chord_sheets.where("created_at > ?", 7.days.ago).count)
   = render("admin/stat_card", title: "Created", header: "30 Days", count: @chord_sheets.where("created_at > ?", 30.days.ago).count)
+
+.stat-grid.stat-grid--2
   - chord_pro_count = @chord_sheets.where("created_at > ? AND created_from_chord_pro = ?", 30.days.ago, true).count
   = render("admin/stat_card", title: "ChordPro", header: "30 Days", count: chord_pro_count)
+  = render("admin/stat_card", title: "Trial", header: "30 Days", count: @chord_sheets.where("created_at > ? AND trial_user_id IS NOT NULL", 30.days.ago).count)
 
 i Last 10 created chord sheets
 .table-container
-  table.table.is-fullwidth.is-striped
+  table.table.is-fullwidth.is-striped.admin-table
     thead
       tr
         th User
         th Name
-        th Created at
-        th Updated at
-        th Trial user ID
+        th Created
+        th Updated
+        th Trial?
         th ChordPro?
     tbody
       - @chord_sheets.order(created_at: :desc).limit(10).each do |sheet|
         tr
           td = sheet.user&.email
           td = sheet.name
-          td = local_time(sheet.created_at)
-          td = local_time(sheet.updated_at)
-          td = sheet.trial_user_id
+          td = local_time_ago(sheet.created_at)
+          td = local_time_ago(sheet.updated_at)
+          td = "☑️" if sheet.trial_user_id
           td = "☑️" if sheet.created_from_chord_pro
 
 hr
 
 h1.title.is-1 Set Lists
 
-.level.is-flex-wrap-wrap.has-text-centered.is-align-items-start
+.stat-grid
   .card.stat-card
     .card-content
       h2.subtitle Total Set Lists
       p.title = @set_lists.count
 
+.stat-grid.stat-grid--2
   = render("admin/stat_card", title: "Created", header: "7 Days", count: @set_lists.where("created_at > ?", 7.days.ago).count)
   = render("admin/stat_card", title: "Created", header: "30 Days", count: @set_lists.where("created_at > ?", 30.days.ago).count)
 
 i Last 10 created set lists
 .table-container
-  table.table.is-fullwidth.is-striped
+  table.table.is-fullwidth.is-striped.admin-table
     thead
       tr
         th User
         th Name
-        th Created at
-        th Updated at
+        th Created
+        th Updated
         th No. Chord Sheets
     tbody
       - @set_lists.order(created_at: :desc).limit(10).each do |set|
         tr
           td = set.user&.email
           td = set.name
-          td = local_time(set.created_at)
-          td = local_time(set.updated_at)
+          td = local_time_ago(set.created_at)
+          td = local_time_ago(set.updated_at)
           td = set.chord_sheets.count
