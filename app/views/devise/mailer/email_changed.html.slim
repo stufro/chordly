@@ -1,19 +1,18 @@
 p
-  | Hello&nbsp;
-  = @email
-  | !
+  | Hi&nbsp;
+  strong = @email
+  | ,
 - if @resource.try(:unconfirmed_email?)
   p
-    | We're contacting you to notify you that your email is being changed to&nbsp;
-    = @resource.unconfirmed_email
+    | We're letting you know that a request has been made to change your Chordly email address to&nbsp;
+    strong = @resource.unconfirmed_email
     | .
+  p You'll receive a confirmation email at your new address to complete the change.
 - else
   p
-    | We're contacting you to notify you that your email has been changed to&nbsp;
-    = @resource.email
+    | We're letting you know that your Chordly email address has been successfully changed to&nbsp;
+    strong = @resource.email
     | .
-
-p
-  span Thanks,
-  br
-  span Chordly
+hr class="divider"
+p style="font-size: 13px; color: #6b7280;"
+  | If you didn't make this change, please contact us immediately by replying to this email.

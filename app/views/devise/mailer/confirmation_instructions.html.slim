@@ -1,16 +1,10 @@
 p
-  | Welcome&nbsp;
-  = @email
+  | Welcome to Chordly,&nbsp;
+  strong = @email
   | !
-p
-  | You can confirm your account email through the link below.
-  |  Confirm your email address within&nbsp;
-  strong 24 hours
-  |  to continue using Chordly.
-p
-  = link_to "Confirm my account", confirmation_url(@resource, confirmation_token: @token)
-
-p
-  span Thanks,
-  br
-  span Chordly
+p We're glad you're here. Please confirm your email address to activate your account.
+p style="margin: 24px 0;"
+  = link_to "Confirm my account", confirmation_url(@resource, confirmation_token: @token), class: "btn"
+hr class="divider"
+p style="font-size: 13px; color: #6b7280;"
+  | This link expires in 24 hours. If you didn't create a Chordly account, you can safely ignore this email.
