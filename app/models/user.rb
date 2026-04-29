@@ -14,7 +14,7 @@ class User < ApplicationRecord
 
   SUPPORT_TOAST_SIGN_IN_THRESHOLD = 2
   SUPPORT_TOAST_SNOOZE_PERIOD     = 3.months
-  SUPPORT_TOAST_MIN_ACCOUNT_AGE   = 1.month
+  SUPPORT_TOAST_MIN_ACCOUNT_AGE   = 2.weeks
 
   def self.support_toast_stats(except:)
     users = where.not(id: except.id)
