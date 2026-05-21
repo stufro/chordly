@@ -16,7 +16,7 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
   def check_captcha
-    return if verify_recaptcha
+    return if verify_recaptcha(action: "signup", minimum_score: 0.4)
 
     self.resource = resource_class.new sign_up_params
     resource.validate
