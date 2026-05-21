@@ -65,7 +65,7 @@
               i.fas.fa-key
 
         - unless Rails.env.test?
-          = recaptcha_v3(action: "signup")
+          = recaptcha_v3(action: "signup", turbo: true)
 
         .actions.is-flex.is-justify-content-center.mt-3
           = f.submit "Sign up", class: "button is-primary is-medium", id: "complete-sign-up",
