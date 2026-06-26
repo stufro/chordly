@@ -33,7 +33,7 @@ class ChordProController < ApplicationController
   def parsed_content(parameters)
     if parameters[:file]
       file = parameters.delete(:file)
-      ChordProConverter.new(file.read)
+      ChordProConverter.new(file.read.force_encoding("UTF-8").scrub)
     elsif parameters[:content]
       ChordProConverter.new(parameters[:content])
     end
