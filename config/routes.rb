@@ -7,11 +7,11 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     authenticated :user do
-      root "home#index", as: :authenticated_root
+      root "home#show", as: :authenticated_root
     end
 
     unauthenticated do
-      root "home#index", as: :unauthenticated_root
+      root "home#show", as: :unauthenticated_root
     end
   end
 
@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     post :restore, on: :member
   end
 
-  resource :home, only: %i[index], controller: "home" do
+  resource :home, only: %i[show], controller: "home" do
     get :roadmap
     get :about
     get :privacy

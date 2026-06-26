@@ -43,7 +43,7 @@ class SetListsController < ApplicationController
   end
 
   def add_chord_sheet
-    chord_sheet = ChordSheet.find(params[:chord_sheet_id])
+    chord_sheet = ChordSheet.find(params.expect(:chord_sheet_id))
     ChordSheetsSetList.create(chord_sheet:, set_list: @set_list, position: @set_list.next_position)
 
     redirect_to(@set_list)
@@ -57,7 +57,7 @@ class SetListsController < ApplicationController
   end
 
   def reorder
-    params[:new_order].split(",").each_with_index do |id, index|
+    params.expect(:new_order).split(",").each_with_index do |id, index|
       ChordSheetsSetList.find(id).update(position: index + 1)
     end
   end
@@ -75,13 +75,13 @@ class SetListsController < ApplicationController
   end
 
   def set_list_params
-    params.require(:set_list).permit(:name).tap do |p|
+    params.expect(set_list: [:name]).tap do |p|
       p[:user] = current_user
     end
   end
 
   def authorize_user
-    @set_list = SetList.find(params[:id])
+    @set_list = SetList.find(params.expect(:id))
     authorize(@set_list)
   end
 end

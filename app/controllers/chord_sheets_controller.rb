@@ -1,7 +1,6 @@
 class ChordSheetsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[create show transpose update]
   before_action :authorize_user, only: %i[show transpose update destroy versions restore]
-  before_action :adjust_new_lines, only: %i[create]
 
   def index
     @chord_sheets = current_user.chord_sheets.not_deleted.order(build_order_query(:chord_sheet))
@@ -23,7 +22,7 @@ class ChordSheetsController < ApplicationController
   end
 
   def create
-    @chord_sheet = ChordSheet.new(chord_sheet_params)
+    @chord_sheet = ChordSheet.new(chord_sheet_params(normalize_new_lines: true))
     if @chord_sheet.save
       redirect_to @chord_sheet
     else
@@ -54,22 +53,23 @@ class ChordSheetsController < ApplicationController
   def versions; end
 
   def restore
-    version = @chord_sheet.versions.find(params[:version_id])
+    version = @chord_sheet.versions.find(params.expect(:version_id))
     version.reify.save
     redirect_to @chord_sheet
   end
 
   private
 
-  def chord_sheet_params
-    params.require(:chord_sheet).permit(:name, :content, :trial, :trial_user_id).tap do |p|
-      p[:content] = ChordSheetModeller.new(p[:content]).parse if p[:content]
+  def chord_sheet_params(normalize_new_lines: false)
+    params.expect(chord_sheet: %i[name content trial trial_user_id]).tap do |p|
+      p[:content] = parse_content(p[:content], normalize_new_lines) if p[:content]
       p[:user] = current_user
     end
   end
 
-  def adjust_new_lines
-    params[:chord_sheet][:content] = params[:chord_sheet][:content].gsub("\n", "\r\n")
+  def parse_content(content, normalize_new_lines)
+    content = content.gsub("\n", "\r\n") if normalize_new_lines
+    ChordSheetModeller.new(content).parse
   end
 
   def build_order_query(resource)
@@ -79,7 +79,7 @@ class ChordSheetsController < ApplicationController
   end
 
   def authorize_user
-    @chord_sheet = ChordSheet.find(params[:id])
+    @chord_sheet = ChordSheet.find(params.expect(:id))
     authorize(@chord_sheet)
   end
 end

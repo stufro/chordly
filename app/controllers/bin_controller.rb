@@ -5,7 +5,7 @@ class BinController < ApplicationController
   end
 
   def update
-    @resource = resource.delete(" ").constantize.find(params[:resource_id]).update(deleted: false)
+    @resource = resource.delete(" ").constantize.find(params.expect(:resource_id)).update(deleted: false)
     redirect_to bin_index_path, notice: "#{resource} restored"
   end
 

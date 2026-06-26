@@ -31,6 +31,6 @@ class NewslettersController < ApplicationController
   end
 
   def newsletter_params
-    params.require(:newsletter).permit(:subject, :content)
+    params.expect(newsletter: %i[subject content])
   end
 end

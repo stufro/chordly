@@ -2,7 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
   prepend_before_action :check_captcha, only: [:create] # rubocop:disable Rails/LexicallyScopedActionFilter
 
   def update_theme
-    current_user.update(theme: params[:theme]) if params[:theme].in?(%w[light dark])
+    current_user.update(theme: params[:theme]) if params.expect(:theme).in?(%w[light dark])
     head :ok
   end
 

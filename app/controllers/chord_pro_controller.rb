@@ -18,7 +18,7 @@ class ChordProController < ApplicationController
   private
 
   def chord_sheet_params
-    params.require(:chord_sheet).permit(:name, :content, :file).tap do |p|
+    params.expect(chord_sheet: %i[name content file]).tap do |p|
       chord_pro_parsed = parsed_content(p)
       if chord_pro_parsed.present?
         p[:content] = ChordSheetModeller.new(chord_pro_parsed.body).parse
