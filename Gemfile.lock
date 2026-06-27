@@ -230,7 +230,7 @@ GEM
       prettyprint
     prettyprint (0.2.0)
     prism (1.9.0)
-    puma (6.6.1)
+    puma (7.2.1)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.2.6)
@@ -508,7 +508,7 @@ DEPENDENCIES
   meta-tags
   music
   paper_trail (~> 15.0)
-  puma (~> 6.0)
+  puma (~> 7.0)
   rack-mini-profiler
   rails (~> 8.1)
   rails-controller-testing
@@ -539,7 +539,7 @@ DEPENDENCIES
   wkhtmltopdf-binary
 
 RUBY VERSION
-   ruby 4.0.5p0
+  ruby 4.0.5p0
 
 BUNDLED WITH
-   4.0.15
+  4.0.10
