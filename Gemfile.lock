@@ -408,7 +408,7 @@ GEM
       yard (~> 0.9, >= 0.9.24)
       yard-activesupport-concern (~> 0.0)
       yard-solargraph (~> 0.1)
-    sorbet-runtime (0.6.13316)
+    sorbet-runtime (0.6.13320)
     sord (7.1.0)
       commander (~> 5.0)
       parlour (~> 9.1)
@@ -539,7 +539,7 @@ DEPENDENCIES
   wkhtmltopdf-binary
 
 RUBY VERSION
-   ruby 3.4.5p51
+   ruby 4.0.5p0
 
 BUNDLED WITH
-   2.4.17
+   4.0.15
