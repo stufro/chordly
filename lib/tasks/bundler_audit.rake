@@ -5,9 +5,11 @@ begin
   task "bundler:audit" do
     RakeAnnouncer.log_step "Running bundler_audit: Checking gems for known security warnings"
     Bundler::Audit::CLI.start ["update"]
+    Bundler::Audit::CLI.start ["check"]
   end
 rescue LoadError
   task "bundler:audit" do
     abort "bundler_audit rake task is not available in production"
   end
 end
+
