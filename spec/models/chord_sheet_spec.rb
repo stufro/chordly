@@ -84,5 +84,18 @@ describe ChordSheet do
         expect(chord_sheet.unique_chords).to match_array %w[G Am7 C Dsus4]
       end
     end
+
+    context "when a chord line has ignored characters" do
+      let(:content) do
+        [
+          { "type" => "chords", "content" => "D |: D/F# :| G* N.C." }
+        ]
+      end
+
+      it "returns only the chords included in the sheet" do
+        chord_sheet = create(:chord_sheet, content:)
+        expect(chord_sheet.unique_chords).to match_array %w[D D/F# G]
+      end
+    end
   end
 end
