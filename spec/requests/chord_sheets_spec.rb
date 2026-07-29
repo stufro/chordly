@@ -64,6 +64,24 @@ describe "Chord Sheets" do
       expect(response).to have_http_status(:ok)
     end
 
+    it "wires the PDF export button to the download controller" do
+      get chord_sheet_path(chord_sheet)
+      export_button = response.parsed_body.at_css("#export")
+      export_form = export_button.parent
+
+      expect(
+        target: export_button["data-pdf-download-target"],
+        controller: export_form["data-controller"],
+        action: export_form["data-action"],
+        filename: export_form["data-pdf-download-filename-value"]
+      ).to eq(
+        target: "button",
+        controller: "pdf-download",
+        action: "submit->pdf-download#download",
+        filename: "My amazing song.pdf"
+      )
+    end
+
     context "when the user does not own the chord sheet" do
       let(:other_user) { create(:user) }
       let(:other_chord_sheet) { create(:chord_sheet, user: other_user) }

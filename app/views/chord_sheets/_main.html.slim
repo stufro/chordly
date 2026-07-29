@@ -47,6 +47,9 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
                 i.fas.fa-copy
             = button_to chord_sheet_path(chord_sheet, format: :pdf),
               class: "button is-rounded is-info", id: "export", disabled: !user_signed_in?,
+              data: { pdf_download_target: "button" },
+              form: { data: { controller: "pdf-download", action: "submit->pdf-download#download",
+                              pdf_download_filename_value: "#{chord_sheet.name}.pdf" } },
               method: :get, title: "Download PDF"
               span.icon
                 i.fas.fa-download

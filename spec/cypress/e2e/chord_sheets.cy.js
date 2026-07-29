@@ -92,12 +92,19 @@ describe("Creating/editing a chord sheet", () => {
     cy.intercept({
       pathname: '/chord_sheets/*.pdf',
     }, (req) => {
-      req.redirect('/')
+      req.reply({
+        statusCode: 200,
+        headers: { "content-type": "application/pdf" },
+        body: "pdf",
+        delay: 500,
+      })
     }).as('file')
 
     cy.get("#export").click()
+    cy.get("#export").should("be.disabled").and("have.class", "is-loading")
 
     cy.wait('@file').its('request').then((req) => {
+      cy.get("#export").should("not.be.disabled").and("not.have.class", "is-loading")
       cy.request(req)
         .then(({ body, headers }) => {
           expect(headers["content-type"]).to.eq("application/pdf")
