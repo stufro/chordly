@@ -6,6 +6,10 @@ require_relative "../config/environment"
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
+require_relative "support/mailer_example_group_patch"
+
+# Ensure routes are loaded so Devise helper methods (e.g. current_user) are defined
+Rails.application.routes_reloader.execute_unless_loaded
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are

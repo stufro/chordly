@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
     )
   end
 
-  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable-next Metrics/MethodLength
   def initialize_schema_dot_com
     @organization_schema = SchemaDotOrg::Organization.new(
       name: "Chordly",
@@ -53,5 +53,4 @@ class ApplicationController < ActionController::Base
       url: "https://chordly.co.uk"
     )
   end
-  # rubocop:enable Metrics/MethodLength
 end

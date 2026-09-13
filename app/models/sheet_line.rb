@@ -8,7 +8,7 @@ class SheetLine
     @content = line_hash["content"]
   end
 
-  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable-next Metrics/MethodLength
   def transpose(direction)
     chords = sanitised_content.scan(NOTE_REGEX)
     scan_start = 0
@@ -25,7 +25,6 @@ class SheetLine
     end
     self
   end
-  # rubocop:enable Metrics/MethodLength
 
   def chords?
     type == "chords"
