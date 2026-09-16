@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "4.0.3"
 
 gem "bootsnap", require: false
-gem "chord_diagrams"
+gem "chord_diagrams", github: "stufro/chord_diagrams", branch: "add-g-slash-f-sharp"
 gem "chordpro"
 gem "cssbundling-rails"
 gem "devise"

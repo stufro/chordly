@@ -120,6 +120,14 @@ GIT
       tsort (>= 0.2)
       zeitwerk (~> 2.6)
 
+GIT
+  remote: https://github.com/stufro/chord_diagrams.git
+  revision: 693730777c459aa63aff3a8dae6611fc36019916
+  branch: add-g-slash-f-sharp
+  specs:
+    chord_diagrams (0.0.28)
+      victor (= 0.3.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -140,8 +148,6 @@ GEM
     bundler-audit (0.9.3)
       bundler (>= 1.2.0)
       thor (~> 1.0)
-    chord_diagrams (0.0.27)
-      victor (= 0.3.4)
     chordpro (1.0.2)
       builder
       parslet
@@ -515,7 +521,7 @@ DEPENDENCIES
   bootsnap
   brakeman
   bundler-audit
-  chord_diagrams
+  chord_diagrams!
   chordpro
   cssbundling-rails
   cypress-on-rails (~> 1.0)
