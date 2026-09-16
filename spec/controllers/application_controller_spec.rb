@@ -1,12 +1,12 @@
 require "rails_helper"
 
 describe ApplicationController do
-  before do
-    allow(subject).to receive(:current_user).and_return user
-    allow(subject).to receive(:redirect_to)
-  end
-
   describe "#authorize" do
+    before do
+      allow(subject).to receive(:current_user).and_return user
+      allow(subject).to receive(:redirect_to)
+    end
+
     context "when the trial user owns the trial sheet" do
       let(:user) { nil }
 
@@ -52,6 +52,29 @@ describe ApplicationController do
           code: 401
         )
       end
+    end
+  end
+
+  describe "handling ActionController::InvalidCrossOriginRequest" do
+    controller do
+      skip_before_action :authenticate_user!, only: :index
+
+      def index
+        raise ActionController::InvalidCrossOriginRequest
+      end
+    end
+
+    before do
+      routes.draw { get "index" => "anonymous#index" }
+    end
+
+    it "resets the session and redirects to root with an alert", :aggregate_failures do
+      session[:trial_user_id] = "12345"
+      get :index
+
+      expect(session[:trial_user_id]).to be_nil
+      expect(response).to redirect_to("/")
+      expect(flash[:alert]).to eq("Your session expired. Please try again.")
     end
   end
 end

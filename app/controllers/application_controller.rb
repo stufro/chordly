@@ -3,6 +3,11 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :initialize_schema_dot_com
 
+  rescue_from ActionController::InvalidCrossOriginRequest do
+    reset_session
+    redirect_to "/", alert: "Your session expired. Please try again."
+  end
+
   def after_sign_in_path_for(_resource)
     chord_sheets_path
   end
