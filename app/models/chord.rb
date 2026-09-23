@@ -32,8 +32,12 @@ class Chord
   private
 
   def transpose_note(note, direction)
-    new_note = Music::Note.new(note, 5).send(method_for(direction))
+    new_note = Music::Note.new(normalise_accidental(note), 5).send(method_for(direction))
     [new_note.letter, new_note.accidental].join
+  end
+
+  def normalise_accidental(note)
+    note.tr("♭♯", "b#")
   end
 
   def method_for(direction)

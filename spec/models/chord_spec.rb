@@ -27,5 +27,11 @@ describe Chord do
     it "returns a transposed instance of a chord" do
       expect(chord.transpose(:up).to_s).to eq "G#m7add4/C"
     end
+
+    it "transposes a note using the musical flat symbol" do
+      flat_chord = described_class.new(["B♭", "m"])
+
+      expect(flat_chord.transpose(:up).to_s).to eq "Bm"
+    end
   end
 end
