@@ -47,6 +47,7 @@ Rails.application.routes.draw do
 
   resources :surveys, only: %i[show], param: :key do
     resource :response, only: %i[create], controller: "survey_responses"
+    patch :dismiss, on: :member
   end
 
   resources :set_lists, only: %i[new create show update destroy] do

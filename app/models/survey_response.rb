@@ -3,6 +3,7 @@ class SurveyResponse < ApplicationRecord
 
   scope :completed, -> { where.not(completed_at: nil) }
   scope :dismissed, -> { where.not(dismissed_at: nil) }
+  scope :closed,    -> { completed.or(dismissed) }
 
   validate :answers_match_survey, if: :completed_at?
 
