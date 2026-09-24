@@ -66,7 +66,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  config.x.mail_from = %(Chordly <support@chordly.co.uk>)
+  config.x.mail_from = %(Chordly <no-reply@chordly.co.uk>)
   config.action_mailer.default_url_options = { host: "https://chordly.co.uk", port: 443 }
   config.action_mailer.smtp_settings = {
     address: "email-smtp.eu-west-2.amazonaws.com",
