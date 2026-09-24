@@ -1,20 +1,18 @@
 next_features:
-  title: "Help shape what's next for Chordly"
-  intro: "Two quick questions, it'll take less than a minute."
+  title: "What should I build next for Chordly?"
+  intro: "Two quick questions. Your answers help decide what I build next."
   questions:
     - key: next_feature
       type: single_choice
-      prompt: "If we could build just one thing next, what would you use most?"
+      prompt: "If I could build just one of these things, what would you want?"
       other: true
       options:
-        sharing: "Share chord sheets with bandmates"
-        styling: "Style chord sheets (fonts, colours, layout)"
-        pdf: "Better PDF printing (page breaks, 1 or 2 columns)"
-        accidentals: "Choose whether chords show sharps or flats"
-        setlists: "Smarter set lists"
+        sharing: "Share chord sheets/set lists between accounts (team, bandmates)"
+        styling: "Style chord sheets (fonts, colours, page breaks, two-column layout)"
+        accidentals: "Choose whether chords show sharps or flats when transposing"
     - key: ad_free
       type: single_choice
-      prompt: "Would you pay £1.49 a month to go ad-free and help fund new features?"
+      prompt: "Would you pay £1.49/month ($2) to go ad-free and help fund Chordly's future?"
       options:
         "yes": "Yes"
         "maybe": "Maybe"
@@ -22,4 +20,4 @@ next_features:
     - key: comments
       type: text
       optional: true
-      prompt: "Anything else you'd like to tell me?"
+      prompt: "Anything else you'd like to see improved?"

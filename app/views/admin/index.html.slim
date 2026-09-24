@@ -67,7 +67,7 @@ h1.title.is-1 Surveys
 
 ul
   - @surveys.each do |survey|
-    li = link_to survey.title, admin_survey_path(survey.key)
+    li = link_to "#{survey.title} - #{SurveyResponse.where(survey_key: survey.key).count} interactions", admin_survey_path(survey.key)
 
 hr
 
