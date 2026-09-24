@@ -4,8 +4,8 @@
       span.icon.is-large
         i.fas.fa-clipboard-question.fa-2x
       div
-        p.has-text-weight-semibold.mb-1 = survey.title
-        p.mb-2.is-size-7 = survey.intro
+        p.survey-banner-title.has-text-weight-semibold.mb-1 = survey.title
+        p.survey-banner-intro.mb-2.is-size-7 = survey.intro
         .is-flex.is-align-items-center style="gap: 0.75rem; flex-wrap: wrap;"
           = link_to "Take the survey", survey_path(survey.key), class: "button is-info is-small has-text-weight-bold"
           = button_to "Not now", dismiss_survey_path(survey.key), method: :patch,
