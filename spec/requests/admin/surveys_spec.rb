@@ -20,11 +20,23 @@ describe "Admin surveys" do
       expect(response.body).to include("Needs a metronome")
     end
 
-    it "leaves out the admin's own answers" do
-      create(:survey_response, :completed,
-             user:, answers: { "next_feature" => "pdf", "ad_free" => "no", "comments" => "Testing" })
+    it "lists the users who completed it" do
+      survey_response = create(:survey_response, :completed)
       get "/admin/surveys/next_features"
-      expect(response.body).not_to include("Testing")
+      expect(response.body).to include(survey_response.user.email)
+    end
+
+    it "shows what each user answered" do
+      survey_response = create(:survey_response, :completed,
+                               answers: { "next_feature" => "accidentals", "ad_free" => "maybe" })
+      get "/admin/surveys/next_features"
+      expect(response.body).to match(/#{survey_response.user.email}.*?sharps or flats.*?Maybe/m)
+    end
+
+    it "leaves out users who only dismissed it" do
+      survey_response = create(:survey_response, dismissed_at: Time.current)
+      get "/admin/surveys/next_features"
+      expect(response.body).not_to include(survey_response.user.email)
     end
 
     context "when the user is not an admin" do

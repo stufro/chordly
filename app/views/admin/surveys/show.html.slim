@@ -30,3 +30,23 @@ h1.title.is-1 = @survey.title
       ul
         - written_answers.each do |answer|
           li = answer
+
+hr
+h2.title.is-4 Completed by
+
+.table-container
+  table.table.is-fullwidth.is-striped.admin-table data-controller="clickable-row"
+    thead
+      tr
+        th User
+        - @survey.questions.each do |question|
+          th = question.key.humanize
+        th Completed
+    tbody
+      - @responses.completed.includes(:user).order(completed_at: :desc).each do |survey_response|
+        tr.is-clickable data-href=admin_user_path(survey_response.user) data-action="click->clickable-row#navigate"
+          td = survey_response.user.email
+          - @survey.questions.each do |question|
+            - label = question.answer_label(survey_response.answers)
+            td title=label = truncate(label, length: 50)
+          td = local_time_ago(survey_response.completed_at)

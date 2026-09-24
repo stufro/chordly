@@ -37,6 +37,23 @@ RSpec.describe Survey do
       end
     end
 
+    describe "#answer_label" do
+      let(:question) { survey.questions.find { it.key == "next_feature" } }
+
+      it "shows the label of the chosen option" do
+        expect(question.answer_label(answers[0])).to eq "Better PDF printing (page breaks, 1 or 2 columns)"
+      end
+
+      it "shows the written answer when 'other' was chosen" do
+        expect(question.answer_label(answers[2])).to eq "Other: Metronome"
+      end
+
+      it "shows a text answer as written" do
+        comments = survey.questions.find { it.key == "comments" }
+        expect(comments.answer_label(answers[0])).to eq "Great app"
+      end
+    end
+
     describe "#written_answers" do
       it "collects the 'other' text for a choice question" do
         question = survey.questions.find { it.key == "next_feature" }
