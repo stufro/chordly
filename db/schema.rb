@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_04_04_090314) do
+ActiveRecord::Schema[7.2].define(version: 2026_09_24_135132) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", limit: 255, null: false
     t.text "body"
@@ -95,6 +95,18 @@ ActiveRecord::Schema[7.2].define(version: 2026_04_04_090314) do
     t.index ["user_id"], name: "index_set_lists_on_user_id"
   end
 
+  create_table "survey_responses", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "survey_key", null: false
+    t.json "answers", default: {}, null: false
+    t.datetime "completed_at"
+    t.datetime "dismissed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "survey_key"], name: "index_survey_responses_on_user_id_and_survey_key", unique: true
+    t.index ["user_id"], name: "index_survey_responses_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", limit: 255, default: "", null: false
     t.string "encrypted_password", limit: 255, default: "", null: false
@@ -140,4 +152,5 @@ ActiveRecord::Schema[7.2].define(version: 2026_04_04_090314) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "survey_responses", "users"
 end

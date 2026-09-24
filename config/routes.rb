@@ -45,6 +45,10 @@ Rails.application.routes.draw do
 
   resources :newsletters, only: %i[new create]
 
+  resources :surveys, only: %i[show], param: :key do
+    resource :response, only: %i[create], controller: "survey_responses"
+  end
+
   resources :set_lists, only: %i[new create show update destroy] do
     put :add_chord_sheet, on: :member
     put :remove_chord_sheet, on: :member

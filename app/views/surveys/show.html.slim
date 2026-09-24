@@ -1,0 +1,40 @@
+- title @survey.title
+- answers = @survey_response.answers
+
+.columns.is-centered
+  .column.is-8
+    h1.title.is-2 = @survey.title
+    p.subtitle.is-6 = @survey.intro
+
+    - if @survey_response.completed_at? && @survey_response.errors.none?
+      .notification.is-success.is-light
+        | Thanks, your answers are saved. You can change them below at any time.
+
+    - if @survey_response.errors.any?
+      .notification.is-danger.is-light
+        ul
+          - @survey_response.errors.full_messages.each do |message|
+            li = message
+
+    = form_with url: survey_response_path(@survey.key), method: :post do
+      - @survey.questions.each do |question|
+        .box
+          label.label = question.prompt
+          - if question.text?
+            .control
+              = text_area_tag "answers[#{question.key}]", answers[question.key], class: "textarea", rows: 3
+          - else
+            .control
+              - question.options.each do |value, label|
+                label.radio.is-block.mb-2
+                  = radio_button_tag "answers[#{question.key}]", value, answers[question.key] == value
+                  span.ml-2 = label
+              - if question.other
+                label.radio.is-block.mb-2
+                  = radio_button_tag "answers[#{question.key}]", "other", answers[question.key] == "other"
+                  span.ml-2 Something else
+                = text_field_tag "answers[#{question.other_key}]", answers[question.other_key],
+                                 class: "input", placeholder: "Tell me what you'd like"
+
+      .is-flex.is-justify-content-flex-end
+        = submit_tag "Send answers", class: "button is-primary"

@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :chord_sheets, dependent: :destroy
   has_many :set_lists, dependent: :destroy
+  has_many :survey_responses, dependent: :destroy
 
   before_create :populate_uuid
 
