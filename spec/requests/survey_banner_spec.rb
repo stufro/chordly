@@ -5,8 +5,15 @@ describe "Survey banner" do
 
   before { sign_in user }
 
-  %w[/ /chord_sheets].each do |path|
-    describe "GET #{path}" do
+  {
+    "the homepage" => -> { "/" },
+    "the library" => -> { "/chord_sheets" },
+    "a chord sheet" => -> { "/chord_sheets/#{create(:chord_sheet, user:).id}" },
+    "a set list" => -> { "/set_lists/#{create(:set_list, user:).id}" }
+  }.each do |page, page_path|
+    describe "visiting #{page}" do
+      let(:path) { instance_exec(&page_path) }
+
       context "when the survey flag is enabled for the user" do
         before { Flipper.enable_actor(:survey_next_features, user) }
 
@@ -25,6 +32,22 @@ describe "Survey banner" do
           create(:survey_response, user:, dismissed_at: Time.current)
           get path
           expect(response.body).not_to include('href="/surveys/next_features"')
+        end
+      end
+
+      context "when the user is also due the support toast" do
+        let(:user) { create(:user, sign_in_count: 5, created_at: 40.days.ago) }
+
+        it "shows the survey in place of the support toast", :aggregate_failures do
+          Flipper.enable_actor(:survey_next_features, user)
+          get path
+          expect(response.body).to include('href="/surveys/next_features"')
+          expect(response.body).not_to include("support-toast")
+        end
+
+        it "shows the support toast when there's no survey" do
+          get path
+          expect(response.body).to include("support-toast")
         end
       end
 

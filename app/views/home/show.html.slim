@@ -8,7 +8,7 @@ ruby:
 
 - get_started_path = user_signed_in? ? new_chord_sheet_path : new_trial_path
 
-= render("partials/survey_banner")
+- content_for(:floating_banner, render("partials/survey_banner"))
 
 div data-controller="fade-in"
   .hero.is-primary.is-medium
