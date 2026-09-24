@@ -18,4 +18,35 @@ RSpec.describe Survey do
       expect { described_class.find("nope") }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
+
+  describe Survey::Question do
+    let(:answers) do
+      [
+        { "next_feature" => "pdf", "next_feature_other" => "", "comments" => "Great app" },
+        { "next_feature" => "pdf" },
+        { "next_feature" => "other", "next_feature_other" => "Metronome" },
+        { "comments" => "" }
+      ]
+    end
+    let(:survey) { Survey.find("next_features") }
+
+    describe "#tally" do
+      it "counts each chosen option" do
+        question = survey.questions.find { it.key == "next_feature" }
+        expect(question.tally(answers)).to eq("pdf" => 2, "other" => 1)
+      end
+    end
+
+    describe "#written_answers" do
+      it "collects the 'other' text for a choice question" do
+        question = survey.questions.find { it.key == "next_feature" }
+        expect(question.written_answers(answers)).to eq ["Metronome"]
+      end
+
+      it "collects the answers to a text question" do
+        question = survey.questions.find { it.key == "comments" }
+        expect(question.written_answers(answers)).to eq ["Great app"]
+      end
+    end
+  end
 end

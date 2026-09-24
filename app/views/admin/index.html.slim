@@ -63,6 +63,14 @@ i Users who clicked the CTA
 
 hr
 
+h1.title.is-1 Surveys
+
+ul
+  - @surveys.each do |survey|
+    li = link_to survey.title, admin_survey_path(survey.key)
+
+hr
+
 h1.title.is-1 Chord Sheets
 
 .stat-grid

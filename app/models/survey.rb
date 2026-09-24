@@ -12,6 +12,9 @@ Survey = Data.define(:key, :title, :intro, :questions) do
 
       options.key?(value)
     end
+
+    def tally(answers) = answers.filter_map { it[key] }.tally
+    def written_answers(answers) = answers.filter_map { it[text? ? key : other_key].presence }
   end
 
   def self.all

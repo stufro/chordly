@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: %i[show]
     resources :chord_sheets, only: %i[show]
+    resources :surveys, only: %i[show], param: :key
   end
 
   get "/asset_frame", to: "home#asset_frame"

@@ -1,0 +1,32 @@
+- title "Survey: #{@survey.title}"
+
+h1.title.is-1 = @survey.title
+
+.stat-grid.stat-grid--2
+  = render("admin/stat_card", title: "Completed", header: "All Time", count: @answers.size)
+  = render("admin/stat_card", title: "Dismissed", header: "All Time", count: @responses.dismissed.count)
+
+- @survey.questions.each do |question|
+  hr
+  h2.title.is-4 = question.prompt
+
+  - unless question.text?
+    - tally = question.tally(@answers)
+    .table-container
+      table.table.is-fullwidth.is-striped.admin-table
+        tbody
+          - question.options.each do |value, label|
+            tr
+              td = label
+              td = tally.fetch(value, 0)
+          - if question.other
+            tr
+              td Something else
+              td = tally.fetch("other", 0)
+
+  - written_answers = question.written_answers(@answers)
+  - if written_answers.any?
+    .content
+      ul
+        - written_answers.each do |answer|
+          li = answer

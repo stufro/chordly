@@ -4,5 +4,6 @@ class AdminController < Admin::BaseController
     @set_lists = SetList.all
     @users = User.where.not(id: current_user.id)
     @support_toast_stats = User.support_toast_stats(except: current_user)
+    @surveys = Survey.all
   end
 end
