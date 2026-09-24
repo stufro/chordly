@@ -10,6 +10,10 @@ linters:
     exclude:
       - app/views/devise/shared/_links.html.slim
       - app/views/home/privacy.html.slim
+      - app/views/layouts/mailer.html.slim
+      - app/views/devise/mailer/confirmation_instructions.html.slim
+      - app/views/devise/mailer/reset_password_instructions.html.slim
+      - app/views/devise/mailer/email_changed.html.slim
   TrailingWhitespace:
     exclude:
       - app/views/home/about.html.slim
