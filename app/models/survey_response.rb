@@ -1,6 +1,8 @@
 class SurveyResponse < ApplicationRecord
   belongs_to :user
 
+  delegate :email, to: :user, prefix: true
+
   scope :completed, -> { where.not(completed_at: nil) }
   scope :dismissed, -> { where.not(dismissed_at: nil) }
   scope :closed,    -> { completed.or(dismissed) }

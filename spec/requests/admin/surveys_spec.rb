@@ -10,12 +10,12 @@ describe "Admin surveys" do
     it "shows how many users chose each option" do
       create_list(:survey_response, 2, :completed)
       get "/admin/surveys/next_features"
-      expect(response.body).to match(/Share chord sheets with bandmates.*?2/m)
+      expect(response.body).to match(%r{Share chord sheets/set lists between accounts.*?2}m)
     end
 
     it "shows written answers" do
       create(:survey_response, :completed,
-             answers: { "next_feature" => "pdf", "ad_free" => "no", "comments" => "Needs a metronome" })
+             answers: { "next_feature" => "sharing", "ad_free" => "no", "comments" => "Needs a metronome" })
       get "/admin/surveys/next_features"
       expect(response.body).to include("Needs a metronome")
     end

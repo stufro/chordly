@@ -38,14 +38,14 @@ describe "Surveys" do
   describe "POST /surveys/:key/response" do
     subject(:submit) { post "/surveys/next_features/response", params: { answers: } }
 
-    let(:answers) { { next_feature: "pdf", ad_free: "maybe", comments: "Love it" } }
+    let(:answers) { { next_feature: "styling", ad_free: "maybe", comments: "Love it" } }
 
     before { sign_in user }
 
     it "records the completed response", :aggregate_failures do
       submit
       survey_response = user.survey_responses.sole
-      expect(survey_response.answers).to eq("next_feature" => "pdf", "ad_free" => "maybe", "comments" => "Love it")
+      expect(survey_response.answers).to eq("next_feature" => "styling", "ad_free" => "maybe", "comments" => "Love it")
       expect(survey_response.completed_at).to be_present
     end
 
@@ -58,7 +58,7 @@ describe "Surveys" do
     it "updates an existing response rather than adding another", :aggregate_failures do
       create(:survey_response, :completed, user:)
       expect { submit }.not_to change(SurveyResponse, :count)
-      expect(user.survey_responses.sole.answers["next_feature"]).to eq "pdf"
+      expect(user.survey_responses.sole.answers["next_feature"]).to eq "styling"
     end
 
     it "ignores answers for questions that aren't in the survey" do
@@ -67,7 +67,7 @@ describe "Surveys" do
     end
 
     context "when a required answer is missing" do
-      let(:answers) { { next_feature: "pdf" } }
+      let(:answers) { { next_feature: "styling" } }
 
       it "re-renders the survey without saving", :aggregate_failures do
         expect { submit }.not_to change(SurveyResponse, :count)

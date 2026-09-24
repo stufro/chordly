@@ -22,8 +22,8 @@ RSpec.describe Survey do
   describe Survey::Question do
     let(:answers) do
       [
-        { "next_feature" => "pdf", "next_feature_other" => "", "comments" => "Great app" },
-        { "next_feature" => "pdf" },
+        { "next_feature" => "sharing", "next_feature_other" => "", "comments" => "Great app" },
+        { "next_feature" => "sharing" },
         { "next_feature" => "other", "next_feature_other" => "Metronome" },
         { "comments" => "" }
       ]
@@ -33,7 +33,7 @@ RSpec.describe Survey do
     describe "#tally" do
       it "counts each chosen option" do
         question = survey.questions.find { it.key == "next_feature" }
-        expect(question.tally(answers)).to eq("pdf" => 2, "other" => 1)
+        expect(question.tally(answers)).to eq("sharing" => 2, "other" => 1)
       end
     end
 
@@ -41,7 +41,8 @@ RSpec.describe Survey do
       let(:question) { survey.questions.find { it.key == "next_feature" } }
 
       it "shows the label of the chosen option" do
-        expect(question.answer_label(answers[0])).to eq "Better PDF printing (page breaks, 1 or 2 columns)"
+        expect(question.answer_label(answers[0]))
+          .to eq "Share chord sheets/set lists between accounts (team, bandmates)"
       end
 
       it "shows the written answer when 'other' was chosen" do

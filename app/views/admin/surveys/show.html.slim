@@ -45,7 +45,7 @@ h2.title.is-4 Completed by
     tbody
       - @responses.completed.includes(:user).order(completed_at: :desc).each do |survey_response|
         tr.is-clickable data-href=admin_user_path(survey_response.user) data-action="click->clickable-row#navigate"
-          td = survey_response.user.email
+          td = survey_response.user_email
           - @survey.questions.each do |question|
             - label = question.answer_label(survey_response.answers)
             td title=label = truncate(label, length: 50)
