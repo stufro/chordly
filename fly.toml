@@ -16,6 +16,7 @@ processes = []
 [env]
   PORT = "8080"
   PRIMARY_REGION = "lhr"
+  SOLID_QUEUE_IN_PUMA = "1"
 
 [mounts]
   source = "chordly_data"

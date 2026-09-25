@@ -12,5 +12,10 @@ test:
   database: db/test.sqlite3
 
 production:
-  <<: *default
-  database: /data/production.sqlite3
+  primary:
+    <<: *default
+    database: /data/production.sqlite3
+  queue:
+    <<: *default
+    database: /data/production_queue.sqlite3
+    migrations_paths: db/queue_migrate

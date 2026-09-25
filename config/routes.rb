@@ -64,6 +64,7 @@ Rails.application.routes.draw do
 
   constraints FlipperUIAccess do
     mount Flipper::UI.app(Flipper) => "/flipper"
+    mount MissionControl::Jobs::Engine, at: "/jobs"
   end
 
   if Rails.env.development?
