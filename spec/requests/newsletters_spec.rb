@@ -47,6 +47,15 @@ describe "Newsletters" do
         post newsletters_path, params: params
         expect(flash[:notice]).to eq "Newsletter sent"
       end
+
+      it "staggers sends to stay under the SES rate limit" do
+        create_list(:user, NewslettersController::SEND_RATE_PER_SECOND + 1, receive_emails: true)
+
+        post newsletters_path, params: params
+
+        waits = enqueued_jobs.filter_map { |job| job[:at] }.sort
+        expect(waits.uniq.size).to be >= 2
+      end
     end
   end
 
