@@ -5,7 +5,7 @@
 h1.title.is-1 Features
 
 - get_started_path = user_signed_in? ? new_chord_sheet_path : new_trial_path
-= link_to get_started_path, class: "button is-primary is-large is-fullwidth" do
+= link_to get_started_path, class: "button is-primary is-large is-fullwidth", data: { turbo_prefetch: false } do
   span.icon.is-small.mr-1
     i.fas.fa-circle-play
   | Get Started
@@ -41,7 +41,7 @@ h1.title.is-1 Features
       title: "Edit Chord Sheets Inline",
       description: "Edit your chords and lyrics quickly with changes saved instantly.")
 
-= link_to get_started_path, class: "button is-primary is-large is-fullwidth" do
+= link_to get_started_path, class: "button is-primary is-large is-fullwidth", data: { turbo_prefetch: false } do
   span.icon.is-small.mr-1
     i.fas.fa-circle-play
   | Get Started

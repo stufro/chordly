@@ -15,6 +15,22 @@ describe("Trialing chordly without an account", () => {
     cy.contains("A new line of lyrics")
   })
 
+  it("keeps your trial chord sheet when hovering over the get started links", () => {
+    cy.visit("/")
+    cy.contains("Create Chord Sheet").click()
+    cy.contains("Create Chord sheet").click()
+    cy.contains("Transpose:")
+
+    cy.url().then((chordSheetUrl) => {
+      cy.visit("/")
+      cy.contains("Create Chord Sheet").trigger("mouseenter")
+      cy.wait(500)
+
+      cy.visit(chordSheetUrl)
+      cy.contains("My Song")
+    })
+  })
+
   it("lets you create an account and save your trial chord sheet", () => {
     cy.visit("/")
     cy.contains("Create Chord Sheet").click()
