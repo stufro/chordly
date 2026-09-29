@@ -1,5 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
   prepend_before_action :check_captcha, only: [:create] # rubocop:disable Rails/LexicallyScopedActionFilter
+  rate_limit to: 5, within: 1.hour, only: :create, prepend: true, with: lambda {
+    redirect_to new_user_registration_path, alert: "Too many sign up attempts. Please try again later."
+  }
 
   def update_theme
     current_user.update(theme: params[:theme]) if params.expect(:theme).in?(%w[light dark])
