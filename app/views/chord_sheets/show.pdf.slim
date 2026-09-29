@@ -2,8 +2,4 @@ span
   h1 style="font-size: 3rem;"
     = @chord_sheet.name
 
-div
-  pre
-    - @chord_sheet.content.each do |line|
-      span style=(line["type"] == "chords" ? "font-weight: bold;" : "")
-        = line["content"]
+= render "chord_sheets/content", chord_sheet: @chord_sheet
