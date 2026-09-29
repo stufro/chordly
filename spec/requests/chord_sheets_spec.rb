@@ -101,6 +101,11 @@ describe "Chord Sheets" do
         patch "#{chord_sheet_path(chord_sheet)}.turbo_stream", params: { chord_sheet: { name: "Updated" } }
         expect(flash[:notice]).to eq "Changes saved"
       end
+
+      it "saves the two-column preference" do
+        patch "#{chord_sheet_path(chord_sheet)}.turbo_stream", params: { chord_sheet: { two_columns: true } }
+        expect(chord_sheet.reload).to be_two_columns
+      end
     end
 
     context "when the update fails" do

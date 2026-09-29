@@ -21,6 +21,14 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
               span.icon
                 i.fas.fa-arrow-circle-down
 
+          .level-item.mt-2
+            = button_to chord_sheet_path(chord_sheet),
+              params: { chord_sheet: { two_columns: !chord_sheet.two_columns? } },
+              class: "button is-rounded is-primary", title: "Toggle two-column layout",
+              id: "toggle-columns", method: :patch
+              span.icon
+                i.fas.fa-table-columns
+
         .level-right.align-items-space-between.is-flex-direction-row#level-right[data-turbo-permanent]
           .level-item.mt-2 data-chord-diagram-target="wrapper" title="Show chord diagrams"
             = render("chord_diagram_icon")

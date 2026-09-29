@@ -25,6 +25,10 @@ class ChordSheet < ApplicationRecord
     self
   end
 
+  def sections
+    content.slice_after { |line| line["content"].blank? }.to_a
+  end
+
   def unique_chords
     chord_lines = content.select { |line| line["type"] == "chords" }
     chord_lines.flat_map do |line|

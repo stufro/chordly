@@ -10,7 +10,8 @@ div data-clipboard-target="source"
       - chord_sheet.unique_chords.each do |chord|
         == ChordDiagrams.ukulele_svg(chord)
 
-  pre#chord-sheet-content[data-controller=("editable" unless read_only)
+  pre#chord-sheet-content[class=("two-columns" if chord_sheet.two_columns?)
+                                  data-controller=("editable" unless read_only)
                                   data-editable-field-value="content"
                                   data-editable-url-value=chord_sheet_path(chord_sheet)
                                   data-editable-model-value="chord_sheet"]
@@ -18,6 +19,8 @@ div data-clipboard-target="source"
       span.icon.is-medium.edit-icon#content-edit-icon
         i.far.fa-edit.fa-2x
 
-    - chord_sheet.content.each do |line|
-      span class=(line["type"] == "chords" ? "chord-line" : "lyric-line")
-        = line["content"]
+    - chord_sheet.sections.each do |section|
+      span.chord-sheet-section
+        - section.each do |line|
+          span class=(line["type"] == "chords" ? "chord-line" : "lyric-line")
+            = line["content"]

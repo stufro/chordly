@@ -2,6 +2,18 @@
   font-weight: bold;
 }
 
+.two-columns {
+  @media (min-width: 768px) {
+    column-count: 2;
+  }
+
+  .chord-sheet-section {
+    display: inline-block;
+    width: 100%;
+    break-inside: avoid;
+  }
+}
+
 .card-link:hover {
   background-color: var(--bulma-scheme-main-ter);
 }

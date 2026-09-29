@@ -138,6 +138,31 @@ describe("Transposing a chord sheet", () => {
   })
 })
 
+describe("Two-column layout", () => {
+  beforeEach(() => {
+    cy.login()
+  })
+
+  afterEach(() => {
+    cy.app("clean")
+  })
+
+  it("toggles the chord sheet between one and two columns", () => {
+    helper.visitChordSheet()
+
+    cy.get("#chord-sheet-content").should("have.css", "column-count", "auto")
+
+    cy.get("#toggle-columns").click()
+    cy.get("#chord-sheet-content").should("have.css", "column-count", "2")
+
+    cy.reload()
+    cy.get("#chord-sheet-content").should("have.css", "column-count", "2")
+
+    cy.get("#toggle-columns").click()
+    cy.get("#chord-sheet-content").should("have.css", "column-count", "auto")
+  })
+})
+
 describe("Undoing changes", () => {
   beforeEach(() => {
     cy.login()

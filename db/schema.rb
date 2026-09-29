@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_09_24_135132) do
+ActiveRecord::Schema[8.2].define(version: 2026_09_29_135220) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", limit: 255, null: false
     t.text "body"
@@ -59,6 +59,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_09_24_135132) do
     t.string "trial_user_id", limit: 255
     t.boolean "deleted"
     t.boolean "created_from_chord_pro"
+    t.boolean "two_columns", default: false, null: false
     t.index ["user_id"], name: "index_chord_sheets_on_user_id"
   end
 

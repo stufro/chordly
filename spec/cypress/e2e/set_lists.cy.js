@@ -233,4 +233,14 @@ describe("Building a set list of chord sheets", () => {
       })
     })
   })
+
+  it("shows chord sheets in their chosen column layout in the live view", () => {
+    helper.createChordSheet({ two_columns: true }).then((chordSheet) => {
+      helper.createSetList([chordSheet.id]).then((setList) => {
+        cy.visit(`/set_lists/${setList.id}/live`)
+
+        cy.get("#chord-sheet-content").should("have.css", "column-count", "2")
+      })
+    })
+  })
 })

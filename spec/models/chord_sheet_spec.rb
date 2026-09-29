@@ -56,6 +56,23 @@ describe ChordSheet do
     end
   end
 
+  describe "#sections" do
+    it "groups lines into sections ending at each blank line" do
+      verse = [
+        { "type" => "chords", "content" => "G   Am\r\n" },
+        { "type" => "lyrics", "content" => "Verse lyrics\r\n" },
+        { "type" => "lyrics", "content" => "\r\n" }
+      ]
+      chorus = [
+        { "type" => "chords", "content" => "C   D\r\n" },
+        { "type" => "lyrics", "content" => "Chorus lyrics" }
+      ]
+      chord_sheet = described_class.new(content: verse + chorus)
+
+      expect(chord_sheet.sections).to eq [verse, chorus]
+    end
+  end
+
   describe "#unique_chords" do
     let(:content) do
       [
