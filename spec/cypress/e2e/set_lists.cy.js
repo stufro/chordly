@@ -173,6 +173,24 @@ describe("Building a set list of chord sheets", () => {
     })
   })
 
+  it("keeps the page and chord sheet list scrolled when adding a chord sheet", () => {
+    const factories = Array.from({ length: 20 }, (_, index) => (
+      ["create", "chord_sheet", { name: `Song ${String(index + 1).padStart(2, "0")}` }]
+    ))
+
+    cy.appFactories(factories).then((chordSheets) => {
+      const lastChordSheet = chordSheets[chordSheets.length - 1]
+      helper.visitSetList()
+
+      cy.get("#available-chord-sheets .card").scrollTo("bottom")
+      cy.get(`#add-chord-sheet-${lastChordSheet.id}`).click()
+
+      cy.get("#set-list-chord-sheets").contains(lastChordSheet.name)
+      cy.get("#available-chord-sheets .card").invoke("scrollTop").should("be.greaterThan", 0)
+      cy.window().its("scrollY").should("be.greaterThan", 0)
+    })
+  })
+
   it("allows chord sheets to be removed from the set list", () => {
     helper.createChordSheet().then((chordSheet) => {
       helper.visitSetList([chordSheet.id])

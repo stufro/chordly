@@ -1,4 +1,5 @@
 - content_for(:floating_banner, render("partials/survey_banner"))
+- turbo_refreshes_with method: :morph, scroll: :preserve
 
 .is-flex.is-align-items-center.is-justify-content-space-between.is-flex-wrap-wrap.mb-5
   .is-flex.is-wrap-nowrap.is-align-items-baseline
@@ -99,4 +100,5 @@
                           i.fas.fa-minus
 
 hr
-= adsense_unit(:horizontal)
+#set-list-ad data-turbo-permanent=true
+  = adsense_unit(:horizontal)
