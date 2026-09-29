@@ -27,6 +27,7 @@ gem "redcarpet"
 gem "rubyzip"
 gem "schema_dot_org"
 gem "semver"
+gem "sghtmltopdf"
 gem "sitemap_generator"
 gem "slim"
 gem "solid_queue"
@@ -37,8 +38,6 @@ gem "term-ansicolor"
 gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[windows jruby]
 gem "uglifier"
-gem "wicked_pdf"
-gem "wkhtmltopdf-binary"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"

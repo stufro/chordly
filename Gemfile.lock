@@ -426,6 +426,8 @@ GEM
     securerandom (0.4.1)
     semver (1.0.1)
     sexp_processor (4.17.6)
+    sghtmltopdf (0.5.1-arm64-darwin)
+    sghtmltopdf (0.5.1-x86_64-linux)
     sitemap_generator (7.1.1)
       builder (~> 3.0)
     slim (5.2.2)
@@ -526,10 +528,6 @@ GEM
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    wicked_pdf (2.8.2)
-      activesupport
-      ostruct
-    wkhtmltopdf-binary (0.12.6.10)
     yard (0.9.45)
     yard-activesupport-concern (0.0.1)
       yard (>= 0.8)
@@ -585,6 +583,7 @@ DEPENDENCIES
   rubyzip
   schema_dot_org
   semver
+  sghtmltopdf
   sitemap_generator
   slim
   slim_lint
@@ -598,8 +597,6 @@ DEPENDENCIES
   tzinfo-data
   uglifier
   web-console
-  wicked_pdf
-  wkhtmltopdf-binary
 
 RUBY VERSION
   ruby 4.0.3

@@ -5,13 +5,12 @@ describe SetListExporter do
 
   let(:set_list) { create(:set_list) }
   let(:controller) { instance_double ApplicationController, :controller, render_to_string: :some_html }
-  let(:wicked_pdf) { instance_double WickedPdf, :wicked_pdf, pdf_from_string: :some_pdf }
   let(:zip_io) { double.as_null_object }
 
   describe "#export" do
     before do
       allow(ApplicationController).to receive(:new).and_return controller
-      allow(WickedPdf).to receive(:new).and_return wicked_pdf
+      allow(Sghtmltopdf).to receive(:render).and_return :some_pdf
     end
 
     context "when the type is 'single_file'" do
@@ -26,7 +25,7 @@ describe SetListExporter do
 
       it "turns the html into a pdf" do
         subject.export
-        expect(wicked_pdf).to have_received(:pdf_from_string)
+        expect(Sghtmltopdf).to have_received(:render).with(:some_html)
       end
     end
 
