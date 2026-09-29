@@ -176,6 +176,17 @@ describe("Two-column layout", () => {
     })
   })
 
+  it("wraps long lines within their column", () => {
+    const longLine = "On a dark desert highway, cool wind in my hair ".repeat(6)
+    helper.createChordSheet({ two_columns: true, content_string: `G\n${longLine}\n\nC\nVerse two` }).then((chordSheet) => {
+      cy.visit(`/chord_sheets/${chordSheet.id}`)
+
+      cy.get(".chord-sheet-section").each(($section) => {
+        expect($section[0].scrollWidth).to.be.at.most($section[0].clientWidth)
+      })
+    })
+  })
+
   it("previews previous versions in their column layout", () => {
     helper.createChordSheet({ name: "My amazing song", two_columns: true }).then((chordSheet) => {
       cy.visit(`/chord_sheets/${chordSheet.id}`)

@@ -3,9 +3,9 @@
 }
 
 // Sections are inline-block so they don't add line breaks to the editable innerText.
-// white-space: normal lets them wrap onto their own lines, pre keeps the chord alignment.
+// pre-wrap keeps the chord alignment while letting sections and long lines wrap within a column.
 .two-columns {
-  white-space: normal;
+  white-space: pre-wrap;
 
   @media (min-width: 768px) {
     column-count: 2;
@@ -14,7 +14,6 @@
   .chord-sheet-section {
     display: inline-block;
     width: 100%;
-    white-space: pre;
     break-inside: avoid;
   }
 }
