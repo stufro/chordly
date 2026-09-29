@@ -24,7 +24,8 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
           .level-item.mt-2
             = button_to chord_sheet_path(chord_sheet),
               params: { chord_sheet: { two_columns: !chord_sheet.two_columns? } },
-              class: "button is-rounded is-primary", title: "Toggle two-column layout",
+              class: class_names("button is-rounded is-primary", "is-outlined": !chord_sheet.two_columns?),
+              title: "Toggle two-column layout", aria: { pressed: chord_sheet.two_columns? },
               id: "toggle-columns", method: :patch
               span.icon
                 i.fas.fa-table-columns
@@ -61,5 +62,12 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
               method: :get, title: "Download PDF"
               span.icon
                 i.fas.fa-download
+
+  - if chord_sheet.two_columns?
+    .notification.is-info.is-light.is-hidden-tablet
+      .is-flex.is-align-items-center
+        span.icon.mr-2
+          i.fas.fa-info-circle
+        span The two-column layout might not be visible on your screen size.
 
   = render("content", chord_sheet:)

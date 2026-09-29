@@ -7,7 +7,8 @@
 .two-columns {
   white-space: pre-wrap;
 
-  @media (min-width: 768px) {
+  // Bulma's tablet breakpoint, so the is-hidden-tablet notice shows whenever columns don't
+  @media (min-width: 769px) {
     column-count: 2;
   }
 

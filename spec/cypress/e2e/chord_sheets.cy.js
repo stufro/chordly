@@ -162,6 +162,28 @@ describe("Two-column layout", () => {
     cy.get("#chord-sheet-content").should("have.css", "column-count", "auto")
   })
 
+  it("shows whether two columns are enabled on the toggle", () => {
+    helper.visitChordSheet()
+
+    cy.get("#toggle-columns").should("have.attr", "aria-pressed", "false")
+
+    cy.get("#toggle-columns").click()
+    cy.get("#toggle-columns").should("have.attr", "aria-pressed", "true")
+  })
+
+  it("explains on small screens that two columns may not be shown", () => {
+    cy.viewport("iphone-x")
+    helper.visitChordSheet()
+
+    cy.contains("might not be visible on your screen size").should("not.exist")
+
+    cy.get("#toggle-columns").click()
+    cy.contains("might not be visible on your screen size").should("be.visible")
+
+    cy.viewport(1920, 1080)
+    cy.contains("might not be visible on your screen size").should("not.be.visible")
+  })
+
   it("keeps every section within the chord sheet", () => {
     helper.createChordSheet({ two_columns: true, content_string: "G\nVerse one\n\nC\nVerse two\n\nD\nChorus" }).then((chordSheet) => {
       cy.visit(`/chord_sheets/${chordSheet.id}`)
