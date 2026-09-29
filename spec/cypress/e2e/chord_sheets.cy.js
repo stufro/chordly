@@ -175,6 +175,19 @@ describe("Two-column layout", () => {
       })
     })
   })
+
+  it("previews previous versions in their column layout", () => {
+    helper.createChordSheet({ name: "My amazing song", two_columns: true }).then((chordSheet) => {
+      cy.visit(`/chord_sheets/${chordSheet.id}`)
+
+      cy.get("#show-page-title").clear().type("A new chordsheet title")
+      cy.get("#navbar-main").click()
+      cy.contains("Changes saved")
+
+      cy.get("#versions").click()
+      cy.get(".version-container pre").should("have.css", "column-count", "2")
+    })
+  })
 })
 
 describe("Undoing changes", () => {

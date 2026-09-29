@@ -29,7 +29,10 @@
         b Content:&nbsp;
 
       div style="max-height: 20em; overflow: auto"
-        pre
-          - version.reify.content.each do |line|
-            span class=(line["type"] == "chords" ? "chord-line" : "lyric-line")
-              = line["content"]
+        - chord_sheet = version.reify
+        pre class=("two-columns" if chord_sheet.two_columns?)
+          - chord_sheet.sections.each do |section|
+            span.chord-sheet-section
+              - section.each do |line|
+                span class=(line["type"] == "chords" ? "chord-line" : "lyric-line")
+                  = line["content"]
