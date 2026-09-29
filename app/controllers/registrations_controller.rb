@@ -27,7 +27,7 @@ class RegistrationsController < Devise::RegistrationsController
 
     respond_with_navigational(resource) do
       flash.discard(:recaptcha_error)
-      render :new
+      render :new, status: :unprocessable_content
     end
   end
 end

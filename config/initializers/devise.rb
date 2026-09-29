@@ -322,6 +322,12 @@ Devise.setup do |config|
   #   include Turbolinks::Controller
   # end
 
+  # ==> Hotwire/Turbo configuration
+  # When using Devise with Hotwire/Turbo, the http status for error responses
+  # and some redirects must match the following.
+  config.responder.error_status = :unprocessable_content
+  config.responder.redirect_status = :see_other
+
   # ==> Configuration for :registerable
 
   # When set to false, does not sign a user in automatically after their password is

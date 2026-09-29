@@ -15,6 +15,17 @@ describe("Signing up for chordly", () => {
     cy.contains("Welcome! You have signed up successfully.")
     cy.contains("Chord Sheets")
   })
+
+  it("shows the errors when the details are invalid", () => {
+    cy.visit("/users/sign_up")
+    cy.get("#user_email").type("a@a.com")
+    cy.get("#user_password").type("123456789")
+    cy.get("#user_password_confirmation").type("987654321")
+    cy.get("#complete-sign-up").click()
+
+    cy.contains("Password confirmation doesn't match Password")
+    cy.get("#complete-sign-up")
+  })
 })
 
 describe("Logging in with existing account", () => {
@@ -38,6 +49,16 @@ describe("Logging in with existing account", () => {
     cy.contains("Signed in successfully.")
     cy.contains("Chord Sheets")
   })
+
+  it("shows an error when the password is wrong", () => {
+    cy.visit("/users/sign_in")
+    cy.get("#user_email").type("a@a.com")
+    cy.get("#user_password").type("wrong-password")
+    cy.get("#login-button").click()
+
+    cy.contains("Invalid email or password.")
+    cy.get("#login-button")
+  })
 })
 
 describe("Logging out", () => {
@@ -55,6 +76,35 @@ describe("Logging out", () => {
 
     cy.contains("Log in")
     cy.contains("The free, open-source chord sheet & lead sheet maker")
+  })
+})
+
+describe("Deleting an account", () => {
+  beforeEach(() => {
+    cy.login()
+  })
+
+  afterEach(() => {
+    cy.app("clean")
+  })
+
+  it("keeps the account when the confirmation is cancelled", () => {
+    const confirm = cy.stub().as("confirm").returns(false)
+    cy.on("window:confirm", confirm)
+
+    cy.visit("/users/edit")
+    cy.contains("Delete my account").click()
+
+    cy.get("@confirm").should("have.been.calledWith", "Are you sure? You will lose ALL of your saved data")
+    cy.contains("Delete my account")
+  })
+
+  it("deletes the account once confirmed", () => {
+    cy.visit("/users/edit")
+    cy.contains("Delete my account").click()
+
+    cy.contains("Bye! Your account has been successfully cancelled. We hope to see you again soon.")
+    cy.contains("Log in")
   })
 })
 

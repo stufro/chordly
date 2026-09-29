@@ -57,8 +57,7 @@
             i.fas.fa-key
 
       .actions.is-flex.is-justify-content-center
-        = f.submit "Update", class: "button is-primary is-medium",
-            data: { turbo: false }, style: "width: 100%"
+        = f.submit "Update", class: "button is-primary is-medium", style: "width: 100%"
 
     .message.is-danger.mt-5
       .message-header
@@ -71,7 +70,7 @@
         b This CANNOT be undone.
 
         = button_to registration_path(resource_name), class: "button is-danger mt-3",
-          data: { turbo: false, confirm: "Are you sure? You will lose ALL of your saved data" },
+          form: { data: { turbo_confirm: "Are you sure? You will lose ALL of your saved data" } },
           method: :delete do
           span.icon-text.is-flex-wrap-nowrap
             span.icon

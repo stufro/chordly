@@ -21,6 +21,20 @@ describe "Registrations" do
       expect { 5.times { |index| sign_up(index) } }.to change(User, :count).by(5)
     end
 
+    context "with invalid details" do
+      it "responds unprocessable so Turbo renders the errors" do
+        post "/users", params: { user: { email: "not-an-email", password: "short", password_confirmation: "short" } }
+        expect(response).to have_http_status(:unprocessable_content)
+      end
+    end
+
+    context "when reCAPTCHA verification fails" do
+      it "responds unprocessable so Turbo renders the errors" do
+        Recaptcha.with_configuration(skip_verify_env: []) { sign_up(0) }
+        expect(response).to have_http_status(:unprocessable_content)
+      end
+    end
+
     context "when the limit is exceeded" do
       before { 5.times { |index| sign_up(index) } }
 
