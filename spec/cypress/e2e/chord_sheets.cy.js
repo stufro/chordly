@@ -161,6 +161,20 @@ describe("Two-column layout", () => {
     cy.get("#toggle-columns").click()
     cy.get("#chord-sheet-content").should("have.css", "column-count", "auto")
   })
+
+  it("keeps every section within the chord sheet", () => {
+    helper.createChordSheet({ two_columns: true, content_string: "G\nVerse one\n\nC\nVerse two\n\nD\nChorus" }).then((chordSheet) => {
+      cy.visit(`/chord_sheets/${chordSheet.id}`)
+
+      cy.get("#chord-sheet-content").then(($pre) => {
+        const preRight = $pre[0].getBoundingClientRect().right
+
+        cy.get(".chord-sheet-section").each(($section) => {
+          expect($section[0].getBoundingClientRect().right).to.be.at.most(preRight)
+        })
+      })
+    })
+  })
 })
 
 describe("Undoing changes", () => {
