@@ -6,6 +6,11 @@ html lang="en"
     meta content="width=device-width,initial-scale=1" name="viewport"
 
     style
+      | /* Scale every rem to 75%, matching wkhtmltopdf's smart shrinking */
+      | html {
+      |   font-size: 12px;
+      | }
+      |
       | body {
       |   font-family: Arial, sans-serif;
       | }
@@ -13,8 +18,8 @@ html lang="en"
       | pre {
       |   font-family: Menlo, Consolas, "Liberation Mono", "DejaVu Sans Mono", Courier, monospace !important;
       |   font-size: 1.5rem;
-      |   white-space: pre-wrap;
-      |   word-wrap: break-word;
+      |   white-space: normal;
+      |   overflow-wrap: break-word;
       | }
   body
     div style="text-align: center"
