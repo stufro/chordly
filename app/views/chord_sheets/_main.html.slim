@@ -3,46 +3,47 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
     data-clipboard-success-content="<span class='icon'><i class='fas fa-check'></i></span>"]
   = turbo_stream.replace "flash-message-container", partial: "partials/flash"
   .card.mb-3
-    .card-content.chord-sheet-toolbar.is-flex.is-flex-wrap-wrap.is-column-gap-5.is-row-gap-3
-      .toolbar-group
-        p.toolbar-label Transpose
-        .buttons.mb-0
-          = button_to transpose_chord_sheet_path(chord_sheet, direction: "up"),
-            class: "button is-rounded is-primary has-tooltip", aria: { label: "Transpose up a semitone" },
-            id: "transpose-up", method: :put do
-            span.icon
-              i.fas.fa-arrow-up
+    .card-content.chord-sheet-toolbar.is-flex.is-flex-wrap-wrap.is-justify-content-space-between.is-column-gap-5.is-row-gap-3
+      .is-flex.is-flex-wrap-wrap.is-column-gap-5.is-row-gap-3
+        .toolbar-group
+          p.toolbar-label Transpose
+          .buttons.mb-0
+            = button_to transpose_chord_sheet_path(chord_sheet, direction: "up"),
+              class: "button is-rounded is-primary has-tooltip", aria: { label: "Transpose up a semitone" },
+              id: "transpose-up", method: :put do
+              span.icon
+                i.fas.fa-arrow-up
 
-          = button_to transpose_chord_sheet_path(chord_sheet, direction: "down"),
-            class: "button is-rounded is-primary has-tooltip", aria: { label: "Transpose down a semitone" },
-            id: "transpose-down", method: :put
-            span.icon
-              i.fas.fa-arrow-down
+            = button_to transpose_chord_sheet_path(chord_sheet, direction: "down"),
+              class: "button is-rounded is-primary has-tooltip", aria: { label: "Transpose down a semitone" },
+              id: "transpose-down", method: :put
+              span.icon
+                i.fas.fa-arrow-down
 
-      .toolbar-group
-        p.toolbar-label Layout
-        .buttons.mb-0
-          = button_to chord_sheet_path(chord_sheet),
-            params: { chord_sheet: { two_columns: !chord_sheet.two_columns? } },
-            class: class_names("button is-rounded is-primary has-tooltip", "is-outlined": !chord_sheet.two_columns?),
-            aria: { label: "Show in two columns", pressed: chord_sheet.two_columns? },
-            id: "toggle-columns", method: :patch
-            span.icon
-              i.fas.fa-table-columns
+        .toolbar-group
+          p.toolbar-label Layout
+          .buttons.mb-0
+            = button_to chord_sheet_path(chord_sheet),
+              params: { chord_sheet: { two_columns: !chord_sheet.two_columns? } },
+              class: class_names("button is-rounded is-primary has-tooltip", "is-outlined": !chord_sheet.two_columns?),
+              aria: { label: "Show in two columns", pressed: chord_sheet.two_columns? },
+              id: "toggle-columns", method: :patch
+              span.icon
+                i.fas.fa-table-columns
 
-          .dropdown.is-right#chord-diagram-dropdown[data-turbo-permanent data-chord-diagram-target="wrapper"]
-            .dropdown-trigger
-              button.button.is-rounded.is-primary.is-outlined.has-tooltip#chord-diagram[
-                aria-label="Show chord diagrams" aria-haspopup="true" aria-controls="diagram-select"
-                data-chord-diagram-target="button" data-action="chord-diagram#click_icon"]
-                span.icon
-                  = render("chord_diagram_icon")
-            .dropdown-menu#diagram-select role="menu"
-              .dropdown-content
-                button.dropdown-item#guitar data-action="chord-diagram#set" Guitar
-                button.dropdown-item#ukulele data-action="chord-diagram#set" Ukulele
+            .dropdown.is-right#chord-diagram-dropdown[data-turbo-permanent data-chord-diagram-target="wrapper"]
+              .dropdown-trigger
+                button.button.is-rounded.is-primary.is-outlined.has-tooltip#chord-diagram[
+                  aria-label="Show chord diagrams" aria-haspopup="true" aria-controls="diagram-select"
+                  data-chord-diagram-target="button" data-action="chord-diagram#click_icon"]
+                  span.icon
+                    = render("chord_diagram_icon")
+              .dropdown-menu#diagram-select role="menu"
+                .dropdown-content
+                  button.dropdown-item#guitar data-action="chord-diagram#set" Guitar
+                  button.dropdown-item#ukulele data-action="chord-diagram#set" Ukulele
 
-      .toolbar-group.toolbar-actions#toolbar-actions[data-turbo-permanent]
+      .toolbar-group#toolbar-actions[data-turbo-permanent]
         p.toolbar-label Actions
         .buttons.mb-0
           = button_to("#", class: "button is-rounded is-info modal-trigger has-tooltip",

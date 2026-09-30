@@ -75,10 +75,6 @@ a.sort-by-icon.is-active:hover {
     text-transform: uppercase;
     color: var(--bulma-text-weak);
   }
-
-  .toolbar-actions {
-    margin-left: auto;
-  }
 }
 
 // Tooltips use the button's aria-label, so the accessible name and tooltip always match.
