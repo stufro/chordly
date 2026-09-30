@@ -12,7 +12,6 @@
     "bulma": "^1.0.4",
     "esbuild": "^0.28.1",
     "local-time": "^2.1.0",
-    "puppeteer": "^22.13.0",
     "sass": "^1.52.1",
     "sortablejs": "^1.15.0",
     "stimulus-textarea-autogrow": "^4.1.0",
@@ -26,7 +25,7 @@
   },
   "devDependencies": {
     "@4tw/cypress-drag-drop": "^2.2.5",
-    "cypress": "^13.0.0"
+    "cypress": "^16.1.1"
   },
   "volta": {
     "node": "26.4.0",
