@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: f3866028dd6a802599a0c8a243b2f7a2cccc0932
+  revision: 3449d74a95c71519f93e981f7f1a68173c1acec8
   branch: main
   specs:
     actioncable (8.2.0.alpha)
@@ -92,7 +92,7 @@ GIT
       logger (>= 1.4.2)
       minitest (>= 5.1)
       psych (>= 4)
-      ractor-dispatch (>= 0.2.0)
+      ractor-dispatch (>= 0.3.0)
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
       uri (>= 0.13.1)
@@ -207,7 +207,7 @@ GEM
     highline (3.0.1)
     i18n (1.15.2)
       concurrent-ruby (~> 1.0)
-    image_processing (2.1.0)
+    image_processing (2.2.0)
     importmap-rails (2.2.3)
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
@@ -266,7 +266,7 @@ GEM
       net-protocol
     net-protocol (0.4.0)
       timeout
-    net-smtp (0.5.1)
+    net-smtp (0.5.2)
       net-protocol
     nio4r (2.7.5)
     nokogiri (1.19.4-arm64-darwin)
@@ -342,7 +342,7 @@ GEM
       logger
       prism (>= 1.6.0)
       tsort
-    rdoc (8.0.0)
+    rdoc (8.1.0)
       erb
       prism (>= 1.6.0)
       rbs (>= 4.0.0)
@@ -351,7 +351,7 @@ GEM
       reline
     recaptcha (5.21.2)
     redcarpet (3.6.1)
-    regexp_parser (2.13.0)
+    regexp_parser (2.13.1)
     reline (0.7.0)
       io-console (~> 0.5)
     request_store (1.7.0)
@@ -463,7 +463,7 @@ GEM
       fugit (~> 1.11)
       railties (>= 7.1)
       thor (>= 1.3.1)
-    sorbet-runtime (0.6.13506)
+    sorbet-runtime (0.6.13511)
     sord (7.1.0)
       commander (~> 5.0)
       parlour (~> 9.1)
@@ -491,7 +491,7 @@ GEM
     thor (1.5.0)
     tilt (2.9.0)
     timeout (0.6.1)
-    tins (1.57.0)
+    tins (1.59.0)
       bigdecimal
       irb
       mize (~> 0.6)

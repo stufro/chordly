@@ -287,9 +287,9 @@
     "@rails/activestorage" ">= 7.1.0-alpha"
 
 "@rails/activestorage@>= 7.1.0-alpha":
-  version "7.2.302"
-  resolved "https://registry.yarnpkg.com/@rails/activestorage/-/activestorage-7.2.302.tgz#c5dfb4cae3ec30fa4e6993cd9eea4784233b8482"
-  integrity sha512-WUKOoimfKHa6h7Ir9qpFGoRHg1p2PoU1wD9k4JLRDd42xb6PktY31m6U312zgUCGGq1Sl6voQY9fsE/Xn/+z6Q==
+  version "8.1.400"
+  resolved "https://registry.yarnpkg.com/@rails/activestorage/-/activestorage-8.1.400.tgz#355c3b59e238f837ef422d148b361d9a96b28fe6"
+  integrity sha512-ScpkkHXTQ7QByvzLbnrnubpsWRKhlu08kXyRhSV+Hh1s1X43lv5T0PFLhXAvmqrIcq8nQ2up8iyuCmIzacPDDw==
   dependencies:
     spark-md5 "^3.0.1"
 
@@ -642,9 +642,9 @@ detect-libc@^2.0.3:
   integrity sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==
 
 dompurify@^3.2.5:
-  version "3.4.15"
-  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-3.4.15.tgz#30351b34513894f428c13bddb28bff0a027ae804"
-  integrity sha512-EUBjM+B+lkDE41iE82DDSCfkoPGfXx8IxFxPMjNzm/Uk4xDet77rTN9wqlxlVg71kK7XGuUMv6wUxJUwwv+Xyw==
+  version "3.4.16"
+  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-3.4.16.tgz#c51b3709ea15ee9abb07e804f2ef30ea9b953128"
+  integrity sha512-sqo+pNp3qRhCIpbgRi1y8Tgk27Bo2Ry7w0dC1NBeNTdZChWjz9Xb/KOoZbRP/R6pQZ80Qw8YhXw13hWWBbMRnQ==
   optionalDependencies:
     "@types/trusted-types" "^2.0.7"
 
@@ -1264,9 +1264,9 @@ safer-buffer@^2.0.2, safer-buffer@^2.1.0, safer-buffer@~2.1.0:
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
 sass@^1.52.1:
-  version "1.104.1"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.104.1.tgz#29a4bdb33c48a8bb656e300a33afcafbfcbc8491"
-  integrity sha512-yDA+1aIG3EHgN4V/BvuhCvu61FF6hEd4e+9DxikUm9U0CAGuvdIZ/UYy7qbOxjhbbWQraoyLlMuzdRGOSV5Bmw==
+  version "1.105.1"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.105.1.tgz#9ef19b947f65007ccfe0ed385cc570b858ae42e0"
+  integrity sha512-1CnAWPyrrnVQzXGB/DUep1vYCKCm1CIBr+YxjjiW6wk9qtzemnGP4qicH56T2F9S4Hjtv/Ne3jDz8JqfdDU4oA==
   dependencies:
     chokidar "^5.0.0"
     immutable "^5.1.5"
