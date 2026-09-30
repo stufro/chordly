@@ -19,7 +19,7 @@ describe("Trialing chordly without an account", () => {
     cy.visit("/")
     cy.contains("Create Chord Sheet").click()
     cy.contains("Create Chord sheet").click()
-    cy.contains("Transpose:")
+    cy.get("#transpose-down")
 
     cy.url().then((chordSheetUrl) => {
       cy.visit("/")
