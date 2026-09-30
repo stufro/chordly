@@ -13,7 +13,6 @@ gem "flipper", github: "flippercloud/flipper", branch: "main"
 gem "flipper-active_record", github: "flippercloud/flipper", branch: "main"
 gem "flipper-ui", github: "flippercloud/flipper", branch: "main"
 gem "image_processing"
-gem "jbuilder"
 gem "jsbundling-rails"
 gem "local_time"
 gem "meta-tags"
@@ -37,7 +36,6 @@ gem "stimulus-rails"
 gem "term-ansicolor"
 gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[windows jruby]
-gem "uglifier"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
