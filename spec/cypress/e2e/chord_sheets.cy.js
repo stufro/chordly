@@ -330,5 +330,11 @@ describe("Chord diagrams", () => {
     cy.get("#chord-diagram").click()
     cy.contains("Ukulele").click()
     cy.get("svg[viewBox='0 0 160 200']").should('be.visible'); // unique to ukulele chord diagrams
+
+    // replacing the frame then clicking again must not leave a stale controller listening
+    cy.get("#toggle-columns").click()
+    cy.get("#toggle-columns").should("have.attr", "aria-pressed", "true")
+    cy.get("#transpose-up").click()
+    cy.get("svg[viewBox='0 0 160 200']").should('be.visible');
   })
 })

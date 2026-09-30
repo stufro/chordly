@@ -5,12 +5,11 @@ export default class extends Controller {
 
   connect() {
     this.show()
-    document.addEventListener("turbo:frame-render", () => this.show())
+  }
 
-    document.addEventListener("click", (event) => {
-      if (this.wrapperTarget.contains(event.target)) return
-      this.close()
-    })
+  closeOnClickOutside(event) {
+    if (this.wrapperTarget.contains(event.target)) return
+    this.close()
   }
 
   set(event) {

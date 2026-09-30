@@ -1,4 +1,5 @@
 turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram modal"
+    data-action="click@document->chord-diagram#closeOnClickOutside turbo:frame-render->chord-diagram#show"
     data-clipboard-success-content="<span class='icon'><i class='fas fa-check'></i></span>"]
   = turbo_stream.replace "flash-message-container", partial: "partials/flash"
   .card.mb-3
