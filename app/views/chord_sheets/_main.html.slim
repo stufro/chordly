@@ -2,66 +2,73 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
     data-clipboard-success-content="<span class='icon'><i class='fas fa-check'></i></span>"]
   = turbo_stream.replace "flash-message-container", partial: "partials/flash"
   .card.mb-3
-    .card-content
-      .level.is-mobile.is-flex-wrap-wrap
-        .level-left.is-flex-direction-row
-          .level-item.mt-2
-            span.has-text-primary Transpose:
-          .level-item.mt-2
-            = button_to transpose_chord_sheet_path(chord_sheet, direction: "up"),
-              class: "button is-rounded is-primary", title: "Transpose chords up a semitone",
-              id: "transpose-up", method: :put do
-              span.icon
-                i.fas.fa-arrow-circle-up
+    .card-content.chord-sheet-toolbar.is-flex.is-flex-wrap-wrap.is-column-gap-5.is-row-gap-3
+      .toolbar-group
+        p.toolbar-label Transpose
+        .buttons.mb-0
+          = button_to transpose_chord_sheet_path(chord_sheet, direction: "up"),
+            class: "button is-rounded is-primary has-tooltip", aria: { label: "Transpose up a semitone" },
+            id: "transpose-up", method: :put do
+            span.icon
+              i.fas.fa-arrow-up
 
-          .level-item.mt-2
-            = button_to transpose_chord_sheet_path(chord_sheet, direction: "down"),
-              class: "button is-rounded is-primary", title: "Transpose chords down a semitone",
-              id: "transpose-down", method: :put
-              span.icon
-                i.fas.fa-arrow-circle-down
+          = button_to transpose_chord_sheet_path(chord_sheet, direction: "down"),
+            class: "button is-rounded is-primary has-tooltip", aria: { label: "Transpose down a semitone" },
+            id: "transpose-down", method: :put
+            span.icon
+              i.fas.fa-arrow-down
 
-          .level-item.mt-2
-            = button_to chord_sheet_path(chord_sheet),
-              params: { chord_sheet: { two_columns: !chord_sheet.two_columns? } },
-              class: class_names("button is-rounded is-primary", "is-outlined": !chord_sheet.two_columns?),
-              title: "Toggle two-column layout", aria: { pressed: chord_sheet.two_columns? },
-              id: "toggle-columns", method: :patch
-              span.icon
-                i.fas.fa-table-columns
+      .toolbar-group
+        p.toolbar-label Layout
+        .buttons.mb-0
+          = button_to chord_sheet_path(chord_sheet),
+            params: { chord_sheet: { two_columns: !chord_sheet.two_columns? } },
+            class: class_names("button is-rounded is-primary has-tooltip", "is-outlined": !chord_sheet.two_columns?),
+            aria: { label: "Show in two columns", pressed: chord_sheet.two_columns? },
+            id: "toggle-columns", method: :patch
+            span.icon
+              i.fas.fa-table-columns
 
-        .level-right.align-items-space-between.is-flex-direction-row#level-right[data-turbo-permanent]
-          .level-item.mt-2 data-chord-diagram-target="wrapper" title="Show chord diagrams"
-            = render("chord_diagram_icon")
-            .hidden#diagram-select data-chord-diagram-target="selectBox"
-              .diagram-option#guitar data-action="click->chord-diagram#set" Guitar
-              .diagram-option#ukulele data-action="click->chord-diagram#set" Ukulele
+          .dropdown.is-right#chord-diagram-dropdown[data-turbo-permanent data-chord-diagram-target="wrapper"]
+            .dropdown-trigger
+              button.button.is-rounded.is-primary.is-outlined.has-tooltip#chord-diagram[
+                aria-label="Show chord diagrams" aria-haspopup="true" aria-controls="diagram-select"
+                data-chord-diagram-target="button" data-action="chord-diagram#click_icon"]
+                span.icon
+                  = render("chord_diagram_icon")
+            .dropdown-menu#diagram-select role="menu"
+              .dropdown-content
+                button.dropdown-item#guitar data-action="chord-diagram#set" Guitar
+                button.dropdown-item#ukulele data-action="chord-diagram#set" Ukulele
 
-          .level-item.mt-2
-            = button_to(chord_sheet_path(chord_sheet), class: "button is-danger is-rounded mr-2",
-                id: "delete-chord-sheet",
-                form: { data: { turbo_frame: "_top", turbo_confirm: "Are you sure?" } },
-                method: :delete, title: "Delete chord sheet")
-              span.icon
-                i.fas.fa-trash
-            = button_to("#", class: "button is-rounded is-info mr-2 modal-trigger",
-                             id: "versions", title: "Previous versions",
-                             data: { target: "versions-modal" })
-              span.icon
-                i.fas.fa-history
-            = button_to "#", class: "button is-rounded is-info mr-2", id: "copy-to-clipboard",
-              "data-clipboard-target" => "button", "data-action" => "clipboard#copy",
-              title: "Copy to clipboard"
-              span.icon
-                i.fas.fa-copy
-            = button_to chord_sheet_path(chord_sheet, format: :pdf),
-              class: "button is-rounded is-info", id: "export", disabled: !user_signed_in?,
-              data: { pdf_download_target: "button" },
-              form: { data: { controller: "pdf-download", action: "submit->pdf-download#download",
-                              pdf_download_filename_value: "#{chord_sheet.name}.pdf" } },
-              method: :get, title: "Download PDF"
-              span.icon
-                i.fas.fa-download
+      .toolbar-group.toolbar-actions#toolbar-actions[data-turbo-permanent]
+        p.toolbar-label Actions
+        .buttons.mb-0
+          = button_to("#", class: "button is-rounded is-info modal-trigger has-tooltip",
+                           id: "versions", aria: { label: "Previous versions" },
+                           data: { target: "versions-modal" })
+            span.icon
+              i.fas.fa-history
+          = button_to "#", class: "button is-rounded is-info has-tooltip", id: "copy-to-clipboard",
+            "data-clipboard-target" => "button", "data-action" => "clipboard#copy",
+            aria: { label: "Copy to clipboard" }
+            span.icon
+              i.fas.fa-copy
+          = button_to chord_sheet_path(chord_sheet, format: :pdf),
+            class: "button is-rounded is-info has-tooltip", id: "export", disabled: !user_signed_in?,
+            aria: { label: user_signed_in? ? "Download PDF" : "Log in to download PDF" },
+            data: { pdf_download_target: "button" },
+            form: { data: { controller: "pdf-download", action: "submit->pdf-download#download",
+                            pdf_download_filename_value: "#{chord_sheet.name}.pdf" } },
+            method: :get
+            span.icon
+              i.fas.fa-download
+          = button_to(chord_sheet_path(chord_sheet), class: "button is-danger is-rounded has-tooltip",
+              id: "delete-chord-sheet", aria: { label: "Delete chord sheet" },
+              form: { data: { turbo_frame: "_top", turbo_confirm: "Are you sure?" } },
+              method: :delete)
+            span.icon
+              i.fas.fa-trash
 
   - if chord_sheet.two_columns?
     .notification.is-info.is-light.is-hidden-tablet

@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["icon", "guitarChords", "ukuleleChords", "selectBox", "wrapper"]
+  static targets = ["button", "guitarChords", "ukuleleChords", "wrapper"]
 
   connect() {
     this.show()
@@ -9,34 +9,40 @@ export default class extends Controller {
 
     document.addEventListener("click", (event) => {
       if (this.wrapperTarget.contains(event.target)) return
-      this.selectBoxTarget.classList.add("hidden")
+      this.close()
     })
   }
 
   set(event) {
     localStorage.setItem("chord-diagrams", event.target.id)
-    this.selectBoxTarget.classList.add("hidden")
+    this.close()
     this.show()
   }
 
   click_icon() {
     localStorage.removeItem("chord-diagrams")
-    this.selectBoxTarget.classList.toggle("hidden")
+    this.wrapperTarget.classList.toggle("is-active")
+    this.buttonTarget.setAttribute("aria-expanded", this.wrapperTarget.classList.contains("is-active"))
     this.show()
+  }
+
+  close() {
+    this.wrapperTarget.classList.remove("is-active")
+    this.buttonTarget.setAttribute("aria-expanded", false)
   }
 
   show() {
     const selected = localStorage.getItem("chord-diagrams");
 
     if (!selected) {
-      this.iconTarget.classList = ["svg-disabled"]
+      this.buttonTarget.classList.add("is-outlined")
       this.guitarChordsTarget.classList.add("hidden")
       this.ukuleleChordsTarget.classList.add("hidden")
     } else {
       const toShow = this.targets.findTarget(`${selected}Chords`)
 
       toShow.classList.remove("hidden")
-      this.iconTarget.classList = ["svg-primary"]
+      this.buttonTarget.classList.remove("is-outlined")
     }
   }
 }

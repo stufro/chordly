@@ -62,43 +62,42 @@ a.sort-by-icon.is-active:hover {
   ;
 }
 
-#chord-diagram {
-  cursor: pointer;
-}
-
-#diagram-select {
-  position: absolute;
-  top: 70px;
-  background-color: white;
-  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, .1);
-  border-radius: 1rem;
-  z-index: 1;
-}
-
 .hidden {
   display: none;
 }
 
-.diagram-option {
-  cursor: pointer;
-  padding: 1rem;
-  border-bottom: 1px $grey-lightest solid;
-
-  &:hover {
-    background-color: $grey-lightest;
+.chord-sheet-toolbar {
+  .toolbar-label {
+    margin-bottom: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--bulma-text-weak);
   }
 
-  &:first-child {
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
-  }
-
-  &:last-child {
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
+  .toolbar-actions {
+    margin-left: auto;
   }
 }
 
-.diagram-option:last-child {
-  border-bottom: 0;
+// Tooltips use the button's aria-label, so the accessible name and tooltip always match.
+// Only shown on devices that can hover, as taps would leave them stuck open.
+@media (hover: hover) {
+  .has-tooltip:hover::after,
+  .has-tooltip:focus-visible::after {
+    content: attr(aria-label);
+    position: absolute;
+    bottom: calc(100% + 0.5rem);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 30;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--bulma-radius);
+    background-color: var(--bulma-text-strong);
+    color: var(--bulma-scheme-main);
+    font-size: 0.75rem;
+    white-space: nowrap;
+    pointer-events: none;
+  }
 }
