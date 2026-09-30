@@ -1,20 +1,19 @@
 - content_for(:floating_banner, render("partials/survey_banner"))
 
-.is-flex.is-align-items-baseline.is-justify-content-space-between.is-flex-wrap-wrap
-  .is-flex.is-wrap-nowrap.is-align-items-center
-    h1.title.is-1.p-2#show-page-title[data-controller="editable"
-                                  data-editable-field-value="name"
-                                  data-editable-url-value=chord_sheet_path(@chord_sheet)
-                                  data-editable-model-value="chord_sheet"]
-      = title @chord_sheet.name
-    span.icon.is-medium.mb-5.ml-3.edit-icon
-      i.far.fa-edit.fa-2x
+- if user_signed_in?
+  = link_to chord_sheets_path, class: "button is-primary is-light is-rounded is-hidden-desktop mb-2" do
+    span.icon
+      i.fas.fa-chevron-left
+    span Library
 
-  - if user_signed_in?
-    = link_to chord_sheets_path, class: "button is-primary mb-2 is-hidden-desktop" do
-      span.icon
-        i.fas.fa-book-bookmark
-      span Back to library
+.is-flex.is-wrap-nowrap.is-align-items-center
+  h1.title.is-1.p-2#show-page-title[data-controller="editable"
+                                data-editable-field-value="name"
+                                data-editable-url-value=chord_sheet_path(@chord_sheet)
+                                data-editable-model-value="chord_sheet"]
+    = title @chord_sheet.name
+  span.icon.is-medium.mb-5.ml-3.edit-icon
+    i.far.fa-edit.fa-2x
 
 - unless user_signed_in?
   .notification.is-info.is-light
