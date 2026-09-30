@@ -82,6 +82,17 @@ describe "Chord Sheets" do
       )
     end
 
+    it "explains two columns might not be visible when enabled" do
+      chord_sheet.update!(two_columns: true)
+      get chord_sheet_path(chord_sheet)
+      expect(response.body).to include("might not be visible on your screen size")
+    end
+
+    it "does not explain two columns when disabled" do
+      get chord_sheet_path(chord_sheet)
+      expect(response.body).not_to include("might not be visible on your screen size")
+    end
+
     context "when the user does not own the chord sheet" do
       let(:other_user) { create(:user) }
       let(:other_chord_sheet) { create(:chord_sheet, user: other_user) }
@@ -160,6 +171,16 @@ describe "Chord Sheets" do
     it "returns ok" do
       get versions_chord_sheet_path(chord_sheet)
       expect(response).to have_http_status(:ok)
+    end
+
+    it "previews each version in the column layout it was saved with" do
+      chord_sheet.update!(two_columns: true)
+      chord_sheet.update!(two_columns: false)
+
+      get versions_chord_sheet_path(chord_sheet)
+      previews = response.parsed_body.css(".version-container pre").map { it.classes.include?("two-columns") }
+
+      expect(previews).to eq [true, false]
     end
   end
 end

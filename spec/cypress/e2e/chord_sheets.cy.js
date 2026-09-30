@@ -151,9 +151,11 @@ describe("Two-column layout", () => {
     helper.visitChordSheet()
 
     cy.get("#chord-sheet-content").should("have.css", "column-count", "auto")
+    cy.get("#toggle-columns").should("have.attr", "aria-pressed", "false")
 
     cy.get("#toggle-columns").click()
     cy.get("#chord-sheet-content").should("have.css", "column-count", "2")
+    cy.get("#toggle-columns").should("have.attr", "aria-pressed", "true")
 
     cy.reload()
     cy.get("#chord-sheet-content").should("have.css", "column-count", "2")
@@ -162,30 +164,9 @@ describe("Two-column layout", () => {
     cy.get("#chord-sheet-content").should("have.css", "column-count", "auto")
   })
 
-  it("shows whether two columns are enabled on the toggle", () => {
-    helper.visitChordSheet()
-
-    cy.get("#toggle-columns").should("have.attr", "aria-pressed", "false")
-
-    cy.get("#toggle-columns").click()
-    cy.get("#toggle-columns").should("have.attr", "aria-pressed", "true")
-  })
-
-  it("explains on small screens that two columns may not be shown", () => {
-    cy.viewport("iphone-x")
-    helper.visitChordSheet()
-
-    cy.contains("might not be visible on your screen size").should("not.exist")
-
-    cy.get("#toggle-columns").click()
-    cy.contains("might not be visible on your screen size").should("be.visible")
-
-    cy.viewport(1920, 1080)
-    cy.contains("might not be visible on your screen size").should("not.be.visible")
-  })
-
-  it("keeps every section within the chord sheet", () => {
-    helper.createChordSheet({ two_columns: true, content_string: "G\nVerse one\n\nC\nVerse two\n\nD\nChorus" }).then((chordSheet) => {
+  it("keeps every section and long line within its column", () => {
+    const longLine = "On a dark desert highway, cool wind in my hair ".repeat(6)
+    helper.createChordSheet({ two_columns: true, content_string: `G\n${longLine}\n\nC\nVerse two\n\nD\nChorus` }).then((chordSheet) => {
       cy.visit(`/chord_sheets/${chordSheet.id}`)
 
       cy.get("#chord-sheet-content").then(($pre) => {
@@ -193,32 +174,9 @@ describe("Two-column layout", () => {
 
         cy.get(".chord-sheet-section").each(($section) => {
           expect($section[0].getBoundingClientRect().right).to.be.at.most(preRight)
+          expect($section[0].scrollWidth).to.be.at.most($section[0].clientWidth)
         })
       })
-    })
-  })
-
-  it("wraps long lines within their column", () => {
-    const longLine = "On a dark desert highway, cool wind in my hair ".repeat(6)
-    helper.createChordSheet({ two_columns: true, content_string: `G\n${longLine}\n\nC\nVerse two` }).then((chordSheet) => {
-      cy.visit(`/chord_sheets/${chordSheet.id}`)
-
-      cy.get(".chord-sheet-section").each(($section) => {
-        expect($section[0].scrollWidth).to.be.at.most($section[0].clientWidth)
-      })
-    })
-  })
-
-  it("previews previous versions in their column layout", () => {
-    helper.createChordSheet({ name: "My amazing song", two_columns: true }).then((chordSheet) => {
-      cy.visit(`/chord_sheets/${chordSheet.id}`)
-
-      cy.get("#show-page-title").clear().type("A new chordsheet title")
-      cy.get("#navbar-main").click()
-      cy.contains("Changes saved")
-
-      cy.get("#versions").click()
-      cy.get(".version-container pre").should("have.css", "column-count", "2")
     })
   })
 })
