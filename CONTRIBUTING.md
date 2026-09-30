@@ -1,7 +1,7 @@
 # Contributing to Chordly
 Dependencies:
-- Ruby 3.4.5
-- PostgreSQL
+- Ruby 4.0.3
+- SQLite
 - Yarn
 
 ## Writing some code
