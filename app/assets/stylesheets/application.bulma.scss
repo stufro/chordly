@@ -150,8 +150,8 @@ tr.is-clickable {
   padding: 0.5rem;
 }
 
-.guitar-chords {
-  background-color: #FFF;
+.theme-dark :is(.guitar-chords, .ukulele-chords) svg {
+  filter: invert(1);
 }
 
 .tabs li.is-disabled {
