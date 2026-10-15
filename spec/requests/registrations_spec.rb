@@ -33,6 +33,15 @@ describe "Registrations" do
         Recaptcha.with_configuration(skip_verify_env: []) { sign_up(0) }
         expect(response).to have_http_status(:unprocessable_content)
       end
+
+      it "responds unprocessable to Turbo form submissions" do
+        Recaptcha.with_configuration(skip_verify_env: []) do
+          post "/users", headers: { "Accept" => "text/vnd.turbo-stream.html, text/html" }, params: {
+            user: { email: "user@example.com", password: "password123", password_confirmation: "password123" }
+          }
+        end
+        expect(response).to have_http_status(:unprocessable_content)
+      end
     end
 
     context "when the limit is exceeded" do
