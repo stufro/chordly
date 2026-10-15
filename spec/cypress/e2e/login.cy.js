@@ -61,6 +61,30 @@ describe("Logging in with existing account", () => {
   })
 })
 
+describe("Logging in with an ad-free account", () => {
+  beforeEach(() => {
+    cy.appFactories([
+      ["create", "user", "ad_free", { email: "a@a.com", password: "123456789" } ]
+    ])
+  })
+
+  afterEach(() => {
+    cy.app("clean")
+  })
+
+  it("removes the ads once logged in", () => {
+    cy.visit("/home/about")
+    cy.contains("Log in").click()
+    cy.get("#user_email").type("a@a.com")
+    cy.get("#user_password").type("123456789")
+    cy.get("#login-button").click()
+    cy.contains("Signed in successfully.")
+
+    cy.visit("/home/about")
+    cy.get("ins.adsbygoogle").should("not.exist")
+  })
+})
+
 describe("Logging out", () => {
   beforeEach(() => {
     cy.login()

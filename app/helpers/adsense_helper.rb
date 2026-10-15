@@ -12,7 +12,13 @@ module AdsenseHelper
     in_article: "fluid"
   }.freeze
 
+  def show_ads?
+    !Rails.env.development? && (!user_signed_in? || current_user.standard?)
+  end
+
   def adsense_unit(slot)
+    return unless show_ads?
+
     content_tag(:div, style: "width: 100%") do
       # content_tag(:div, style: "width: 100%; height: 100px; border: 2px solid black") do
       content_tag(
