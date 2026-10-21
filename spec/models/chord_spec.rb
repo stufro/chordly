@@ -23,6 +23,27 @@ describe Chord do
     end
   end
 
+  describe "#normalised" do
+    it "capitalises the root and bass notes" do
+      lower_case_chord = described_class.new(["bb", "m", "7", nil, "f"])
+
+      expect(lower_case_chord.normalised.to_s).to eq "Bbm7/F"
+    end
+
+    it "replaces musical accidental symbols" do
+      symbol_chord = described_class.new(["F♯", "m", nil, nil, "C♯"])
+
+      expect(symbol_chord.normalised.to_s).to eq "F#m/C#"
+    end
+
+    it "leaves the original chord unchanged" do
+      lower_case_chord = described_class.new(["g"])
+      lower_case_chord.normalised
+
+      expect(lower_case_chord.to_s).to eq "g"
+    end
+  end
+
   describe "#transpose" do
     it "returns a transposed instance of a chord" do
       expect(chord.transpose(:up).to_s).to eq "G#m7add4/C"

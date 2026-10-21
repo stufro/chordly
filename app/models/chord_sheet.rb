@@ -35,7 +35,14 @@ class ChordSheet < ApplicationRecord
       sanitised = line["content"].tr("|:*", " ")
                                  .gsub("N.C.", "")
                                  .gsub(/(\{.*?\}|\[.*?\])/, "") # Remove text in {} or []
-      sanitised.split
+      sanitised.split.map { |token| normalise_chord(token) }
     end.uniq
+  end
+
+  private
+
+  def normalise_chord(token)
+    chord_parts = token.match(/\A#{MusicUtils::NOTE_REGEX}\z/)&.captures
+    chord_parts ? Chord.new(chord_parts).normalised.to_s : token
   end
 end

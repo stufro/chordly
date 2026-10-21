@@ -25,6 +25,14 @@ class Chord
     new_chord
   end
 
+  def normalised
+    new_chord = dup
+    new_chord.note = normalise_note(@note)
+    new_chord.bass_note = normalise_note(@bass_note) if @bass_note
+
+    new_chord
+  end
+
   def nashville_number?
     note.match?(/^\d$/)
   end
@@ -34,6 +42,10 @@ class Chord
   def transpose_note(note, direction)
     new_note = Music::Note.new(normalise_accidental(note), 5).send(method_for(direction))
     [new_note.letter, new_note.accidental].join
+  end
+
+  def normalise_note(note)
+    normalise_accidental(note).capitalize
   end
 
   def normalise_accidental(note)

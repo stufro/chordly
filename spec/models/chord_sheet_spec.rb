@@ -115,6 +115,33 @@ describe ChordSheet do
       end
     end
 
+    context "when the same chord is written in different ways" do
+      let(:content) do
+        [
+          { "type" => "chords", "content" => "g   em/b   F♯m   bb" },
+          { "type" => "chords", "content" => "G   Em/B   F#m   Bb" }
+        ]
+      end
+
+      it "returns each chord once in the spelling used by the chord diagrams" do
+        chord_sheet = create(:chord_sheet, content:)
+        expect(chord_sheet.unique_chords).to match_array %w[G Em/B F#m Bb]
+      end
+    end
+
+    context "when a chord line contains something that isn't a chord" do
+      let(:content) do
+        [
+          { "type" => "chords", "content" => "G   x2" }
+        ]
+      end
+
+      it "returns it unchanged" do
+        chord_sheet = create(:chord_sheet, content:)
+        expect(chord_sheet.unique_chords).to match_array %w[G x2]
+      end
+    end
+
     context "when bar lines have no spaces around them" do
       let(:content) do
         [
