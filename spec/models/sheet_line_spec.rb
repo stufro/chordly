@@ -193,6 +193,16 @@ describe SheetLine do
       end
     end
 
+    context "when chords are separated by a slash" do
+      let(:original_chords) { "F/Am  C" }
+      let(:expected_chords) { "F#/A#m C#" }
+
+      it "transposes each chord" do
+        sheet_line.transpose(:up)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
+
     context "with add4 chords" do
       let(:original_chords) { "Gadd4  Amadd2  Dadd9" }
       let(:expected_chords) { "F#add4 G#madd2 C#add9" }

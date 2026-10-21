@@ -115,6 +115,18 @@ describe MusicUtils do
       expect(music_utils.chord_tokens("D G (x2)")).to eq %w[D G]
     end
 
+    it "splits tokens of chords separated by slashes" do
+      expect(music_utils.chord_tokens("F/Am C/G/E")).to eq %w[F Am C G E]
+    end
+
+    it "keeps slash chords whole" do
+      expect(music_utils.chord_tokens("G/B D/F#")).to eq %w[G/B D/F#]
+    end
+
+    it "keeps slash separated tokens that aren't all chords" do
+      expect(music_utils.chord_tokens("and/or F/ /F")).to eq %w[and/or F/ /F]
+    end
+
     it "ignores N.C. and text in {} or []" do
       expect(music_utils.chord_tokens("G N.C. {some text} Em [more text] D")).to eq %w[G Em D]
     end

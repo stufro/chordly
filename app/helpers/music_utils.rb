@@ -29,9 +29,22 @@ module MusicUtils
         .scan(/[^[:space:]]+/)
         .map { |token| token.delete_prefix("(").delete_suffix(")") }
         .grep_v(/\A([x×]\d+|\d+[x×])\z/i) # Remove repeat markers like x3 or 2x
+        .flat_map { |token| split_slash_separated_chords(token) }
   end
 
   private
+
+  # F/Am is two chords, but G/B is one chord with a bass note
+  def split_slash_separated_chords(token)
+    return token if chord?(token)
+
+    chords = token.split("/", -1)
+    chords.all? { |chord| chord?(chord) } ? chords : token
+  end
+
+  def chord?(token)
+    token.match?(/\A#{NOTE_REGEX}\z/)
+  end
 
   def scan_chord(chord, no_match_proc)
     matches = chord.scan(/^#{NOTE_REGEX}$/)

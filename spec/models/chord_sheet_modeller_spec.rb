@@ -194,6 +194,40 @@ describe ChordSheetModeller do
       end
     end
 
+    context "when chords are separated by a slash" do
+      let(:raw_content) do
+        <<~TEXT
+          F/Am
+          I love, I love
+        TEXT
+      end
+
+      it "returns the chord sheet string modelled as JSON" do
+        expect(described_class.new(raw_content).parse).to eq(
+          [
+            { type: :chords, content: "F/Am\n" },
+            { type: :lyrics, content: "I love, I love\n" }
+          ]
+        )
+      end
+    end
+
+    context "when words are separated by a slash" do
+      let(:raw_content) do
+        <<~TEXT
+          Bad/Good
+        TEXT
+      end
+
+      it "models the line as lyrics" do
+        expect(described_class.new(raw_content).parse).to eq(
+          [
+            { type: :lyrics, content: "Bad/Good\n" }
+          ]
+        )
+      end
+    end
+
     context "when the chords contain asterisks" do
       let(:raw_content) do
         <<~TEXT

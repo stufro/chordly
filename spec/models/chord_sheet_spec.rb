@@ -142,6 +142,19 @@ describe ChordSheet do
       end
     end
 
+    context "when chords are separated by a slash" do
+      let(:content) do
+        [
+          { "type" => "chords", "content" => "F/Am   G/B" }
+        ]
+      end
+
+      it "returns each chord separately and keeps slash chords whole" do
+        chord_sheet = create(:chord_sheet, content:)
+        expect(chord_sheet.unique_chords).to match_array %w[F Am G/B]
+      end
+    end
+
     context "when bar lines have no spaces around them" do
       let(:content) do
         [
