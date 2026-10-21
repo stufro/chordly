@@ -142,6 +142,24 @@ describe ChordSheetModeller do
       end
     end
 
+    context "when the chords are followed by a repeat marker" do
+      let(:raw_content) do
+        <<~TEXT
+          D G A G A G x3
+          D G 2x
+        TEXT
+      end
+
+      it "returns the chord sheet string modelled as JSON" do
+        expect(described_class.new(raw_content).parse).to eq(
+          [
+            { type: :chords, content: "D G A G A G x3\n" },
+            { type: :chords, content: "D G 2x\n" }
+          ]
+        )
+      end
+    end
+
     context "when the chords contain asterisks" do
       let(:raw_content) do
         <<~TEXT

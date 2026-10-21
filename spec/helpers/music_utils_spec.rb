@@ -99,6 +99,14 @@ describe MusicUtils do
       expect(music_utils.chord_tokens("G. N.C. . D")).to eq %w[G D]
     end
 
+    it "ignores repeat markers" do
+      expect(music_utils.chord_tokens("D x3 G 2x A ×4 E X2")).to eq %w[D G A E]
+    end
+
+    it "keeps tokens that only look like part of a repeat marker" do
+      expect(music_utils.chord_tokens("D x G x3x")).to eq %w[D x G x3x]
+    end
+
     it "ignores N.C. and text in {} or []" do
       expect(music_utils.chord_tokens("G N.C. {some text} Em [more text] D")).to eq %w[G Em D]
     end

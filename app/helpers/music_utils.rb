@@ -27,6 +27,7 @@ module MusicUtils
         .gsub(/(\{.*?\}|\[.*?\])/, "") # Remove text in {} or []
         .tr("|:*.", " ")
         .scan(/[^[:space:]]+/)
+        .grep_v(/\A([x×]\d+|\d+[x×])\z/i) # Remove repeat markers like x3 or 2x
   end
 
   private

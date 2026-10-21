@@ -132,13 +132,13 @@ describe ChordSheet do
     context "when a chord line contains something that isn't a chord" do
       let(:content) do
         [
-          { "type" => "chords", "content" => "G   x2" }
+          { "type" => "chords", "content" => "G   C7alt" }
         ]
       end
 
       it "returns it unchanged" do
         chord_sheet = create(:chord_sheet, content:)
-        expect(chord_sheet.unique_chords).to match_array %w[G x2]
+        expect(chord_sheet.unique_chords).to match_array %w[G C7alt]
       end
     end
 

@@ -173,6 +173,16 @@ describe SheetLine do
       end
     end
 
+    context "when the chords are followed by a repeat marker" do
+      let(:original_chords) { "D G x3 A 2x" }
+      let(:expected_chords) { "D# G# x3 A# 2x" }
+
+      it "transposes the chords and leaves the repeat markers unchanged" do
+        sheet_line.transpose(:up)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
+
     context "with add4 chords" do
       let(:original_chords) { "Gadd4  Amadd2  Dadd9" }
       let(:expected_chords) { "F#add4 G#madd2 C#add9" }
