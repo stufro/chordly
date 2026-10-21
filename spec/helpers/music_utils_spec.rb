@@ -81,4 +81,18 @@ describe MusicUtils do
       end
     end
   end
+
+  describe "#chord_tokens" do
+    it "returns the whitespace separated tokens in the line" do
+      expect(music_utils.chord_tokens("G　 Am\tC\r\n")).to eq %w[G Am C]
+    end
+
+    it "treats bar lines, repeat colons and asterisks as separators" do
+      expect(music_utils.chord_tokens("|:G|Am:|*F|")).to eq %w[G Am F]
+    end
+
+    it "ignores N.C. and text in {} or []" do
+      expect(music_utils.chord_tokens("G N.C. {some text} Em [more text] D")).to eq %w[G Em D]
+    end
+  end
 end

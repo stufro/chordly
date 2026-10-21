@@ -21,6 +21,14 @@ module MusicUtils
     scan_chord(potential_chord, no_note_proc)
   end
 
+  # The tokens on a line that should each be a chord for it to be a chord line
+  def chord_tokens(line)
+    line.tr("|:*", " ")
+        .gsub("N.C.", "")
+        .gsub(/(\{.*?\}|\[.*?\])/, "") # Remove text in {} or []
+        .scan(/[^[:space:]]+/)
+  end
+
   private
 
   def scan_chord(chord, no_match_proc)

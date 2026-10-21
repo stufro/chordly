@@ -1,4 +1,6 @@
 class ChordSheet < ApplicationRecord
+  include MusicUtils
+
   belongs_to :user, optional: true
   has_many :chord_sheets_set_list, dependent: :destroy
   has_many :set_lists, through: :chord_sheets_set_list
@@ -32,17 +34,14 @@ class ChordSheet < ApplicationRecord
   def unique_chords
     chord_lines = content.select { |line| line["type"] == "chords" }
     chord_lines.flat_map do |line|
-      sanitised = line["content"].tr("|:*", " ")
-                                 .gsub("N.C.", "")
-                                 .gsub(/(\{.*?\}|\[.*?\])/, "") # Remove text in {} or []
-      sanitised.split.map { |token| normalise_chord(token) }
+      chord_tokens(line["content"]).map { |token| normalise_chord(token) }
     end.uniq
   end
 
   private
 
   def normalise_chord(token)
-    chord_parts = token.match(/\A#{MusicUtils::NOTE_REGEX}\z/)&.captures
+    chord_parts = token.match(/\A#{NOTE_REGEX}\z/)&.captures
     chord_parts ? Chord.new(chord_parts).normalised.to_s : token
   end
 end
