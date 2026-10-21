@@ -228,6 +228,44 @@ describe ChordSheetModeller do
       end
     end
 
+    context "when a line is blank" do
+      let(:raw_content) { "G  Am\r\n\r\n   \r\n\u3000\r\nSome lyrics\r\n" }
+
+      it "models the line as lyrics" do
+        expect(described_class.new(raw_content).parse).to eq(
+          [
+            { type: :chords, content: "G  Am\r\n" },
+            { type: :lyrics, content: "\r\n" },
+            { type: :lyrics, content: "   \r\n" },
+            { type: :lyrics, content: "\u3000\r\n" },
+            { type: :lyrics, content: "Some lyrics\r\n" }
+          ]
+        )
+      end
+    end
+
+    context "when a line only contains bar lines, beat marks or N.C." do
+      let(:raw_content) do
+        <<~TEXT
+          |    |    |
+          |:  :|
+          | . . . |
+          N.C.
+        TEXT
+      end
+
+      it "models the line as chords" do
+        expect(described_class.new(raw_content).parse).to eq(
+          [
+            { type: :chords, content: "|    |    |\n" },
+            { type: :chords, content: "|:  :|\n" },
+            { type: :chords, content: "| . . . |\n" },
+            { type: :chords, content: "N.C.\n" }
+          ]
+        )
+      end
+    end
+
     context "when a line only contains bracketed text" do
       let(:raw_content) do
         <<~TEXT

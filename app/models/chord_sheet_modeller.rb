@@ -19,9 +19,12 @@ class ChordSheetModeller
   end
 
   def line_type(line)
+    return :lyrics if line.blank?
+
     tokens = chord_tokens(line)
     return :heading if tokens.empty? && line.match?(/\{.*?\}|\[.*?\]/) # Only text in {} or [], like [Verse 1]
 
+    # Lines with no tokens left, like | . . . | or N.C., are chord notation so stay chords
     tokens.each { |token| extract_note!(token) }
     :chords
   rescue ArgumentError
