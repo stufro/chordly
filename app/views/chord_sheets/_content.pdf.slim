@@ -1,5 +1,5 @@
 div
   pre
     - chord_sheet.content.each do |line|
-      div style=("font-weight: bold;" if line["type"] == "chords")
+      div class=line_class(line)
         = wrappable_line(line["content"])

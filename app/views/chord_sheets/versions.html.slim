@@ -34,5 +34,5 @@
           - chord_sheet.sections.each do |section|
             span.chord-sheet-section
               - section.each do |line|
-                span class=(line["type"] == "chords" ? "chord-line" : "lyric-line")
+                span class=line_class(line)
                   = line["content"]
