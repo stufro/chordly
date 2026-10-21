@@ -124,6 +124,24 @@ describe ChordSheetModeller do
       end
     end
 
+    context "when the chords contain dots" do
+      let(:raw_content) do
+        <<~TEXT
+          C.           G
+          | A . . . . . | E/G# . . . . . |
+        TEXT
+      end
+
+      it "returns the chord sheet string modelled as JSON" do
+        expect(described_class.new(raw_content).parse).to eq(
+          [
+            { type: :chords, content: "C.           G\n" },
+            { type: :chords, content: "| A . . . . . | E/G# . . . . . |\n" }
+          ]
+        )
+      end
+    end
+
     context "when the chords contain asterisks" do
       let(:raw_content) do
         <<~TEXT

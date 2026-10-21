@@ -91,6 +91,14 @@ describe MusicUtils do
       expect(music_utils.chord_tokens("|:G|Am:|*F|")).to eq %w[G Am F]
     end
 
+    it "treats dots as separators" do
+      expect(music_utils.chord_tokens("| A . . . | E/G# . . . | C.")).to eq %w[A E/G# C]
+    end
+
+    it "ignores N.C. next to dots" do
+      expect(music_utils.chord_tokens("G. N.C. . D")).to eq %w[G D]
+    end
+
     it "ignores N.C. and text in {} or []" do
       expect(music_utils.chord_tokens("G N.C. {some text} Em [more text] D")).to eq %w[G Em D]
     end

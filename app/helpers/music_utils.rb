@@ -23,9 +23,9 @@ module MusicUtils
 
   # The tokens on a line that should each be a chord for it to be a chord line
   def chord_tokens(line)
-    line.tr("|:*", " ")
-        .gsub("N.C.", "")
+    line.gsub("N.C.", "")
         .gsub(/(\{.*?\}|\[.*?\])/, "") # Remove text in {} or []
+        .tr("|:*.", " ")
         .scan(/[^[:space:]]+/)
   end
 
