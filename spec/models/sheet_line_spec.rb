@@ -173,11 +173,81 @@ describe SheetLine do
       end
     end
 
+    context "when a square bracketed label contains a chord letter" do
+      let(:original_chords) { "[Chorus] C" }
+      let(:expected_chords) { "[Chorus] C#" }
+
+      it "leaves the label unchanged" do
+        sheet_line.transpose(:up)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
+
+    context "when a curly bracketed label contains a chord letter" do
+      let(:original_chords) { "{Bridge} B" }
+      let(:expected_chords) { "{Bridge} C" }
+
+      it "leaves the label unchanged" do
+        sheet_line.transpose(:up)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
+
+    context "when a label between chords contains a later chord's letter" do
+      let(:original_chords) { "G [Fade] F" }
+      let(:expected_chords) { "G# [Fade] F#" }
+
+      it "leaves the label unchanged" do
+        sheet_line.transpose(:up)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
+
+    context "when a label contains the same chord as the line" do
+      let(:original_chords) { "[Am riff] Am" }
+      let(:expected_chords) { "[Am riff] A#m" }
+
+      it "only transposes the chord outside the label" do
+        sheet_line.transpose(:up)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
+
+    context "when a chord follows N.C." do
+      let(:original_chords) { "N.C. C" }
+      let(:expected_chords) { "N.C. C#" }
+
+      it "leaves the N.C. unchanged" do
+        sheet_line.transpose(:up)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
+
+    context "when bracketed text splits a chord" do
+      let(:original_chords) { "G[x]m" }
+      let(:expected_chords) { "G#[x]m" }
+
+      it "transposes the chord before the brackets" do
+        sheet_line.transpose(:up)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
+
     context "when a lengthened chord ends the line" do
       let(:original_chords) { "Am   F\r\n" }
       let(:expected_chords) { "A#m  F#\r\n" }
 
       it "keeps the line ending" do
+        sheet_line.transpose(:up)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
+
+    context "when a lengthened chord is followed by trailing spaces and a line ending" do
+      let(:original_chords) { "Am G/D \r\n" }
+      let(:expected_chords) { "A#m G#/D#\r\n" }
+
+      it "absorbs the trailing spaces and keeps the line ending" do
         sheet_line.transpose(:up)
         expect(sheet_line.content).to eq(expected_chords)
       end
