@@ -101,5 +101,29 @@ describe ChordSheetModeller do
         )
       end
     end
+
+    context "when the chords are separated by ideographic spaces" do
+      let(:raw_content) { "Am　　　F\r\n" }
+
+      it "replaces each ideographic space with two spaces to keep the chords aligned" do
+        expect(described_class.new(raw_content).parse).to eq(
+          [
+            { type: :chords, content: "Am      F\r\n" }
+          ]
+        )
+      end
+    end
+
+    context "when lyrics contain ideographic spaces" do
+      let(:raw_content) { "君の　名は\r\n" }
+
+      it "leaves the lyrics unchanged" do
+        expect(described_class.new(raw_content).parse).to eq(
+          [
+            { type: :lyrics, content: "君の　名は\r\n" }
+          ]
+        )
+      end
+    end
   end
 end

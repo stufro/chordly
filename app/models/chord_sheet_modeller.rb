@@ -12,11 +12,14 @@ class ChordSheetModeller
   private
 
   def model_line(line)
-    { type: line_type(line), content: line }
+    type = line_type(line)
+    line = line.gsub("　", "  ") if type == :chords # Ideographic spaces are two columns wide
+
+    { type:, content: line }
   end
 
   def line_type(line)
-    remove_ignored_chars(line).split.each { |token| extract_note!(token) }
+    remove_ignored_chars(line).scan(/[^[:space:]]+/).each { |token| extract_note!(token) }
     :chords
   rescue ArgumentError
     :lyrics
