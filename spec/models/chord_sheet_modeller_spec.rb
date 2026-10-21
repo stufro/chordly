@@ -90,6 +90,22 @@ describe ChordSheetModeller do
       end
     end
 
+    context "when the chords use musical accidental symbols" do
+      let(:raw_content) do
+        <<~TEXT
+          F♯  C♯m  B♭  D/F♯
+        TEXT
+      end
+
+      it "returns the chord sheet string modelled as JSON" do
+        expect(described_class.new(raw_content).parse).to eq(
+          [
+            { type: :chords, content: "F♯  C♯m  B♭  D/F♯\n" }
+          ]
+        )
+      end
+    end
+
     context "when the chords contain asterisks" do
       let(:raw_content) do
         <<~TEXT

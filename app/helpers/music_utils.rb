@@ -1,6 +1,6 @@
 module MusicUtils
   ASSUMED_OCTAVE = 5
-  ACCIDENTALS = /(?:#|b|♭)?/
+  ACCIDENTALS = /(?:#|♯|b|♭)?/
   CHORD_TYPES = /(maj|min|m|sus|dim|aug|mmaj)?/
   CHORD_EXTENSIONS = /(2|4|5|6|7|9|13)?/
   ADD_CHORDS = /(add\d+)?/

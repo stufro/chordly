@@ -33,5 +33,11 @@ describe Chord do
 
       expect(flat_chord.transpose(:up).to_s).to eq "Bm"
     end
+
+    it "transposes a note using the musical sharp symbol" do
+      sharp_chord = described_class.new(["F♯", "m", nil, nil, "C♯"])
+
+      expect(sharp_chord.transpose(:up).to_s).to eq "Gm/D"
+    end
   end
 end

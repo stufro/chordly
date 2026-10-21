@@ -133,6 +133,16 @@ describe SheetLine do
       end
     end
 
+    context "with musical accidental symbols" do
+      let(:original_chords) { "F♯  C♯m  B♭  D/F♯" }
+      let(:expected_chords) { "G   Dm   B   D#/G" }
+
+      it "transposes the chords and maintains the whitespace" do
+        sheet_line.transpose(:up)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
+
     context "with add4 chords" do
       let(:original_chords) { "Gadd4  Amadd2  Dadd9" }
       let(:expected_chords) { "F#add4 G#madd2 C#add9" }

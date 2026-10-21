@@ -25,6 +25,14 @@ describe MusicUtils do
       end
     end
 
+    context "with musical accidental symbols" do
+      it "returns the root note" do
+        { "F♯m7" => "F♯", "B♭maj7" => "B♭", "D/F♯" => "D" }.each do |chord, root_note|
+          expect(music_utils.extract_note(chord)).to eq root_note
+        end
+      end
+    end
+
     context "with an inversion" do
       it "returns the root note" do
         expect(music_utils.extract_note("G#/D#")).to eq "G#"
