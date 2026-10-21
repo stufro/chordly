@@ -78,10 +78,21 @@ describe("Logging in with an ad-free account", () => {
     cy.get("#user_email").type("a@a.com")
     cy.get("#user_password").type("123456789")
     cy.get("#login-button").click()
-    cy.contains("Signed in successfully.")
+    cy.contains("Logout")
 
     cy.visit("/home/about")
     cy.get("ins.adsbygoogle").should("not.exist")
+  })
+
+  it("reloads the page on login so the auto ads are unloaded", () => {
+    cy.visit("/users/sign_in")
+    cy.window().then((win) => { win.loadedBeforeLogin = true })
+    cy.get("#user_email").type("a@a.com")
+    cy.get("#user_password").type("123456789")
+    cy.get("#login-button").click()
+
+    cy.contains("Logout")
+    cy.window().should("not.have.property", "loadedBeforeLogin")
   })
 })
 

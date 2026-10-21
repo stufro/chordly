@@ -23,6 +23,8 @@ html lang="en" class="theme-#{theme}"
     = @organization_schema
     = @website_schema
     = render("layouts/favicons")
+    / Reload when ads toggle, since Turbo can't unload the AdSense script and the script mutates its own tag
+    meta name="show-ads" content=show_ads?.to_s data-turbo-track="reload"
     - if show_ads?
       script[async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3401313551409918"
       crossorigin="anonymous"]

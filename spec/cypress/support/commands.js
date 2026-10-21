@@ -35,7 +35,7 @@ Cypress.Commands.add('login', (attributes) => {
       cy.get("#user_email").type(attributes.email)
       cy.get("#user_password").type("123456789")
       cy.get("#login-button").click()
-      cy.contains("Signed in successfully.")
+      cy.contains("Logout")
     }, {
       cacheAcrossSpecs: true,
     })
