@@ -160,6 +160,40 @@ describe ChordSheetModeller do
       end
     end
 
+    context "when chords are in brackets" do
+      let(:raw_content) do
+        <<~TEXT
+          (D7)        G        Bm             Bb            D
+          G           Bm              Bb             (D)
+        TEXT
+      end
+
+      it "returns the chord sheet string modelled as JSON" do
+        expect(described_class.new(raw_content).parse).to eq(
+          [
+            { type: :chords, content: "(D7)        G        Bm             Bb            D\n" },
+            { type: :chords, content: "G           Bm              Bb             (D)\n" }
+          ]
+        )
+      end
+    end
+
+    context "when part of a chord is in brackets" do
+      let(:raw_content) do
+        <<~TEXT
+          G  C7(b9)
+        TEXT
+      end
+
+      it "models the line as lyrics" do
+        expect(described_class.new(raw_content).parse).to eq(
+          [
+            { type: :lyrics, content: "G  C7(b9)\n" }
+          ]
+        )
+      end
+    end
+
     context "when the chords contain asterisks" do
       let(:raw_content) do
         <<~TEXT

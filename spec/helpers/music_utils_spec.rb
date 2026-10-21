@@ -107,6 +107,14 @@ describe MusicUtils do
       expect(music_utils.chord_tokens("D x G x3x")).to eq %w[D x G x3x]
     end
 
+    it "removes brackets around tokens" do
+      expect(music_utils.chord_tokens("(D7) G (D) (G  A)")).to eq %w[D7 G D G A]
+    end
+
+    it "ignores bracketed repeat markers" do
+      expect(music_utils.chord_tokens("D G (x2)")).to eq %w[D G]
+    end
+
     it "ignores N.C. and text in {} or []" do
       expect(music_utils.chord_tokens("G N.C. {some text} Em [more text] D")).to eq %w[G Em D]
     end
