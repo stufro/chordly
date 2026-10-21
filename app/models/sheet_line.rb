@@ -9,8 +9,9 @@ class SheetLine
   end
 
   def transpose(direction)
-    # Match ignored text (N.C. and text in {} or []) first so chord letters inside it are left alone
-    @content = content.gsub(/N\.C\.|\{.*?\}|\[.*?\]|#{NOTE_REGEX}( *)/) do |match|
+    # Match ignored text (N.C. and text in {} or []) first so chord letters inside it are left alone,
+    # and only match whole chords so part of an unrecognised chord isn't transposed
+    @content = content.gsub(/N\.C\.|\{.*?\}|\[.*?\]|(?<![[:alnum:]])#{NOTE_REGEX}(?![[:alnum:]])( *)/) do |match|
       chord_parts = Regexp.last_match.captures
       old_chord = Chord.new(chord_parts)
       next match if old_chord.note.nil? || old_chord.nashville_number?

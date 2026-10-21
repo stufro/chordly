@@ -233,6 +233,26 @@ describe SheetLine do
       end
     end
 
+    context "with minor major chords" do
+      let(:original_chords) { "Cmmaj7  Dmmaj7/A" }
+      let(:expected_chords) { "C#mmaj7 D#mmaj7/A#" }
+
+      it "transposes the whole chord" do
+        sheet_line.transpose(:up)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
+
+    context "with a chord that isn't fully recognised" do
+      let(:original_chords) { "G  Cm7b5  D" }
+      let(:expected_chords) { "G# Cm7b5  D#" }
+
+      it "leaves it unchanged rather than transposing part of it" do
+        sheet_line.transpose(:up)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
+
     context "when a lengthened chord ends the line" do
       let(:original_chords) { "Am   F\r\n" }
       let(:expected_chords) { "A#m  F#\r\n" }
