@@ -19,7 +19,10 @@ class ChordSheetModeller
   end
 
   def line_type(line)
-    chord_tokens(line).each { |token| extract_note!(token) }
+    tokens = chord_tokens(line)
+    return :heading if tokens.empty? && line.match?(/\{.*?\}|\[.*?\]/) # Only text in {} or [], like [Verse 1]
+
+    tokens.each { |token| extract_note!(token) }
     :chords
   rescue ArgumentError
     :lyrics

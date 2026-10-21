@@ -8,6 +8,7 @@ describe "chord_sheets:reclassify_lines", type: :task do
 
   let!(:misclassified_sheet) do
     create(:chord_sheet, content: [
+             { "type" => "chords", "content" => "[Verse 1]\r\n" },
              { "type" => "lyrics", "content" => "(D7)  G\r\n" },
              { "type" => "lyrics", "content" => "Am　　F\r\n" },
              { "type" => "lyrics", "content" => "So here it is" }
@@ -25,6 +26,7 @@ describe "chord_sheets:reclassify_lines", type: :task do
   it "remodels the lines of sheets that are misclassified" do
     expect { task.invoke }.to output.to_stdout
                           .and change { misclassified_sheet.reload.content }.to [
+                            { "type" => "heading", "content" => "[Verse 1]\r\n" },
                             { "type" => "chords", "content" => "(D7)  G\r\n" },
                             { "type" => "chords", "content" => "Am    F\r\n" },
                             { "type" => "lyrics", "content" => "So here it is" }

@@ -228,6 +228,58 @@ describe ChordSheetModeller do
       end
     end
 
+    context "when a line only contains bracketed text" do
+      let(:raw_content) do
+        <<~TEXT
+          [Verse 1]
+          {Chorus}
+          | [Bridge] |
+        TEXT
+      end
+
+      it "models the line as a heading" do
+        expect(described_class.new(raw_content).parse).to eq(
+          [
+            { type: :heading, content: "[Verse 1]\n" },
+            { type: :heading, content: "{Chorus}\n" },
+            { type: :heading, content: "| [Bridge] |\n" }
+          ]
+        )
+      end
+    end
+
+    context "when a line contains bracketed text and chords" do
+      let(:raw_content) do
+        <<~TEXT
+          [Intro] G  Am
+        TEXT
+      end
+
+      it "models the line as chords" do
+        expect(described_class.new(raw_content).parse).to eq(
+          [
+            { type: :chords, content: "[Intro] G  Am\n" }
+          ]
+        )
+      end
+    end
+
+    context "when a line contains bracketed text and lyrics" do
+      let(:raw_content) do
+        <<~TEXT
+          Sing it [softly] now
+        TEXT
+      end
+
+      it "models the line as lyrics" do
+        expect(described_class.new(raw_content).parse).to eq(
+          [
+            { type: :lyrics, content: "Sing it [softly] now\n" }
+          ]
+        )
+      end
+    end
+
     context "when the chords contain asterisks" do
       let(:raw_content) do
         <<~TEXT
