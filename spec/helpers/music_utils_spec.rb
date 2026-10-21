@@ -25,6 +25,22 @@ describe MusicUtils do
       end
     end
 
+    context "with suspended, extended and altered chords" do
+      it "returns the root note" do
+        %w[G7sus4 G9sus4 G7sus2 G11 Gm11 Gmaj7#11 Gm7b5 G7#9 G7b9 G7♭9 G7#5 Gmaj13 G6/9 G69 G6/9/B].each do |chord|
+          expect(music_utils.extract_note(chord)).to eq "G"
+        end
+      end
+    end
+
+    context "with chord symbols" do
+      it "returns the root note" do
+        %w[G+ G+7 G°7 Gø7 GM7].each do |chord|
+          expect(music_utils.extract_note(chord)).to eq "G"
+        end
+      end
+    end
+
     context "with musical accidental symbols" do
       it "returns the root note" do
         { "F♯m7" => "F♯", "B♭maj7" => "B♭", "D/F♯" => "D" }.each do |chord, root_note|
@@ -56,6 +72,12 @@ describe MusicUtils do
       it "raises an ArgumentError exception" do
         not_a_chord = "Another string"
         expect { music_utils.extract_note!(not_a_chord) }.to raise_exception(ArgumentError)
+      end
+    end
+
+    context "when an alteration has no number" do
+      it "raises an ArgumentError exception" do
+        expect { music_utils.extract_note!("G7#") }.to raise_exception(ArgumentError)
       end
     end
   end

@@ -106,6 +106,24 @@ describe ChordSheetModeller do
       end
     end
 
+    context "when the chords are suspended, extended or altered" do
+      let(:raw_content) do
+        <<~TEXT
+          G7sus4  C11  Cm7b5  E7#9  G6/9/B
+          C+  C°7  Cø7  CM7
+        TEXT
+      end
+
+      it "returns the chord sheet string modelled as JSON" do
+        expect(described_class.new(raw_content).parse).to eq(
+          [
+            { type: :chords, content: "G7sus4  C11  Cm7b5  E7#9  G6/9/B\n" },
+            { type: :chords, content: "C+  C°7  Cø7  CM7\n" }
+          ]
+        )
+      end
+    end
+
     context "when the chords contain asterisks" do
       let(:raw_content) do
         <<~TEXT

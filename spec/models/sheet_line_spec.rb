@@ -133,6 +133,26 @@ describe SheetLine do
       end
     end
 
+    context "with suspended, extended and altered chords" do
+      let(:original_chords) { "G7sus4  Cm7b5  E7#9  G6/9/B" }
+      let(:expected_chords) { "G#7sus4 C#m7b5 F7#9  G#6/9/C" }
+
+      it "transposes the root and bass notes and keeps the rest of the chord" do
+        sheet_line.transpose(:up)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
+
+    context "with chord symbols" do
+      let(:original_chords) { "C+  C°7  Cø7  CM7" }
+      let(:expected_chords) { "B+  B°7  Bø7  BM7" }
+
+      it "transposes the root and keeps the symbol" do
+        sheet_line.transpose(:down)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
+
     context "with musical accidental symbols" do
       let(:original_chords) { "F♯  C♯m  B♭  D/F♯" }
       let(:expected_chords) { "G   Dm   B   D#/G" }
@@ -264,8 +284,8 @@ describe SheetLine do
     end
 
     context "with a chord that isn't fully recognised" do
-      let(:original_chords) { "G  Cm7b5  D" }
-      let(:expected_chords) { "G# Cm7b5  D#" }
+      let(:original_chords) { "G  C7alt  D" }
+      let(:expected_chords) { "G# C7alt  D#" }
 
       it "leaves it unchanged rather than transposing part of it" do
         sheet_line.transpose(:up)
