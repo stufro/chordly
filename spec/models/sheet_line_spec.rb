@@ -172,5 +172,15 @@ describe SheetLine do
         expect(sheet_line.content).to eq(expected_chords)
       end
     end
+
+    context "when a lengthened chord ends the line" do
+      let(:original_chords) { "Am   F\r\n" }
+      let(:expected_chords) { "A#m  F#\r\n" }
+
+      it "keeps the line ending" do
+        sheet_line.transpose(:up)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
   end
 end
