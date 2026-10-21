@@ -32,7 +32,7 @@ class ChordSheet < ApplicationRecord
   def unique_chords
     chord_lines = content.select { |line| line["type"] == "chords" }
     chord_lines.flat_map do |line|
-      sanitised = line["content"].delete("|:*")
+      sanitised = line["content"].tr("|:*", " ")
                                  .gsub("N.C.", "")
                                  .gsub(/(\{.*?\}|\[.*?\])/, "") # Remove text in {} or []
       sanitised.split

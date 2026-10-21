@@ -123,6 +123,16 @@ describe SheetLine do
       end
     end
 
+    context "when bar lines have no spaces around them" do
+      let(:original_chords) { "|:G|Am:|*F|" }
+      let(:expected_chords) { "|:G#|A#m:|*F#|" }
+
+      it "transposes the chords and leaves the bar lines in place" do
+        sheet_line.transpose(:up)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
+
     context "with add4 chords" do
       let(:original_chords) { "Gadd4  Amadd2  Dadd9" }
       let(:expected_chords) { "F#add4 G#madd2 C#add9" }

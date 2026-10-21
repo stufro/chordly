@@ -114,5 +114,18 @@ describe ChordSheet do
         expect(chord_sheet.unique_chords).to match_array %w[D D/F# G]
       end
     end
+
+    context "when bar lines have no spaces around them" do
+      let(:content) do
+        [
+          { "type" => "chords", "content" => "|:G|Am:|*F|" }
+        ]
+      end
+
+      it "returns each chord separately" do
+        chord_sheet = create(:chord_sheet, content:)
+        expect(chord_sheet.unique_chords).to match_array %w[G Am F]
+      end
+    end
   end
 end

@@ -54,6 +54,42 @@ describe ChordSheetModeller do
       end
     end
 
+    context "when the bar lines have no spaces around them" do
+      let(:raw_content) do
+        <<~TEXT
+          |G|Am|F|C|
+          |:G|Am:|
+          G*|Am*|
+        TEXT
+      end
+
+      it "returns the chord sheet string modelled as JSON" do
+        expect(described_class.new(raw_content).parse).to eq(
+          [
+            { type: :chords, content: "|G|Am|F|C|\n" },
+            { type: :chords, content: "|:G|Am:|\n" },
+            { type: :chords, content: "G*|Am*|\n" }
+          ]
+        )
+      end
+    end
+
+    context "when words are joined by bar lines" do
+      let(:raw_content) do
+        <<~TEXT
+          Go|Away
+        TEXT
+      end
+
+      it "models the line as lyrics" do
+        expect(described_class.new(raw_content).parse).to eq(
+          [
+            { type: :lyrics, content: "Go|Away\n" }
+          ]
+        )
+      end
+    end
+
     context "when the chords contain asterisks" do
       let(:raw_content) do
         <<~TEXT

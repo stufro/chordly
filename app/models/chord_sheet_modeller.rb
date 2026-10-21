@@ -26,9 +26,7 @@ class ChordSheetModeller
   end
 
   def remove_ignored_chars(line)
-    line.delete("|")
-        .delete(":")
-        .delete("*")
+    line.tr("|:*", " ")
         .gsub("N.C.", "")
         .gsub(/(\{.*?\}|\[.*?\])/, "") # Remove text in {} or []
   end
