@@ -24,7 +24,7 @@ RemoveEmptyHelpersCheck: { }
 #RemoveTabCheck: { }
 RemoveTrailingWhitespaceCheck: { ignored_files: ["db/development_seed.rb", "app/views/home/about.html.slim", "app/views/home/privacy.html.slim"] }
 RemoveUnusedMethodsInControllersCheck: { except_methods: ["ApplicationController#after_sign_in_path_for", "RegistrationsController#check_captcha"] }
-RemoveUnusedMethodsInHelpersCheck: { except_methods: ["MusicUtils#extract_note", "MusicUtils#extract_note!"] }
+RemoveUnusedMethodsInHelpersCheck: { except_methods: ["MusicUtils#extract_note", "MusicUtils#extract_note!", "MusicUtils#chord_tokens"] }
 RemoveUnusedMethodsInModelsCheck: { except_methods: [] }
 ReplaceComplexCreationWithFactoryMethodCheck: { attribute_assignment_count: 2 }
 ReplaceInstanceVariableWithLocalVariableCheck: { }
