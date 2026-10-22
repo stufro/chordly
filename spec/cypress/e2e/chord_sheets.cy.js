@@ -257,6 +257,20 @@ describe("Two-column layout", () => {
     cy.get(".chord-line").first().should("have.css", "color", "rgb(224, 49, 49)")
   })
 
+  it("resets a chord sheet to the built-in styles", () => {
+    helper.visitChordSheet()
+
+    cy.get("#style-chord-sheet").click()
+    cy.get("#line-style-panel-chords label[title='Red']").click()
+    cy.get("#save-styles").click()
+    cy.get(".chord-line").first().should("have.css", "color", "rgb(224, 49, 49)")
+
+    cy.get("#style-chord-sheet").click()
+    cy.get("#reset-styles").click()
+    cy.contains("Styles reset")
+    cy.get(".chord-line").first().should("not.have.css", "color", "rgb(224, 49, 49)")
+  })
+
   it("closes the style modal after a save's flash message fades", () => {
     cy.viewport(390, 844)
     helper.visitChordSheet()

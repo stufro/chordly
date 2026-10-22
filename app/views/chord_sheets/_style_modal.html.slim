@@ -72,8 +72,16 @@
                       = style_fields.label :font_size, font_size.humanize, value: font_size, class: "style-option"
 
     footer.modal-card-foot
-      button.button.is-primary#save-styles type="submit" form="style-form" Save
-      - if user_signed_in?
-        button.button.is-primary.is-outlined#apply-styles-to-all[type="submit" form="style-form" name="apply_to_all"
-          value="1" data-turbo-confirm="This replaces the styles on all your chord sheets. Continue?"]
-          | Save and apply to all my chord sheets
+      .buttons
+        button.button.is-primary#save-styles type="submit" form="style-form" Save
+        - if user_signed_in?
+          button.button#apply-styles-to-all[type="submit" form="style-form" name="apply_to_all"
+            value="1" data-turbo-confirm="Save these styles, use them for new chord sheets and replace them on all your chord sheets?"]
+            span.icon
+              i.fas.fa-layer-group
+            span Apply to all sheets
+        = button_to chord_sheet_style_path(chord_sheet), method: :delete, class: "button", id: "reset-styles",
+                    form: { data: { turbo_confirm: "Reset this chord sheet to Chordly's default styles?" } }
+          span.icon
+            i.fas.fa-rotate-left
+          span Reset

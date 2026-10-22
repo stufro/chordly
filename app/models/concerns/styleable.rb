@@ -22,6 +22,14 @@ module Styleable
       LineStyle.new(line_type:, font_style: line_type == "lyrics" ? "normal" : "bold")
   end
 
+  # Back to the built-in styles, with no line styles of its own
+  def reset_styles
+    transaction do
+      line_styles.destroy_all
+      update!(text_size: "normal")
+    end
+  end
+
   # Copies rather than links, so each can then be changed on its own
   def copy_styles_from(other)
     self.text_size = other.text_size

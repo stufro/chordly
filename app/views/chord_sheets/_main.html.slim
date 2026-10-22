@@ -52,7 +52,7 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
                   data-chord-diagram-target="button" data-tooltip-target="button"
                   data-action="chord-diagram#click_icon"]
                   span.icon
-                    = render("chord_diagram_icon")
+                    = render("chord_sheets/chord_diagram_icon")
               .dropdown-menu#diagram-select role="menu"
                 .dropdown-content
                   button.dropdown-item#guitar data-action="chord-diagram#set" Guitar
@@ -100,8 +100,8 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
           i.fas.fa-info-circle
         span The two-column layout might not be visible on your screen size.
 
-  = render("content", chord_sheet:)
+  = render("chord_sheets/content", chord_sheet:)
 
-  = render("style_modal", chord_sheet:)
-  = render("versions_modal", chord_sheet:)
-  = render("line_type_help_modal")
+  = render("chord_sheets/style_modal", chord_sheet:)
+  = render("chord_sheets/versions_modal", chord_sheet:)
+  = render("chord_sheets/line_type_help_modal")
