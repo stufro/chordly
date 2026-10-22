@@ -6,6 +6,6 @@
       button.delete type="button" aria-label="close" data-action="modal#close"
     section.modal-card-body
       / Lazy so it loads once the modal is shown, and again after the chord sheet re-renders with a change
-      = turbo_frame_tag "versions", src: versions_chord_sheet_path(chord_sheet), loading: :lazy, target: "_top"
+      = turbo_frame_tag "versions", src: chord_sheet_versions_path(chord_sheet), loading: :lazy, target: "_top"
         .is-flex.is-justify-content-center
           .spinner

@@ -1,6 +1,6 @@
 class ChordSheetsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[create show transpose compact update]
-  before_action :authorize_user, only: %i[show transpose compact update destroy versions restore]
+  before_action :authorize_user, only: %i[show transpose compact update destroy]
 
   def index
     @chord_sheets = current_user.chord_sheets.not_deleted.order(build_order_query(:chord_sheet))
@@ -54,14 +54,6 @@ class ChordSheetsController < ApplicationController
     @chord_sheet.update(deleted: true)
     flash[:notice] = "Chord sheet deleted"
     redirect_to chord_sheets_path
-  end
-
-  def versions; end
-
-  def restore
-    version = @chord_sheet.versions.find(params.expect(:version_id))
-    version.reify.save
-    redirect_to @chord_sheet
   end
 
   private

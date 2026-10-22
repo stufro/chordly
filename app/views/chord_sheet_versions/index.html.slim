@@ -17,8 +17,7 @@
               i.fas.fa-clock
             span = local_time(version.created_at)
 
-        = button_to(restore_chord_sheet_path(@chord_sheet, version_id: version.id),
-                    class: "button is-warning is-small")
+        = button_to(chord_sheet_version_path(@chord_sheet, version), method: :patch, class: "button is-warning is-small")
           span.icon-text.is-flex-wrap-nowrap
             span.icon
               i.fas.fa-history

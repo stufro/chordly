@@ -278,44 +278,4 @@ describe "Chord Sheets" do
                                                                  "Chorus lyrics"]
     end
   end
-
-  describe "GET /chord_sheets/:id/versions" do
-    let(:chord_sheet) { create(:chord_sheet, user:) }
-
-    it "returns ok" do
-      get versions_chord_sheet_path(chord_sheet)
-      expect(response).to have_http_status(:ok)
-    end
-
-    it "styles each version's lines by their type" do
-      create(:line_style, :chords, :red, styleable: chord_sheet)
-      chord_sheet.update!(name: "Renamed")
-
-      get versions_chord_sheet_path(chord_sheet)
-
-      chord_line = response.parsed_body.at_css(".version-container .chord-line")
-
-      expect(chord_line["style"]).to eq "font-weight: bold; color: #e03131"
-    end
-
-    it "previews each version at the text size it was saved with" do
-      chord_sheet.update!(text_size: "small")
-      chord_sheet.update!(text_size: "larger")
-
-      get versions_chord_sheet_path(chord_sheet)
-      sizes = response.parsed_body.css(".version-container pre").pluck("style")
-
-      expect(sizes).to eq ["font-size: 12px", "font-size: 14px"]
-    end
-
-    it "previews each version in the column layout it was saved with" do
-      chord_sheet.update!(two_columns: true)
-      chord_sheet.update!(two_columns: false)
-
-      get versions_chord_sheet_path(chord_sheet)
-      previews = response.parsed_body.css(".version-container pre").map { it.classes.include?("two-columns") }
-
-      expect(previews).to eq [true, false]
-    end
-  end
 end
