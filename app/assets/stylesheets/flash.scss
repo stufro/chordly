@@ -33,8 +33,10 @@
     opacity: 0.9;
   }
 
+  // Hidden rather than only transparent, so the faded message can't be hovered or block clicks
   100% {
     opacity: 0;
+    visibility: hidden;
   }
 }
 
