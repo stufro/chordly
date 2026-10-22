@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 
   resources :chord_sheets, only: %i[index new create show update destroy] do
     put :transpose, on: :member
+    put :compact, on: :member
     get :versions, on: :member
     post :restore, on: :member
   end

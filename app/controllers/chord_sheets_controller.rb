@@ -1,6 +1,6 @@
 class ChordSheetsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[create show transpose update]
-  before_action :authorize_user, only: %i[show transpose update destroy versions restore]
+  skip_before_action :authenticate_user!, only: %i[create show transpose compact update]
+  before_action :authorize_user, only: %i[show transpose compact update destroy versions restore]
 
   def index
     @chord_sheets = current_user.chord_sheets.not_deleted.order(build_order_query(:chord_sheet))
@@ -33,6 +33,11 @@ class ChordSheetsController < ApplicationController
 
   def transpose
     @chord_sheet.transpose(params[:direction]).save
+    render :show
+  end
+
+  def compact
+    @chord_sheet.compact.save
     render :show
   end
 

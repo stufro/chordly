@@ -31,6 +31,12 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
               span.icon
                 i.fas.fa-table-columns
 
+            = button_to compact_chord_sheet_path(chord_sheet),
+              class: "button is-rounded is-primary has-tooltip", aria: { label: "Compact: remove blank lines" },
+              id: "compact", method: :put
+              span.icon
+                i.fas.fa-text-height
+
             .dropdown.is-right#chord-diagram-dropdown[data-turbo-permanent data-chord-diagram-target="wrapper"]
               .dropdown-trigger
                 button.button.is-rounded.is-primary.is-outlined.has-tooltip#chord-diagram[

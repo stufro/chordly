@@ -27,6 +27,14 @@ class ChordSheet < ApplicationRecord
     self
   end
 
+  # Removes blank lines, keeping one before each heading after the first line to separate sections
+  def compact
+    self.content = content.reject.with_index do |line, index|
+      line["content"].blank? && (index.zero? || content[index + 1]&.dig("type") != "heading")
+    end
+    self
+  end
+
   def sections
     content.slice_after { |line| line["content"].blank? }.to_a
   end

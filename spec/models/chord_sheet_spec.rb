@@ -56,6 +56,43 @@ describe ChordSheet do
     end
   end
 
+  describe "#compact" do
+    it "removes blank lines except those before a heading" do
+      content = [
+        { "type" => "heading", "content" => "[Verse]\r\n" },
+        { "type" => "lyrics", "content" => "\r\n" },
+        { "type" => "chords", "content" => "G   Am\r\n" },
+        { "type" => "lyrics", "content" => "Verse lyrics\r\n" },
+        { "type" => "lyrics", "content" => "\r\n" },
+        { "type" => "lyrics", "content" => "\r\n" },
+        { "type" => "heading", "content" => "[Chorus]\r\n" },
+        { "type" => "lyrics", "content" => "Chorus lyrics\r\n" },
+        { "type" => "lyrics", "content" => "\r\n" }
+      ]
+      chord_sheet = described_class.new(content:)
+
+      chord_sheet.compact
+
+      expect(chord_sheet.content).to eq [
+        { "type" => "heading", "content" => "[Verse]\r\n" },
+        { "type" => "chords", "content" => "G   Am\r\n" },
+        { "type" => "lyrics", "content" => "Verse lyrics\r\n" },
+        { "type" => "lyrics", "content" => "\r\n" },
+        { "type" => "heading", "content" => "[Chorus]\r\n" },
+        { "type" => "lyrics", "content" => "Chorus lyrics\r\n" }
+      ]
+    end
+
+    it "removes a blank line before a heading at the top of the sheet" do
+      content = [{ "type" => "lyrics", "content" => "\r\n" }, { "type" => "heading", "content" => "[Verse]\r\n" }]
+      chord_sheet = described_class.new(content:)
+
+      chord_sheet.compact
+
+      expect(chord_sheet.content).to eq [{ "type" => "heading", "content" => "[Verse]\r\n" }]
+    end
+  end
+
   describe "#sections" do
     it "groups lines into sections ending at each blank line" do
       verse = [
