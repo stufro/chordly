@@ -11,6 +11,7 @@ module ChordSheetsHelper
     line_style = chord_sheet.line_style_for(line["type"])
     declarations = [LineStyle::FONT_STYLES[line_style.font_style]]
     declarations << "color: #{LineStyle::COLOURS[line_style.colour]}" if line_style.colour
+    declarations << "font-size: #{LineStyle::FONT_SIZES[line_style.font_size]}" if line_style.font_size
     declarations.join("; ")
   end
 end

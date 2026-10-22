@@ -42,6 +42,12 @@ describe ChordSheetsHelper do
       expect(helper.line_style(chord_sheet.reload, line)).to eq "font-weight: normal; font-style: italic"
     end
 
+    it "sizes headings relative to the rest of the chord sheet" do
+      create(:line_style, :heading, :larger, styleable: chord_sheet)
+
+      expect(helper.line_style(chord_sheet.reload, { "type" => "heading" })).to eq "font-weight: bold; font-size: 1.5em"
+    end
+
     it "combines bold and italics" do
       create(:line_style, :lyrics, :bold_italic, styleable: chord_sheet)
 

@@ -8,9 +8,11 @@
       / Previews follow the checked options as they're picked, using the same CSS the sheet gets
       style
         - LineStyle::FONT_STYLES.each do |font_style, css|
-          | .style-panel:has(input[value="#{font_style}"]:checked) .style-preview { #{css} }
+          | .style-panel:has(input[name$="[font_style]"][value="#{font_style}"]:checked) .style-preview { #{css} }
         - LineStyle::COLOURS.each do |colour, hex|
-          | .style-panel:has(input[value="#{colour}"]:checked) .style-preview { color: #{hex} }
+          | .style-panel:has(input[name$="[colour]"][value="#{colour}"]:checked) .style-preview { color: #{hex} }
+        - LineStyle::FONT_SIZES.each do |font_size, size|
+          | .style-panel:has(input[name$="[font_size]"][value="#{font_size}"]:checked) .style-preview { font-size: #{size} }
 
       .tabs.is-centered.is-medium
         ul
@@ -45,6 +47,16 @@
                     = style_fields.label :colour, value: colour, class: "style-option is-swatch", title: colour.humanize,
                                                   style: "background-color: #{hex}" do
                       span.is-sr-only = colour.humanize
+
+              - if line_type == "heading"
+                .field
+                  p.label Size
+                  / Headings saved before sizes existed have none, which renders as normal
+                  .style-options
+                    - LineStyle::FONT_SIZES.each_key do |font_size|
+                      = style_fields.radio_button :font_size, font_size,
+                                                  checked: font_size == (style_fields.object.font_size || "normal")
+                      = style_fields.label :font_size, font_size.humanize, value: font_size, class: "style-option"
 
     footer.modal-card-foot
       button.button.is-primary#save-styles type="submit" form="style-form" Save

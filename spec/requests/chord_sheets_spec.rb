@@ -152,6 +152,14 @@ describe "Chord Sheets" do
         )
       end
 
+      it "saves a heading size" do
+        patch "#{chord_sheet_path(chord_sheet)}.turbo_stream", params: { chord_sheet: { line_styles_attributes: [
+          { line_type: "heading", font_style: "bold", font_size: "largest" }
+        ] } }
+
+        expect(chord_sheet.reload.line_styles.map(&:font_size)).to eq ["largest"]
+      end
+
       it "updates an existing line style rather than adding another" do
         line_style = create(:line_style, :chords, :red, styleable: chord_sheet)
 
