@@ -33,14 +33,3 @@
 hr
 
 = adsense_unit(:horizontal)
-
-#versions-modal.modal.modal-turbo-frame data-turbo-frame-src=versions_chord_sheet_path(@chord_sheet)
-  .modal-background
-
-  .modal-content style="width: 75%"
-    .box
-      = turbo_frame_tag "versions", target: "_top"
-        .is-flex.is-justify-content-center
-          .spinner
-
-  button.modal-close.is-large aria-label="close"

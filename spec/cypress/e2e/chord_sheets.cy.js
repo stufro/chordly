@@ -235,12 +235,27 @@ describe("Undoing changes", () => {
 
     cy.contains("My amazing song")
 
-    cy.get(".modal-close").click()
+    cy.get("#versions-modal .delete").click()
+    cy.get("#versions-modal").should("not.be.visible")
     cy.get("#transpose-up").click() // even after transposing
 
     cy.get("#versions").click()
 
     cy.contains("My amazing song")
+  })
+
+  it("closes modals with the escape key or by clicking outside them", () => {
+    helper.visitChordSheet()
+
+    cy.get("#versions").click()
+    cy.get("#versions-modal").should("be.visible")
+    cy.get("body").type("{esc}")
+    cy.get("#versions-modal").should("not.be.visible")
+
+    cy.get("#style-chord-sheet").click()
+    cy.get("#style-modal").should("be.visible")
+    cy.get("#style-modal .modal-background").click("topLeft")
+    cy.get("#style-modal").should("not.be.visible")
   })
 
   it("allows the user to restore a previous version", () => {

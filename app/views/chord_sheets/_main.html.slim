@@ -1,5 +1,6 @@
 turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram modal"
-    data-action="click@document->chord-diagram#closeOnClickOutside turbo:frame-render->chord-diagram#show"
+    data-action="click@document->chord-diagram#closeOnClickOutside turbo:frame-render->chord-diagram#show
+                 keydown.esc@window->modal#close"
     data-clipboard-success-content-value="<span class='icon'><i class='fas fa-check'></i></span>"]
   = turbo_stream.replace "flash-message-container", partial: "partials/flash"
   .card.mb-3
@@ -38,8 +39,9 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
               span.icon
                 i.fas.fa-text-height
 
-            button.button.is-rounded.is-primary.has-tooltip.modal-trigger#style-chord-sheet[
-              type="button" aria-label="Style chord sheet" data-target="style-modal" data-tooltip-target="button"]
+            button.button.is-rounded.is-primary.has-tooltip#style-chord-sheet[
+              type="button" aria-label="Style chord sheet" data-tooltip-target="button"
+              data-action="modal#open" data-modal-id-param="style-modal"]
               span.icon
                 i.fas.fa-palette
 
@@ -59,9 +61,9 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
       .toolbar-group#toolbar-actions[data-turbo-permanent]
         p.toolbar-label Actions
         .buttons.mb-0
-          = button_to("#", class: "button is-rounded is-info modal-trigger has-tooltip",
-                           id: "versions", aria: { label: "Previous versions" },
-                           data: { target: "versions-modal", tooltip_target: "button" })
+          button.button.is-rounded.is-info.has-tooltip#versions[
+            type="button" aria-label="Previous versions" data-tooltip-target="button"
+            data-action="modal#open" data-modal-id-param="versions-modal"]
             span.icon
               i.fas.fa-history
           = button_to "#", class: "button is-rounded is-info has-tooltip", id: "copy-to-clipboard",
@@ -94,37 +96,5 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
 
   = render("content", chord_sheet:)
 
-  #style-modal.modal
-    .modal-background
-    .modal-card
-      header.modal-card-head
-        p.modal-card-title Style
-        button.delete type="button" aria-label="close"
-      section.modal-card-body
-        = form_with model: chord_sheet, method: :patch, id: "style-form" do |form|
-          - LineStyle.line_types.each_key do |line_type|
-            = form.fields_for :line_styles, chord_sheet.line_style_for(line_type) do |style_fields|
-              fieldset.mb-5
-                legend.title.is-5.mb-3 = line_type.humanize
-                = style_fields.hidden_field :line_type
-
-                .field
-                  p.label Font style
-                  .style-options
-                    - LineStyle::FONT_STYLES.each do |font_style, css|
-                      = style_fields.radio_button :font_style, font_style,
-                                                  id: "line_style_#{line_type}_font_style_#{font_style}"
-                      label.style-option[for="line_style_#{line_type}_font_style_#{font_style}" style="#{css}"]
-                        = font_style.humanize
-
-                .field
-                  p.label Colour
-                  .style-options
-                    = style_fields.radio_button :colour, "", id: "line_style_#{line_type}_colour_default"
-                    label.style-option for="line_style_#{line_type}_colour_default" Default
-                    - LineStyle::COLOURS.each do |colour, hex|
-                      = style_fields.radio_button :colour, colour, id: "line_style_#{line_type}_colour_#{colour}"
-                      label.style-option.is-swatch[for="line_style_#{line_type}_colour_#{colour}" title=colour.humanize
-                                                   aria-label=colour.humanize style="background-color: #{hex}"]
-      footer.modal-card-foot
-        button.button.is-primary#save-styles type="submit" form="style-form" Save
+  = render("style_modal", chord_sheet:)
+  = render("versions_modal", chord_sheet:)

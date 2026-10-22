@@ -1,0 +1,34 @@
+#style-modal.modal data-modal-target="modal"
+  .modal-background data-action="click->modal#close"
+  .modal-card
+    header.modal-card-head
+      p.modal-card-title Style
+      button.delete type="button" aria-label="close" data-action="modal#close"
+    section.modal-card-body
+      = form_with model: chord_sheet, method: :patch, id: "style-form" do |form|
+        - LineStyle.line_types.each_key do |line_type|
+          = form.fields_for :line_styles, chord_sheet.line_style_for(line_type) do |style_fields|
+            fieldset.mb-5
+              legend.title.is-5.mb-3 = line_type.humanize
+              = style_fields.hidden_field :line_type
+
+              .field
+                p.label Font style
+                .style-options
+                  - LineStyle::FONT_STYLES.each do |font_style, css|
+                    = style_fields.radio_button :font_style, font_style,
+                                                id: "line_style_#{line_type}_font_style_#{font_style}"
+                    label.style-option[for="line_style_#{line_type}_font_style_#{font_style}" style="#{css}"]
+                      = font_style.humanize
+
+              .field
+                p.label Colour
+                .style-options
+                  = style_fields.radio_button :colour, "", id: "line_style_#{line_type}_colour_default"
+                  label.style-option for="line_style_#{line_type}_colour_default" Default
+                  - LineStyle::COLOURS.each do |colour, hex|
+                    = style_fields.radio_button :colour, colour, id: "line_style_#{line_type}_colour_#{colour}"
+                    label.style-option.is-swatch[for="line_style_#{line_type}_colour_#{colour}" title=colour.humanize
+                                                 aria-label=colour.humanize style="background-color: #{hex}"]
+    footer.modal-card-foot
+      button.button.is-primary#save-styles type="submit" form="style-form" Save
