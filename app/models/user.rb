@@ -78,10 +78,11 @@ class User < ApplicationRecord
   # rubocop:disable-next Rails/SkipsModelValidations
   def copy_styles_to_chord_sheets(chord_sheet_ids, chord_sheet)
     ChordSheet.where(id: chord_sheet_ids).update_all(text_size: chord_sheet.text_size)
-    LineStyle.where(styleable_type: "ChordSheet", styleable_id: chord_sheet_ids).delete_all
+    LineStyle.where(styleable_type: ChordSheet.polymorphic_name, styleable_id: chord_sheet_ids).delete_all
     copies = chord_sheet_ids.product(chord_sheet.line_styles).map do |id, line_style|
-      line_style.attributes.slice("line_type", "font_style", "font_size", "colour")
-                .merge("styleable_type" => "ChordSheet", "styleable_id" => id)
+      # Every style column, as copy_styles_from's dup copies
+      line_style.attributes.except("id", "created_at", "updated_at")
+                .merge("styleable_type" => ChordSheet.polymorphic_name, "styleable_id" => id)
     end
     LineStyle.insert_all(copies) if copies.any?
   end

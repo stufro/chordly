@@ -44,7 +44,8 @@ class ChordSheetsController < ApplicationController
 
   def update
     if @chord_sheet.update(chord_sheet_params)
-      flash.now[:notice] = params[:apply_to_all] && current_user ? apply_styles_to_all : "Changes saved"
+      apply_styles_to_all if params[:apply_to_all] && current_user
+      flash.now[:notice] ||= "Changes saved"
     else
       flash.now[:alert] = "Failed to update chord sheet: #{@chord_sheet.errors.full_messages.join(', ')}"
     end
@@ -73,7 +74,7 @@ class ChordSheetsController < ApplicationController
 
   def apply_styles_to_all
     current_user.apply_styles_to_chord_sheets(@chord_sheet)
-    "Styles applied to all your chord sheets"
+    flash.now[:notice] = "Styles applied to all your chord sheets"
   end
 
   def build_order_query(resource)
