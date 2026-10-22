@@ -86,6 +86,7 @@ a.sort-by-icon.is-active:hover {
   }
 
   .style-option {
+    color: var(--bulma-text);
     height: 2rem;
     padding: 0 0.75rem;
     line-height: 2rem;
@@ -99,10 +100,22 @@ a.sort-by-icon.is-active:hover {
     }
   }
 
+  // on-scheme keeps the brand colour readable against the dark theme's background too
   input:checked + .style-option,
   input:focus-visible + .style-option {
-    outline: 3px solid var(--bulma-link);
+    outline: 3px solid var(--bulma-link-on-scheme);
     outline-offset: 2px;
+  }
+}
+
+#style-modal {
+  .tabs {
+    --bulma-tabs-link-active-color: var(--bulma-link-on-scheme);
+    --bulma-tabs-link-active-border-bottom-color: var(--bulma-link-on-scheme);
+  }
+
+  .help {
+    color: var(--bulma-text-weak);
   }
 }
 
