@@ -6,7 +6,8 @@ namespace :chord_sheets do
     chord_sheets = ChordSheet.joins(:user).where(users: { current_sign_in_at: 1.year.ago.. })
     updated = 0
 
-    chord_sheets.find_each do |chord_sheet|
+    # Small batches keep memory low alongside the running app
+    chord_sheets.find_each(batch_size: 100) do |chord_sheet|
       content = ChordSheetModeller.new(chord_sheet.content.pluck("content").join).parse.as_json
       next if content == chord_sheet.content
 
