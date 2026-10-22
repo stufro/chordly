@@ -356,6 +356,22 @@ describe("Chord diagrams", () => {
     cy.get("#chord-diagram").should("not.have.class", "is-outlined")
   })
 
+  it("keeps the toolbar working when returning to a chord sheet from the library", () => {
+    helper.createChordSheet({ name: "My amazing song" })
+    cy.visit("/chord_sheets")
+    cy.contains("My amazing song").click()
+    cy.get("#chord-diagram").click()
+    cy.contains("Guitar").click()
+
+    // Turbo shows the cached page as a preview before rendering the fresh one
+    cy.go("back")
+    cy.window().then((win) => cy.spy(win.console, "error").as("consoleError"))
+    cy.contains("My amazing song").click()
+
+    cy.get("svg[viewBox='0 0 200 200']").should("be.visible")
+    cy.get("@consoleError").should("not.have.been.called")
+  })
+
   it("allows the user to view the ukulele chords", () => {
     helper.visitChordSheet()
 

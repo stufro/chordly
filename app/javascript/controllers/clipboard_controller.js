@@ -1,10 +1,9 @@
 import Clipboard from '@stimulus-components/clipboard'
 
 export default class extends Clipboard {
-  connect() {
-    super.connect()
-
-    this.originalText = this.buttonTarget.innerHTML
+  // The button is turbo-permanent, so Turbo can move it in after the controller connects
+  buttonTargetConnected(button) {
+    this.originalText = button.innerHTML
   }
 
   copy(event) {

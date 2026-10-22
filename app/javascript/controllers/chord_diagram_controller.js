@@ -3,7 +3,8 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["button", "guitarChords", "ukuleleChords", "wrapper"]
 
-  connect() {
+  // The button is turbo-permanent, so Turbo can move it in after the controller connects
+  buttonTargetConnected() {
     this.show()
   }
 
