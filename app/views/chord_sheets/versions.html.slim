@@ -29,7 +29,7 @@
 
       div style="max-height: 20em; overflow: auto"
         - chord_sheet = version.reify
-        pre class=("two-columns" if chord_sheet.two_columns?)
+        pre class=("two-columns" if chord_sheet.two_columns?) style=content_style(chord_sheet)
           - chord_sheet.sections.each do |section|
             span.chord-sheet-section
               - section.each do |line|

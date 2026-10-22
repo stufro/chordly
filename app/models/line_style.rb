@@ -17,7 +17,7 @@ class LineStyle < ApplicationRecord
     "bold_italic" => "font-weight: bold; font-style: italic"
   }.freeze
 
-  # Relative, so headings scale with the chord sheet's font size on the page and in PDFs.
+  # Relative, so headings scale with the chord sheet's text size on the page and in PDFs.
   # In ems because sghtmltopdf ignores percentage font sizes.
   FONT_SIZES = {
     "normal" => "1em",

@@ -1,6 +1,15 @@
 class ChordSheet < ApplicationRecord
   include MusicUtils
 
+  # Absolute, so the text is the same size on the page and in PDFs. Chords and lyrics share it
+  # so chords stay above the right words, and headings are sized relative to it.
+  TEXT_SIZES = {
+    "small" => "12px",
+    "normal" => "14px",
+    "large" => "16px",
+    "larger" => "18px"
+  }.freeze
+
   belongs_to :user, optional: true
   has_many :chord_sheets_set_list, dependent: :destroy
   has_many :set_lists, through: :chord_sheets_set_list
@@ -10,6 +19,8 @@ class ChordSheet < ApplicationRecord
 
   validates :name, presence: true
   validates :content, presence: true
+
+  enum :text_size, TEXT_SIZES.keys.index_by(&:itself), validate: true, prefix: true
 
   has_paper_trail limit: 15
 

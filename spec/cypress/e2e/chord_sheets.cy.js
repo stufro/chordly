@@ -222,6 +222,21 @@ describe("Two-column layout", () => {
     cy.get(".chord-line").first().should("have.css", "font-size", "14px")
   })
 
+  it("sizes chord and lyric text together, with headings scaling alongside", () => {
+    helper.createChordSheet({ content_string: "[Verse 1]\nG   Am\nLyrics" }).then((chordSheet) => {
+      cy.visit(`/chord_sheets/${chordSheet.id}`)
+    })
+
+    cy.get("#style-chord-sheet").click()
+    cy.get("#style-modal").contains("label", "Larger").click()
+    cy.get("#line-style-panel-chords .style-preview").should("have.css", "font-size", "18px")
+
+    cy.get("#save-styles").click()
+    cy.get(".chord-line").first().should("have.css", "font-size", "18px")
+    cy.get(".lyric-line").first().should("have.css", "font-size", "18px")
+    cy.get(".heading-line").first().should("have.css", "font-size", "18px")
+  })
+
   it("closes the style modal after a save's flash message fades", () => {
     cy.viewport(390, 844)
     helper.visitChordSheet()

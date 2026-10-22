@@ -7,6 +7,11 @@ module ChordSheetsHelper
     end
   end
 
+  def content_style(chord_sheet)
+    size = ChordSheet::TEXT_SIZES[chord_sheet.text_size]
+    "font-size: #{size}" if size
+  end
+
   def line_style(chord_sheet, line)
     line_style = chord_sheet.line_style_for(line["type"])
     declarations = [LineStyle::FONT_STYLES[line_style.font_style]]

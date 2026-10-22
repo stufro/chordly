@@ -15,6 +15,26 @@ describe ChordSheetsHelper do
     end
   end
 
+  describe "#content_style" do
+    let(:chord_sheet) { create(:chord_sheet) }
+
+    it "sizes the chord sheet's text" do
+      chord_sheet.update!(text_size: "large")
+
+      expect(helper.content_style(chord_sheet.reload)).to eq "font-size: 16px"
+    end
+
+    it "defaults to the normal text size" do
+      expect(helper.content_style(chord_sheet)).to eq "font-size: 14px"
+    end
+
+    it "returns nil for a text size that isn't one of the options" do
+      chord_sheet.text_size = "largest"
+
+      expect(helper.content_style(chord_sheet)).to be_nil
+    end
+  end
+
   describe "#line_style" do
     let(:chord_sheet) { create(:chord_sheet) }
 

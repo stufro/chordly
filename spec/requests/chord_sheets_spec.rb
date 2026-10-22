@@ -105,6 +105,24 @@ describe "Chord Sheets" do
       ).to eq(chords: "font-weight: bold; color: #e03131", lyrics: "font-weight: normal")
     end
 
+    it "sizes the chord sheet's text" do
+      chord_sheet.update!(text_size: "small")
+
+      get chord_sheet_path(chord_sheet)
+
+      expect(response.parsed_body.at_css("#chord-sheet-content")["style"]).to eq "font-size: 12px"
+    end
+
+    it "sizes the chord sheet's text in the PDF" do
+      chord_sheet.update!(text_size: "small")
+      html = nil
+      allow(Sghtmltopdf).to receive(:render) { |rendered| html = rendered }
+
+      get chord_sheet_path(chord_sheet, format: :pdf)
+
+      expect(Nokogiri::HTML(html).at_css("pre")["style"]).to eq "font-size: 12px"
+    end
+
     it "styles each line by its type in the PDF" do
       create(:line_style, :chords, :red, styleable: chord_sheet)
       html = nil
@@ -158,6 +176,12 @@ describe "Chord Sheets" do
         ] } }
 
         expect(chord_sheet.reload.line_styles.map(&:font_size)).to eq ["largest"]
+      end
+
+      it "saves the text size" do
+        patch "#{chord_sheet_path(chord_sheet)}.turbo_stream", params: { chord_sheet: { text_size: "larger" } }
+
+        expect(chord_sheet.reload.text_size).to eq "larger"
       end
 
       it "updates an existing line style rather than adding another" do
@@ -245,6 +269,16 @@ describe "Chord Sheets" do
       chord_line = response.parsed_body.at_css(".version-container .chord-line")
 
       expect(chord_line["style"]).to eq "font-weight: bold; color: #e03131"
+    end
+
+    it "previews each version at the text size it was saved with" do
+      chord_sheet.update!(text_size: "small")
+      chord_sheet.update!(text_size: "larger")
+
+      get versions_chord_sheet_path(chord_sheet)
+      sizes = response.parsed_body.css(".version-container pre").pluck("style")
+
+      expect(sizes).to eq ["font-size: 12px", "font-size: 14px"]
     end
 
     it "previews each version in the column layout it was saved with" do

@@ -13,14 +13,27 @@
           | .style-panel:has(input[name$="[colour]"][value="#{colour}"]:checked) .style-preview { color: #{hex} }
         - LineStyle::FONT_SIZES.each do |font_size, size|
           | .style-panel:has(input[name$="[font_size]"][value="#{font_size}"]:checked) .style-preview { font-size: #{size} }
-
-      .tabs.is-centered.is-medium
-        ul
-          - LineStyle.line_types.each_key do |line_type|
-            li class=("is-active" if line_type == "chords") data-tabs-target="tab"
-              a href="#" data-action="tabs#select" = line_type.humanize
+        - ChordSheet::TEXT_SIZES.each do |text_size, size|
+          | #style-modal:has(input[name$="[text_size]"][value="#{text_size}"]:checked) pre { font-size: #{size} }
 
       = form_with model: chord_sheet, method: :patch, id: "style-form" do |form|
+        .field
+          p.label Text size
+          .style-options
+            - ChordSheet::TEXT_SIZES.each_key do |text_size|
+              = form.radio_button :text_size, text_size
+              = form.label :text_size, text_size.humanize, value: text_size, class: "style-option"
+          p.help
+            span.icon.is-small
+              i.fas.fa-info-circle
+            |  Chords and lyrics share one size so chords stay above the right words. Headings scale with it.
+
+        .tabs.is-centered.is-medium
+          ul
+            - LineStyle.line_types.each_key do |line_type|
+              li class=("is-active" if line_type == "chords") data-tabs-target="tab"
+                a href="#" data-action="tabs#select" = line_type.humanize
+
         - samples = { "chords" => "G     Am     D", "lyrics" => "Lyrics of the song", "heading" => "[Verse 1]" }
         - LineStyle.line_types.each_key do |line_type|
           div[id="line-style-panel-#{line_type}" class=class_names("style-panel", "is-hidden": line_type != "chords")
