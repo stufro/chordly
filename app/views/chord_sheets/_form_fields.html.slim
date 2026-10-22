@@ -4,16 +4,14 @@
     = f.text_field :name, class: "input"
 
 .field
-  .is-flex.is-flex-wrap-wrap.is-align-items-center.mb-2
-    = f.label :content, class: "label mb-0"
-
-    span.icon.has-text-grey
-      i.fas.fa-info-circle
-    small.is-size-7.has-text-grey
-      span
-        | For a line to be treated as chords, it must not contain other text.
-        |  These characters are permitted: | : *, N.C.
-        |  and text inside [] or {} is ignored.
+  = f.label :content, class: "label mb-1"
+  details.mb-2
+    summary.is-size-7.has-text-grey
+      span.icon
+        i.fas.fa-info-circle
+      | How Chordly reads each line
+    .is-size-7.mt-2
+      = render("chord_sheets/line_type_help")
 
   .control
     = f.text_area :content, class: "textarea",

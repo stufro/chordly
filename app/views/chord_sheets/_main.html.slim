@@ -58,6 +58,12 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
                   button.dropdown-item#guitar data-action="chord-diagram#set" Guitar
                   button.dropdown-item#ukulele data-action="chord-diagram#set" Ukulele
 
+            button.button.is-rounded.is-primary.has-tooltip#line-type-help[
+              type="button" aria-label="How Chordly reads each line" data-tooltip-target="button"
+              data-action="modal#open" data-modal-id-param="line-type-help-modal"]
+              span.icon
+                i.fas.fa-question
+
       .toolbar-group#toolbar-actions[data-turbo-permanent]
         p.toolbar-label Actions
         .buttons.mb-0
@@ -98,3 +104,4 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
 
   = render("style_modal", chord_sheet:)
   = render("versions_modal", chord_sheet:)
+  = render("line_type_help_modal")

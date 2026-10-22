@@ -1,0 +1,13 @@
+/ Keep in step with ChordSheetModeller, which decides each line's type
+.content
+  ul
+    li
+      | <strong>Headings</strong> name a section on their own line, like <code>Verse 1:</code>, <code>(Bridge)</code>,
+        <code>Chorus x2</code>, <code>Repeat chorus</code> or <code>[Verse 1]</code>.
+    li
+      | <strong>Chords</strong> contain only chords, like <code>G D/F# Em7</code>. A section label at the start
+        (<code>Intro: G C D</code>), <code>N.C.</code>, repeat markers like <code>x2</code>, the characters
+        <code>| : * .</code> and text in <code>[]</code> or <code>{}</code> are allowed alongside them.
+    li
+      | <strong>Lyrics</strong> are everything else. A lyric line of only chord-like words, such as <code>A</code>,
+        is read as chords.

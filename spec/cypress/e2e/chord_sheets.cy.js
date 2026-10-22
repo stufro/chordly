@@ -441,6 +441,33 @@ describe("Chord diagrams", () => {
   })
 })
 
+describe("Explaining how lines are read", () => {
+  beforeEach(() => {
+    cy.login()
+  })
+
+  afterEach(() => {
+    cy.app("clean")
+  })
+
+  it("explains line types while writing a new chord sheet", () => {
+    cy.visit("/chord_sheets/new")
+
+    cy.contains("Repeat chorus").should("not.be.visible")
+    cy.contains("summary", "How Chordly reads each line").click()
+    cy.contains("Repeat chorus").should("be.visible")
+  })
+
+  it("explains line types from the chord sheet toolbar", () => {
+    helper.visitChordSheet()
+
+    cy.get("#line-type-help").click()
+    cy.get("#line-type-help-modal").should("be.visible").and("contain", "Repeat chorus")
+    cy.get("#line-type-help-modal .delete").click()
+    cy.get("#line-type-help-modal").should("not.be.visible")
+  })
+})
+
 describe("Tooltips", () => {
   beforeEach(() => {
     cy.login()
