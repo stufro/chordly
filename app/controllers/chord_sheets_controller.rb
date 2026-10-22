@@ -23,6 +23,7 @@ class ChordSheetsController < ApplicationController
 
   def create
     @chord_sheet = ChordSheet.new(chord_sheet_params(normalize_new_lines: true))
+    @chord_sheet.copy_styles_from(current_user) if current_user
     if @chord_sheet.save
       redirect_to @chord_sheet
     else
@@ -43,7 +44,7 @@ class ChordSheetsController < ApplicationController
 
   def update
     if @chord_sheet.update(chord_sheet_params)
-      flash.now[:notice] = "Changes saved"
+      flash.now[:notice] = params[:apply_to_all] && current_user ? apply_styles_to_all : "Changes saved"
     else
       flash.now[:alert] = "Failed to update chord sheet: #{@chord_sheet.errors.full_messages.join(', ')}"
     end
@@ -76,6 +77,11 @@ class ChordSheetsController < ApplicationController
   def parse_content(content, normalize_new_lines)
     content = content.gsub("\n", "\r\n") if normalize_new_lines
     ChordSheetModeller.new(content).parse
+  end
+
+  def apply_styles_to_all
+    current_user.apply_styles_to_chord_sheets(@chord_sheet)
+    "Styles applied to all your chord sheets"
   end
 
   def build_order_query(resource)

@@ -250,4 +250,29 @@ describe ChordSheet do
       expect(font_styles).to eq %w[bold bold normal]
     end
   end
+
+  describe "#copy_styles_from" do
+    let(:source) { create(:chord_sheet, text_size: "large") }
+    let(:chord_sheet) { create(:chord_sheet) }
+
+    before do
+      create(:line_style, :chords, :red, styleable: source)
+      create(:line_style, :heading, :italic, styleable: chord_sheet)
+    end
+
+    it "replaces the chord sheet's styles with copies of the source's" do
+      chord_sheet.copy_styles_from(source)
+      chord_sheet.save!
+
+      expect([chord_sheet.reload.text_size, chord_sheet.line_styles.map { [it.line_type, it.colour] }])
+        .to eq ["large", [%w[chords red]]]
+    end
+
+    it "leaves the source's styles unchanged" do
+      chord_sheet.copy_styles_from(source)
+      chord_sheet.save!
+
+      expect(source.reload.line_styles.map(&:styleable)).to eq [source]
+    end
+  end
 end

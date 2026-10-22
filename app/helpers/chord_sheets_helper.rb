@@ -8,7 +8,7 @@ module ChordSheetsHelper
   end
 
   def content_style(chord_sheet)
-    size = ChordSheet::TEXT_SIZES[chord_sheet.text_size]
+    size = Styleable::TEXT_SIZES[chord_sheet.text_size]
     "font-size: #{size}" if size
   end
 

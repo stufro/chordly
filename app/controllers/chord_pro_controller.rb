@@ -5,6 +5,7 @@ class ChordProController < ApplicationController
 
   def create
     @chord_sheet = ChordSheet.new(chord_sheet_params)
+    @chord_sheet.copy_styles_from(current_user)
     if @chord_sheet.save
       redirect_to @chord_sheet
     else

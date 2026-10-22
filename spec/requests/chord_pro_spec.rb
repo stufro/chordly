@@ -41,6 +41,16 @@ describe "ChordPro" do
         expect(ChordSheet.last).to be_created_from_chord_pro
       end
 
+      it "starts the chord sheet with the user's styles" do
+        user.update!(text_size: "small")
+        create(:line_style, :heading, :blue, styleable: user)
+
+        post_content
+
+        expect([ChordSheet.last.text_size, ChordSheet.last.line_styles.map { [it.line_type, it.colour] }])
+          .to eq ["small", [%w[heading blue]]]
+      end
+
       it "assigns the current user" do
         post_content
         expect(ChordSheet.last.user).to eq(user)

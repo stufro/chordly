@@ -56,4 +56,36 @@ RSpec.describe User do
       expect(user.deleted_content?).to be true
     end
   end
+
+  describe "#apply_styles_to_chord_sheets" do
+    let(:user) { create(:user) }
+    let(:styled) { create(:chord_sheet, user:, text_size: "larger") }
+
+    before { create(:line_style, :chords, :red, styleable: styled) }
+
+    it "keeps the styles for the user's new chord sheets" do
+      user.apply_styles_to_chord_sheets(styled)
+
+      expect([user.reload.text_size, user.line_styles.map { [it.line_type, it.colour] }])
+        .to eq ["larger", [%w[chords red]]]
+    end
+
+    it "restyles the user's other chord sheets, replacing their styles" do
+      other = create(:chord_sheet, user:)
+      create(:line_style, :lyrics, :blue, styleable: other)
+
+      user.apply_styles_to_chord_sheets(styled)
+
+      expect([other.reload.text_size, other.line_styles.map { [it.line_type, it.colour] }])
+        .to eq ["larger", [%w[chords red]]]
+    end
+
+    it "leaves other users' chord sheets alone" do
+      someone_elses = create(:chord_sheet, user: create(:user))
+
+      user.apply_styles_to_chord_sheets(styled)
+
+      expect([someone_elses.reload.text_size, someone_elses.line_styles]).to eq ["normal", []]
+    end
+  end
 end

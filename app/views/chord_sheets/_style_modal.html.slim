@@ -13,14 +13,14 @@
           | .style-panel:has(input[name$="[colour]"][value="#{colour}"]:checked) .style-preview { color: #{hex} }
         - LineStyle::FONT_SIZES.each do |font_size, size|
           | .style-panel:has(input[name$="[font_size]"][value="#{font_size}"]:checked) .style-preview { font-size: #{size} }
-        - ChordSheet::TEXT_SIZES.each do |text_size, size|
+        - Styleable::TEXT_SIZES.each do |text_size, size|
           | #style-modal:has(input[name$="[text_size]"][value="#{text_size}"]:checked) pre { font-size: #{size} }
 
       = form_with model: chord_sheet, method: :patch, id: "style-form" do |form|
         .field
           p.label Text size
           .style-options
-            - ChordSheet::TEXT_SIZES.each_key do |text_size|
+            - Styleable::TEXT_SIZES.each_key do |text_size|
               = form.radio_button :text_size, text_size
               = form.label :text_size, text_size.humanize, value: text_size, class: "style-option"
           p.help
@@ -73,3 +73,7 @@
 
     footer.modal-card-foot
       button.button.is-primary#save-styles type="submit" form="style-form" Save
+      - if user_signed_in?
+        button.button.is-primary.is-outlined#apply-styles-to-all[type="submit" form="style-form" name="apply_to_all"
+          value="1" data-turbo-confirm="This replaces the styles on all your chord sheets. Continue?"]
+          | Save and apply to all my chord sheets

@@ -46,6 +46,16 @@ describe "Chord Sheets" do
         post chord_sheets_path, params: { chord_sheet: { name: "My Song", content: "G\nLyrics" } }
         expect(response).to redirect_to(ChordSheet.last)
       end
+
+      it "starts the chord sheet with the user's styles" do
+        user.update!(text_size: "small")
+        create(:line_style, :heading, :blue, styleable: user)
+
+        post chord_sheets_path, params: { chord_sheet: { name: "My Song", content: "G\nLyrics" } }
+
+        expect([ChordSheet.last.text_size, ChordSheet.last.line_styles.map { [it.line_type, it.colour] }])
+          .to eq ["small", [%w[heading blue]]]
+      end
     end
 
     context "when the chord sheet is invalid" do
@@ -182,6 +192,23 @@ describe "Chord Sheets" do
         patch "#{chord_sheet_path(chord_sheet)}.turbo_stream", params: { chord_sheet: { text_size: "larger" } }
 
         expect(chord_sheet.reload.text_size).to eq "larger"
+      end
+
+      it "applies the styles to the user's other chord sheets when asked" do
+        other = create(:chord_sheet, user:)
+
+        patch "#{chord_sheet_path(chord_sheet)}.turbo_stream",
+              params: { apply_to_all: "1", chord_sheet: { text_size: "larger" } }
+
+        expect([other.reload.text_size, flash[:notice]]).to eq ["larger", "Styles applied to all your chord sheets"]
+      end
+
+      it "leaves the user's other chord sheets alone otherwise" do
+        other = create(:chord_sheet, user:)
+
+        patch "#{chord_sheet_path(chord_sheet)}.turbo_stream", params: { chord_sheet: { text_size: "larger" } }
+
+        expect(other.reload.text_size).to eq "normal"
       end
 
       it "updates an existing line style rather than adding another" do

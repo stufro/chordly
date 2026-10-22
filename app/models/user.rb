@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   include Flipper::Identifier
+  include Styleable
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
@@ -61,7 +62,29 @@ class User < ApplicationRecord
     chord_sheets.deleted.present? || set_lists.deleted.present?
   end
 
+  # Keeps the chord sheet's styles for new chord sheets and copies them onto every other one, binned included
+  def apply_styles_to_chord_sheets(chord_sheet)
+    transaction do
+      copy_styles_from(chord_sheet)
+      save!
+      copy_styles_to_chord_sheets(chord_sheets.where.not(id: chord_sheet.id).pluck(:id), chord_sheet)
+    end
+  end
+
   private
+
+  # In bulk so it stays quick however many chord sheets there are, which also keeps it out of their versions.
+  # Skipping validations is safe as the styles come from a chord sheet that has just passed them.
+  # rubocop:disable-next Rails/SkipsModelValidations
+  def copy_styles_to_chord_sheets(chord_sheet_ids, chord_sheet)
+    ChordSheet.where(id: chord_sheet_ids).update_all(text_size: chord_sheet.text_size)
+    LineStyle.where(styleable_type: "ChordSheet", styleable_id: chord_sheet_ids).delete_all
+    copies = chord_sheet_ids.product(chord_sheet.line_styles).map do |id, line_style|
+      line_style.attributes.slice("line_type", "font_style", "font_size", "colour")
+                .merge("styleable_type" => "ChordSheet", "styleable_id" => id)
+    end
+    LineStyle.insert_all(copies) if copies.any?
+  end
 
   def populate_uuid
     self.uuid = SecureRandom.uuid

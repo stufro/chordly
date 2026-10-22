@@ -237,6 +237,26 @@ describe("Two-column layout", () => {
     cy.get(".heading-line").first().should("have.css", "font-size", "18px")
   })
 
+  it("applies styles to all the user's chord sheets, including new ones", () => {
+    helper.createChordSheet({ name: "Another song" }).then((other) => {
+      helper.visitChordSheet()
+
+      cy.get("#style-chord-sheet").click()
+      cy.get("#line-style-panel-chords label[title='Red']").click()
+      cy.get("#apply-styles-to-all").click()
+      cy.contains("Styles applied to all your chord sheets")
+
+      cy.visit(`/chord_sheets/${other.id}`)
+      cy.get(".chord-line").first().should("have.css", "color", "rgb(224, 49, 49)")
+    })
+
+    cy.visit("/chord_sheets/new")
+    cy.get("#chord_sheet_name").type("A new song")
+    cy.get("#chord_sheet_content").type("G   Am    D\nMy great lyrics")
+    cy.get("#create-btn").click()
+    cy.get(".chord-line").first().should("have.css", "color", "rgb(224, 49, 49)")
+  })
+
   it("closes the style modal after a save's flash message fades", () => {
     cy.viewport(390, 844)
     helper.visitChordSheet()

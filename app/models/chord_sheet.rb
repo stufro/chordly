@@ -1,26 +1,15 @@
 class ChordSheet < ApplicationRecord
   include MusicUtils
-
-  # Absolute, so the text is the same size on the page and in PDFs. Chords and lyrics share it
-  # so chords stay above the right words, and headings are sized relative to it.
-  TEXT_SIZES = {
-    "small" => "12px",
-    "normal" => "14px",
-    "large" => "16px",
-    "larger" => "18px"
-  }.freeze
+  include Styleable
 
   belongs_to :user, optional: true
   has_many :chord_sheets_set_list, dependent: :destroy
   has_many :set_lists, through: :chord_sheets_set_list
-  has_many :line_styles, as: :styleable, dependent: :destroy
 
   accepts_nested_attributes_for :line_styles
 
   validates :name, presence: true
   validates :content, presence: true
-
-  enum :text_size, TEXT_SIZES.keys.index_by(&:itself), validate: true, prefix: true
 
   has_paper_trail limit: 15
 
@@ -58,12 +47,6 @@ class ChordSheet < ApplicationRecord
     chord_lines.flat_map do |line|
       chord_tokens(line["content"]).map { |token| normalise_chord(token) }
     end.uniq
-  end
-
-  # Finds in memory so rendering every line doesn't query, falling back to an unsaved default style
-  def line_style_for(line_type)
-    line_styles.find { it.line_type == line_type } ||
-      LineStyle.new(line_type:, font_style: line_type == "lyrics" ? "normal" : "bold")
   end
 
   private
