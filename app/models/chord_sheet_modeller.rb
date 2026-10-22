@@ -1,6 +1,13 @@
 class ChordSheetModeller
   include MusicUtils
 
+  SECTION_NAMES = /intro|verse|pre[-\s]?chorus|post[-\s]?chorus|chorus|bridge|middle\s(?:8|eight)|breakdown|break|
+                   interlude|instrumental|(?:(?:guitar|piano|keys|bass|sax)\s)?solo|outro|coda|ending|refrain|
+                   hook|tag|vamp|turnaround/ix
+  REPEAT_MARKER = /\(?(?:repeat|[x×] ?\d+|\d+ ?[x×])\)?/
+  # A whole line naming a section, like "Verse 1:", "(Bridge)", "Chorus x2" or "Repeat Chorus"
+  SECTION_LABEL = /\A(?:repeat )?\(?(?:#{SECTION_NAMES})(?: \d+)?\)?:? ?#{REPEAT_MARKER}?\z/io
+
   def initialize(content)
     @content = content
   end
@@ -20,6 +27,7 @@ class ChordSheetModeller
 
   def line_type(line)
     return :lyrics if line.blank?
+    return :heading if line.strip.match?(SECTION_LABEL)
 
     tokens = chord_tokens(line)
     return :heading if tokens.empty? && line.match?(/\{.*?\}|\[.*?\]/) # Only text in {} or [], like [Verse 1]

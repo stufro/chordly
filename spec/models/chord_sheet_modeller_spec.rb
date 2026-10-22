@@ -286,6 +286,49 @@ describe ChordSheetModeller do
       end
     end
 
+    context "when a line is a section label without brackets" do
+      let(:raw_content) do
+        <<~TEXT
+          Intro
+          Verse 1:
+          PRE-CHORUS
+          Pre Chorus
+          Prechorus
+          Chorus x2
+          Chorus (repeat)
+          Repeat Chorus
+          Post-chorus
+          (Bridge)
+          Middle 8
+          Interlude 2x
+          Instrumental
+          Guitar Solo
+          Breakdown
+          Outro (x3)
+          Coda
+          Refrain
+          Tag
+        TEXT
+      end
+
+      it "models the line as a heading" do
+        expect(described_class.new(raw_content).parse.pluck(:type)).to all(eq :heading)
+      end
+    end
+
+    context "when a line starts with a section name followed by lyrics" do
+      let(:raw_content) do
+        <<~TEXT
+          Bridge over troubled water
+          Chorus girls are dancing
+        TEXT
+      end
+
+      it "models the line as lyrics" do
+        expect(described_class.new(raw_content).parse.pluck(:type)).to all(eq :lyrics)
+      end
+    end
+
     context "when a line contains bracketed text and chords" do
       let(:raw_content) do
         <<~TEXT

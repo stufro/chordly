@@ -166,13 +166,13 @@ describe "Chord Sheets" do
   end
 
   describe "PUT /chord_sheets/:id/compact" do
-    let(:chord_sheet) { create(:chord_sheet, user:, content_string: "G\nVerse\n\n[Chorus]\nC\n\nChorus") }
+    let(:chord_sheet) { create(:chord_sheet, user:, content_string: "G\nVerse\n\n[Chorus]\nC\n\nChorus lyrics") }
 
     it "saves the chord sheet without blank lines, except before headings" do
       put compact_chord_sheet_path(chord_sheet)
 
       expect(chord_sheet.reload.content.pluck("content")).to eq ["G\r\n", "Verse\r\n", "\r\n", "[Chorus]\r\n", "C\r\n",
-                                                                 "Chorus"]
+                                                                 "Chorus lyrics"]
     end
   end
 
