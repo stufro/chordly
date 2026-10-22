@@ -9,6 +9,11 @@ module MusicUtils
   # if you change NOTE_REGEX, make sure you update Chord to handle any additional parts
   NOTE_REGEX = /([A-Ga-g1-7]#{ACCIDENTALS})#{CHORD_TYPES}#{CHORD_EXTENSIONS}#{ADD_CHORDS}#{BASS_NOTE}/
   CHORD_REGEX = /\A#{NOTE_REGEX}\z/
+  SECTION_NAMES = /intro|verse|pre[-\s]?chorus|post[-\s]?chorus|chorus|bridge|middle\s(?:8|eight)|breakdown|break|
+                   interlude|instrumental|(?:(?:guitar|piano|keys|bass|sax)\s)?solo|outro|coda|ending|refrain|
+                   hook|tag|vamp|turnaround/ix
+  # A section label at the start of a chord line, like "Intro:" in "Intro: G C D"
+  LEADING_SECTION_LABEL = /\A\s*\(?(?:#{SECTION_NAMES})(?: \d+)?\)?:?(?=\s|\z)/
 
   def extract_note(potential_chord)
     no_note_proc = -> { potential_chord }
@@ -24,7 +29,8 @@ module MusicUtils
 
   # The tokens on a line that should each be a chord for it to be a chord line
   def chord_tokens(line)
-    line.gsub("N.C.", "")
+    line.sub(LEADING_SECTION_LABEL, "")
+        .gsub("N.C.", "")
         .gsub(/(\{.*?\}|\[.*?\])/, "") # Remove text in {} or []
         .tr("|:*.", " ")
         .scan(/[^[:space:]]+/)

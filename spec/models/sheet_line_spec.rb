@@ -43,6 +43,16 @@ describe SheetLine do
       end
     end
 
+    context "when the chords follow a section label" do
+      let(:original_chords) { "Pre-chorus 2: G  Am" }
+      let(:expected_chords) { "Pre-chorus 2: G# A#m" }
+
+      it "leaves the label unchanged" do
+        sheet_line.transpose(:up)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
+
     context "when there is whitespace between chords" do
       let(:original_chords) { " F  Bb   Dm" }
       let(:expected_chords) { " F# B    D#m" }

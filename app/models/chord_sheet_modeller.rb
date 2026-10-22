@@ -1,9 +1,12 @@
+# Line types drive per-type styling and compacting, so after changing these rules run
+# `bin/rails chord_sheets:reclassify_lines` on production (with DRY_RUN=1 first).
+#
+# A section label followed by chords, like "Intro: G C D", is chords because chord_tokens
+# strips the label; one followed by words, like "Chorus: la la", is lyrics.
+# Known limitation: lyric lines made only of chord-like words, like "A" or "1 2 3 4", come out as chords.
 class ChordSheetModeller
   include MusicUtils
 
-  SECTION_NAMES = /intro|verse|pre[-\s]?chorus|post[-\s]?chorus|chorus|bridge|middle\s(?:8|eight)|breakdown|break|
-                   interlude|instrumental|(?:(?:guitar|piano|keys|bass|sax)\s)?solo|outro|coda|ending|refrain|
-                   hook|tag|vamp|turnaround/ix
   REPEAT_MARKER = /\(?(?:repeat|[x×] ?\d+|\d+ ?[x×])\)?/
   # A whole line naming a section, like "Verse 1:", "(Bridge)", "Chorus x2" or "Repeat Chorus"
   SECTION_LABEL = /\A(?:repeat )?\(?(?:#{SECTION_NAMES})(?: \d+)?\)?:? ?#{REPEAT_MARKER}?\z/io

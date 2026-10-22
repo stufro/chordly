@@ -139,6 +139,20 @@ describe ChordSheet do
       end
     end
 
+    context "when a chord line starts with a section label" do
+      let(:content) do
+        [
+          { "type" => "chords", "content" => "Intro: G   Am7" },
+          { "type" => "chords", "content" => "Verse 2 C" }
+        ]
+      end
+
+      it "returns only the chords included in the sheet" do
+        chord_sheet = create(:chord_sheet, content:)
+        expect(chord_sheet.unique_chords).to match_array %w[G Am7 C]
+      end
+    end
+
     context "when a chord line has ignored characters" do
       let(:content) do
         [

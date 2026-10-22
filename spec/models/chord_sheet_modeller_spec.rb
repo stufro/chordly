@@ -329,6 +329,20 @@ describe ChordSheetModeller do
       end
     end
 
+    context "when a line starts with a section label followed by chords" do
+      let(:raw_content) do
+        <<~TEXT
+          Intro: G C D
+          Verse 1   Am   F
+          (Chorus) G D
+        TEXT
+      end
+
+      it "models the line as chords" do
+        expect(described_class.new(raw_content).parse.pluck(:type)).to all(eq :chords)
+      end
+    end
+
     context "when a line contains bracketed text and chords" do
       let(:raw_content) do
         <<~TEXT
