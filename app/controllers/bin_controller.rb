@@ -1,6 +1,6 @@
 class BinController < ApplicationController
   def index
-    @chord_sheets = current_user.chord_sheets.deleted.order(updated_at: :desc)
+    @chord_sheets = current_user.chord_sheets.deleted.includes(:line_styles).order(updated_at: :desc)
     @set_lists = current_user.set_lists.deleted.order(updated_at: :desc)
   end
 

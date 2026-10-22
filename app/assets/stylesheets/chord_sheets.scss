@@ -1,11 +1,3 @@
-.chord-line {
-  font-weight: bold;
-}
-
-.heading-line {
-  font-weight: bold;
-}
-
 // Sections are inline-block so they don't add line breaks to the editable innerText.
 // pre-wrap keeps the chord alignment while letting sections and long lines wrap within a column.
 .two-columns {

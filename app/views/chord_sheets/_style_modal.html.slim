@@ -4,31 +4,47 @@
     header.modal-card-head
       p.modal-card-title Style
       button.delete type="button" aria-label="close" data-action="modal#close"
-    section.modal-card-body
+    section.modal-card-body data-controller="tabs"
+      / Previews follow the checked options as they're picked, using the same CSS the sheet gets
+      style
+        - LineStyle::FONT_STYLES.each do |font_style, css|
+          | .style-panel:has(input[value="#{font_style}"]:checked) .style-preview { #{css} }
+        - LineStyle::COLOURS.each do |colour, hex|
+          | .style-panel:has(input[value="#{colour}"]:checked) .style-preview { color: #{hex} }
+
+      .tabs.is-centered.is-medium
+        ul
+          - LineStyle.line_types.each_key do |line_type|
+            li class=("is-active" if line_type == "chords") data-tabs-target="tab"
+              a href="#" data-action="tabs#select" = line_type.humanize
+
       = form_with model: chord_sheet, method: :patch, id: "style-form" do |form|
+        - samples = { "chords" => "G     Am     D", "lyrics" => "Lyrics of the song", "heading" => "[Verse 1]" }
         - LineStyle.line_types.each_key do |line_type|
-          = form.fields_for :line_styles, chord_sheet.line_style_for(line_type) do |style_fields|
-            fieldset.mb-5
-              legend.title.is-5.mb-3 = line_type.humanize
+          div[id="line-style-panel-#{line_type}" class=class_names("style-panel", "is-hidden": line_type != "chords")
+              data-tabs-target="panel"]
+            = form.fields_for :line_styles, chord_sheet.line_style_for(line_type) do |style_fields|
               = style_fields.hidden_field :line_type
+              pre.mb-4
+                span.style-preview = samples[line_type]
 
               .field
                 p.label Font style
                 .style-options
                   - LineStyle::FONT_STYLES.each do |font_style, css|
-                    = style_fields.radio_button :font_style, font_style,
-                                                id: "line_style_#{line_type}_font_style_#{font_style}"
-                    label.style-option[for="line_style_#{line_type}_font_style_#{font_style}" style="#{css}"]
-                      = font_style.humanize
+                    = style_fields.radio_button :font_style, font_style
+                    = style_fields.label :font_style, font_style.humanize, value: font_style, class: "style-option", style: css
 
               .field
                 p.label Colour
                 .style-options
-                  = style_fields.radio_button :colour, "", id: "line_style_#{line_type}_colour_default"
-                  label.style-option for="line_style_#{line_type}_colour_default" Default
+                  = style_fields.radio_button :colour, ""
+                  = style_fields.label :colour, "Default", value: "", class: "style-option"
                   - LineStyle::COLOURS.each do |colour, hex|
-                    = style_fields.radio_button :colour, colour, id: "line_style_#{line_type}_colour_#{colour}"
-                    label.style-option.is-swatch[for="line_style_#{line_type}_colour_#{colour}" title=colour.humanize
-                                                 aria-label=colour.humanize style="background-color: #{hex}"]
+                    = style_fields.radio_button :colour, colour
+                    = style_fields.label :colour, value: colour, class: "style-option is-swatch", title: colour.humanize,
+                                                  style: "background-color: #{hex}" do
+                      span.is-sr-only = colour.humanize
+
     footer.modal-card-foot
       button.button.is-primary#save-styles type="submit" form="style-form" Save

@@ -228,6 +228,17 @@ describe "Chord Sheets" do
       expect(response).to have_http_status(:ok)
     end
 
+    it "styles each version's lines by their type" do
+      create(:line_style, :chords, :red, styleable: chord_sheet)
+      chord_sheet.update!(name: "Renamed")
+
+      get versions_chord_sheet_path(chord_sheet)
+
+      chord_line = response.parsed_body.at_css(".version-container .chord-line")
+
+      expect(chord_line["style"]).to eq "font-weight: bold; color: #e03131"
+    end
+
     it "previews each version in the column layout it was saved with" do
       chord_sheet.update!(two_columns: true)
       chord_sheet.update!(two_columns: false)

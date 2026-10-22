@@ -172,8 +172,8 @@ describe("Two-column layout", () => {
 
     cy.get("#style-chord-sheet").click()
     cy.get("#style-modal").should("be.visible")
-    cy.get("label[for='line_style_chords_colour_red']").click()
-    cy.get("label[for='line_style_chords_font_style_italic']").click()
+    cy.get("#line-style-panel-chords label[title='Red']").click()
+    cy.get("#line-style-panel-chords").contains("label", /^Italic$/).click()
     cy.get("#save-styles").click()
 
     cy.get("#style-modal").should("not.be.visible")
@@ -184,6 +184,25 @@ describe("Two-column layout", () => {
 
     cy.reload()
     cy.get(".chord-line").first().should("have.css", "color", "rgb(224, 49, 49)")
+  })
+
+  it("styles each part of the chord sheet from its own tab with a live preview", () => {
+    helper.visitChordSheet()
+
+    cy.get("#style-chord-sheet").click()
+    cy.get("#line-style-panel-chords").should("be.visible")
+    cy.get("#line-style-panel-lyrics").should("not.be.visible")
+
+    cy.contains("#style-modal .tabs a", "Lyrics").click()
+    cy.get("#line-style-panel-chords").should("not.be.visible")
+    cy.get("#line-style-panel-lyrics label[title='Blue']").click()
+    cy.get("#line-style-panel-lyrics").contains("label", "Bold italic").click()
+    cy.get("#line-style-panel-lyrics .style-preview").should("have.css", "color", "rgb(28, 126, 214)")
+    cy.get("#line-style-panel-lyrics .style-preview").should("have.css", "font-style", "italic")
+
+    cy.get("#save-styles").click()
+    cy.get(".lyric-line").first().should("have.css", "color", "rgb(28, 126, 214)")
+    cy.get(".chord-line").first().should("not.have.css", "color", "rgb(28, 126, 214)")
   })
 
   it("closes the style modal after a save's flash message fades", () => {

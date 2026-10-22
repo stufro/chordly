@@ -49,6 +49,9 @@ application.register("sortable", SortableController)
 import SupportToastController from "./support_toast_controller"
 application.register("support-toast", SupportToastController)
 
+import TabsController from "./tabs_controller"
+application.register("tabs", TabsController)
+
 import ThemeController from "./theme_controller"
 application.register("theme", ThemeController)
 

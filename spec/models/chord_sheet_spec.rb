@@ -229,10 +229,19 @@ describe ChordSheet do
       expect(chord_sheet.reload.line_style_for("heading")).to eq line_style
     end
 
-    it "builds a new style for a line type without one" do
+    it "returns an unsaved style for a line type without one" do
       create(:line_style, :heading, styleable: chord_sheet)
 
       expect(chord_sheet.reload.line_style_for("chords")).to have_attributes(new_record?: true, line_type: "chords")
+    end
+
+    it "leaves the chord sheet's styles unchanged when falling back to a default" do
+      create(:line_style, :heading, styleable: chord_sheet)
+      chord_sheet.reload
+
+      chord_sheet.line_style_for("chords")
+
+      expect(chord_sheet.line_styles.map(&:line_type)).to eq ["heading"]
     end
 
     it "defaults chords and headings to bold and lyrics to normal" do

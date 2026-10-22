@@ -63,6 +63,14 @@ describe "Admin" do
       expect(assigns(:chord_sheet)).to eq chord_sheet
     end
 
+    it "styles each line by its type" do
+      create(:line_style, :chords, :red, styleable: chord_sheet)
+
+      get admin_chord_sheet_path(chord_sheet)
+
+      expect(response.parsed_body.at_css(".chord-line")["style"]).to eq "font-weight: bold; color: #e03131"
+    end
+
     context "when the user is not an admin" do
       let(:user_type) { :standard }
 

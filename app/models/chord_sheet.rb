@@ -49,10 +49,10 @@ class ChordSheet < ApplicationRecord
     end.uniq
   end
 
-  # Finds in memory so rendering every line doesn't query, building the default style when there isn't one
+  # Finds in memory so rendering every line doesn't query, falling back to an unsaved default style
   def line_style_for(line_type)
     line_styles.find { it.line_type == line_type } ||
-      line_styles.build(line_type:, font_style: line_type == "lyrics" ? "normal" : "bold")
+      LineStyle.new(line_type:, font_style: line_type == "lyrics" ? "normal" : "bold")
   end
 
   private

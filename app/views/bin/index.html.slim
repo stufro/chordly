@@ -42,7 +42,7 @@
         div style="max-height: 20em; overflow: auto"
           pre
             - chord_sheet.content.each do |line|
-              span class=line_class(line)
+              span class=line_class(line) style=line_style(chord_sheet, line)
                 = line["content"]
 
 hr

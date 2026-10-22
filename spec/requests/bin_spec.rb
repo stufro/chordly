@@ -30,6 +30,15 @@ describe "Bin" do
       get bin_index_path
       expect(assigns(:set_lists)).to contain_exactly(deleted)
     end
+
+    it "styles each deleted chord sheet's lines by their type" do
+      chord_sheet = create(:chord_sheet, user:, deleted: true)
+      create(:line_style, :chords, :red, styleable: chord_sheet)
+
+      get bin_index_path
+
+      expect(response.parsed_body.at_css(".chord-line")["style"]).to eq "font-weight: bold; color: #e03131"
+    end
   end
 
   describe "PATCH /bin/:resource_id" do
