@@ -84,6 +84,9 @@ describe("Creating/editing a chord sheet", () => {
         });
       });
     })
+
+    cy.get("#copy-to-clipboard .fa-check").should("exist")
+    cy.get("#copy-to-clipboard .fa-copy").should("exist")
   })
 
   it("allows the user to download as PDF", () => {
