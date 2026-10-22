@@ -167,6 +167,32 @@ describe("Two-column layout", () => {
     cy.get("#chord-sheet-content").should("have.css", "column-count", "auto")
   })
 
+  it("keeps every section and long line within its column", () => {
+    const longLine = "On a dark desert highway, cool wind in my hair ".repeat(6)
+    helper.createChordSheet({ two_columns: true, content_string: `G\n${longLine}\n\nC\nVerse two\n\nD\nChorus` }).then((chordSheet) => {
+      cy.visit(`/chord_sheets/${chordSheet.id}`)
+
+      cy.get("#chord-sheet-content").then(($pre) => {
+        const preRight = $pre[0].getBoundingClientRect().right
+
+        cy.get(".chord-sheet-section").each(($section) => {
+          expect($section[0].getBoundingClientRect().right).to.be.at.most(preRight)
+          expect($section[0].scrollWidth).to.be.at.most($section[0].clientWidth)
+        })
+      })
+    })
+  })
+})
+
+describe("Styling a chord sheet", () => {
+  beforeEach(() => {
+    cy.login()
+  })
+
+  afterEach(() => {
+    cy.app("clean")
+  })
+
   it("styles chord lines with a chosen colour and font style", () => {
     helper.visitChordSheet()
 
@@ -282,22 +308,6 @@ describe("Two-column layout", () => {
     cy.get("#style-chord-sheet").click()
     cy.get("#style-modal .delete").click()
     cy.get("#style-modal").should("not.be.visible")
-  })
-
-  it("keeps every section and long line within its column", () => {
-    const longLine = "On a dark desert highway, cool wind in my hair ".repeat(6)
-    helper.createChordSheet({ two_columns: true, content_string: `G\n${longLine}\n\nC\nVerse two\n\nD\nChorus` }).then((chordSheet) => {
-      cy.visit(`/chord_sheets/${chordSheet.id}`)
-
-      cy.get("#chord-sheet-content").then(($pre) => {
-        const preRight = $pre[0].getBoundingClientRect().right
-
-        cy.get(".chord-sheet-section").each(($section) => {
-          expect($section[0].getBoundingClientRect().right).to.be.at.most(preRight)
-          expect($section[0].scrollWidth).to.be.at.most($section[0].clientWidth)
-        })
-      })
-    })
   })
 })
 
