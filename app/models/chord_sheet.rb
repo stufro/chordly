@@ -41,7 +41,7 @@ class ChordSheet < ApplicationRecord
   private
 
   def normalise_chord(token)
-    chord_parts = token.match(/\A#{NOTE_REGEX}\z/)&.captures
+    chord_parts = token.match(CHORD_REGEX)&.captures
     chord_parts ? Chord.new(chord_parts).normalised.to_s : token
   end
 end

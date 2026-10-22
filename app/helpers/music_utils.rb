@@ -8,6 +8,7 @@ module MusicUtils
   BASS_NOTE = %r{(?:/([A-Ga-g1-7]#{ACCIDENTALS}))?}
   # if you change NOTE_REGEX, make sure you update Chord to handle any additional parts
   NOTE_REGEX = /([A-Ga-g1-7]#{ACCIDENTALS})#{CHORD_TYPES}#{CHORD_EXTENSIONS}#{ADD_CHORDS}#{BASS_NOTE}/
+  CHORD_REGEX = /\A#{NOTE_REGEX}\z/
 
   def extract_note(potential_chord)
     no_note_proc = -> { potential_chord }
@@ -43,11 +44,11 @@ module MusicUtils
   end
 
   def chord?(token)
-    token.match?(/\A#{NOTE_REGEX}\z/)
+    token.match?(CHORD_REGEX)
   end
 
   def scan_chord(chord, no_match_proc)
-    matches = chord.scan(/^#{NOTE_REGEX}$/)
+    matches = chord.scan(CHORD_REGEX)
 
     matches.empty? ? no_match_proc.call : matches.flatten.first
   end
