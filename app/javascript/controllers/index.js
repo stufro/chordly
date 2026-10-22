@@ -51,3 +51,6 @@ application.register("support-toast", SupportToastController)
 
 import ThemeController from "./theme_controller"
 application.register("theme", ThemeController)
+
+import TooltipController from "./tooltip_controller"
+application.register("tooltip", TooltipController)

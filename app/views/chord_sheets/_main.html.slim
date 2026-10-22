@@ -3,20 +3,21 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
     data-clipboard-success-content="<span class='icon'><i class='fas fa-check'></i></span>"]
   = turbo_stream.replace "flash-message-container", partial: "partials/flash"
   .card.mb-3
-    .card-content.chord-sheet-toolbar.is-flex.is-flex-wrap-wrap.is-justify-content-space-between.is-column-gap-5.is-row-gap-3
+    .card-content.chord-sheet-toolbar.is-flex.is-flex-wrap-wrap.is-justify-content-space-between.is-column-gap-5.is-row-gap-3[
+      data-controller="tooltip"]
       .is-flex.is-flex-wrap-wrap.is-column-gap-5.is-row-gap-3
         .toolbar-group
           p.toolbar-label Transpose
           .buttons.mb-0
             = button_to transpose_chord_sheet_path(chord_sheet, direction: "up"),
               class: "button is-rounded is-primary has-tooltip", aria: { label: "Transpose up a semitone" },
-              id: "transpose-up", method: :put do
+              id: "transpose-up", data: { tooltip_target: "button" }, method: :put do
               span.icon
                 i.fas.fa-arrow-up
 
             = button_to transpose_chord_sheet_path(chord_sheet, direction: "down"),
               class: "button is-rounded is-primary has-tooltip", aria: { label: "Transpose down a semitone" },
-              id: "transpose-down", method: :put
+              id: "transpose-down", data: { tooltip_target: "button" }, method: :put
               span.icon
                 i.fas.fa-arrow-down
 
@@ -27,13 +28,13 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
               params: { chord_sheet: { two_columns: !chord_sheet.two_columns? } },
               class: class_names("button is-rounded is-primary has-tooltip", "is-outlined": !chord_sheet.two_columns?),
               aria: { label: "Show in two columns", pressed: chord_sheet.two_columns? },
-              id: "toggle-columns", method: :patch
+              id: "toggle-columns", data: { tooltip_target: "button" }, method: :patch
               span.icon
                 i.fas.fa-table-columns
 
             = button_to compact_chord_sheet_path(chord_sheet),
               class: "button is-rounded is-primary has-tooltip", aria: { label: "Compact: remove blank lines" },
-              id: "compact", method: :put
+              id: "compact", data: { tooltip_target: "button" }, method: :put
               span.icon
                 i.fas.fa-text-height
 
@@ -41,7 +42,8 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
               .dropdown-trigger
                 button.button.is-rounded.is-primary.is-outlined.has-tooltip#chord-diagram[
                   aria-label="Show chord diagrams" aria-haspopup="true" aria-controls="diagram-select"
-                  data-chord-diagram-target="button" data-action="chord-diagram#click_icon"]
+                  data-chord-diagram-target="button" data-tooltip-target="button"
+                  data-action="chord-diagram#click_icon"]
                   span.icon
                     = render("chord_diagram_icon")
               .dropdown-menu#diagram-select role="menu"
@@ -54,25 +56,25 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
         .buttons.mb-0
           = button_to("#", class: "button is-rounded is-info modal-trigger has-tooltip",
                            id: "versions", aria: { label: "Previous versions" },
-                           data: { target: "versions-modal" })
+                           data: { target: "versions-modal", tooltip_target: "button" })
             span.icon
               i.fas.fa-history
           = button_to "#", class: "button is-rounded is-info has-tooltip", id: "copy-to-clipboard",
-            "data-clipboard-target" => "button", "data-action" => "clipboard#copy",
+            "data-clipboard-target" => "button", "data-tooltip-target" => "button", "data-action" => "clipboard#copy",
             aria: { label: "Copy to clipboard" }
             span.icon
               i.fas.fa-copy
           = button_to chord_sheet_path(chord_sheet, format: :pdf),
             class: "button is-rounded is-info has-tooltip", id: "export", disabled: !user_signed_in?,
             aria: { label: user_signed_in? ? "Download PDF" : "Log in to download PDF" },
-            data: { pdf_download_target: "button" },
+            data: { pdf_download_target: "button", tooltip_target: "button" },
             form: { data: { controller: "pdf-download", action: "submit->pdf-download#download",
                             pdf_download_filename_value: "#{chord_sheet.name}.pdf" } },
             method: :get
             span.icon
               i.fas.fa-download
           = button_to(chord_sheet_path(chord_sheet), class: "button is-danger is-rounded has-tooltip",
-              id: "delete-chord-sheet", aria: { label: "Delete chord sheet" },
+              id: "delete-chord-sheet", aria: { label: "Delete chord sheet" }, data: { tooltip_target: "button" },
               form: { data: { turbo_frame: "_top", turbo_confirm: "Are you sure?" } },
               method: :delete)
             span.icon

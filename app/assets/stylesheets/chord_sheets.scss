@@ -82,11 +82,16 @@ a.sort-by-icon.is-active:hover {
 }
 
 // Tooltips use the button's aria-label, so the accessible name and tooltip always match.
-// Only shown on devices that can hover, as taps would leave them stuck open.
-@media (hover: hover) {
-  .has-tooltip:hover::after,
-  .has-tooltip:focus-visible::after {
+.has-tooltip {
+  // Stops iOS showing its callout or selecting text on long-press
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+
+  // Bulma draws the is-loading spinner with ::after too
+  &:not(.is-loading)::after {
     content: attr(aria-label);
+    display: none;
     position: absolute;
     bottom: calc(100% + 0.5rem);
     left: 50%;
@@ -99,5 +104,17 @@ a.sort-by-icon.is-active:hover {
     font-size: 0.75rem;
     white-space: nowrap;
     pointer-events: none;
+  }
+
+  // Touch screens long-press instead (see tooltip_controller.js), as taps would leave :hover stuck open
+  &.is-tooltip-visible::after {
+    display: block;
+  }
+}
+
+@media (hover: hover) {
+  .has-tooltip:hover::after,
+  .has-tooltip:focus-visible::after {
+    display: block;
   }
 }

@@ -338,3 +338,42 @@ describe("Chord diagrams", () => {
     cy.get("svg[viewBox='0 0 160 200']").should('be.visible');
   })
 })
+
+describe("Tooltips", () => {
+  beforeEach(() => {
+    cy.login()
+  })
+
+  afterEach(() => {
+    cy.app("clean")
+  })
+
+  it("shows a button's tooltip on long-press without pressing the button", () => {
+    const tooltipDisplay = ($button) => window.getComputedStyle($button[0], "::after").display
+
+    helper.visitChordSheet()
+
+    cy.get("#compact").trigger("touchstart")
+    cy.get("#compact").should(($button) => expect(tooltipDisplay($button)).to.eq("block"))
+
+    cy.get("#compact").then(($button) => {
+      const contextmenu = new Event("contextmenu", { bubbles: true, cancelable: true })
+      $button[0].dispatchEvent(contextmenu)
+      expect(contextmenu.defaultPrevented).to.be.true // an opened menu would swallow the touchend
+
+      const touchend = new Event("touchend", { bubbles: true, cancelable: true })
+      $button[0].dispatchEvent(touchend)
+      expect(touchend.defaultPrevented).to.be.true // a cancelled touchend fires no click
+    })
+    cy.get("#compact").should(($button) => expect(tooltipDisplay($button)).to.eq("none"))
+
+    // a long-press that never gets its touchend mustn't swallow the next tap
+    cy.get("#compact").trigger("touchstart")
+    cy.get("#compact").should(($button) => expect(tooltipDisplay($button)).to.eq("block"))
+    cy.get("#compact").trigger("touchstart").then(($button) => {
+      const touchend = new Event("touchend", { bubbles: true, cancelable: true })
+      $button[0].dispatchEvent(touchend)
+      expect(touchend.defaultPrevented).to.be.false
+    })
+  })
+})
