@@ -164,6 +164,38 @@ describe("Two-column layout", () => {
     cy.get("#chord-sheet-content").should("have.css", "column-count", "auto")
   })
 
+  it("styles chord lines with a chosen colour and font style", () => {
+    helper.visitChordSheet()
+
+    cy.get("#style-chord-sheet").click()
+    cy.get("#style-modal").should("be.visible")
+    cy.get("label[for='line_style_chords_colour_red']").click()
+    cy.get("label[for='line_style_chords_font_style_italic']").click()
+    cy.get("#save-styles").click()
+
+    cy.get("#style-modal").should("not.be.visible")
+    cy.get(".chord-line").first().should("have.css", "color", "rgb(224, 49, 49)")
+    cy.get(".chord-line").first().should("have.css", "font-weight", "400")
+    cy.get(".chord-line").first().should("have.css", "font-style", "italic")
+    cy.get(".lyric-line").first().should("not.have.css", "color", "rgb(224, 49, 49)")
+
+    cy.reload()
+    cy.get(".chord-line").first().should("have.css", "color", "rgb(224, 49, 49)")
+  })
+
+  it("closes the style modal after a save's flash message fades", () => {
+    cy.viewport(390, 844)
+    helper.visitChordSheet()
+
+    cy.get("#style-chord-sheet").click()
+    cy.get("#save-styles").click()
+    cy.get("#flash-message").should("not.be.visible")
+
+    cy.get("#style-chord-sheet").click()
+    cy.get("#style-modal .delete").click()
+    cy.get("#style-modal").should("not.be.visible")
+  })
+
   it("keeps every section and long line within its column", () => {
     const longLine = "On a dark desert highway, cool wind in my hair ".repeat(6)
     helper.createChordSheet({ two_columns: true, content_string: `G\n${longLine}\n\nC\nVerse two\n\nD\nChorus` }).then((chordSheet) => {

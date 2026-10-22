@@ -81,6 +81,39 @@ a.sort-by-icon.is-active:hover {
   }
 }
 
+// Radios stay focusable but hidden behind their option labels
+.style-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+
+  input {
+    position: absolute;
+    opacity: 0;
+  }
+
+  .style-option {
+    height: 2rem;
+    padding: 0 0.75rem;
+    line-height: 2rem;
+    border: 1px solid var(--bulma-border);
+    border-radius: 9999px;
+    cursor: pointer;
+
+    &.is-swatch {
+      width: 2rem;
+      padding: 0;
+    }
+  }
+
+  input:checked + .style-option,
+  input:focus-visible + .style-option {
+    outline: 3px solid var(--bulma-link);
+    outline-offset: 2px;
+  }
+}
+
 // Tooltips use the button's aria-label, so the accessible name and tooltip always match.
 .has-tooltip {
   // Stops iOS showing its callout or selecting text on long-press

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_09_29_135220) do
+ActiveRecord::Schema[8.2].define(version: 2026_10_22_102210) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", limit: 255, null: false
     t.text "body"
@@ -85,6 +85,17 @@ ActiveRecord::Schema[8.2].define(version: 2026_09_29_135220) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.index ["feature_key", "key", "value"], name: "index_flipper_gates_on_feature_key_and_key_and_value", unique: true
+  end
+
+  create_table "line_styles", force: :cascade do |t|
+    t.string "styleable_type", null: false
+    t.integer "styleable_id", null: false
+    t.string "line_type", null: false
+    t.string "font_style", null: false
+    t.string "colour"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["styleable_type", "styleable_id", "line_type"], name: "idx_on_styleable_type_styleable_id_line_type_7ae84ea7c1", unique: true
   end
 
   create_table "set_lists", force: :cascade do |t|

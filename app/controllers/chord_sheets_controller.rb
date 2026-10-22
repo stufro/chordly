@@ -66,7 +66,8 @@ class ChordSheetsController < ApplicationController
   private
 
   def chord_sheet_params(normalize_new_lines: false)
-    params.expect(chord_sheet: %i[name content two_columns trial trial_user_id]).tap do |p|
+    params.expect(chord_sheet: [:name, :content, :two_columns, :trial, :trial_user_id,
+                                { line_styles_attributes: [%i[id line_type font_style colour]] }]).tap do |p|
       p[:content] = parse_content(p[:content], normalize_new_lines) if p[:content]
       p[:user] = current_user
     end

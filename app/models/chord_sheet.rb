@@ -4,6 +4,9 @@ class ChordSheet < ApplicationRecord
   belongs_to :user, optional: true
   has_many :chord_sheets_set_list, dependent: :destroy
   has_many :set_lists, through: :chord_sheets_set_list
+  has_many :line_styles, as: :styleable, dependent: :destroy
+
+  accepts_nested_attributes_for :line_styles
 
   validates :name, presence: true
   validates :content, presence: true
@@ -44,6 +47,12 @@ class ChordSheet < ApplicationRecord
     chord_lines.flat_map do |line|
       chord_tokens(line["content"]).map { |token| normalise_chord(token) }
     end.uniq
+  end
+
+  # Finds in memory so rendering every line doesn't query, building the default style when there isn't one
+  def line_style_for(line_type)
+    line_styles.find { it.line_type == line_type } ||
+      line_styles.build(line_type:, font_style: line_type == "lyrics" ? "normal" : "bold")
   end
 
   private

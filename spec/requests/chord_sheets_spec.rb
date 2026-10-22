@@ -93,6 +93,28 @@ describe "Chord Sheets" do
       expect(response.body).not_to include("might not be visible on your screen size")
     end
 
+    it "styles each line by its type" do
+      create(:line_style, :chords, :red, styleable: chord_sheet)
+
+      get chord_sheet_path(chord_sheet)
+      content = response.parsed_body.at_css("#chord-sheet-content")
+
+      expect(
+        chords: content.at_css(".chord-line")["style"],
+        lyrics: content.at_css(".lyric-line")["style"]
+      ).to eq(chords: "font-weight: bold; color: #e03131", lyrics: "font-weight: normal")
+    end
+
+    it "styles each line by its type in the PDF" do
+      create(:line_style, :chords, :red, styleable: chord_sheet)
+      html = nil
+      allow(Sghtmltopdf).to receive(:render) { |rendered| html = rendered }
+
+      get chord_sheet_path(chord_sheet, format: :pdf)
+
+      expect(Nokogiri::HTML(html).at_css(".chord-line")["style"]).to eq "font-weight: bold; color: #e03131"
+    end
+
     context "when the user does not own the chord sheet" do
       let(:other_user) { create(:user) }
       let(:other_chord_sheet) { create(:chord_sheet, user: other_user) }
@@ -116,6 +138,28 @@ describe "Chord Sheets" do
       it "saves the two-column preference" do
         patch "#{chord_sheet_path(chord_sheet)}.turbo_stream", params: { chord_sheet: { two_columns: true } }
         expect(chord_sheet.reload).to be_two_columns
+      end
+
+      it "saves line styles" do
+        patch "#{chord_sheet_path(chord_sheet)}.turbo_stream", params: { chord_sheet: { line_styles_attributes: [
+          { line_type: "chords", font_style: "italic", colour: "red" },
+          { line_type: "lyrics", font_style: "bold", colour: "" }
+        ] } }
+
+        expect(chord_sheet.reload.line_styles.map { it.slice(:line_type, :font_style, :colour) }).to contain_exactly(
+          { "line_type" => "chords", "font_style" => "italic", "colour" => "red" },
+          { "line_type" => "lyrics", "font_style" => "bold", "colour" => nil }
+        )
+      end
+
+      it "updates an existing line style rather than adding another" do
+        line_style = create(:line_style, :chords, :red, styleable: chord_sheet)
+
+        patch "#{chord_sheet_path(chord_sheet)}.turbo_stream", params: { chord_sheet: { line_styles_attributes: [
+          { id: line_style.id, line_type: "chords", colour: "blue" }
+        ] } }
+
+        expect(chord_sheet.reload.line_styles.map(&:colour)).to eq ["blue"]
       end
     end
 

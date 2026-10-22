@@ -63,7 +63,7 @@ class SetListsController < ApplicationController
   end
 
   def live
-    @set_list_chord_sheets = @set_list.chord_sheets.order("chord_sheets_set_lists.position")
+    @set_list_chord_sheets = @set_list.chord_sheets.includes(:line_styles).order("chord_sheets_set_lists.position")
   end
 
   private

@@ -24,6 +24,19 @@ describe "Set lists" do
     end
   end
 
+  describe "GET /set_lists/:id/live" do
+    let(:chord_sheet) { create(:chord_sheet) }
+    let(:set_list) { create(:set_list, chord_sheets: [chord_sheet]) }
+
+    it "styles each chord sheet's lines by their type" do
+      create(:line_style, :chords, :red, styleable: chord_sheet)
+
+      get live_set_list_path(set_list)
+
+      expect(response.parsed_body.at_css(".chord-line")["style"]).to eq "font-weight: bold; color: #e03131"
+    end
+  end
+
   describe "POST /set_lists" do
     context "when the set list creates successfully" do
       it "redirects to the set list" do

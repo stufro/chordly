@@ -1,5 +1,5 @@
 div
   pre
     - chord_sheet.content.each do |line|
-      div class=line_class(line)
+      div class=line_class(line) style=line_style(chord_sheet, line)
         = wrappable_line(line["content"])
