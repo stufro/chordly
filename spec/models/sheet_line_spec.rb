@@ -195,7 +195,7 @@ describe SheetLine do
 
     context "when chords are in brackets" do
       let(:original_chords) { "(D7)  G  (D)" }
-      let(:expected_chords) { "(D#7)  G# (D#)" }
+      let(:expected_chords) { "(D#7) G# (D#)" }
 
       it "transposes the chords and leaves the brackets in place" do
         sheet_line.transpose(:up)
@@ -208,6 +208,16 @@ describe SheetLine do
       let(:expected_chords) { "F#/A#m C#" }
 
       it "transposes each chord" do
+        sheet_line.transpose(:up)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
+
+    context "when a shortened chord is followed by a slash or a closing bracket" do
+      let(:original_chords) { "Bb/Am  (Eb)  F" }
+      let(:expected_chords) { "B/A#m  (E)   F#" }
+
+      it "doesn't add a space inside the chord" do
         sheet_line.transpose(:up)
         expect(sheet_line.content).to eq(expected_chords)
       end
