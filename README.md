@@ -10,6 +10,7 @@
 
 # All features
 - :notes: Transpose all chords at once
+- :art: Style chords, lyrics and headings, show chord sheets in two columns and apply your styles to all of them
 - :pencil2: Edit chord sheet inline
 - :microphone: Arrange chord sheets into set lists 
 - :page_facing_up: Export chord sheets PDF
