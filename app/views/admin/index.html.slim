@@ -19,39 +19,6 @@ i Last 10 active users
 
 hr
 
-h1.title.is-1 Support Toast
-
-.stat-grid.stat-grid--2
-  = render("admin/stat_card", title: "Eligible", header: "All Time", count: @support_toast_stats[:eligible_count])
-  = render("admin/stat_card", title: "Seen", header: "All Time", count: @support_toast_stats[:seen_count])
-
-.stat-grid.stat-grid--2
-  = render("admin/stat_card", title: "Dismissed", header: "All Time", count: @support_toast_stats[:dismissed_count])
-  = render("admin/stat_card", title: "Clicked", header: "All Time", count: @support_toast_stats[:clicked_count])
-
-i Users who clicked the CTA
-.table-container
-  table.table.is-fullwidth.is-striped.admin-table
-    thead
-      tr
-        th User
-        th Clicked
-    tbody
-      - @support_toast_stats[:clicked_users].each do |user|
-        tr
-          td = user.email
-          td = local_time_ago(user.support_toast_clicked_at)
-
-hr
-
-h1.title.is-1 Surveys
-
-ul
-  - @surveys.each do |survey|
-    li = link_to "#{survey.title} - #{SurveyResponse.where(survey_key: survey.key).count} interactions", admin_survey_path(survey.key)
-
-hr
-
 h1.title.is-1 Chord Sheets
 
 .stat-grid
@@ -106,3 +73,36 @@ i Last 10 created set lists
           td = local_time_ago(set.created_at)
           td = local_time_ago(set.updated_at)
           td = set.chord_sheets.count
+
+hr
+
+h1.title.is-1 Support Toast
+
+.stat-grid.stat-grid--2
+  = render("admin/stat_card", title: "Eligible", header: "All Time", count: @support_toast_stats[:eligible_count])
+  = render("admin/stat_card", title: "Seen", header: "All Time", count: @support_toast_stats[:seen_count])
+
+.stat-grid.stat-grid--2
+  = render("admin/stat_card", title: "Dismissed", header: "All Time", count: @support_toast_stats[:dismissed_count])
+  = render("admin/stat_card", title: "Clicked", header: "All Time", count: @support_toast_stats[:clicked_count])
+
+i Users who clicked the CTA
+.table-container
+  table.table.is-fullwidth.is-striped.admin-table
+    thead
+      tr
+        th User
+        th Clicked
+    tbody
+      - @support_toast_stats[:clicked_users].each do |user|
+        tr
+          td = user.email
+          td = local_time_ago(user.support_toast_clicked_at)
+
+hr
+
+h1.title.is-1 Surveys
+
+ul
+  - @surveys.each do |survey|
+    li = link_to "#{survey.title} - #{SurveyResponse.where(survey_key: survey.key).count} interactions", admin_survey_path(survey.key)
