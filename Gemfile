@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "4.0.3"
 
+gem "aws-sdk-s3", require: false
 gem "bootsnap", require: false
 gem "chord_diagrams", github: "stufro/chord_diagrams", branch: "add-g-slash-f-sharp"
 gem "chordpro"
