@@ -3,6 +3,34 @@
 
 - content_for(:floating_banner, render("partials/survey_banner"))
 
+- if Flipper.enabled?(:styling_announcement, current_user)
+  #styling-banner.notification.is-primary.is-light
+    p.title.is-5.mb-3
+      span.icon-text.is-flex-wrap-nowrap
+        span.icon
+          i.fas.fa-bullhorn
+        span Have you tried the new chord sheet styling?
+    ul
+      li
+        span.icon-text.is-flex-wrap-nowrap
+          span.icon
+            i.fas.fa-palette
+          span Style chords, lyrics and headings with their own font style, colour and size
+      li
+        span.icon-text.is-flex-wrap-nowrap
+          span.icon
+            i.fas.fa-table-columns
+          span Show a chord sheet in two columns
+      li
+        span.icon-text.is-flex-wrap-nowrap
+          span.icon
+            i.fas.fa-text-height
+          span Compact a chord sheet by removing blank lines
+    p.is-size-7.mt-2
+      ' Please
+      = mail_to "support@chordly.co.uk", "send me any feedback", subject: "Chord sheet styling feedback"
+      | .
+
 .level.mb-4
   .is-flex.is-align-items-center style="gap: 1rem;"
     h1.title.is-1.mb-0.has-text-centered Chord Sheets

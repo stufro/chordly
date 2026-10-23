@@ -20,6 +20,20 @@ describe "Chord Sheets" do
       get chord_sheets_path
       expect(assigns(:chord_sheets)).to contain_exactly(visible)
     end
+
+    it "announces chord sheet styling when the flag is enabled for the user" do
+      Flipper.enable_actor(:styling_announcement, user)
+
+      get chord_sheets_path
+
+      expect(response.body).to include("Have you tried the new chord sheet styling?")
+    end
+
+    it "doesn't announce chord sheet styling otherwise" do
+      get chord_sheets_path
+
+      expect(response.body).not_to include("Have you tried the new chord sheet styling?")
+    end
   end
 
   describe "GET /chord_sheets/new" do

@@ -8,17 +8,22 @@ transparent and ensures that musicians, teachers, and performers can see how Cho
 ---
 
 ## Potential ideas for beyond the planned releases below
-- [ ] Prefer sharps/flats option
 - [ ] Alert when creating a chord sheet with the same name
 - [ ] Better formatting for PDFs (page breaks etc.)
   - [ ] Option to print PDF with content in 1 column or 2
 - [ ] Set list enhancements
   - [ ] Show 2 tabs on available chord sheets: recent & A-Z
   - [ ] Add chord sheet to set list from chord sheet show
-- [ ] Styling chord sheets
-- [ ] Sharing chord sheets with other users
 
 ---
+
+## v2.0.0 - February 2027 (estimated)
+- [ ] Sharing chord sheets with other users
+- [ ] Prefer sharps/flats option
+
+## v1.9.0 - October 2026
+- [x] Styling chord sheets
+- [x] Display chord sheet in two columns
 
 ## v1.0.0
 - [x] Support for chordpro format
