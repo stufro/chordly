@@ -126,6 +126,19 @@ describe ChordSheetModeller do
       end
     end
 
+    context "when the chords are minor major" do
+      let(:raw_content) { "   Fm          FmMaj7       Fm\n   Fmmaj7  FmM7\n" }
+
+      it "models the lines as chords" do
+        expect(described_class.new(raw_content).parse).to eq(
+          [
+            { type: :chords, content: "   Fm          FmMaj7       Fm\n" },
+            { type: :chords, content: "   Fmmaj7  FmM7\n" }
+          ]
+        )
+      end
+    end
+
     context "when the chords contain dots" do
       let(:raw_content) do
         <<~TEXT

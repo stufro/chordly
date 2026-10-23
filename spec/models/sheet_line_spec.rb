@@ -344,8 +344,8 @@ describe SheetLine do
     end
 
     context "with minor major chords" do
-      let(:original_chords) { "Cmmaj7  Dmmaj7/A" }
-      let(:expected_chords) { "C#mmaj7 D#mmaj7/A#" }
+      let(:original_chords) { "Cmmaj7  Dmmaj7/A  EmMaj7  FmM7" }
+      let(:expected_chords) { "C#mmaj7 D#mmaj7/A#  FmMaj7  F#mM7" }
 
       it "transposes the whole chord" do
         sheet_line.transpose(:up)

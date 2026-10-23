@@ -1,7 +1,7 @@
 module MusicUtils
   ASSUMED_OCTAVE = 5
   ACCIDENTALS = /(?:#|♯|b|♭)?/
-  CHORD_TYPES = /(maj|min|m|M|sus|dim|aug|mmaj|\+|°|ø)?/
+  CHORD_TYPES = /(maj|min|m|M|sus|dim|aug|mmaj|mMaj|mM|\+|°|ø)?/
   # Captured together with any trailing sus and alterations, e.g. 7sus4, 7b9#11 or 7+5
   CHORD_EXTENSIONS = %r{((?:6/9|69|11|13|2|4|5|6|7|9)?(?:sus[24]?)?(?:[#♯b♭+](?:5|9|11|13))*)}
   ADD_CHORDS = /(add\d+)?/
