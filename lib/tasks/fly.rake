@@ -6,14 +6,6 @@ namespace :fly do
   #  - Failures here prevent deployment
   task :build => 'assets:precompile'
 
-  # RELEASE step:
-  #  - changes to the filesystem made here are DISCARDED
-  #  - full access to secrets, databases
-  #  - failures here prevent deployment
-  task :release do
-    # SQLite lives on a volume — migrations must run at server startup, not here
-  end
-
   # SERVER step:
   #  - changes to the filesystem made here are deployed
   #  - full access to secrets, databases
