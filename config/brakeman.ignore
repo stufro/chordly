@@ -7,7 +7,7 @@
       "check_name": "FileAccess",
       "message": "Parameter value used in file name",
       "file": "app/controllers/articles_controller.rb",
-      "line": 18,
+      "line": 19,
       "link": "https://brakemanscanner.org/docs/warning_types/file_access/",
       "code": "File.read(Rails.public_path.join(\"articles\", \"#{params[:id].to_s}.md\"))",
       "render_path": null,
@@ -22,7 +22,53 @@
         22
       ],
       "note": ""
+    },
+    {
+      "warning_type": "Command Injection",
+      "warning_code": 14,
+      "fingerprint": "de3a66371ee2536980d32e754dc0248cb801c32bc0ee61e130444480e7899cb9",
+      "check_name": "Execute",
+      "message": "Possible command injection",
+      "file": "app/jobs/database_backup_job.rb",
+      "line": 31,
+      "link": "https://brakemanscanner.org/docs/warning_types/command_injection/",
+      "code": "system(\"gzip -c #{Rails.root.join(\"tmp/#{\"#{File.basename(source, \".sqlite3\")}-#{Time.current.utc.strftime(\"%Y%m%dT%H%M%SZ\")}.sqlite3\"}\")} > #{Rails.root.join(\"tmp/#{\"#{File.basename(source, \".sqlite3\")}-#{Time.current.utc.strftime(\"%Y%m%dT%H%M%SZ\")}.sqlite3\"}.gz\")}\", :exception => true)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "DatabaseBackupJob",
+        "method": "back_up"
+      },
+      "user_input": "Rails.root.join(\"tmp/#{\"#{File.basename(source, \".sqlite3\")}-#{Time.current.utc.strftime(\"%Y%m%dT%H%M%SZ\")}.sqlite3\"}\")",
+      "confidence": "Medium",
+      "cwe_id": [
+        77
+      ],
+      "note": "sqlite3 backup: paths built from internal DATABASES constant and timestamp, no user input"
+    },
+    {
+      "warning_type": "Command Injection",
+      "warning_code": 14,
+      "fingerprint": "f346a124b35acafd989ac773f58b3bd69ab389667507aa4dae84ea436d8b2f6c",
+      "check_name": "Execute",
+      "message": "Possible command injection",
+      "file": "app/jobs/database_backup_job.rb",
+      "line": 30,
+      "link": "https://brakemanscanner.org/docs/warning_types/command_injection/",
+      "code": "system(\"sqlite3 #{source} \\\".backup '#{Rails.root.join(\"tmp/#{\"#{File.basename(source, \".sqlite3\")}-#{Time.current.utc.strftime(\"%Y%m%dT%H%M%SZ\")}.sqlite3\"}\")}'\\\"\", :exception => true)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "DatabaseBackupJob",
+        "method": "back_up"
+      },
+      "user_input": "source",
+      "confidence": "Medium",
+      "cwe_id": [
+        77
+      ],
+      "note": "gzip compress: paths built from internal DATABASES constant and timestamp, no user input"
     }
   ],
-  "brakeman_version": "7.1.0"
+  "brakeman_version": "8.0.6"
 }
