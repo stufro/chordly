@@ -230,6 +230,46 @@ describe ChordSheetModeller do
       end
     end
 
+    context "when chords are separated by dashes or slashes" do
+      let(:raw_content) do
+        <<~TEXT
+          C - F - C - F - G
+          C / F / C
+          G  /  /  /
+        TEXT
+      end
+
+      it "models the lines as chords" do
+        expect(described_class.new(raw_content).parse).to eq(
+          [
+            { type: :chords, content: "C - F - C - F - G\n" },
+            { type: :chords, content: "C / F / C\n" },
+            { type: :chords, content: "G  /  /  /\n" }
+          ]
+        )
+      end
+    end
+
+    context "when a line only contains dashes or slashes" do
+      let(:raw_content) do
+        <<~TEXT
+          - - -
+          / / / /
+          ----------
+        TEXT
+      end
+
+      it "models the lines as lyrics" do
+        expect(described_class.new(raw_content).parse).to eq(
+          [
+            { type: :lyrics, content: "- - -\n" },
+            { type: :lyrics, content: "/ / / /\n" },
+            { type: :lyrics, content: "----------\n" }
+          ]
+        )
+      end
+    end
+
     context "when a line is blank" do
       let(:raw_content) { "G  Am\r\n\r\n   \r\n\u3000\r\nSome lyrics\r\n" }
 

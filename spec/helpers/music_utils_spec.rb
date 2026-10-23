@@ -128,6 +128,14 @@ describe MusicUtils do
       expect(music_utils.chord_tokens("and/or F/ /F")).to eq %w[and/or F/ /F]
     end
 
+    it "ignores dashes and slashes between chords" do
+      expect(music_utils.chord_tokens("C - F / G")).to eq %w[C F G]
+    end
+
+    it "keeps dashes and slashes when there's nothing else on the line" do
+      expect(music_utils.chord_tokens("- / -")).to eq %w[- / -]
+    end
+
     it "ignores N.C. and text in {} or []" do
       expect(music_utils.chord_tokens("G N.C. {some text} Em [more text] D")).to eq %w[G Em D]
     end

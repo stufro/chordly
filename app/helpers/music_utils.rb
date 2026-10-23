@@ -37,10 +37,17 @@ module MusicUtils
         .scan(/[^[:space:]]+/)
         .map { |token| token.delete_prefix("(").delete_suffix(")") }
         .grep_v(/\A([x×]\d+|\d+[x×])\z/i) # Remove repeat markers like x3 or 2x
+        .then { |tokens| without_separators(tokens) }
         .flat_map { |token| split_slash_separated_chords(token) }
   end
 
   private
+
+  # A dash or slash between chords, like C - F / G, separates them, but a line of only those isn't chords
+  def without_separators(tokens)
+    others = tokens.grep_v(%r{\A[-/]\z})
+    others.empty? ? tokens : others
+  end
 
   # F/Am is two chords, but G/B is one chord with a bass note
   def split_slash_separated_chords(token)
