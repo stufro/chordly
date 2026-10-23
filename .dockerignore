@@ -8,6 +8,7 @@ public/packs
 
 db/*.sqlite3
 db/*.sqlite3-*
+/production.sqlite3
 
 storage
 config/master.key
