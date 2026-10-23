@@ -7,6 +7,11 @@ describe "Articles" do
         get article_path("guide-to-using-chordly")
         expect(response).to have_http_status(:ok)
       end
+
+      it "serves the styling guide" do
+        get article_path("styling-chord-sheets")
+        expect(response.body).to include("How to Style Your Chord Sheets in Chordly")
+      end
     end
 
     context "when the article is not whitelisted" do

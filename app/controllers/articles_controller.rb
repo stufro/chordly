@@ -3,7 +3,8 @@ class ArticlesController < ApplicationController
   skip_before_action :authenticate_user!
 
   WHITELIST = %w[
-    beginners-guide-to-transposing guide-to-using-chordly restoring-old-chord-sheets tips-for-your-setlist
+    beginners-guide-to-transposing guide-to-using-chordly restoring-old-chord-sheets styling-chord-sheets
+    tips-for-your-setlist
   ].freeze
 
   def show
