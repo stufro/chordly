@@ -60,5 +60,11 @@ describe Chord do
 
       expect(sharp_chord.transpose(:up).to_s).to eq "Gm/D"
     end
+
+    it "keeps a number after the slash, like the 4 in Csus2/4" do
+      number_bass_chord = described_class.new(["C", "sus", "2", nil, "4"])
+
+      expect(number_bass_chord.transpose(:up).to_s).to eq "C#sus2/4"
+    end
   end
 end

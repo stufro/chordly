@@ -40,6 +40,8 @@ class Chord
   private
 
   def transpose_note(note, direction)
+    return note if note.match?(/\A\d\z/) # A number, like the 4 in Csus2/4, isn't a note
+
     new_note = Music::Note.new(normalise_accidental(note), 5).send(method_for(direction))
     [new_note.letter, new_note.accidental].join
   end

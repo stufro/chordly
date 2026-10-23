@@ -333,6 +333,16 @@ describe SheetLine do
       end
     end
 
+    context "when a chord has a number after the slash" do
+      let(:original_chords) { "Csus2/4  G/5  D" }
+      let(:expected_chords) { "C#sus2/4 G#/5 D#" }
+
+      it "transposes the root and keeps the number" do
+        sheet_line.transpose(:up)
+        expect(sheet_line.content).to eq(expected_chords)
+      end
+    end
+
     context "with a chord that isn't fully recognised" do
       let(:original_chords) { "G  C7alt  D" }
       let(:expected_chords) { "G# C7alt  D#" }
