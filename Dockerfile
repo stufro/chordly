@@ -91,7 +91,7 @@ RUN yarn install
 
 FROM base
 
-ARG DEPLOY_PACKAGES="postgresql-client file vim curl gnupg gzip libatomic1 libsqlite3-0 sqlite3 libjpeg62-turbo libxrender1 libxext6 libfontconfig1 libfreetype6 libpng16-16 fonts-dejavu-core fonts-liberation"
+ARG DEPLOY_PACKAGES="file vim curl gnupg gzip libatomic1 libsqlite3-0 sqlite3 libjpeg62-turbo libxrender1 libxext6 libfontconfig1 libfreetype6 libpng16-16 fonts-dejavu-core fonts-liberation"
 ENV DEPLOY_PACKAGES=${DEPLOY_PACKAGES}
 
 RUN --mount=type=cache,id=prod-apt-cache,sharing=locked,target=/var/cache/apt \
@@ -119,18 +119,12 @@ RUN chmod +x /app/bin/* && \
     sed -i 's/ruby.exe/ruby/' /app/bin/* && \
     sed -i '/^#!/aDir.chdir File.expand_path("..", __dir__)' /app/bin/*
 
-# The following enable assets to precompile on the build server.  Adjust
-# as necessary.  If no combination works for you, see:
-# https://fly.io/docs/rails/getting-started/existing/#access-to-environment-variables-at-build-time
-ENV SECRET_KEY_BASE 1
-# ENV AWS_ACCESS_KEY_ID=1
-# ENV AWS_SECRET_ACCESS_KEY=1
-
-# Run build task defined in lib/tasks/fly.rake
+# Run build task defined in lib/tasks/fly.rake. SECRET_KEY_BASE_DUMMY lets
+# assets precompile without the real key, and is scoped to this step only.
 ENV NODE_ENV=production
 
 ARG BUILD_COMMAND="bin/rails fly:build"
-RUN ${BUILD_COMMAND}
+RUN SECRET_KEY_BASE_DUMMY=1 ${BUILD_COMMAND}
 
 # Default server start instructions.  Generally Overridden by fly.toml.
 ENV PORT 8080
