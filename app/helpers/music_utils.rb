@@ -5,7 +5,8 @@ module MusicUtils
   # Captured together with any trailing sus and alterations, e.g. 7sus4, 7b9#11 or 7+5
   CHORD_EXTENSIONS = %r{((?:6/9|69|11|13|2|4|5|6|7|9)?(?:sus[24]?)?(?:[#♯b♭+](?:5|9|11|13))*)}
   ADD_CHORDS = /(add\d+)?/
-  BASS_NOTE = %r{(?:/([A-Ga-g1-7]#{ACCIDENTALS}))?}
+  # The atomic group keeps a bass note's accidental, so in Am/F#m the F# isn't read as a bass F
+  BASS_NOTE = %r{(?:/([A-Ga-g1-7](?>#{ACCIDENTALS})))?}
   # if you change NOTE_REGEX, make sure you update Chord to handle any additional parts
   NOTE_REGEX = /([A-Ga-g1-7]#{ACCIDENTALS})#{CHORD_TYPES}#{CHORD_EXTENSIONS}#{ADD_CHORDS}#{BASS_NOTE}/
   CHORD_REGEX = /\A#{NOTE_REGEX}\z/
