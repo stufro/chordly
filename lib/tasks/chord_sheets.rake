@@ -10,7 +10,8 @@ namespace :chord_sheets do
       content = ChordSheetModeller.new(chord_sheet.content.pluck("content").join).parse.as_json
       next if content == chord_sheet.content
 
-      chord_sheet.update!(content:) unless dry_run
+      # Skips validations so legacy sheets with a blank name still get remodelled
+      chord_sheet.update_attribute(:content, content) unless dry_run # rubocop:disable Rails/SkipsModelValidations
       updated += 1
     end
 

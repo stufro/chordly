@@ -63,6 +63,14 @@ describe "chord_sheets:reclassify_lines", type: :task do
                           .and change { trial_sheet.reload.content.first["type"] }.to("chords")
   end
 
+  it "remodels sheets that fail validation" do
+    nameless_sheet = build(:chord_sheet, name: "", content: misclassified_content)
+    nameless_sheet.save(validate: false)
+
+    expect { task.invoke }.to output.to_stdout
+                          .and change { nameless_sheet.reload.content.first["type"] }.to("chords")
+  end
+
   it "reports how many sheets were updated" do
     expect { task.invoke }.to output("Updated 1 of 2 chord sheets\n").to_stdout
   end
