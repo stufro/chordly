@@ -1,0 +1,8 @@
+- title "Admin - Users"
+
+h1.title.is-1 Users
+
+= link_to "← Back to Admin", admin_path, class: "button is-light mb-4"
+
+= render("admin/users/table", users: @users)
+= render("admin/pagination")

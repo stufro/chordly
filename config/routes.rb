@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get "/admin", to: "admin#index"
 
   namespace :admin do
-    resources :users, only: %i[show]
+    resources :users, only: %i[index show]
     resources :chord_sheets, only: %i[index show]
     resources :surveys, only: %i[show], param: :key
   end

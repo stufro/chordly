@@ -12,9 +12,9 @@ describe "Admin" do
       expect(response).to render_template(:index)
     end
 
-    it "links to every chord sheet" do
+    it "links to every user and chord sheet" do
       get "/admin"
-      expect(response.parsed_body.css("a").pluck("href")).to include(admin_chord_sheets_path)
+      expect(response.parsed_body.css("a").pluck("href")).to include(admin_users_path, admin_chord_sheets_path)
     end
 
     context "when the user is not an admin" do
@@ -28,6 +28,49 @@ describe "Admin" do
       it "sets a flash message" do
         get "/admin"
         expect(flash[:alert]).to eq "You are not authorized to view this page"
+      end
+    end
+  end
+
+  describe "GET /admin/users" do
+    it "lists users other than the admin" do
+      other_user = create(:user)
+      get admin_users_path
+      expect(response.parsed_body.css("tbody tr td:first-child").map(&:text)).to eq [other_user.email]
+    end
+
+    it "shows a page of users at a time" do
+      stub_const("Admin::BaseController::PER_PAGE", 2)
+      create_list(:user, 3)
+      get admin_users_path
+      expect(response.parsed_body.css("tbody tr").size).to eq 2
+    end
+
+    it "shows the rest on the next page" do
+      stub_const("Admin::BaseController::PER_PAGE", 2)
+      create_list(:user, 3)
+      get admin_users_path(page: 2)
+      expect(response.parsed_body.css("tbody tr").size).to eq 1
+    end
+
+    it "shows the last page when asked for one past the end" do
+      stub_const("Admin::BaseController::PER_PAGE", 2)
+      create_list(:user, 3)
+      get admin_users_path(page: 7)
+      expect(response.parsed_body.css("tbody tr").size).to eq 1
+    end
+
+    it "shows the first page when the page isn't a number" do
+      get "/admin/users?page[]=2"
+      expect(response).to have_http_status(:ok)
+    end
+
+    context "when the user is not an admin" do
+      let(:user_type) { :standard }
+
+      it "redirects to home page" do
+        get admin_users_path
+        expect(response).to redirect_to("/")
       end
     end
   end
