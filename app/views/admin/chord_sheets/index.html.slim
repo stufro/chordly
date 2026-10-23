@@ -5,4 +5,4 @@ h1.title.is-1 Chord Sheets
 = link_to "← Back to Admin", admin_path, class: "button is-light mb-4"
 
 = render("admin/chord_sheets/table", chord_sheets: @chord_sheets)
-= render("admin/pagination")
+= render("admin/pagination", page: @page, total_pages: @total_pages)

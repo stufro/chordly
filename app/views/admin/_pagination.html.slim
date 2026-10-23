@@ -1,7 +1,7 @@
 nav.pagination.is-centered role="navigation" aria-label="pagination"
-  - if @page > 1
-    = link_to "Previous", url_for(page: @page - 1), class: "pagination-previous"
-  - if @page < @total_pages
-    = link_to "Next", url_for(page: @page + 1), class: "pagination-next"
+  - if page > 1
+    = link_to "Previous", url_for(page: page - 1), class: "pagination-previous"
+  - if page < total_pages
+    = link_to "Next", url_for(page: page + 1), class: "pagination-next"
   ul.pagination-list
-    li: span.pagination-link.is-current Page #{@page} of #{@total_pages}
+    li: span.pagination-link.is-current Page #{page} of #{total_pages}
