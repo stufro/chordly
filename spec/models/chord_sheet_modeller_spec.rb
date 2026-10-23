@@ -111,6 +111,7 @@ describe ChordSheetModeller do
         <<~TEXT
           G7sus4  C11  Cm7b5  E7#9  G6/9/B
           C+  C°7  Cø7  CM7
+          D2/F#  F#7+5  Bm
         TEXT
       end
 
@@ -118,7 +119,8 @@ describe ChordSheetModeller do
         expect(described_class.new(raw_content).parse).to eq(
           [
             { type: :chords, content: "G7sus4  C11  Cm7b5  E7#9  G6/9/B\n" },
-            { type: :chords, content: "C+  C°7  Cø7  CM7\n" }
+            { type: :chords, content: "C+  C°7  Cø7  CM7\n" },
+            { type: :chords, content: "D2/F#  F#7+5  Bm\n" }
           ]
         )
       end

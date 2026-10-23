@@ -144,8 +144,8 @@ describe SheetLine do
     end
 
     context "with suspended, extended and altered chords" do
-      let(:original_chords) { "G7sus4  Cm7b5  E7#9  G6/9/B" }
-      let(:expected_chords) { "G#7sus4 C#m7b5 F7#9  G#6/9/C" }
+      let(:original_chords) { "G7sus4  Cm7b5  E7#9  F#7+5  G6/9/B" }
+      let(:expected_chords) { "G#7sus4 C#m7b5 F7#9  G7+5   G#6/9/C" }
 
       it "transposes the root and bass notes and keeps the rest of the chord" do
         sheet_line.transpose(:up)

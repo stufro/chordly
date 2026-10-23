@@ -27,7 +27,8 @@ describe MusicUtils do
 
     context "with suspended, extended and altered chords" do
       it "returns the root note" do
-        %w[G7sus4 G9sus4 G7sus2 G11 Gm11 Gmaj7#11 Gm7b5 G7#9 G7b9 G7♭9 G7#5 Gmaj13 G6/9 G69 G6/9/B].each do |chord|
+        %w[G7sus4 G9sus4 G7sus2 G11 Gm11 Gmaj7#11 Gm7b5 G7#9 G7b9 G7♭9 G7#5 G7+5 G7+9 Gmaj13 G6/9 G69
+           G6/9/B].each do |chord|
           expect(music_utils.extract_note(chord)).to eq "G"
         end
       end
