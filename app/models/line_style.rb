@@ -36,4 +36,13 @@ class LineStyle < ApplicationRecord
   validates :line_type, uniqueness: { scope: %i[styleable_type styleable_id] }
   # Sizing chord or lyric lines would push chords out of line with the words above
   validates :font_size, absence: true, unless: :heading?
+
+  def self.default_for(line_type)
+    new(line_type:, font_style: line_type == "lyrics" ? "normal" : "bold")
+  end
+
+  # Whether it looks the same as the built-in style. A normal size renders the same as none.
+  def default?
+    font_style == self.class.default_for(line_type).font_style && colour.nil? && (font_size.nil? || font_size_normal?)
+  end
 end

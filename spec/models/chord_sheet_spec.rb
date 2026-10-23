@@ -251,6 +251,45 @@ describe ChordSheet do
     end
   end
 
+  describe "#styled?" do
+    let(:chord_sheet) { create(:chord_sheet) }
+
+    it "is false with the built-in styles" do
+      expect(chord_sheet).not_to be_styled
+    end
+
+    it "is false when the saved styles match the built-in ones" do
+      create(:line_style, :chords, :bold, styleable: chord_sheet)
+      create(:line_style, :lyrics, :normal, styleable: chord_sheet)
+
+      expect(chord_sheet.reload).not_to be_styled
+    end
+
+    it "is false when headings are saved at the normal size" do
+      create(:line_style, :heading, :bold, font_size: "normal", styleable: chord_sheet)
+
+      expect(chord_sheet.reload).not_to be_styled
+    end
+
+    it "is true when a line style differs from the built-in one" do
+      create(:line_style, :lyrics, :italic, styleable: chord_sheet)
+
+      expect(chord_sheet.reload).to be_styled
+    end
+
+    it "is true when a line style has a colour" do
+      create(:line_style, :chords, :red, styleable: chord_sheet)
+
+      expect(chord_sheet.reload).to be_styled
+    end
+
+    it "is true when the text size has changed" do
+      chord_sheet.update!(text_size: "large")
+
+      expect(chord_sheet).to be_styled
+    end
+  end
+
   describe "#copy_styles_from" do
     let(:source) { create(:chord_sheet, text_size: "large") }
     let(:chord_sheet) { create(:chord_sheet) }

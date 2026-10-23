@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only: %i[show]
-    resources :chord_sheets, only: %i[show]
+    resources :chord_sheets, only: %i[index show]
     resources :surveys, only: %i[show], param: :key
   end
 

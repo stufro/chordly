@@ -18,8 +18,12 @@ module Styleable
 
   # Finds in memory so rendering every line doesn't query, falling back to an unsaved default style
   def line_style_for(line_type)
-    line_styles.find { it.line_type == line_type } ||
-      LineStyle.new(line_type:, font_style: line_type == "lyrics" ? "normal" : "bold")
+    line_styles.find { it.line_type == line_type } || LineStyle.default_for(line_type)
+  end
+
+  # Saving the style form stores every line type, so compare against the built-in styles
+  def styled?
+    !text_size_normal? || line_styles.any? { !it.default? }
   end
 
   # Back to the built-in styles, with no line styles of its own

@@ -90,25 +90,8 @@ h1.title.is-1 Chord Sheets
   = render("admin/stat_card", title: "Trial", header: "30 Days", count: trial_count)
 
 i Last 10 created chord sheets
-.table-container
-  table.table.is-fullwidth.is-striped.admin-table data-controller="clickable-row"
-    thead
-      tr
-        th User
-        th Name
-        th Created
-        th Updated
-        th Trial?
-        th ChordPro?
-    tbody
-      - @chord_sheets.order(created_at: :desc).limit(10).each do |sheet|
-        tr.is-clickable data-href=admin_chord_sheet_path(sheet) data-action="click->clickable-row#navigate"
-          td = sheet.user&.email
-          td = sheet.name
-          td = local_time_ago(sheet.created_at)
-          td = local_time_ago(sheet.updated_at)
-          td = "☑️" if sheet.trial_user_id
-          td = "☑️" if sheet.created_from_chord_pro
+= render("admin/chord_sheets/table", chord_sheets: @chord_sheets.includes(:user, :line_styles).order(created_at: :desc).limit(10))
+= link_to "View all chord sheets →", admin_chord_sheets_path, class: "button is-light"
 
 hr
 

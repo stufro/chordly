@@ -1,0 +1,21 @@
+.table-container
+  table.table.is-fullwidth.is-striped.admin-table data-controller="clickable-row"
+    thead
+      tr
+        th User
+        th Name
+        th Created
+        th Updated
+        th Trial?
+        th ChordPro?
+        th Styled?
+    tbody
+      - chord_sheets.each do |sheet|
+        tr.is-clickable data-href=admin_chord_sheet_path(sheet) data-action="click->clickable-row#navigate"
+          td = sheet.user&.email
+          td = sheet.name
+          td = local_time_ago(sheet.created_at)
+          td = local_time_ago(sheet.updated_at)
+          td = "☑️" if sheet.trial_user_id
+          td = "☑️" if sheet.created_from_chord_pro
+          td = "☑️" if sheet.styled?
