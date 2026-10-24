@@ -284,7 +284,7 @@ describe ChordSheetModeller do
     end
 
     context "when a line is blank" do
-      let(:raw_content) { "G  Am\r\n\r\n   \r\n\u3000\r\nSome lyrics\r\n" }
+      let(:raw_content) { "G  Am\r\n\r\n   \r\n\u3000\r\n\u200B\r\nSome lyrics\r\n" }
 
       it "models the line as lyrics" do
         expect(described_class.new(raw_content).parse).to eq(
@@ -293,6 +293,7 @@ describe ChordSheetModeller do
             { type: :lyrics, content: "\r\n" },
             { type: :lyrics, content: "   \r\n" },
             { type: :lyrics, content: "\u3000\r\n" },
+            { type: :lyrics, content: "\u200B\r\n" },
             { type: :lyrics, content: "Some lyrics\r\n" }
           ]
         )
@@ -497,6 +498,30 @@ describe ChordSheetModeller do
         expect(described_class.new(raw_content).parse).to eq(
           [
             { type: :lyrics, content: "君の　名は\r\n" }
+          ]
+        )
+      end
+    end
+
+    context "when the chords contain zero-width spaces" do
+      let(:raw_content) { "Am\u200B   F\r\n" }
+
+      it "removes each zero-width space" do
+        expect(described_class.new(raw_content).parse).to eq(
+          [
+            { type: :chords, content: "Am   F\r\n" }
+          ]
+        )
+      end
+    end
+
+    context "when lyrics contain zero-width spaces" do
+      let(:raw_content) { "Some\u200B lyrics\r\n" }
+
+      it "leaves the lyrics unchanged" do
+        expect(described_class.new(raw_content).parse).to eq(
+          [
+            { type: :lyrics, content: "Some\u200B lyrics\r\n" }
           ]
         )
       end

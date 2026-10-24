@@ -23,17 +23,21 @@ class ChordSheetModeller
 
   def model_line(line)
     type = line_type(line)
-    line = line.gsub("　", "  ") if type == :chords # Ideographic spaces are two columns wide
+    if type == :chords
+      line = line.gsub("　", "  ") # Ideographic spaces are two columns wide
+      line = line.delete("\u200B")
+    end
 
     { type:, content: line }
   end
 
   def line_type(line)
-    return :lyrics if line.blank?
-    return :heading if line.strip.match?(SECTION_LABEL)
+    clean_line = line.delete("\u200B")
+    return :lyrics if clean_line.blank?
+    return :heading if clean_line.strip.match?(SECTION_LABEL)
 
-    tokens = chord_tokens(line)
-    return :heading if tokens.empty? && line.match?(/\{.*?\}|\[.*?\]/) # Only text in {} or [], like [Verse 1]
+    tokens = chord_tokens(clean_line)
+    return :heading if tokens.empty? && clean_line.match?(/\{.*?\}|\[.*?\]/) # Only text in {} or [], like [Verse 1]
 
     # Lines with no tokens left, like | . . . | or N.C., are chord notation so stay chords
     tokens.each { |token| extract_note!(token) }

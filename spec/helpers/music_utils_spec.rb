@@ -88,6 +88,10 @@ describe MusicUtils do
       expect(music_utils.chord_tokens("G　 Am\tC\r\n")).to eq %w[G Am C]
     end
 
+    it "ignores zero-width spaces" do
+      expect(music_utils.chord_tokens("G\u200B Am C\r\n")).to eq %w[G Am C]
+    end
+
     it "treats bar lines, repeat colons and asterisks as separators" do
       expect(music_utils.chord_tokens("|:G|Am:|*F|")).to eq %w[G Am F]
     end

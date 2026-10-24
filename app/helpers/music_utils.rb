@@ -30,7 +30,8 @@ module MusicUtils
 
   # The tokens on a line that should each be a chord for it to be a chord line
   def chord_tokens(line)
-    line.sub(LEADING_SECTION_LABEL, "")
+    line.delete("\u200B")
+        .sub(LEADING_SECTION_LABEL, "")
         .gsub("N.C.", "")
         .gsub(/(\{.*?\}|\[.*?\])/, "") # Remove text in {} or []
         .tr("|:*.", " ")
