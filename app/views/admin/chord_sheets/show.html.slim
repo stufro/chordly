@@ -43,5 +43,6 @@ h2.title.is-3 Content
 
 pre#chord-sheet-content style=content_style(@chord_sheet)
   - @chord_sheet.content.each do |line|
+    span.has-text-grey.is-italic = "#{line['type'].ljust(8)}| "
     span class=line_class(line) style=line_style(@chord_sheet, line)
       = line["content"]
