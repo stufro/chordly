@@ -1,5 +1,4 @@
 module AdsenseHelper
-  # rubocop:disable Metrics/MethodLength
   AD_SLOTS = {
     horizontal: "2541067036",
     multiplex: "8475919995",
@@ -13,14 +12,14 @@ module AdsenseHelper
   }.freeze
 
   def show_ads?
-    !Rails.env.development? && (!user_signed_in? || current_user.standard?)
+    (!Rails.env.test? || !Rails.env.development?) && (!user_signed_in? || current_user.standard?)
   end
 
+  # rubocop:disable-next Metrics/MethodLength
   def adsense_unit(slot)
     return unless show_ads?
 
     content_tag(:div, style: "width: 100%") do
-      # content_tag(:div, style: "width: 100%; height: 100px; border: 2px solid black") do
       content_tag(
         :ins, "",
         class: "adsbygoogle",
@@ -32,10 +31,9 @@ module AdsenseHelper
         }.tap do |data|
           data[:full_width_responsive] = "true" if slot == :horizontal
         end
-      ) # { content_tag(:p, slot) }
+      )
     end
   end
-  # rubocop:enable Metrics/MethodLength
 
   private
 
