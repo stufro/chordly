@@ -1,0 +1,33 @@
+- pdf_url = chord_sheet_path(chord_sheet, format: :pdf)
+
+#pdf-preview-modal.modal[data-modal-target="modal" data-controller="pdf-preview"
+                         data-action="keydown.esc@window->pdf-preview#handleEsc"]
+  .modal-background data-action="click->modal#close click->pdf-preview#onClose"
+  .modal-card style="--bulma-modal-content-width: min(90vw, 900px); height: 90vh"
+    header.modal-card-head
+      p.modal-card-title PDF Preview
+      button.delete type="button" aria-label="close" data-action="modal#close pdf-preview#onClose"
+    section.modal-card-body.p-0.is-flex.is-flex-direction-column style="gap: 0; overflow: hidden"
+      / Style controls strip
+      .px-5.py-4.is-flex.is-flex-wrap-wrap.is-align-items-flex-end[
+        style="gap: 1.5rem; border-bottom: 1px solid var(--bulma-border); flex-shrink: 0"]
+        = render "chord_sheets/pdf_preview_form", chord_sheet: chord_sheet
+
+      / PDF preview iframe — fills remaining height
+      = tag.iframe src: pdf_url, title: "PDF preview", loading: "lazy",
+                   style: "border: none; width: 100%; display: block; flex: 1 1 auto; min-height: 0",
+                   data: { pdf_preview_target: "iframe" }
+
+    footer.modal-card-foot
+      .buttons
+        = button_to chord_sheet_path(chord_sheet, format: :pdf),
+            class: "button is-info", id: "pdf-preview-download",
+            aria: { label: "Download PDF" },
+            data: { pdf_download_target: "button" },
+            form: { data: { controller: "pdf-download", action: "submit->pdf-download#download",
+                            pdf_download_filename_value: "#{chord_sheet.name}.pdf" } },
+            method: :get
+          span.icon
+            i.fas.fa-download
+          span Download PDF
+        button.button type="button" data-action="modal#close pdf-preview#onClose" Close

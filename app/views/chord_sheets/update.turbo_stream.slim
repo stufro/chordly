@@ -1,4 +1,9 @@
-= turbo_stream.replace "flash-message-container", partial: "partials/flash"
-
-= turbo_stream.replace dom_id(@chord_sheet), partial: "chord_sheets/main",
-                                             locals: { chord_sheet: @chord_sheet }
+- if request.headers["Turbo-Frame"] == "pdf_preview_form"
+  - if flash.now[:alert]
+    = turbo_stream.replace "flash-message-container", partial: "partials/flash"
+  = turbo_stream.replace "pdf_preview_form", partial: "chord_sheets/pdf_preview_form",
+                                            locals: { chord_sheet: @chord_sheet }
+- else
+  = turbo_stream.replace "flash-message-container", partial: "partials/flash"
+  = turbo_stream.replace dom_id(@chord_sheet), partial: "chord_sheets/main",
+                                               locals: { chord_sheet: @chord_sheet }

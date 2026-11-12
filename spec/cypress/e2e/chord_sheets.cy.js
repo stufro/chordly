@@ -309,6 +309,31 @@ describe("Styling a chord sheet", () => {
     cy.get("#style-modal .delete").click()
     cy.get("#style-modal").should("not.be.visible")
   })
+
+  it("allows previewing the PDF and adjusting font sizes in the preview modal", () => {
+    helper.createChordSheet({ content_string: "[Verse 1]\nG   Am\nLyrics" }).then((chordSheet) => {
+      cy.visit(`/chord_sheets/${chordSheet.id}`)
+    })
+
+    cy.get("#pdf-preview-open").click()
+    cy.get("#pdf-preview-modal").should("be.visible")
+    cy.get("#pdf-preview-modal iframe").should("have.attr", "src").and("include", ".pdf")
+
+    cy.intercept("POST", "/chord_sheets/*").as("saveStyles")
+
+    cy.get("#pdf-preview-modal label[for='pdf_preview_text_size_large']").click()
+    cy.wait("@saveStyles")
+
+    cy.get("#pdf-preview-modal label[for='pdf_preview_heading_font_size_largest']").click()
+    cy.wait("@saveStyles")
+
+    cy.get("#pdf-preview-modal").should("be.visible")
+    cy.get("#pdf-preview-modal .delete").click()
+    cy.get("#pdf-preview-modal").should("not.be.visible")
+
+    cy.get(".chord-line").first().should("have.css", "font-size", "16px")
+    cy.get(".heading-line").first().should("have.css", "font-size", "32px")
+  })
 })
 
 describe("Undoing changes", () => {

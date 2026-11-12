@@ -12,7 +12,8 @@ class ChordSheetsController < ApplicationController
       format.html
       format.pdf do
         html = render_to_string(layout: "application")
-        send_data Sghtmltopdf.render(html), filename: "#{@chord_sheet.name}.pdf", type: "application/pdf"
+        send_data Sghtmltopdf.render(html), filename: "#{@chord_sheet.name}.pdf", type: "application/pdf",
+                                            disposition: :inline
       end
     end
   end

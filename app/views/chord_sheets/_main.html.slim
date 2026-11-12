@@ -77,15 +77,24 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
             aria: { label: "Copy to clipboard" }
             span.icon
               i.fas.fa-copy
-          = button_to chord_sheet_path(chord_sheet, format: :pdf),
-            class: "button is-rounded is-info has-tooltip", id: "export", disabled: !user_signed_in?,
-            aria: { label: user_signed_in? ? "Download PDF" : "Log in to download PDF" },
-            data: { pdf_download_target: "button", tooltip_target: "button" },
-            form: { data: { controller: "pdf-download", action: "submit->pdf-download#download",
-                            pdf_download_filename_value: "#{chord_sheet.name}.pdf" } },
-            method: :get
-            span.icon
-              i.fas.fa-download
+          .field.has-addons.mb-0
+            .control
+              = button_to chord_sheet_path(chord_sheet, format: :pdf),
+                class: "button is-rounded is-info has-tooltip", id: "export", disabled: !user_signed_in?,
+                aria: { label: user_signed_in? ? "Download PDF" : "Log in to download PDF" },
+                data: { pdf_download_target: "button", tooltip_target: "button" },
+                form: { data: { controller: "pdf-download", action: "submit->pdf-download#download",
+                                pdf_download_filename_value: "#{chord_sheet.name}.pdf" } },
+                method: :get
+                span.icon
+                  i.fas.fa-download
+            .control
+              button.button.is-rounded.is-info.has-tooltip#pdf-preview-open[
+                type="button" aria-label="PDF preview"
+                data-tooltip-target="button"
+                data-action="modal#open" data-modal-id-param="pdf-preview-modal"]
+                span.icon.is-small
+                  i.fas.fa-sliders
           = button_to(chord_sheet_path(chord_sheet), class: "button is-danger is-rounded has-tooltip",
               id: "delete-chord-sheet", aria: { label: "Delete chord sheet" }, data: { tooltip_target: "button" },
               form: { data: { turbo_frame: "_top", turbo_confirm: "Are you sure?" } },
@@ -105,3 +114,4 @@ turbo-frame[id=dom_id(chord_sheet) data-controller="clipboard chord-diagram moda
   = render("chord_sheets/style_modal", chord_sheet:)
   = render("chord_sheets/versions_modal", chord_sheet:)
   = render("chord_sheets/line_type_help_modal")
+  = render("chord_sheets/pdf_preview_modal", chord_sheet:)

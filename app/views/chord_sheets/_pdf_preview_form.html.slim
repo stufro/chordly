@@ -1,0 +1,34 @@
+- heading_style = chord_sheet.line_style_for("heading")
+
+= turbo_frame_tag "pdf_preview_form" do
+  = form_with model: chord_sheet, method: :patch, id: "pdf-preview-style-form",
+              data: { pdf_preview_target: "form",
+                      action: "turbo:submit-end->pdf-preview#reloadPreview" } do |form|
+    .is-flex.is-flex-wrap-wrap style="gap: 1.5rem"
+      / Text size
+      .field.mb-0
+        p.label.is-small Text size
+        .style-options
+          - ChordSheet::TEXT_SIZES.each_key do |text_size|
+            = form.radio_button :text_size, text_size,
+                                id: "pdf_preview_text_size_#{text_size}",
+                                data: { action: "change->pdf-preview#autoSubmit" }
+            = form.label :text_size, text_size.humanize,
+                         for: "pdf_preview_text_size_#{text_size}", class: "style-option"
+
+      / Heading size
+      .field.mb-0
+        p.label.is-small Heading size
+        .style-options
+          = form.fields_for :line_styles, heading_style do |style_fields|
+            = style_fields.hidden_field :line_type
+            = style_fields.hidden_field :font_style
+            = style_fields.hidden_field :colour
+            - LineStyle::FONT_SIZES.each_key do |font_size|
+              = style_fields.radio_button :font_size, font_size,
+                                         id: "pdf_preview_heading_font_size_#{font_size}",
+                                         checked: font_size == (heading_style.font_size || "normal"),
+                                         data: { action: "change->pdf-preview#autoSubmit" }
+              = style_fields.label :font_size, font_size.humanize,
+                                  for: "pdf_preview_heading_font_size_#{font_size}",
+                                  class: "style-option"

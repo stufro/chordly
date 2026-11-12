@@ -34,6 +34,9 @@ application.register("navbar", NavbarController)
 import PdfDownloadController from "./pdf_download_controller"
 application.register("pdf-download", PdfDownloadController)
 
+import PdfPreviewController from "./pdf_preview_controller"
+application.register("pdf-preview", PdfPreviewController)
+
 import SearchController from "./search_controller"
 application.register("search", SearchController)
 
